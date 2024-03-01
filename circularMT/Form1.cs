@@ -243,7 +243,7 @@ namespace circularMT
         private void writeName(Graphics g, string name, float startPoint, float endPoint, Point center, int radius)
         {
             radius += 30;
-            Font f = new Font(FontFamily.GenericSansSerif, 20);
+            Font f = new Font(FontFamily.GenericSansSerif, 20,FontStyle.Bold);
             SizeF lenght = g.MeasureString(name, f);
             float circumference = (float)(2 * radius * Math.PI);
             float angle = startPoint;
@@ -257,7 +257,7 @@ namespace circularMT
                 //g.DrawEllipse(Pens.Black, x-2, y-2 , 4, 4);
                 g.TranslateTransform(x, y);
                 g.RotateTransform((float)angle + 90.0f);
-                g.DrawString(new string(name[index], 1), f, Brushes.Black, 0, 0);
+                g.DrawString(new string(name[index], 1), f, Brushes.Black, 0, 0);+++++++++++++
                 g.DrawEllipse(Pens.Black, -2, -2, 4, 4);
                 g.ResetTransform();
                 angle += (float)(s.Width * 270 / circumference);
