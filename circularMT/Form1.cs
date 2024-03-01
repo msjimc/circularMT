@@ -151,10 +151,11 @@ namespace circularMT
             {
                 for (int index = 0; index < chlTerms.CheckedItems.Count; index++)
                 {
+                    if (area.Height < step || area.Width < step) { break; }
                     string key = chlTerms.CheckedItems[index].ToString();
                     drawFeatures(g, key, area, 20, center, radius);
                     area = new Rectangle(area.X + step, area.Y + step, area.Width - stepTwo, area.Height - stepTwo);
-                    if (area.Height < 20 || area.Width < 20) { break; }
+                    
                     radius -= step;
                 }
             }
@@ -181,36 +182,86 @@ namespace circularMT
                 {
                     if (f.Forward == true)
                     {
-                        g.FillPie(Brushes.PaleGreen, outer, f.arcStartAngle(sequencelength), f.arcLengthAngle(sequencelength) - 1);
-                        g.FillPolygon(Brushes.PaleGreen, getArrow(f.arcEndAngle(sequencelength), radius, center, true));
+                        Point[] p = getArrow(f.arcEndAngle(sequencelength), f.arcStartAngle(sequencelength), f.arcEndAngle(sequencelength), radius, center, true);
+                        g.FillPolygon(Brushes.PaleGreen, p);
+                        g.DrawPolygon(Pens.Black, p);
+                        writeName(g, f.Name, f.arcStartAngle(sequencelength), f.arcEndAngle(sequencelength), center, radius);
                     }
                     else
                     {
-                        g.FillPie(Brushes.Pink, outer, f.arcStartAngle(sequencelength) + 1, f.arcLengthAngle(sequencelength) -1);
-                        g.FillPolygon(Brushes.Pink, getArrow(f.arcStartAngle(sequencelength), radius, center, false));
-                    }
-                    g.DrawPie(Pens.Black, outer, f.arcStartAngle(sequencelength), f.arcLengthAngle(sequencelength));
-                    g.DrawPie(Pens.Black, inner, f.arcStartAngle(sequencelength), f.arcLengthAngle(sequencelength));
-                   
-                }
-                
+                        Point[] p = getArrow(f.arcEndAngle(sequencelength), f.arcStartAngle(sequencelength), f.arcEndAngle(sequencelength), radius, center, false);
+                        g.FillPolygon(Brushes.Pink, p);
+                        g.DrawPolygon(Pens.Black, p);
+                        writeName(g, f.Name, f.arcStartAngle(sequencelength), f.arcEndAngle(sequencelength), center, radius);
+                    }                   
+                }                
             }
-           g.FillEllipse(Brushes.White, inner.X + 1, inner.Y + 1, inner.Width - 2, inner.Height - 2);
-
-
+        
         }
 
-        private Point[] getArrow(float degrees, int radius, Point center, bool start)
+        private Point[] getArrow(float degrees, float startPoint, float endPoint, int radius, Point center, bool start)
+        {           
+            List<Point> places = new List<Point>();
+
+            double radion;
+
+            if (start == true)
+            { endPoint -= 1.0f; }
+            else
+            {
+                radion = (startPoint * 2 * Math.PI) / 360;
+                Point p = new Point((int)(Math.Cos(radion) * radius)  + center.X, (int)(Math.Sin(radion) * radius) + center.Y);
+                places.Add(p);
+                startPoint += 1.0f;
+            }
+
+            for (float place = startPoint; place < endPoint + 0.1f; place += 0.1f)
+            {
+                radion = (place * 2 * Math.PI) / 360;
+                Point p = new Point((int)(Math.Cos(radion) * (radius + 22)) + center.X, (int)(Math.Sin(radion) * (radius + 22)) + center.Y);
+                places.Add(p);
+            }
+
+            if (start == true)
+            {
+                radion = ((endPoint + 1.0f) * 2 * Math.PI) / 360;
+                Point p = new Point((int)(Math.Cos(radion) * radius) + center.X, (int)(Math.Sin(radion) * radius) + center.Y);
+                places.Add(p);
+            }
+
+            for (float place = endPoint; place > startPoint - 0.1f; place -= 0.1f)
+            {
+                radion = (place * 2 * Math.PI) / 360;
+                Point p = new Point((int)(Math.Cos(radion) * (radius - 22)) + center.X, (int)(Math.Sin(radion) * (radius - 22)) + center.Y);
+                places.Add(p);
+            }
+
+
+            return places.ToArray();
+        }
+
+        private void writeName(Graphics g, string name, float startPoint, float endPoint, Point center, int radius)
         {
-            Point[] points = new Point[3];
-            int difference = 1;
-            if (start == true) { difference = -1; }
-            double radion = ((degrees + difference) * 2 * Math.PI) / 360;
-            points[0] = new Point((int)(Math.Cos(radion) * (radius + 22)) + center.X, (int)(Math.Sin(radion) * (radius + 22)) + center.Y);
-            points[1] = new Point((int)(Math.Cos(radion) * (radius - 22)) + center.X, (int)(Math.Sin(radion) * (radius - 22)) + center.Y);
-            radion = ((degrees) * 2 * Math.PI) / 360;
-            points[2] = new Point((int)(Math.Cos(radion) * (radius)) + center.X, (int)(Math.Sin(radion) * (radius)) + center.Y);
-            return points;
+            radius += 30;
+            Font f = new Font(FontFamily.GenericSansSerif, 20);
+            SizeF lenght = g.MeasureString(name, f);
+            float circumference = (float)(2 * radius * Math.PI);
+            float angle = startPoint;
+            for (int index = 0; index < name.Length; index++)
+            {
+                SizeF s = g.MeasureString(new string(name[index], 1), f);                
+                double radion = (angle * 2 * Math.PI) / 360;
+                float x = (int)(Math.Cos(radion) * (radius - 10)) + center.X;
+                float y = (int)(Math.Sin(radion) * (radius - 10)) + center.Y;
+                //g.DrawString(new string(name[index], 1), f, Brushes.Black, x, y);
+                //g.DrawEllipse(Pens.Black, x-2, y-2 , 4, 4);
+                g.TranslateTransform(x, y);
+                g.RotateTransform((float)angle + 90.0f);
+                g.DrawString(new string(name[index], 1), f, Brushes.Black, 0, 0);
+                g.DrawEllipse(Pens.Black, -2, -2, 4, 4);
+                g.ResetTransform();
+                angle += (float)(s.Width * 270 / circumference);
+            }
         }
 
         private int getlength()
