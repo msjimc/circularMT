@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace circularMT
 {
@@ -14,6 +15,7 @@ namespace circularMT
     {
         Dictionary<string, List<feature>> features = new Dictionary<string, List<feature>>();
         int sequencelength = -1;
+        Dictionary<string, Brush> colours;
         public Form1()
         {
             InitializeComponent();
@@ -109,6 +111,9 @@ namespace circularMT
         {
             chlTerms.Items.Clear();
             features = new Dictionary<string, List<feature>>();
+            Brush[] colourSet = {Brushes.PaleGreen, Brushes.Pink, Brushes.LightBlue, Brushes.LightGray,Brushes.Orange, Brushes.GreenYellow, Brushes.Orchid};
+            colours = new Dictionary<string, Brush>();
+            int index = 0;
 
             foreach (string line in lines)
             {
@@ -118,7 +123,11 @@ namespace circularMT
                     if (features.ContainsKey(term) == false)
                     {
                         features.Add(term, new List<feature>());
+                        colours.Add(term, colourSet[index]);
                         chlTerms.Items.Add(term);
+                        index++;
+                        if (index>= colourSet.Length)
+                        { index = 0; }
                     }
                 }
             }
@@ -146,7 +155,9 @@ namespace circularMT
             int step = 50;
             int stepTwo = 100;
 
-            Rectangle area = new Rectangle(center.X - radius, center.Y - radius, radius * 2,radius*2) ;
+            Rectangle area = new Rectangle(center.X - radius +30, center.Y - radius +30, (radius - 30) * 2,(radius - 30) * 2);
+            g.DrawEllipse(new Pen(Color.Black, 3), area);
+
             if (chlTerms.CheckedItems.Count != 0)
             {
                 for (int index = 0; index < chlTerms.CheckedItems.Count; index++)
@@ -154,13 +165,9 @@ namespace circularMT
                     if (area.Height < step || area.Width < step) { break; }
                     string key = chlTerms.CheckedItems[index].ToString();
                     drawFeatures(g, key, area, 20, center, radius);
-                    area = new Rectangle(area.X + step, area.Y + step, area.Width - stepTwo, area.Height - stepTwo);
-                    
-                    radius -= step;
+                    area = new Rectangle(area.X + step, area.Y + step, area.Width - stepTwo, area.Height - stepTwo);                    
                 }
             }
-
-
 
             p1.Image = bmp;
         }
@@ -170,11 +177,7 @@ namespace circularMT
             int step = increment;
             int stepTwo = increment * 2;
 
-            Rectangle outer = new Rectangle(area.X - step, area.Y - step, area.Width + stepTwo, area.Height + stepTwo);
-            Rectangle inner = new Rectangle(area.X + step, area.Y + step, area.Width - stepTwo, area.Height - stepTwo);
-
-            g.DrawEllipse(Pens.Black, area);
-
+            Brush colour = colours[featureSet];
 
             foreach (feature f in features[featureSet])
             {
@@ -183,20 +186,29 @@ namespace circularMT
                     if (f.Forward == true)
                     {
                         Point[] p = getArrow(f.arcEndAngle(sequencelength), f.arcStartAngle(sequencelength), f.arcEndAngle(sequencelength), radius, center, true);
-                        g.FillPolygon(Brushes.PaleGreen, p);
+                        g.FillPolygon(colour, p);
                         g.DrawPolygon(Pens.Black, p);
-                        writeName(g, f.Name, f.arcStartAngle(sequencelength), f.arcEndAngle(sequencelength), center, radius);
                     }
                     else
                     {
-                        Point[] p = getArrow(f.arcEndAngle(sequencelength), f.arcStartAngle(sequencelength), f.arcEndAngle(sequencelength), radius, center, false);
-                        g.FillPolygon(Brushes.Pink, p);
+                        Point[] p = getArrow(f.arcEndAngle(sequencelength), f.arcStartAngle(sequencelength), f.arcEndAngle(sequencelength), radius - 60, center, false);
+                        g.FillPolygon(colour, p);
                         g.DrawPolygon(Pens.Black, p);
-                        writeName(g, f.Name, f.arcStartAngle(sequencelength), f.arcEndAngle(sequencelength), center, radius);
-                    }                   
+                     }                   
                 }                
             }
-        
+            foreach (feature f in features[featureSet])
+            {
+                if (f.EndPoint - f.StartPoint < sequencelength / 3)
+                {
+                    if (f.Forward == true)
+                    { writeName(g, f.Name, f.arcStartAngle(sequencelength), f.arcEndAngle(sequencelength), center, radius); }
+                    else
+                    { writeName(g, f.Name, f.arcStartAngle(sequencelength), f.arcEndAngle(sequencelength), center, radius - 60); }
+                }
+            }
+
+
         }
 
         private Point[] getArrow(float degrees, float startPoint, float endPoint, int radius, Point center, bool start)
@@ -242,25 +254,75 @@ namespace circularMT
 
         private void writeName(Graphics g, string name, float startPoint, float endPoint, Point center, int radius)
         {
-            radius += 30;
-            Font f = new Font(FontFamily.GenericSansSerif, 20,FontStyle.Bold);
+            Font f = new Font(FontFamily.GenericSansSerif, 20, FontStyle.Bold);
             SizeF lenght = g.MeasureString(name, f);
             float circumference = (float)(2 * radius * Math.PI);
-            float angle = startPoint;
-            for (int index = 0; index < name.Length; index++)
+
+            float arcLength = circumference * (endPoint - startPoint) / 360;
+            int fontSize = 19;
+            float fontRadiusOffset = 0;
+            while (lenght.Width > arcLength && fontSize > 10)
             {
-                SizeF s = g.MeasureString(new string(name[index], 1), f);                
-                double radion = (angle * 2 * Math.PI) / 360;
-                float x = (int)(Math.Cos(radion) * (radius - 10)) + center.X;
-                float y = (int)(Math.Sin(radion) * (radius - 10)) + center.Y;
-                //g.DrawString(new string(name[index], 1), f, Brushes.Black, x, y);
-                //g.DrawEllipse(Pens.Black, x-2, y-2 , 4, 4);
-                g.TranslateTransform(x, y);
-                g.RotateTransform((float)angle + 90.0f);
-                g.DrawString(new string(name[index], 1), f, Brushes.Black, 0, 0);+++++++++++++
-                g.DrawEllipse(Pens.Black, -2, -2, 4, 4);
-                g.ResetTransform();
-                angle += (float)(s.Width * 270 / circumference);
+                fontRadiusOffset++;
+                f = new Font(FontFamily.GenericSansSerif, fontSize, FontStyle.Bold);
+                 lenght = g.MeasureString(name, f);
+                 circumference = (float)(2 * radius * Math.PI);
+
+                 arcLength = circumference * (endPoint - startPoint) / 360;
+                fontSize--;
+            }
+
+
+            if (lenght.Width < arcLength)
+            {
+                float diff = (arcLength - lenght.Width) / 2.0f;
+                float offset = diff * 360 / circumference;
+
+                float angle = startPoint + offset;
+
+                if (angle > 180)
+                {
+                    radius += 28;
+                    diff = (arcLength - lenght.Width) / 2.0f;
+                    offset = diff * 360 / circumference;
+
+                    angle = startPoint + offset;
+
+                    for (int index = 0; index < name.Length; index++)
+                    {
+                        SizeF s = g.MeasureString(new string(name[index], 1), f);
+                        double radion = (angle * 2 * Math.PI) / 360;
+                        float x = (int)(Math.Cos(radion) * (radius - fontRadiusOffset - 10 )) + center.X;
+                        float y = (int)(Math.Sin(radion) * (radius - fontRadiusOffset - 10)) + center.Y;
+                        g.TranslateTransform(x , y );
+                        g.RotateTransform((float)angle + 90.0f);
+                        g.DrawString(new string(name[index], 1), f, Brushes.Black, 0, 0);
+                        //g.DrawEllipse(Pens.Black, -2, -2, 4, 4);
+                        g.ResetTransform();
+                        angle += (float)(s.Width * 270 / circumference);
+                    }
+                }
+                else
+                {
+                    radius -= 10;
+                    diff = (arcLength - (lenght.Width * (name.Length - 2)/name.Length)) / 2.0f;
+                    offset = diff * 360 / circumference;
+
+                    angle = startPoint + offset;
+                    for (int index = 0; index < name.Length; index++)
+                    {
+                        SizeF s = g.MeasureString(new string(name[index], 1), f);
+                        double radion = (angle * 2 * Math.PI) / 360;
+                        float x = (int)(Math.Cos(radion) * (radius + fontRadiusOffset - 10)) + center.X;
+                        float y = (int)(Math.Sin(radion) * (radius + fontRadiusOffset - 10)) + center.Y;
+                        g.TranslateTransform(x, y);
+                        g.RotateTransform((float)angle + 270.0f);
+                        g.DrawString(new string(name[name.Length - (1 + index)], 1), f, Brushes.Black, 0, 0);
+                        //g.DrawEllipse(Pens.Black, -2, -2, 4, 4);
+                        g.ResetTransform();
+                        angle += (float)(s.Width * 270 / circumference);
+                    }
+                }
             }
         }
 
@@ -275,6 +337,11 @@ namespace circularMT
         }
 
         private void chlTerms_MouseUp(object sender, MouseEventArgs e)
+        {
+            drawfeatures();
+        }
+
+        private void p1_MouseClick(object sender, MouseEventArgs e)
         {
             drawfeatures();
         }

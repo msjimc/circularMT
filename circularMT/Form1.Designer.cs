@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.p1 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnGenBank = new System.Windows.Forms.Button();
-            this.chlTerms = new System.Windows.Forms.CheckedListBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.chlTerms = new System.Windows.Forms.CheckedListBox();
+            this.btnGenBank = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.p1)).BeginInit();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -52,6 +52,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Genome";
+            // 
+            // p1
+            // 
+            this.p1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.p1.Location = new System.Drawing.Point(3, 16);
+            this.p1.Name = "p1";
+            this.p1.Size = new System.Drawing.Size(564, 407);
+            this.p1.TabIndex = 0;
+            this.p1.TabStop = false;
+            this.p1.MouseClick += new System.Windows.Forms.MouseEventHandler(this.p1_MouseClick);
             // 
             // groupBox2
             // 
@@ -68,23 +78,23 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Options";
             // 
-            // p1
+            // label2
             // 
-            this.p1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.p1.Location = new System.Drawing.Point(3, 16);
-            this.p1.Name = "p1";
-            this.p1.Size = new System.Drawing.Size(564, 407);
-            this.p1.TabIndex = 0;
-            this.p1.TabStop = false;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(6, 51);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(116, 13);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "Select features to draw";
             // 
-            // label1
+            // chlTerms
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "GenBank file:";
+            this.chlTerms.FormattingEnabled = true;
+            this.chlTerms.Location = new System.Drawing.Point(9, 67);
+            this.chlTerms.Name = "chlTerms";
+            this.chlTerms.Size = new System.Drawing.Size(185, 94);
+            this.chlTerms.TabIndex = 2;
+            this.chlTerms.MouseUp += new System.Windows.Forms.MouseEventHandler(this.chlTerms_MouseUp);
             // 
             // btnGenBank
             // 
@@ -97,23 +107,14 @@
             this.btnGenBank.UseVisualStyleBackColor = true;
             this.btnGenBank.Click += new System.EventHandler(this.btnGenBank_Click);
             // 
-            // chlTerms
+            // label1
             // 
-            this.chlTerms.FormattingEnabled = true;
-            this.chlTerms.Location = new System.Drawing.Point(9, 67);
-            this.chlTerms.Name = "chlTerms";
-            this.chlTerms.Size = new System.Drawing.Size(185, 94);
-            this.chlTerms.TabIndex = 2;
-            this.chlTerms.MouseUp += new System.Windows.Forms.MouseEventHandler(this.chlTerms_MouseUp);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 51);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(116, 13);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "Select features to draw";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(71, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "GenBank file:";
             // 
             // Form1
             // 
@@ -126,9 +127,9 @@
             this.Text = "Circular MT";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.p1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.p1)).EndInit();
             this.ResumeLayout(false);
 
         }
