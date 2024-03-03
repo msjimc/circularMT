@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace circularMT
 {
@@ -20,6 +21,8 @@ namespace circularMT
             if (lines[index][21] == 'c')
             { forward = false; }
 
+            name = FeatureType;
+
             for (int lineIndex = index+1; lineIndex < endIndex; lineIndex++) 
             {
                 if (lines[lineIndex].Contains("/ID") == true)
@@ -28,7 +31,9 @@ namespace circularMT
                 { setName(lines[lineIndex]); }
                 else if (lines[lineIndex].Contains("/Name") == true)
                 { setName(lines[lineIndex]); }
-                
+                else if (lines[lineIndex].Contains("/gene") == true)
+                { setName(lines[lineIndex]); }
+
             }
 
             setcoordinates( lines[index]);
@@ -49,42 +54,72 @@ namespace circularMT
             }
         }
 
-        private void setcoordinates(string data)
+        private void setcoordinates(string line)
         {
-            int bracket = data.IndexOf("(");
+
+            int bracket = line.LastIndexOf("(");
+            string data = "";
             if (bracket == -1)
-            { data = data.Substring(21).Trim(); }
-            else 
-            { 
-                data = data.Substring(data.LastIndexOf("(") + 1).Trim();
-                data = data.Substring(0, data.Length - 1);
-            }
-            
-            try
+            { data = line.Substring(21).Trim(); }
+            else
             {
-                string[] items = data.Split('.');
-                from = Convert.ToInt32(items[0]);
-                too = Convert.ToInt32(items[2]);
+                data = line.Substring(line.LastIndexOf("(") + 1).Trim();
+                data = data.Substring(0, data.IndexOf(")"));
             }
-            catch { throw new Exception("Coordinate error for " + name + " feature"); }
+
+            if (line.Contains("(join(") == false)
+            {
+                try
+                {
+                    string[] items = data.Split('.');
+                    from = Convert.ToInt32(items[0]);
+                    too = Convert.ToInt32(items[2]);
+                }
+                catch { throw new Exception("Coordinate error for " + name + " feature"); }
+            }
+            else
+            {
+                string[] joins = data.Split(',');
+                string[] items1 = joins[0].Split('.');
+                int t1 = Convert.ToInt32(items1[0]);
+                int t2 = Convert.ToInt32(items1[2]);
+               
+                string[] items2 = joins[1].Split('.');
+                int t3 = Convert.ToInt32(items2[0]);
+                int t4 = Convert.ToInt32(items2[2]);
+
+                if (t3==1)
+                {
+                    from = -(t2 - t1);
+                    too = t4;
+                }
+                else 
+                {
+                    MessageBox.Show("File has a 'join' associated with " + name + " that doesn't span the end of the sequence:\nExpected join(16024..16569,1..576), but got:\n" + data, "error");
+                }
+
+            }
 
         }
 
         public float arcEndAngle(int length)
         {
             float angle = too / (float)length * 360;
+            angle = angle - 90.0f;
             return angle;
         }
 
         public float arcStartAngle(int length)
         {
             float angle = from / (float)length * 360;
+            angle = angle - 90.0f;
             return angle;
         }
 
         public float arcLengthAngle(int length)
         {
             float angle = (too - from) / (float)length * 360;
+          
             return angle;
         }
 
@@ -102,17 +137,6 @@ namespace circularMT
 
         public string Name
         { get { return name; } }
-
-
-        //public void CoordinatesAtEndOfSequence(int genomelength)
-        //{
-        //    if (too - from > genomelength)
-        //    {
-        //        int t = too;
-        //        too = from;
-        //        from = t;
-        //    }
-        //}
 
     }
 }

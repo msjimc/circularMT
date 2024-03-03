@@ -28,7 +28,7 @@ namespace circularMT
 
         private void btnGenBank_Click(object sender, EventArgs e)
         {
-            string filename = FileAccessClass.FileString(FileAccessClass.FileJob.Open, "Seletct the genbank mitochondrial genome file", "*.gnk;*.genbank|*.gnk;*.genbank");
+            string filename = FileAccessClass.FileString(FileAccessClass.FileJob.Open, "Seletct the genbank mitochondrial genome file", "*.gb;*.genbank|*.gb;*.genbank");
             if (System.IO.File.Exists(filename) == false) { return; }
 
             System.IO.StreamReader fs = null;
@@ -84,18 +84,28 @@ namespace circularMT
                 {
                     if (place != startOfFeatures.Count - 1)
                     {
-                        feature f = new feature(lines, startOfFeatures[place], startOfFeatures[place + 1], lines[startOfFeatures[place]].Substring(0, 21).Trim());
-                        features[f.FeatureType].Add(f);
+                        if (lines[startOfFeatures[place]].Contains("..") == true)
+                        {
+                            feature f = new feature(lines, startOfFeatures[place], startOfFeatures[place + 1], lines[startOfFeatures[place]].Substring(0, 21).Trim());
+                            features[f.FeatureType].Add(f);
+                        }
                     }
-                    else 
+                    else
                     {
-                        feature f = new feature(lines, startOfFeatures[place], lastPlace, lines[startOfFeatures[place]].Substring(0, 21).Trim());
-                        features[f.FeatureType].Add(f);
+                        if (lines[startOfFeatures[place]].Contains("..") == true)
+                        {
+                            feature f = new feature(lines, startOfFeatures[place], lastPlace, lines[startOfFeatures[place]].Substring(0, 21).Trim());
+                            features[f.FeatureType].Add(f);
+                        }
                     }
                 }
 
                 sequencelength = getlength();
     
+                foreach(List<feature> lists in features.Values)
+                {
+                    lists.Sort(new featureSorter());
+                }
 
                 drawfeatures();
 
@@ -185,13 +195,13 @@ namespace circularMT
                 {
                     if (f.Forward == true)
                     {
-                        Point[] p = getArrow(f.arcEndAngle(sequencelength), f.arcStartAngle(sequencelength), f.arcEndAngle(sequencelength), radius, center, true);
+                        Point[] p = getArrow(f.arcStartAngle(sequencelength), f.arcEndAngle(sequencelength), radius, center, true);
                         g.FillPolygon(colour, p);
                         g.DrawPolygon(Pens.Black, p);
                     }
                     else
                     {
-                        Point[] p = getArrow(f.arcEndAngle(sequencelength), f.arcStartAngle(sequencelength), f.arcEndAngle(sequencelength), radius - 60, center, false);
+                        Point[] p = getArrow( f.arcStartAngle(sequencelength), f.arcEndAngle(sequencelength), radius - 60, center, false);
                         g.FillPolygon(colour, p);
                         g.DrawPolygon(Pens.Black, p);
                      }                   
@@ -202,16 +212,16 @@ namespace circularMT
                 if (f.EndPoint - f.StartPoint < sequencelength / 3)
                 {
                     if (f.Forward == true)
-                    { writeName(g, f.Name, f.arcStartAngle(sequencelength), f.arcEndAngle(sequencelength), center, radius); }
+                    { writeName(g, f,  center, radius); }
                     else
-                    { writeName(g, f.Name, f.arcStartAngle(sequencelength), f.arcEndAngle(sequencelength), center, radius - 60); }
+                    { writeName(g, f, center, radius - 60); }
                 }
             }
 
 
         }
 
-        private Point[] getArrow(float degrees, float startPoint, float endPoint, int radius, Point center, bool start)
+        private Point[] getArrow(float startPoint, float endPoint, int radius, Point center, bool start)
         {           
             List<Point> places = new List<Point>();
 
@@ -252,10 +262,14 @@ namespace circularMT
             return places.ToArray();
         }
 
-        private void writeName(Graphics g, string name, float startPoint, float endPoint, Point center, int radius)
+        private void writeName(Graphics g,feature f, Point center, int radius)
         {
-            Font f = new Font(FontFamily.GenericSansSerif, 20, FontStyle.Bold);
-            SizeF lenght = g.MeasureString(name, f);
+            string name = f.Name;
+            float startPoint = f.arcStartAngle(sequencelength);
+            float endPoint = f.arcEndAngle(sequencelength);
+            
+            Font font = new Font(FontFamily.GenericSansSerif, 20, FontStyle.Bold);
+            SizeF lenght = g.MeasureString(name, font);
             float circumference = (float)(2 * radius * Math.PI);
 
             float arcLength = circumference * (endPoint - startPoint) / 360;
@@ -264,8 +278,8 @@ namespace circularMT
             while (lenght.Width > arcLength && fontSize > 10)
             {
                 fontRadiusOffset++;
-                f = new Font(FontFamily.GenericSansSerif, fontSize, FontStyle.Bold);
-                 lenght = g.MeasureString(name, f);
+                font = new Font(FontFamily.GenericSansSerif, fontSize, FontStyle.Bold);
+                 lenght = g.MeasureString(name, font);
                  circumference = (float)(2 * radius * Math.PI);
 
                  arcLength = circumference * (endPoint - startPoint) / 360;
@@ -277,10 +291,9 @@ namespace circularMT
             {
                 float diff = (arcLength - lenght.Width) / 2.0f;
                 float offset = diff * 360 / circumference;
-
                 float angle = startPoint + offset;
-
-                if (angle > 180)
+                
+                if (angle < 0 || angle > 180)
                 {
                     radius += 28;
                     diff = (arcLength - lenght.Width) / 2.0f;
@@ -290,13 +303,13 @@ namespace circularMT
 
                     for (int index = 0; index < name.Length; index++)
                     {
-                        SizeF s = g.MeasureString(new string(name[index], 1), f);
+                        SizeF s = g.MeasureString(new string(name[index], 1), font);
                         double radion = (angle * 2 * Math.PI) / 360;
                         float x = (int)(Math.Cos(radion) * (radius - fontRadiusOffset - 10 )) + center.X;
                         float y = (int)(Math.Sin(radion) * (radius - fontRadiusOffset - 10)) + center.Y;
                         g.TranslateTransform(x , y );
                         g.RotateTransform((float)angle + 90.0f);
-                        g.DrawString(new string(name[index], 1), f, Brushes.Black, 0, 0);
+                        g.DrawString(new string(name[index], 1), font, Brushes.Black, 0, 0);
                         //g.DrawEllipse(Pens.Black, -2, -2, 4, 4);
                         g.ResetTransform();
                         angle += (float)(s.Width * 270 / circumference);
@@ -311,27 +324,65 @@ namespace circularMT
                     angle = startPoint + offset;
                     for (int index = 0; index < name.Length; index++)
                     {
-                        SizeF s = g.MeasureString(new string(name[index], 1), f);
+                        SizeF s = g.MeasureString(new string(name[index], 1), font);
                         double radion = (angle * 2 * Math.PI) / 360;
                         float x = (int)(Math.Cos(radion) * (radius + fontRadiusOffset - 10)) + center.X;
                         float y = (int)(Math.Sin(radion) * (radius + fontRadiusOffset - 10)) + center.Y;
                         g.TranslateTransform(x, y);
                         g.RotateTransform((float)angle + 270.0f);
-                        g.DrawString(new string(name[name.Length - (1 + index)], 1), f, Brushes.Black, 0, 0);
+                        g.DrawString(new string(name[name.Length - (1 + index)], 1), font, Brushes.Black, 0, 0);
                         //g.DrawEllipse(Pens.Black, -2, -2, 4, 4);
                         g.ResetTransform();
                         angle += (float)(s.Width * 270 / circumference);
                     }
                 }
             }
+            else
+            {
+                writeRadially(g, f, center, radius);
+            }
+        }
+
+        private void writeRadially(Graphics g, feature f, Point center, int radius)
+        {
+            string name = f.Name;
+            float startPoint = f.arcStartAngle(sequencelength);
+            float endPoint = f.arcEndAngle(sequencelength);
+            Font font = new Font(FontFamily.GenericSansSerif, 11, FontStyle.Bold);
+
+            if (f.Forward == false)
+            { radius += 60; }
+
+            float middle = ((float)(startPoint + endPoint) / 2.0f);
+            float spin = 0.0f;
+            if (middle <270 && middle > 90) { spin = 180; }
+
+            double radion = (middle * 2 * Math.PI) / 360;
+            float x = (int)(Math.Cos(radion) * (radius - 10)) + center.X;
+            float y = (int)(Math.Sin(radion) * (radius - 10)) + center.Y;
+            g.TranslateTransform(x, y);
+            g.RotateTransform(middle - spin);
+            if (spin == 180)
+            {
+                SizeF s = g.MeasureString(name, font);
+                g.DrawString(name, font, Brushes.Black, -38 - s.Width, -12);
+            }
+            else { g.DrawString(name, font, Brushes.Black, 38, -12); }
+
+            g.ResetTransform();
+
+
         }
 
         private int getlength()
         {
             int length = -1;
-            foreach (feature f in features["region"])
+            foreach (string key in features.Keys)
             {
-                if (length < f.EndPoint) { length = f.EndPoint; }
+                foreach (feature f in features[key])
+                {
+                    if (length < f.EndPoint) { length = f.EndPoint; }
+                }
             }
             return length;
         }

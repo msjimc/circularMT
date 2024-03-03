@@ -67,6 +67,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="feature.cs" />
+    <Compile Include="featureSorter.cs" />
     <Compile Include="FileAccessClass.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>

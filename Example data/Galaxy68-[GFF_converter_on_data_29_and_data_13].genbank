@@ -1,0 +1,823 @@
+LOCUS       L20_Alcedo             14714 bp    DNA              UNK 01-JAN-1980
+DEFINITION  L20_Alcedo
+ACCESSION   L20_Alcedo
+VERSION     L20_Alcedo
+KEYWORDS    .
+SOURCE      .
+  ORGANISM  .
+            .
+FEATURES             Location/Qualifiers
+     region          1..14714
+                     /source="mitos"
+                     /mol_type="genomic DNA"
+                     /Name="L20_Alcedo"
+                     /Is_circular="True"
+                     /ID="L20_Alcedo:1..14714"
+                     /genome="mitochondrion"
+     ncRNA_gene      86..148
+                     /source="mitfi"
+                     /ID="gene_trnL2"
+                     /gene_id="trnL2"
+                     /Name="trnL2"
+     gene            149..1087
+                     /source="mitos"
+                     /ID="gene_nad1"
+                     /gene_id="nad1"
+                     /Name="nad1"
+     ncRNA_gene      complement(1081..1143)
+                     /source="mitfi"
+                     /ID="gene_trnE"
+                     /gene_id="trnE"
+                     /Name="trnE"
+     ncRNA_gene      complement(1144..1199)
+                     /source="mitfi"
+                     /ID="gene_trnS1"
+                     /gene_id="trnS1"
+                     /Name="trnS1"
+     ncRNA_gene      complement(1198..1261)
+                     /source="mitfi"
+                     /ID="gene_trnN"
+                     /gene_id="trnN"
+                     /Name="trnN"
+     ncRNA_gene      complement(1260..1322)
+                     /source="mitfi"
+                     /ID="gene_trnR"
+                     /gene_id="trnR"
+                     /Name="trnR"
+     ncRNA_gene      complement(1323..1384)
+                     /source="mitfi"
+                     /ID="gene_trnA"
+                     /gene_id="trnA"
+                     /Name="trnA"
+     gene            complement(1388..1729)
+                     /source="mitos"
+                     /ID="gene_nad3"
+                     /gene_id="nad3"
+                     /Name="nad3"
+     ncRNA_gene      complement(1730..1791)
+                     /source="mitfi"
+                     /ID="gene_trnG"
+                     /gene_id="trnG"
+                     /Name="trnG"
+     gene            complement(1789..2569)
+                     /source="mitos"
+                     /ID="gene_cox3"
+                     /gene_id="cox3"
+                     /Name="cox3"
+     gene            complement(2573..3235)
+                     /source="mitos"
+                     /ID="gene_atp6"
+                     /gene_id="atp6"
+                     /Name="atp6"
+     gene            complement(3229..3390)
+                     /source="mitos"
+                     /ID="gene_atp8"
+                     /gene_id="atp8"
+                     /Name="atp8"
+     ncRNA_gene      complement(3391..3451)
+                     /source="mitfi"
+                     /ID="gene_trnD"
+                     /gene_id="trnD"
+                     /Name="trnD"
+     ncRNA_gene      complement(3451..3516)
+                     /source="mitfi"
+                     /ID="gene_trnK"
+                     /gene_id="trnK"
+                     /Name="trnK"
+     gene            complement(3495..4190)
+                     /source="mitos"
+                     /ID="gene_cox2"
+                     /gene_id="cox2"
+                     /Name="cox2"
+     origin_of_replic4195..10624
+                     /source="mitos"
+                     /ID="gene_OH_3"
+                     /gene_id="OH_3"
+                     /Name="OH_3"
+     gene            complement(4209..5747)
+                     /source="mitos"
+                     /ID="gene_cox1"
+                     /gene_id="cox1"
+                     /Name="cox1"
+     ncRNA_gene      5740..5801
+                     /source="mitfi"
+                     /ID="gene_trnY"
+                     /gene_id="trnY"
+                     /Name="trnY"
+     ncRNA_gene      complement(5800..5861)
+                     /source="mitfi"
+                     /ID="gene_trnW"
+                     /gene_id="trnW"
+                     /Name="trnW"
+     gene            complement(5860..6852)
+                     /source="mitos"
+                     /ID="gene_nad2"
+                     /gene_id="nad2"
+                     /Name="nad2"
+     ncRNA_gene      complement(6823..6885)
+                     /source="mitfi"
+                     /ID="gene_trnM"
+                     /gene_id="trnM"
+                     /Name="trnM"
+     ncRNA_gene      complement(6889..6944)
+                     /source="mitfi"
+                     /ID="gene_trnC"
+                     /gene_id="trnC"
+                     /Name="trnC"
+     origin_of_replic6955..7206
+                     /source="mitos"
+                     /ID="gene_OH_0"
+                     /gene_id="OH_0"
+                     /Name="OH_0"
+     ncRNA_gene      7215..7275
+                     /source="mitfi"
+                     /ID="gene_trnL1"
+                     /gene_id="trnL1"
+                     /Name="trnL1"
+     ncRNA_gene      complement(7281..7344)
+                     /source="mitfi"
+                     /ID="gene_trnS2"
+                     /gene_id="trnS2"
+                     /Name="trnS2"
+     gene            complement(7345..8421)
+                     /source="mitos"
+                     /ID="gene_cob"
+                     /gene_id="cob"
+                     /Name="cob"
+     gene            complement(8426..8875)
+                     /source="mitos"
+                     /ID="gene_nad6"
+                     /gene_id="nad6"
+                     /Name="nad6"
+     ncRNA_gene      8861..8922
+                     /source="mitfi"
+                     /ID="gene_trnP"
+                     /gene_id="trnP"
+                     /Name="trnP"
+     ncRNA_gene      complement(8927..8987)
+                     /source="mitfi"
+                     /ID="gene_trnT"
+                     /gene_id="trnT"
+                     /Name="trnT"
+     gene            8990..9265
+                     /source="mitos"
+                     /ID="gene_nad4l"
+                     /gene_id="nad4l"
+                     /Name="nad4l"
+     gene            9259..10584
+                     /source="mitos"
+                     /ID="gene_nad4"
+                     /gene_id="nad4"
+                     /Name="nad4"
+     ncRNA_gene      10584..10648
+                     /source="mitfi"
+                     /ID="gene_trnH"
+                     /gene_id="trnH"
+                     /Name="trnH"
+     gene            10649..12304
+                     /source="mitos"
+                     /ID="gene_nad5"
+                     /gene_id="nad5"
+                     /Name="nad5"
+     ncRNA_gene      12311..12374
+                     /source="mitfi"
+                     /ID="gene_trnF"
+                     /gene_id="trnF"
+                     /Name="trnF"
+     ncRNA_gene      12378..12447
+                     /source="mitfi"
+                     /ID="gene_trnQ"
+                     /gene_id="trnQ"
+                     /Name="trnQ"
+     ncRNA_gene      complement(12451..12518)
+                     /source="mitfi"
+                     /ID="gene_trnI"
+                     /gene_id="trnI"
+                     /Name="trnI"
+     origin_of_replic12529..12771
+                     /source="mitos"
+                     /ID="gene_OH_1"
+                     /gene_id="OH_1"
+                     /Name="OH_1"
+     ncRNA_gene      12824..13536
+                     /source="mitfi"
+                     /ID="gene_rrnS"
+                     /gene_id="rrnS"
+                     /Name="rrnS"
+     rRNA            12824..13536
+                     /source="mitfi"
+                     /Parent="gene_rrnS"
+                     /ID="transcript_rrnS"
+                     /gene_id="rrnS"
+                     /Name="rrnS"
+     exon            12824..13536
+                     /source="mitfi"
+                     /score="0.0"
+                     /Name="rrnS"
+                     /Parent="transcript_rrnS"
+     ncRNA_gene      13528..13589
+                     /source="mitfi"
+                     /ID="gene_trnV"
+                     /gene_id="trnV"
+                     /Name="trnV"
+     ncRNA_gene      13571..14714
+                     /source="mitfi"
+                     /ID="gene_rrnL"
+                     /gene_id="rrnL"
+                     /Name="rrnL"
+     rRNA            13571..14714
+                     /source="mitfi"
+                     /Parent="gene_rrnL"
+                     /ID="transcript_rrnL"
+                     /gene_id="rrnL"
+                     /Name="rrnL"
+     exon            13571..14714
+                     /source="mitfi"
+                     /score="0.0"
+                     /Name="rrnL"
+                     /Parent="transcript_rrnL"
+     origin_of_replic143..14772
+                     /source="mitos"
+                     /ID="gene_OH_2"
+                     /gene_id="OH_2"
+                     /Name="OH_2"
+     tRNA            complement(1730..1791)
+                     /source="mitfi"
+                     /Parent="gene_trnG(tcc)"
+                     /ID="transcript_trnG(tcc)"
+                     /gene_id="trnG(tcc)"
+                     /Name="trnG(tcc)"
+     exon            complement(1144..1199)
+                     /source="mitfi"
+                     /score="1.9000000293090125e-06"
+                     /Name="trnS1"
+                     /Parent="transcript_trnS1"
+     tRNA            complement(1144..1199)
+                     /source="mitfi"
+                     /Parent="gene_trnS1(tct)"
+                     /ID="transcript_trnS1(tct)"
+                     /gene_id="trnS1(tct)"
+                     /Name="trnS1(tct)"
+     tRNA            complement(1081..1143)
+                     /source="mitfi"
+                     /Parent="gene_trnE(ttc)"
+                     /ID="transcript_trnE(ttc)"
+                     /gene_id="trnE(ttc)"
+                     /Name="trnE(ttc)"
+     tRNA            complement(3451..3516)
+                     /source="mitfi"
+                     /Parent="gene_trnK(ctt)"
+                     /ID="transcript_trnK(ctt)"
+                     /gene_id="trnK(ctt)"
+                     /Name="trnK(ctt)"
+     tRNA            86..148
+                     /source="mitfi"
+                     /Parent="gene_trnL2(taa)"
+                     /ID="transcript_trnL2(taa)"
+                     /gene_id="trnL2(taa)"
+                     /Name="trnL2(taa)"
+     tRNA            complement(1198..1261)
+                     /source="mitfi"
+                     /Parent="gene_trnN(gtt)"
+                     /ID="transcript_trnN(gtt)"
+                     /gene_id="trnN(gtt)"
+                     /Name="trnN(gtt)"
+     tRNA            13528..13589
+                     /source="mitfi"
+                     /Parent="gene_trnV(tac)"
+                     /ID="transcript_trnV(tac)"
+                     /gene_id="trnV(tac)"
+                     /Name="trnV(tac)"
+     tRNA            5740..5801
+                     /source="mitfi"
+                     /Parent="gene_trnY(gta)"
+                     /ID="transcript_trnY(gta)"
+                     /gene_id="trnY(gta)"
+                     /Name="trnY(gta)"
+     exon            86..148
+                     /source="mitfi"
+                     /score="1.1999999882661427e-09"
+                     /Name="trnL2"
+                     /Parent="transcript_trnL2"
+     tRNA            complement(6889..6944)
+                     /source="mitfi"
+                     /Parent="gene_trnC(gca)"
+                     /ID="transcript_trnC(gca)"
+                     /gene_id="trnC(gca)"
+                     /Name="trnC(gca)"
+     tRNA            complement(8927..8987)
+                     /source="mitfi"
+                     /Parent="gene_trnT(tgt)"
+                     /ID="transcript_trnT(tgt)"
+                     /gene_id="trnT(tgt)"
+                     /Name="trnT(tgt)"
+     exon            complement(1260..1322)
+                     /source="mitfi"
+                     /score="8.200000252145401e-07"
+                     /Name="trnR"
+                     /Parent="transcript_trnR"
+     exon            8861..8922
+                     /source="mitfi"
+                     /score="2.999999892949745e-08"
+                     /Name="trnP"
+                     /Parent="transcript_trnP"
+     tRNA            7215..7275
+                     /source="mitfi"
+                     /Parent="gene_trnL1(tag)"
+                     /ID="transcript_trnL1(tag)"
+                     /gene_id="trnL1(tag)"
+                     /Name="trnL1(tag)"
+     exon            13528..13589
+                     /source="mitfi"
+                     /score="3.600000127335079e-05"
+                     /Name="trnV"
+                     /Parent="transcript_trnV"
+     exon            complement(5800..5861)
+                     /source="mitfi"
+                     /score="2.7000000457633178e-08"
+                     /Name="trnW"
+                     /Parent="transcript_trnW"
+     exon            complement(8927..8987)
+                     /source="mitfi"
+                     /score="9.300000214373938e-10"
+                     /Name="trnT"
+                     /Parent="transcript_trnT"
+     tRNA            12378..12447
+                     /source="mitfi"
+                     /Parent="gene_trnQ(ttg)"
+                     /ID="transcript_trnQ(ttg)"
+                     /gene_id="trnQ(ttg)"
+                     /Name="trnQ(ttg)"
+     exon            complement(7281..7344)
+                     /source="mitfi"
+                     /score="7.39999990173601e-08"
+                     /Name="trnS2"
+                     /Parent="transcript_trnS2"
+     tRNA            complement(3391..3451)
+                     /source="mitfi"
+                     /Parent="gene_trnD(gtc)"
+                     /ID="transcript_trnD(gtc)"
+                     /gene_id="trnD(gtc)"
+                     /Name="trnD(gtc)"
+     exon            5740..5801
+                     /source="mitfi"
+                     /score="9.200000245131179e-14"
+                     /Name="trnY"
+                     /Parent="transcript_trnY"
+     exon            7215..7275
+                     /source="mitfi"
+                     /score="2.900000017902471e-09"
+                     /Name="trnL1"
+                     /Parent="transcript_trnL1"
+     exon            complement(6889..6944)
+                     /source="mitfi"
+                     /score="2.8000000384054147e-05"
+                     /Name="trnC"
+                     /Parent="transcript_trnC"
+     exon            complement(1323..1384)
+                     /source="mitfi"
+                     /score="5.300000225361146e-07"
+                     /Name="trnA"
+                     /Parent="transcript_trnA"
+     exon            12311..12374
+                     /source="mitfi"
+                     /score="8.500000148181641e-10"
+                     /Name="trnF"
+                     /Parent="transcript_trnF"
+     exon            complement(1730..1791)
+                     /source="mitfi"
+                     /score="9.99999993922529e-09"
+                     /Name="trnG"
+                     /Parent="transcript_trnG"
+     exon            complement(3391..3451)
+                     /source="mitfi"
+                     /score="1.199999957179898e-07"
+                     /Name="trnD"
+                     /Parent="transcript_trnD"
+     exon            complement(1081..1143)
+                     /source="mitfi"
+                     /score="4.099999841855606e-06"
+                     /Name="trnE"
+                     /Parent="transcript_trnE"
+     tRNA            12311..12374
+                     /source="mitfi"
+                     /Parent="gene_trnF(gaa)"
+                     /ID="transcript_trnF(gaa)"
+                     /gene_id="trnF(gaa)"
+                     /Name="trnF(gaa)"
+     exon            complement(3451..3516)
+                     /source="mitfi"
+                     /score="3.099999978939394e-10"
+                     /Name="trnK"
+                     /Parent="transcript_trnK"
+     exon            10584..10648
+                     /source="mitfi"
+                     /score="1.0000000116860974e-07"
+                     /Name="trnH"
+                     /Parent="transcript_trnH"
+     exon            complement(12451..12518)
+                     /source="mitfi"
+                     /score="2.3999999904100733e-11"
+                     /Name="trnI"
+                     /Parent="transcript_trnI"
+     exon            complement(1198..1261)
+                     /source="mitfi"
+                     /score="2.799999988811752e-11"
+                     /Name="trnN"
+                     /Parent="transcript_trnN"
+     exon            complement(6823..6885)
+                     /source="mitfi"
+                     /score="2.6999999458432455e-12"
+                     /Name="trnM"
+                     /Parent="transcript_trnM"
+     tRNA            complement(1260..1322)
+                     /source="mitfi"
+                     /Parent="gene_trnR(tcg)"
+                     /ID="transcript_trnR(tcg)"
+                     /gene_id="trnR(tcg)"
+                     /Name="trnR(tcg)"
+     exon            10542..10624
+                     /phase="2"
+                     /source="mitos"
+                     /score="273.1"
+                     /Name="OH_3-b"
+                     /Parent="transcript_OH_3"
+     tRNA            complement(5800..5861)
+                     /source="mitfi"
+                     /Parent="gene_trnW(tca)"
+                     /ID="transcript_trnW(tca)"
+                     /gene_id="trnW(tca)"
+                     /Name="trnW(tca)"
+     tRNA            complement(6823..6885)
+                     /source="mitfi"
+                     /Parent="gene_trnM(cat)"
+                     /ID="transcript_trnM(cat)"
+                     /gene_id="trnM(cat)"
+                     /Name="trnM(cat)"
+     exon            149..1087
+                     /phase="1"
+                     /source="mitos"
+                     /score="224970873.4"
+                     /Name="nad1"
+                     /Parent="transcript_nad1"
+     exon            complement(1388..1729)
+                     /phase="-1"
+                     /source="mitos"
+                     /score="18494509.3"
+                     /Name="nad3"
+                     /Parent="transcript_nad3"
+     exon            complement(5860..6852)
+                     /phase="-3"
+                     /source="mitos"
+                     /score="59633457.8"
+                     /Name="nad2"
+                     /Parent="transcript_nad2"
+     exon            10649..12304
+                     /phase="2"
+                     /source="mitos"
+                     /score="361662512.2"
+                     /Name="nad5"
+                     /Parent="transcript_nad5"
+     exon            9259..10584
+                     /phase="1"
+                     /source="mitos"
+                     /score="311759727.6"
+                     /Name="nad4"
+                     /Parent="transcript_nad4"
+     exon            complement(8426..8875)
+                     /phase="-2"
+                     /source="mitos"
+                     /score="818797.4"
+                     /Name="nad6"
+                     /Parent="transcript_nad6"
+     exon            complement(4209..5747)
+                     /phase="-2"
+                     /source="mitos"
+                     /score="1152115559.7"
+                     /Name="cox1"
+                     /Parent="transcript_cox1"
+     exon            complement(3495..4190)
+                     /phase="-2"
+                     /source="mitos"
+                     /score="188135010.9"
+                     /Name="cox2"
+                     /Parent="transcript_cox2"
+     exon            complement(1789..2569)
+                     /phase="-1"
+                     /source="mitos"
+                     /score="248286963.8"
+                     /Name="cox3"
+                     /Parent="transcript_cox3"
+     exon            143..196
+                     /phase="2"
+                     /source="mitos"
+                     /score="2917.7"
+                     /Name="OH_2-b"
+                     /Parent="transcript_OH_2"
+     tRNA            10584..10648
+                     /source="mitfi"
+                     /Parent="gene_trnH(gtg)"
+                     /ID="transcript_trnH(gtg)"
+                     /gene_id="trnH(gtg)"
+                     /Name="trnH(gtg)"
+     tRNA            8861..8922
+                     /source="mitfi"
+                     /Parent="gene_trnP(tgg)"
+                     /ID="transcript_trnP(tgg)"
+                     /gene_id="trnP(tgg)"
+                     /Name="trnP(tgg)"
+     exon            12378..12447
+                     /source="mitfi"
+                     /score="6.399999974426862e-10"
+                     /Name="trnQ"
+                     /Parent="transcript_trnQ"
+     tRNA            complement(7281..7344)
+                     /source="mitfi"
+                     /Parent="gene_trnS2(tga)"
+                     /ID="transcript_trnS2(tga)"
+                     /gene_id="trnS2(tga)"
+                     /Name="trnS2(tga)"
+     tRNA            complement(12451..12518)
+                     /source="mitfi"
+                     /Parent="gene_trnI(gat)"
+                     /ID="transcript_trnI(gat)"
+                     /gene_id="trnI(gat)"
+                     /Name="trnI(gat)"
+     exon            complement(2573..3235)
+                     /phase="-1"
+                     /source="mitos"
+                     /score="55041904.4"
+                     /Name="atp6"
+                     /Parent="transcript_atp6"
+     exon            8990..9265
+                     /phase="2"
+                     /source="mitos"
+                     /score="2996494.2"
+                     /Name="nad4l"
+                     /Parent="transcript_nad4l"
+     exon            complement(7345..8421)
+                     /phase="-1"
+                     /source="mitos"
+                     /score="513629462.4"
+                     /Name="cob"
+                     /Parent="transcript_cob"
+     tRNA            complement(1323..1384)
+                     /source="mitfi"
+                     /Parent="gene_trnA(tgc)"
+                     /ID="transcript_trnA(tgc)"
+                     /gene_id="trnA(tgc)"
+                     /Name="trnA(tgc)"
+     exon            complement(3229..3390)
+                     /phase="-3"
+                     /source="mitos"
+                     /score="6208.9"
+                     /Name="atp8"
+                     /Parent="transcript_atp8"
+ORIGIN
+        1 aaaaaaattt aaattagtac gaaaggaata tttaaaaaaa attatttttt caataaaact
+       61 atttttgcat caatttttgg aattaattaa agtgacagaa taatgtaagg aatttaagct
+      121 tcctctatga atactcattc ctttaataat aataaatttt attatatatt taattttgtt
+      181 aattatatct ttattaagta ttgctttctt tacgttatta gaacgaaaaa ttataggata
+      241 ttgtcaaata cgaaaagggc ctaataaaac aggaattcta ggtttatttc aaccttttag
+      301 agatgcaatt aaattgttta gaaaggaaat aaatttaatg ttatatataa attttctttt
+      361 gcatttaatt tctcctttat taagaatagt aataatacta atattatgaa taatttttta
+      421 ttataaaaga aatataataa gacttaatat accattaatt ttttttttat gtatttctgg
+      481 aataagaagt tattcaattt taattggagg atgggcttca aattctaaat attcattaat
+      541 tggagctttc cgaggatttg ctcaaattat ttcttatgaa gtaagaatag cgataatttt
+      601 gattagaatt tctttaatta cagaatcatt ttcaagaaaa aatttctttt taatacaaga
+      661 aaaaatttct cttttttgag gtttctcagt aattttcatt ttatgaataa ttattataat
+      721 agctgaaact aatcgaacac catttgactt agctgaagga gaatcagaat tagtttcagg
+      781 ttttaatatt gaatacggat catgactttt tgctataatt tttatggctg aatatggaat
+      841 aattattctt gttagtataa ttaccaatta tatatttttc ggatgattga gtttcaataa
+      901 tcttataact cttattttaa taatagtttt cattttgatt cgaagaactt atgtgcgatt
+      961 tcgttatgat aaattaataa taatggcatg aaaagtaatc ttacctttaa caatcttttc
+     1021 catttttttt ataatattta tttttttttt catatcttta aatttttgca tcaatttttg
+     1081 gaattaaatc cttgagggaa ttttaacagt gaaaatgtta agtgttaatt acactactta
+     1141 aaaaagatta aaatggaaat ccattatttt taggttagaa gcctaattaa ttttaatctt
+     1201 aataggaaat aaattcaatt aattcattaa cagtgaatag cctccatttg gcttctatta
+     1261 aaaaatagaa attttctaaa ttcaggtcga aactgaatgc aattaattat cgctttattt
+     1321 tacagaaaag gaaagttcaa tttctaattg caaattagat tttataaaat ttaaatactt
+     1381 ttctttgtta ttttattcaa tcaattatcc ctctttttca ttcgaaaaat aatcctaata
+     1441 taataattga attaattaaa aaaaaagaaa taattaaaga aaaattttta ttaaaagata
+     1501 aaataggata aggtaaaaga attacaattt ctacatcaaa aattaaaaaa ataataccaa
+     1561 taaaaaaaaa ttttaaagaa aaaggtaagc gtgaaattga aaaagggtca aatccacact
+     1621 caaatggtga taacttttct ttatttttca tagttttaaa atatattaaa aaaaaaagta
+     1681 aaaaaattgc tgaaataatc aaaagaataa taaatagata attaaaaatt gctaaatttt
+     1741 ttttaaaact tattaattgg aaattaattg tactatttat actaattaag caataaattc
+     1801 atcaatatat aaaagtaaat aaaaataatc atactacatc aacaaaatgt cagtatcatg
+     1861 ctgaagcttc aaatccaaag aaatgatgta ttgaaacaaa attattttta acacgaaaaa
+     1921 aactaactac taagaaaata gtaccaataa taacatgaat tccatgaaat ccagttgtta
+     1981 aaaagaaaga agaaccaaaa attctatcag taatagaaaa tgaagcttga aaatattcaa
+     2041 acatttgaaa aaatgtaaat aaaattccta gaataatagt aatttttaaa gacaataaag
+     2101 aaaaattata atttccattt ataatacaat gatgagccca agttactgaa attccagaag
+     2161 aaattaaaat ggttgaattt aataatggaa tttcaaaagg attaaaagga acaagtcctt
+     2221 taggaggtca attactacca atttcaatac taggagataa acttctatgg aaaaatgccc
+     2281 aaaaaaaaga aataaaaaaa aaaacttcag aaacaataaa gagaactatt cctaatttta
+     2341 atccttgaag aactgggtta gtatgaaatc cttgtaatga agcttcccgt gaaatatcac
+     2401 gtcatcattg ataagaagac aacattaaaa ttaaaaatga aaataatatt aaattaatat
+     2461 tattatttgt aaaataattt acaaaaccta aagttaatga aaaagctgaa attgatctag
+     2521 ttaaaggtca tggtcttttt tccactaaat gaaaaggatg aaatatcata agttaaactt
+     2581 cattaatata taaagaaatt aatgttacaa atacaaatct ttgaattaaa gcaacagctg
+     2641 tttctaaaat aagtaataaa attataataa ttaatattaa taaaaataaa tgaatttcta
+     2701 ttattataga agaaagaaga tggattaata aatgacctct aattatgtta gcagttaaac
+     2761 gtactgataa agtaatagga cgaattaaat ttcttactgt ctcaataagt actataaaaa
+     2821 atcttagaaa aataggggat cctaaaggga ctaaatggct tatgaattta ttaaatttat
+     2881 ttaatattct aaatattaat aaacataacc agaaaggaaa agaataaaat atagtaaaaa
+     2941 ttagatgtct tgagggggta aaaatataag gaaataagcc aaaaaagttt ctaaataaaa
+     3001 tagagaaaaa aatagaaatg taaaaaataa tagttttttt tttaaaatga taaaggttat
+     3061 ttcttacttc ttgaaaaagt ttttttagta gaatttttca agaagtaaga aataaagatg
+     3121 agacaattca aaaggggaaa ggtaatatga taattcaaaa acataatgaa attcaattta
+     3181 ttctaaagtt agctgaagtt gaaggatcaa aaattgaaaa aaggttattt atcattttat
+     3241 taaaaaataa tatgaattat tattattatt tatgtttctg gataaattat tttttggctt
+     3301 taaaaaaaaa atgttagtta gtaataaaat tattataatt ataatagtaa tggagattaa
+     3361 taatcaattt ataggatata gttgtggaat taaaaatcac ttttagtaat taaagaatga
+     3421 cattcttttg ttatttttta actagatttt ccattgaaag tttataacta tgaattggtt
+     3481 taagagacca ttgcttaaaa tttcagccat tcaatgtaag atgtaataaa tttaataaaa
+     3541 tttttcattt tagtaatttc aagagaaatt ggtataaatc tatgatttgt tccacaaatt
+     3601 tcagaacatt gtccaaaaaa tagcccaggt cgattggcaa ttgtgaaagt ttgattaaga
+     3661 cgtccaggaa ttgcatccat ttttactcct aatgatggaa tagttcaaga atgaattaca
+     3721 tcagctgatg taattaaaaa tttgattatt gtattaaatg gaattattaa attgttgtca
+     3781 gtttctaata atcgaaaaga gtttgcattt atttcttgag aaggaattaa aaaggagtca
+     3841 aattctttat tgaagtctga atattcgtaa gatcaatatc attgatgacc aataatttta
+     3901 attgaagttt gagcattgaa aatttcatct gttaagtaaa gtaagtgtag tgaaggtata
+     3961 gcaataaaaa ttaaggtaat tgctgggatt atagttcaaa taatttcaat ttcttgtcct
+     4021 tctattaaag atcgtctagt aaatgaattt attataatgt taaaaattat atatatagta
+     4081 ataattgtaa ttgaaataat aattattatt gaatggtcat ggaaaaaaga catttgttct
+     4141 ataattggag agtttatatc tggaaatgaa atttgtgatc atgttatcat aggtttttaa
+     4201 tttatttatt atttaataat aatattattt tgattaaaag tgtgttcaga agggggaaag
+     4261 tttattattc attcaataga ggctgaggat gaaattgagg aaaagattat ttttttttct
+     4321 aaaagggaaa ttcaaataat aataattatt aaaataactc ctattagtga aataatagaa
+     4381 cctatagatg aaagaaaatt tcattttcca taaaaatctg gataatcgga atatcgccga
+     4441 ggtatacctc taagtcctaa aaaatgttgg ggaaaaaatg ttaaatttac tccaataaat
+     4501 gtaataatga attgtctttt tgttaaaata gaattaaaat ttattccaaa tattaagggg
+     4561 aaccaatgaa tgattgctcc tataatagca aatacagctc ctattgaaag tacataatga
+     4621 aaatgtgcta ctacataata tgtatcatgt agaataatgt caatagatga attagctaat
+     4681 ataattcctg ttaatcctcc aattgtgaat aaaaaaataa atcctaatct tcataaaatt
+     4741 ggtgtattaa atttaatatt agttccgtgt agtgtggcta gtcatctaaa aattttaatt
+     4801 ccggttggaa ctgcaataat tatagtggct gatgtaaaat aagctcgagt atcaacatct
+     4861 attccaactg taaatatatg atgagctcat acaataaatc ctagtaatcc aatggctaat
+     4921 atagcataaa ttattcctaa atttccaaaa ggttcttttt tccctgtatg gaaacaaata
+     4981 atatgagaaa ttattccaaa tcctggaaga attaaaatgt aaacttctgg atggccaaaa
+     5041 aatcaaaata aatgttgata taaaatagga tctcctcccc ctgaagggtc aaagaatgaa
+     5101 gtattaaaat tgcgatcggt taaaagtatt gtaatcgcac ctgccaaaac aggtagggat
+     5161 aataaaagaa gaattgttgt tgtaaaaact gatcaaacaa aaagagggat acgttctatt
+     5221 gttataccaa tggaacgtat atttaaaatt gtagtaataa agttaattga acctagaatt
+     5281 gaagaagctc cagctaaatg taaagaaaaa atagctatat caactgaagg cccataatgt
+     5341 gaaagatttg atgataaagg ggggtacaca gttcatcctg ttccagctcc agtttctact
+     5401 aatgatgaat taattaaaag acataaagaa ggaggtaaaa gtcaaaatct catattatta
+     5461 aggcgaggga atgccatatc tggggcacct aatatgattg gtactaatca atttccaaat
+     5521 cctccaatta taattggtat aactatgaag aaaattataa tgaaagcatg ggctgtaaca
+     5581 attacattgt agatttggtc gttaccaatt aaagttcctg gttgtccgag ttctatacga
+     5641 attaatattc ttattgataa tcctattatc ccagctcacc ttccaaaaat taaatatatt
+     5701 gttccaatgt ctttatgatt tgttgagtat aatcatcgcg gtaaaatggc tgaagtttag
+     5761 gcgataaatt gtaaatttat ttatgggttt tccttttact aagatttatt aataaataat
+     5821 tattactttg aaggcaatta gtttttttaa cttaaaatct taaattataa aattaattat
+     5881 aaaaattgta attattaaat ttaaatttaa gaatatattc ttaaatttaa attcattttt
+     5941 taacaaaata tttaaatttt taatatttat gaataagtaa ggagtgatta ttcgaatata
+     6001 gatgaaaata ttaataattg aagaaataat taagatagtt aagattattt tattgtaatt
+     6061 aataataata ataattgaaa ttaattttat aataaaacct aataaaggag gtatgcctcc
+     6121 caaggataat attgaaaggc aaagaaaaag tttttcatta aaaaaacttt ttttcttaaa
+     6181 gagattacta aaagtattta catttatttt attaaaagaa tttaagattt taaaaataat
+     6241 tattgaataa attattatat aactaattca aaaatttctt tgaattataa ttaatgagat
+     6301 tattcatcct tggtgtgaga ttgaggaaaa aattaaaatt tttttaaatg attttaaatt
+     6361 aaatgcaaat atagatccca ttaaagctga aattaaagca agaattaata taatttttaa
+     6421 ggaaaaatga gaaagaatta ataaaggaat tattttttgt aaagttaaaa taattaatag
+     6481 agatggtaag tcaattattt ctcttaatct tgttaatcaa aaatggaaag gaattactgc
+     6541 taatttaatt aaaattgaaa gtgaaattaa aatttcgaat aatattgaat ttaaaatatt
+     6601 tcagtttata gctcttataa aaaataatgt tgatgaaaac gattgaataa taaagtaaga
+     6661 aattatacaa tttgaattgt tttttttttt attatttaaa attggtataa aaactaaaag
+     6721 attaagttct attattaatc aataaataaa tcaagaattt gatgaaaatg aaattaaaat
+     6781 tgtaattaga attattcatt ttattaaatg tttatggaat attaataaag gaaattttca
+     6841 tttttggggt atgaacccac tagcttatat ttagcttact ttatttgaaa atcttagagt
+     6901 ttttaatcat ttttaaattt gcaatttaaa ttttaaataa gattttaacg taagtattat
+     6961 cacatctatt gaaaataagg ggcgacaacc ggctatctca tttactggac cgcatagatg
+     7021 taacaaaggg tcatactaag tctaacacac atttactaac taataaattc ggagaaaaag
+     7081 aggagatgat ggcatctagc tctaagtagg tacctattta caatatcgag aaaatgtcca
+     7141 gtaaaattta gcatacattt cttttatgtg tccagataac cgatagacat gagtttttgc
+     7201 aaaaaagaaa ttttttcaat ttggcagaaa aatgtaataa atttagaatt tatttatgag
+     7261 gaaactcaat tgaaattaat agacttttag agttaaactc ttttttatat tttcaaaata
+     7321 tacacttatt atagttaaaa agtcttaaag taatgggaaa ataataaata ctagaaaata
+     7381 aaggaaagtt gtaaattttc ttataatgtc ataaggatat tcaataggta tagctcctaa
+     7441 ataagttaat agaaaaaagg tattaattat aattcaaaaa ttaatttttt taaaattgtt
+     7501 aaaaaaaaat gaagaaattt tattttttat tgtgaaaggc aaatataaaa taattaaaat
+     7561 ggacaaaatt aaagctagaa ctccccctaa tttattagga attgaacgta aaattgcata
+     7621 agcaaataaa aaatatcatt ctggttgaat atggggaggt gtaattatag gattagctat
+     7681 attgaaattt tctgcatcta ttaatatata aggaaataaa agaactacta atgaaaataa
+     7741 taatatagtt acaaaaatgc caaataaatc tttaacagaa aaatagggat ggaatggaat
+     7801 tttatcaatt gatattgaaa tcccaattgg attagaagat cctttttcat gaattaataa
+     7861 gatatggatt attgatatta ttattaaaat aaatggaaga ataaaatgaa gagaaaaaaa
+     7921 ccgaattaaa gtattattat caactgaaaa tccccctcaa actcaaaatg taattgtttg
+     7981 tcctaaataa ggaatagcag aaattaaatt tgtaattaca gtagcccctc aaaatgatat
+     8041 ttgacctcaa ggtaaaatgt atcctaaaaa tgcagtagct ataagaatga aaataataat
+     8101 aattcctgaa aatcaaactt taataaaaaa aaatgaagaa taataaattc cacgtgcaat
+     8161 atgaatatag atgaaaataa aaaaaaggga tgctccgtta gcatgaatag atcgaattaa
+     8221 tcatccaaaa ttaacatctc gttgaatatg agaaattatt gaatatgctg taataatatc
+     8281 tcttgaaaag tttattgcta ggaaaattcc agtaagaatt tgaattatta aacatattcc
+     8341 taataacgag ccaaaatttc atatatatga aatatttgaa ggggaaggga gattaataat
+     8401 tggatttaaa ttttttaaca taagtttatc atctttttat aggagatgaa attcaattta
+     8461 aaatttttat tacaactaat aaacatatta ttaaataaat taacataaaa atcattatat
+     8521 taataaatgg agaaaaataa atctttatta gttcttgatg gttaagtttt attataaaat
+     8581 aaaatggtga aattataaaa gtgagactaa ctaaatacaa tttttttaca ttaataatta
+     8641 attttttatt tggacaaagt ctaactatat acatgaaaat aattaacatg cctcctaaaa
+     8701 ttaaaagaat gagaattaaa gaaattaggg aattttcaga attgaaataa aaaattatag
+     8761 aaatcagtaa agttaacata ataactgata ttaatattgt tattggatgt cttattgtta
+     8821 ttaaaataat agttaaaaat atgaaaattt taattttaaa cagaaaataa tatatttaag
+     8881 tatataaatt ttggagattt aaagagagtt tatcttttct gaataatgtt taaaggaatt
+     8941 ccaagtttga tttacaaaat caatattttt aattaaatta tttaaactta tgttaatatt
+     9001 aagtattatt ttgtacctaa ttggaattat tgtattaatt acaaatcgat ttcattttat
+     9061 aataatttta ttaagaattg aatttatata tatatcttta ataatttcga tgttattcct
+     9121 gttttctatt attaatagaa taaatatttt tttattttta attggaattg tatgcgaaag
+     9181 ggcgttgggt ttaagattat tagttttatt taatttattt tatggaaatg agcttattaa
+     9241 ttctctaagt ttaattaaat gctaatagga atttttataa gagttttaat tttatgaatt
+     9301 tcattttatg taagtttttt ggaaaatata gtttcaattt tatttatatt aattttattt
+     9361 tcttttgcag taataaattt aaatgaaaat atattattta aaatattaaa tctagattta
+     9421 atgggatttt taataattat attaactatt tggatttcat ttcttataat tttagcaaga
+     9481 atttttataa aagcttcaaa gagaaaaaat tttatttttt atgtaaattt aatattactt
+     9541 ttattggtta tctgttttag agttagtaat ttattagctt tttatttttt ttttgaagct
+     9601 attttatttc ctattattat aataattttt ggatggggaa atcagcctga acgtttgcaa
+     9661 gctggatttt atatattaat atatactatt ttaggatcat ttcctatatt tttaattatt
+     9721 attatgtaca atatgaatgc acatacttta gattttgggt atataaactg aataaggata
+     9781 tggataggaa ttgaatttat ttttttaata ttaggatttt ttgttaaaat tccaatattt
+     9841 ttattccatt tatgattgcc aaaagctcat gtagaagctc ctatttctgg ttcaatagta
+     9901 ttggctggag tattgcttaa attagggatt tatggcattt ttcgatttaa aataataatt
+     9961 ttaaataata ttataatgta ttgtgaaatt tttatttctt tatcaatttg aggaagtgta
+    10021 attattagaa tcttttgttt gtatcaaatt gatattaaat cattaattgc ttattcttca
+    10081 gtttgtcata tgggagtagc cctaagagga ataataagat tttcctatta tgggtcaatg
+    10141 ggagctctcc ttttaataat tggccatgga ttatgtaggt cagggttatt ttgtttagca
+    10201 aatgtggttt atgagcgtgt ttatacacgg agaataatta tatttaaggg acttaaatct
+    10261 atttttcctt ctctttctct ttgatgattt ttatttagag ttattaatat atccgcaccg
+    10321 ctaactataa atttaatagg agaatttttt tcaattttaa gaattataaa attaagaatt
+    10381 tttttttttt ttccgcttat aattcttatt tttataagag cttgttattc tatttatata
+    10441 tatagatata ttaatcatgg tgaagggtga atttatcaat ctttaaattt agtaaatatt
+    10501 cgagaatatc atttgttatt tttacacttt ttcccaagta taatttgaat tttaaaattt
+    10561 tcagcttttt gtttgtgaat ttagtttaat tagtttataa caaaaaattg taaattgtga
+    10621 atttacagaa gatttatatc attagacaat ttttcttcaa tgaagtataa tattaatatt
+    10681 tgtaagattt ttatttttgt tatttttttt ttttttatta aaaacggaaa atctatttgt
+    10741 tattgagtat tatttattta cagttatgac attggatttt aaattttatt ttcttattga
+    10801 ttgaattaga ataagatttt ctggaattgt tatatttatt tcaagaatag taattttata
+    10861 cagagaaagt tatataataa atgaaaaaaa taaattttcc ttttgtataa ttgttttatt
+    10921 gtttgtttta tcaataattt ttttaatttt aataccaaat atatttataa ttattttagg
+    10981 ctgggatgga ttaggtttag tttcatattg cttagtaatc tattaccaaa gaattaactc
+    11041 ttttaattcg ggaataatta ccattattag taatcgagta ggagatgtaa taattattat
+    11101 aagattaatt ttctttgtaa gatttggaag ttttgatttt attactttta ataaaattga
+    11161 attaatttgt ggaattttaa ttttagtagc aggattaaca aaaagagctc aaattccatt
+    11221 ttctgcttga cttcctgctg caatagcagc tccaacccca gtttcctctt tggttcattc
+    11281 ttcaacttta gtaacagctg gggtttattt attaattcgt tttaaatata tatttaatat
+    11341 agaatacttt agaatgattt tactaaaaat ttctttatta actataataa tgtcaggtat
+    11401 taatgcattt tttgaaaatg attttaaaaa aattattgca ttttctacat taagtcagtt
+    11461 atcgttaata ataatttctg tttctttagg aatagaaaat ttagcctttt tccatcttat
+    11521 tatacatgct attttcaaat caatactatt tttatgcgca ggattgatta ttcattcttt
+    11581 tcaaggattt caagatattc gtatattagg aaattttttt attgttaggc ctttaatttc
+    11641 aagatgtata tttatttcaa ttttgtcatt aataggattc ccatttattg ggggatttta
+    11701 ttctaaagat ttaattgtag aatttttttt ttttagaatt aataatttaa ttttagcatc
+    11761 aatttttgta attggattga tttttacttt tttatattgt atacgtttat tgtatattat
+    11821 tttattaaaa agaattttta atttgtcatt aagaaaatat aagtttgatt ttttaataac
+    11881 ttttccaatt gttgtacttt gtttaacaat aatccttatt ggaaacataa taatatgaat
+    11941 aactagttca tatttaaatt taatatttat taaccaattt tctaaaagtt ttagaattat
+    12001 tttattaatt attattattt ttattttttt tgctttaaaa aatttatcat attttggtaa
+    12061 aaaaatcgat ttttttacca aaatatgaaa tttatcattt ttaactagat atattacttt
+    12121 attggaaaga aaattatttc tttatgtaag tttaagagat tgaacttgaa tagaaattct
+    12181 aggtcctaga atgcttaaaa aaaatttaag tgtattgtat aacattggtt tttgaattga
+    12241 aattaagaat tttaataaaa ttttattatt tattttaata attttagtaa tttttgtcct
+    12301 ttaattataa atctttatag tttaattaaa aacattacac tgaaaatgta aagaaaaact
+    12361 acaatttaaa gatattttaa cttttagtgt ataaaaagca caaaaaattt tgatttttta
+    12421 agaaataatt aatattatta aagttataaa tagtaaaagt aattaattta cataatttat
+    12481 cctatcaaga taatccttta agtttcaggc attttactta cgcgtaagta ttatcacatc
+    12541 tattgaaaat aaggggcgac aaccggctat ctcatttact ggactgcata gatgtaacaa
+    12601 agggtcatac taagtctaac acacatttac taactaataa attcggagaa aaaaaggaga
+    12661 tgatggcatt tagctctaag taggtaccta tttacaatat cgagagaatg tccagtaaaa
+    12721 tttagcatac atttctttta tgtgtccaga taaccgatag acacgagttt tgaatcggat
+    12781 agggtaaaat taaagttata ataatatata caagaatttt ccatttaaat tagatttggt
+    12841 ttgttaataa aatgccatag attttttatg ttttttataa aaaataaaaa aacagaaaat
+    12901 aaaatttatt taataatgaa aaattattga aatttatggt aaagcttagc taactttgtg
+    12961 ccagcagcag cggttaaaca aagaagcatt ttatttattt aagtaatttt aatttaaaac
+    13021 attgaaaatt aaaactcaaa aaaggtgaaa ttttttgaat tttttaaaaa aaaataaaat
+    13081 aaatataatt ctaaaaataa actaggatta gataccctat tattaaagag ctttatattg
+    13141 ttagtaagta acaaatatga aaacaaaaag ttatggcggt actttaagct tttcagagga
+    13201 atttgctctt taatggataa aacaccttaa tcttactaaa attagtaaat tcagtttgta
+    13261 taccactatg aaagtaataa ttaattatta ttactataat ttttatacaa ctagaaaaat
+    13321 aaattaagtc atggtgcagc aaaaatttta gtgtgaagtg aattacattt cttttaagaa
+    13381 attaaatatg aaaacaaaaa tttaggattt gaaagtaaaa atataatata atgatatttt
+    13441 gaattaagtt ctgaagtatg tacatatcgc ccgtcgctct tttataaaga taagtcgtaa
+    13501 caaagttaaa atactggaaa gtgttttaaa aatgaaatca tatttgatgt ttcatttaca
+    13561 atgaaaatat tgtagaaata ccattttttt aataccgatt aaaattttaa aattttaaaa
+    13621 tattaattta tttttctttt aaataagtat taatttaaag taactgaaaa ggaaattcat
+    13681 gtttaataaa aaagtaaatt aatgtacctt tagcataagg gattttcaaa aaataataag
+    13741 gttttatttt tctcgaagta aatagatcta tataaatttt aattaatttg tttcaaaaaa
+    13801 ttaataaaaa cttatttaga agtgaaattc ttaacaaaat ttatgatagc tagtttttta
+    13861 aaaaaattta aaatttaatt gtttatataa agtatattta aaataaattt aacaatttat
+    13921 ttattttggg ataagctaaa atgaattttt aataattttt aaatttgtct aattaaaaag
+    13981 gaataaaatt ttcctattaa cttttaaaag taattaataa atgatttatt taattttaat
+    14041 tttttaattt ttaaaaaaac taatattagt ttttttaaaa aatgattata ttagtacaat
+    14101 tttataataa tagttaattt attaattaag attttaataa gttaaattaa attcaaagaa
+    14161 ttcggcaaaa aatttttttg actgtttaat aaaaacattt catttagatg taattaaatg
+    14221 tatattctgc tcaatgactt ataaattgct gtagtatttt gactatacaa aggtattgta
+    14281 ataaggtttt aattgaatac taaaagaatg gatgtacaga aaaactcttt tttgaattta
+    14341 aaaattaaag ttatttttgt ttgtgaagaa acaacaatta aaattaaaga caagaagacc
+    14401 ctaagaattt ttattttttg taaaaaaaga aattttttac ttaaaattta attggggcga
+    14461 ttaattaaaa tttgaaactt tatttagaaa taaaaatgat ccattaataa tgattaaatg
+    14521 aaaaaaatac tctagggata acagcgtaat aatttttgat agttcatata gacagaatag
+    14581 tttgcgacct cgatgttgga ttaggattct tgtttaatga agaagttaaa ttaagaagtt
+    14641 tgttcaactt ttaatttcct acatgatctg agtttagacc gatgagaatc aggttggttt
+    14701 ctatcttaat tttt
+//
