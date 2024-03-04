@@ -31,6 +31,9 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.p1 = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cboStart = new System.Windows.Forms.ComboBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.chcReverseSequence = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.chlTerms = new System.Windows.Forms.CheckedListBox();
             this.btnGenBank = new System.Windows.Forms.Button();
@@ -67,6 +70,9 @@
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.cboStart);
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.chcReverseSequence);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.chlTerms);
             this.groupBox2.Controls.Add(this.btnGenBank);
@@ -77,6 +83,37 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Options";
+            // 
+            // cboStart
+            // 
+            this.cboStart.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboStart.FormattingEnabled = true;
+            this.cboStart.Location = new System.Drawing.Point(9, 211);
+            this.cboStart.Name = "cboStart";
+            this.cboStart.Size = new System.Drawing.Size(185, 21);
+            this.cboStart.TabIndex = 6;
+            this.cboStart.SelectedIndexChanged += new System.EventHandler(this.cboStart_SelectedIndexChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 195);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(139, 13);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "Step this feature as the start";
+            // 
+            // chcReverseSequence
+            // 
+            this.chcReverseSequence.AutoSize = true;
+            this.chcReverseSequence.Location = new System.Drawing.Point(9, 164);
+            this.chcReverseSequence.Margin = new System.Windows.Forms.Padding(2);
+            this.chcReverseSequence.Name = "chcReverseSequence";
+            this.chcReverseSequence.Size = new System.Drawing.Size(176, 17);
+            this.chcReverseSequence.TabIndex = 4;
+            this.chcReverseSequence.Text = "Reverse complement sequence";
+            this.chcReverseSequence.UseVisualStyleBackColor = true;
+            this.chcReverseSequence.CheckedChanged += new System.EventHandler(this.chcReverseSequence_CheckedChanged);
             // 
             // label2
             // 
@@ -92,7 +129,7 @@
             this.chlTerms.FormattingEnabled = true;
             this.chlTerms.Location = new System.Drawing.Point(9, 67);
             this.chlTerms.Name = "chlTerms";
-            this.chlTerms.Size = new System.Drawing.Size(185, 94);
+            this.chlTerms.Size = new System.Drawing.Size(185, 79);
             this.chlTerms.TabIndex = 2;
             this.chlTerms.MouseUp += new System.Windows.Forms.MouseEventHandler(this.chlTerms_MouseUp);
             // 
@@ -125,7 +162,6 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "Form1";
             this.Text = "Circular MT";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.p1)).EndInit();
             this.groupBox2.ResumeLayout(false);
@@ -143,6 +179,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckedListBox chlTerms;
+        private System.Windows.Forms.CheckBox chcReverseSequence;
+        private System.Windows.Forms.ComboBox cboStart;
+        private System.Windows.Forms.Label label3;
     }
 }
 

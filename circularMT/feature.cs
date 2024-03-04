@@ -102,6 +102,25 @@ namespace circularMT
 
         }
 
+        public void ReverseComplementSequence(int sequencelength)
+        {
+            forward = !forward;
+            int t = sequencelength - too;
+            too= sequencelength - from;
+            from = t;
+        }
+
+        public void ResetStart(int sequencelength, int newStart)
+        {
+            from -= newStart;
+            too -= newStart;
+            if (too < 0)
+            {
+                from += sequencelength;
+                too += sequencelength;
+            }
+        }
+
         public float arcEndAngle(int length)
         {
             float angle = too / (float)length * 360;
