@@ -13,6 +13,7 @@ namespace circularMT
 {
     public partial class Form1 : Form
     {
+        string defination = "";
         Dictionary<string, List<feature>> features = new Dictionary<string, List<feature>>();
         int sequencelength = -1;
         Dictionary<string, Brush> colours;
@@ -48,6 +49,8 @@ namespace circularMT
                         index++;
                         break;
                     }
+                    else if (lines[index].StartsWith("DEFINITION") == true)
+                    { defination = lines[index].Substring(12).Trim(); }
                     index++;
                 }
 
@@ -152,8 +155,7 @@ namespace circularMT
         private void drawfeatures()
         {
             Bitmap bmp = new Bitmap(p1.Width, p1.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-            Graphics g = Graphics.FromImage(bmp);
-            //g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            Graphics g = Graphics.FromImage(bmp);            
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
             Point center = new Point(bmp.Width / 2, bmp.Height / 2);
@@ -166,9 +168,10 @@ namespace circularMT
             int step = 50;
             int stepTwo = 100;
             int overhang = GetOverhang(g, center, radius);
-            if (overhang < 10) { radius += (overhang - 10); }             
+            if (overhang < 10) { radius += (overhang - 10); }
 
             g.Clear(Color.White);
+            writeDefinition(g, center,radius);                                  
 
             Rectangle area = new Rectangle(center.X - radius + 30, center.Y - radius + 30, (radius - 30) * 2, (radius - 30) * 2);
             g.DrawEllipse(new Pen(Color.Black, 3), area);
@@ -188,6 +191,29 @@ namespace circularMT
 
             p1.Image = bmp;
         }
+
+        private void writeDefinition(Graphics g, Point center, int radius)
+        {
+            if (string.IsNullOrEmpty(defination) == true) { return; }
+            radius -= 120;
+            int fontSize = 20;
+            Font f = new Font(FontFamily.GenericSansSerif, fontSize, FontStyle.Bold);
+            SizeF s = g.MeasureString(defination, f);
+            
+            int gap = (radius * 2) ;
+
+            while (s.Width  > gap)
+            {
+                f = new Font(FontFamily.GenericSansSerif, fontSize, FontStyle.Bold);
+                s = g.MeasureString(defination, f);
+                fontSize--;
+            }
+
+            int x = (int)s.Width / 2;
+            g.DrawString(defination,f,Brushes.Black,center.X-x,center.Y- (fontSize/2));
+
+        }
+       
 
         private void drawTicks(Graphics g, Point center, int radius)
         {
