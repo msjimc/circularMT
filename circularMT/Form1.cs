@@ -165,7 +165,9 @@ namespace circularMT
             int step = 50;
             int stepTwo = 100;
 
-            Rectangle area = new Rectangle(center.X - radius +30, center.Y - radius +30, (radius - 30) * 2,(radius - 30) * 2);
+            int overhang = GetOverhang(g, center, radius);
+
+            Rectangle area = new Rectangle(center.X - radius +30, center.Y - radius + 30, (radius - 30) * 2,(radius - 30) * 2);
             g.DrawEllipse(new Pen(Color.Black, 3), area);
 
             if (chlTerms.CheckedItems.Count != 0)
@@ -174,7 +176,7 @@ namespace circularMT
                 {
                     if (area.Height < step || area.Width < step) { break; }
                     string key = chlTerms.CheckedItems[index].ToString();
-                    drawFeatures(g, key, area, 20, center, radius);
+                    drawFeatures(g, key, center, radius);
                     area = new Rectangle(area.X + step, area.Y + step, area.Width - stepTwo, area.Height - stepTwo);                    
                 }
             }
@@ -182,11 +184,8 @@ namespace circularMT
             p1.Image = bmp;
         }
 
-        private void drawFeatures(Graphics g, string featureSet, Rectangle area, int increment, Point center, int radius)
-        {
-            int step = increment;
-            int stepTwo = increment * 2;
-
+        private void drawFeatures(Graphics g, string featureSet, Point center, int radius)
+        {        
             Brush colour = colours[featureSet];
 
             foreach (feature f in features[featureSet])
@@ -355,18 +354,17 @@ namespace circularMT
 
             float middle = ((float)(startPoint + endPoint) / 2.0f);
             float spin = 0.0f;
-            if (middle <270 && middle > 90) { spin = 180; }
+            if (middle < 270 && middle > 90) { spin = 180; }
 
             double radion = (middle * 2 * Math.PI) / 360;
             float x = (int)(Math.Cos(radion) * (radius - 10)) + center.X;
             float y = (int)(Math.Sin(radion) * (radius - 10)) + center.Y;
             g.TranslateTransform(x, y);
             g.RotateTransform(middle - spin);
+
+            SizeF s = g.MeasureString(name, font);
             if (spin == 180)
-            {
-                SizeF s = g.MeasureString(name, font);
-                g.DrawString(name, font, Brushes.Black, -38 - s.Width, -12);
-            }
+            { g.DrawString(name, font, Brushes.Black, -38 - s.Width, -12); }
             else { g.DrawString(name, font, Brushes.Black, 38, -12); }
 
             g.ResetTransform();
@@ -395,6 +393,23 @@ namespace circularMT
         private void p1_MouseClick(object sender, MouseEventArgs e)
         {
             drawfeatures();
+        }
+
+        private int GetOverhang(Graphics g, Point center, int radius)
+        {
+            int answer = 0;
+            if (chlTerms.CheckedItems.Count != 0)
+            {
+                for (int index = 0; index < chlTerms.CheckedItems.Count; index++)
+                {
+                    string key = chlTerms.CheckedItems[index].ToString();
+                    foreach (feature f in features[key])
+                    {
+
+                    }
+                }
+            }
+            return answer;
         }
     }
 }
