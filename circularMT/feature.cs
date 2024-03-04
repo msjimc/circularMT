@@ -10,6 +10,9 @@ namespace circularMT
     internal class feature
     {
         private string name = "";
+        private string gene = "";
+        private string product = "";
+        private string gene_synonym = "";
         private string featureType = "";
         private int from = -1;
         private int too = -1;
@@ -21,17 +24,22 @@ namespace circularMT
             if (lines[index][21] == 'c')
             { forward = false; }
 
-            name = FeatureType;
+            gene = FeatureType;
+            name = gene;
 
             for (int lineIndex = index+1; lineIndex < endIndex; lineIndex++) 
             {
-                if (lines[lineIndex].Contains("/ID") == true)
+                if (lines[lineIndex].ToLower().Contains("/ID") == true)
                 { setName(lines[lineIndex]); }
-                else if (lines[lineIndex].Contains("/gene_id") == true)
+                else if (lines[lineIndex].ToLower().Contains("/gene_id") == true)
                 { setName(lines[lineIndex]); }
-                else if (lines[lineIndex].Contains("/Name") == true)
+                else if (lines[lineIndex].ToLower().Contains("/Name") == true)
                 { setName(lines[lineIndex]); }
-                else if (lines[lineIndex].Contains("/gene") == true)
+                else if (lines[lineIndex].ToLower().Contains("/gene") == true)
+                { setName(lines[lineIndex]); }
+                else if (lines[lineIndex].ToLower().Contains("/product") == true)
+                { setName(lines[lineIndex]); }
+                else if (lines[lineIndex].ToLower().Contains("/gene_synonym") == true)
                 { setName(lines[lineIndex]); }
 
             }
@@ -45,13 +53,30 @@ namespace circularMT
             string[] items = line.Split('"');
             if (items.Length > 0)
             {
-                if (items[1].Contains('_') == true)
-                {
-                    name = items[1].Split('_')[1];
-                }
+                if (items[0].ToLower().Contains("/product"))
+                {  product = items[1]; }
+                else if (items[0].ToLower().Contains("/gene_synonym"))
+                { gene_synonym = items[1]; }
                 else
-                { name = items[1]; }
+                {
+                    if (items[1].Contains('_') == true)
+                    {  gene = items[1].Split('_')[1]; }
+                    else
+                    { gene = items[1]; }
+                }
+                name = gene;
             }
+        }
+
+        public void SetDisplayName(string option)
+        {
+            if (option == "Gene" && string.IsNullOrEmpty(gene) == false)
+            { name = gene; }
+            else if (option == "Product" && string.IsNullOrEmpty(product) == false)
+            { name = product; }
+            else if (option == "Gene synonym" && string.IsNullOrEmpty(gene_synonym) == false)
+            { name = gene_synonym; }
+            else { name = gene; }
         }
 
         private void setcoordinates(string line)

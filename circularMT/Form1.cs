@@ -153,8 +153,8 @@ namespace circularMT
         {
             Bitmap bmp = new Bitmap(p1.Width, p1.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
             Graphics g = Graphics.FromImage(bmp);
-            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
-
+            //g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
             Point center = new Point(bmp.Width / 2, bmp.Height / 2);
             int radius = -1;
@@ -166,7 +166,7 @@ namespace circularMT
             int step = 50;
             int stepTwo = 100;
             int overhang = GetOverhang(g, center, radius);
-            if (overhang < 0) { radius += (overhang); }             
+            if (overhang < 10) { radius += (overhang - 10); }             
 
             g.Clear(Color.White);
 
@@ -326,8 +326,8 @@ namespace circularMT
                     {
                         SizeF s = g.MeasureString(new string(name[index], 1), font);
                         double radion = (angle * 2 * Math.PI) / 360;
-                        float x = (int)(Math.Cos(radion) * (radius - fontRadiusOffset - 10)) + center.X;
-                        float y = (int)(Math.Sin(radion) * (radius - fontRadiusOffset - 10)) + center.Y;
+                        float x = (int)(Math.Cos(radion) * (radius - fontRadiusOffset - 13)) + center.X;
+                        float y = (int)(Math.Sin(radion) * (radius - fontRadiusOffset - 13)) + center.Y;
                         g.TranslateTransform(x, y);
                         g.RotateTransform((float)angle + 90.0f);
                         g.DrawString(new string(name[index], 1), font, Brushes.Black, 0, 0);
@@ -347,8 +347,8 @@ namespace circularMT
                         string letter = new string(name[name.Length - (1 + index)], 1);
 
                         double radion = (angle * 2 * Math.PI) / 360;
-                        float x = (int)(Math.Cos(radion) * (radius + fontRadiusOffset - 10)) + center.X;
-                        float y = (int)(Math.Sin(radion) * (radius + fontRadiusOffset - 10)) + center.Y;
+                        float x = (int)(Math.Cos(radion) * (radius + fontRadiusOffset - 3)) + center.X;
+                        float y = (int)(Math.Sin(radion) * (radius + fontRadiusOffset - 3)) + center.Y;
                         g.TranslateTransform(x, y);
                         g.RotateTransform((float)angle + 270.0f);
                         g.DrawString(letter, font, Brushes.Black, 0, 0);
@@ -525,6 +525,24 @@ namespace circularMT
                     {
                         f.ResetStart(sequencelength, start);
                     }
+                }
+            }
+            drawfeatures();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            cboNameOptions.SelectedIndex = 0;
+        }
+
+        private void cboNameOptions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (features == null) { return; }
+            foreach (List<feature> list in features.Values)
+            { 
+                foreach (feature f in list)
+                {
+                    f.SetDisplayName(cboNameOptions.Text);
                 }
             }
             drawfeatures();
