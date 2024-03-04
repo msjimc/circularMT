@@ -261,9 +261,12 @@ namespace circularMT
             return places.ToArray();
         }
 
-        private void writeName(Graphics g,feature f, Point center, int radius)
+        private Point writeName(Graphics g,feature f, Point center, int radius)
         {
+            Point answer = new Point(0, 0); 
             string name = f.Name;
+            if (name == "COII; MTCO2")
+            { }
             float startPoint = f.arcStartAngle(sequencelength);
             float endPoint = f.arcEndAngle(sequencelength);
             
@@ -323,27 +326,37 @@ namespace circularMT
                     angle = startPoint + offset;
                     for (int index = 0; index < name.Length; index++)
                     {
-                        SizeF s = g.MeasureString(new string(name[index], 1), font);
+                        string letter = new string(name[name.Length - (1 + index)], 1);
+                        
                         double radion = (angle * 2 * Math.PI) / 360;
                         float x = (int)(Math.Cos(radion) * (radius + fontRadiusOffset - 10)) + center.X;
                         float y = (int)(Math.Sin(radion) * (radius + fontRadiusOffset - 10)) + center.Y;
                         g.TranslateTransform(x, y);
                         g.RotateTransform((float)angle + 270.0f);
-                        g.DrawString(new string(name[name.Length - (1 + index)], 1), font, Brushes.Black, 0, 0);
-                        //g.DrawEllipse(Pens.Black, -2, -2, 4, 4);
+                        g.DrawString(letter, font, Brushes.Black, 0, 0);
+                        
                         g.ResetTransform();
-                        angle += (float)(s.Width * 270 / circumference);
+                        int place = name.Length - (1 + index);
+                        if (place > 0)
+                        {
+                            letter = name[place - 1].ToString();
+                            SizeF s = g.MeasureString(letter, font);
+                            angle += (float)(s.Width * 270 / circumference);
+                        }
                     }
                 }
             }
             else
             {
-                writeRadially(g, f, center, radius);
+               answer =  writeRadially(g, f, center, radius);
             }
+            return answer;
         }
 
-        private void writeRadially(Graphics g, feature f, Point center, int radius)
+        private Point writeRadially(Graphics g, feature f, Point center, int radius)
         {
+            Point answer = new Point(0, 0);
+
             string name = f.Name;
             float startPoint = f.arcStartAngle(sequencelength);
             float endPoint = f.arcEndAngle(sequencelength);
@@ -365,11 +378,24 @@ namespace circularMT
             SizeF s = g.MeasureString(name, font);
             if (spin == 180)
             { g.DrawString(name, font, Brushes.Black, -38 - s.Width, -12); }
-            else { g.DrawString(name, font, Brushes.Black, 38, -12); }
+            else
+            { g.DrawString(name, font, Brushes.Black, 38, -12); }
 
             g.ResetTransform();
+            if (spin == 180)
+            {
+                float dX = (int)(Math.Cos(-radion) * -(38 + s.Width));
+                float dY = (int)(Math.Sin(-radion) * +(38 + s.Width));
+                answer = new Point((int)(x - dX), (int)(y - dY));
 
-
+            }
+            else
+            {
+                float dX = (int)(Math.Cos(-radion) * -(38 + s.Width));
+                float dY = (int)(Math.Sin(-radion) * +(38 + s.Width));
+                answer = new Point((int)(x - dX), (int)(y - dY));
+            }
+            return answer;
         }
 
         private int getlength()
@@ -405,7 +431,7 @@ namespace circularMT
                     string key = chlTerms.CheckedItems[index].ToString();
                     foreach (feature f in features[key])
                     {
-
+                        Point answerP = writeName(g,f,center,radius);
                     }
                 }
             }
