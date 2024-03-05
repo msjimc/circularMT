@@ -4,10 +4,13 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
+using Microsoft.VisualBasic;
+
 
 namespace circularMT
 {
@@ -20,13 +23,253 @@ namespace circularMT
         public Form1()
         {
             InitializeComponent();
-        }          
+        }
 
         private void btnGenBank_Click(object sender, EventArgs e)
         {
-            string filename = FileAccessClass.FileString(FileAccessClass.FileJob.Open, "Seletct the genbank mitochondrial genome file", "*.gb;*.genbank|*.gb;*.genbank");
+            string filename = FileAccessClass.FileString(FileAccessClass.FileJob.Open, "Seletct the annotation file", "*.*;|*.*");
             if (System.IO.File.Exists(filename) == false) { return; }
 
+            string extension = filename.Substring(filename.LastIndexOf('.')).ToLower();
+
+            switch (extension) 
+            {
+                case ".gb":
+                case ".genbank":
+                    openGenBank(filename);
+                    break;
+                case ".fa":
+                case ".fas":
+                case ".fasta":
+                    openFastaFile(filename); 
+                    break;
+                case ".gff":
+                    openGFFFile(filename);
+                    break;
+                case ".gtf":
+                    openGTFFile(filename); 
+                    break;
+                case ".mitos":
+
+                    break;
+                case ".seq":
+
+                    break;
+                case ".bed": 
+                    openBedFile(filename);
+                    break;
+                case ".txt":
+                    
+                    break;
+            }
+
+        }
+
+        private void openGFFFile(string filename)
+        {
+            sequencelength = -1;
+            string input = Interaction.InputBox("Enter the genome length", "Genome length");
+            try
+            { sequencelength = Convert.ToInt32(input.Trim().Replace(",", "")); }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Could not convert value to a whole number", "Error");
+                return;
+            }
+
+            System.IO.StreamReader fs = null;
+
+            try
+            {
+
+                fs = new System.IO.StreamReader(filename);
+                string data = fs.ReadToEnd();
+                fs.Close();
+
+                string[] lines = data.Split('\n');
+                string term = "Feature";
+                string[] items = lines[0].Split('\t');
+
+                defination = "";
+               items = null;                
+                foreach (string line in lines)
+                {
+                    items = line.Split('\t');
+                    if (items.Length == 9 && items[0].StartsWith("#") == false)
+                    {
+                         if (defination == "") { defination = items[0].Trim(); }
+                   term = items[2].Trim();
+                        feature f = new feature(items, 0, 0, term, "gff");
+                       
+                        if (features.ContainsKey(f.FeatureType.Trim()) == false )
+                        { features.Add(f.FeatureType, new List<feature>()); }
+
+                        features[f.FeatureType].Add(f);
+                    }                    
+                }
+
+                SetUpProgramStata();
+
+                cboStart.Items.Clear();
+                cboStart.Items.Add("select");
+                foreach (string key in features.Keys)
+                {
+                    List<feature> lists = features[key];
+                    lists.Sort(new featureSorter());
+                    foreach (feature f in lists)
+                    { cboStart.Items.Add(key + ": " + f.Name); }
+                }
+                cboStart.SelectedIndex = 0;
+
+                drawFeatures();
+
+            }
+            catch (Exception ex)
+            { MessageBox.Show("Could not open and process the file", "Error"); }
+            finally
+            { if (fs != null) { fs.Close(); } }
+
+        }        
+
+        private void SetUpProgramStata()
+        {
+            chlTerms.Items.Clear();
+            Brush[] colourSet = { Brushes.PaleGreen, Brushes.Pink, Brushes.LightBlue, Brushes.LightGray, Brushes.Orange, Brushes.GreenYellow, Brushes.Orchid };
+            colours = new Dictionary<string, Brush>();
+            
+            int index = 0;
+                        foreach (string term in features.Keys)
+            {
+
+                colours.Add(term, colourSet[index]);
+                chlTerms.Items.Add(term);
+                index++;
+                if (index >= colourSet.Length)
+                { index = 0; }
+
+            }
+
+            for (int count = 0; count < chlTerms.Items.Count; count++)
+            {
+                chlTerms.SetItemChecked(count, true);
+            }
+        }
+
+
+        private void openGTFFile(string filename)
+        {
+
+        }
+        private void openBedFile(string filename)
+        {
+
+        }
+
+
+        private void openFastaFile(string filename)
+        {
+
+            System.IO.StreamReader fs = null;
+
+            try
+            {
+                string input = Interaction.InputBox("Enter the genome length", "Genome length");
+                try
+                { sequencelength = Convert.ToInt32(input.Trim().Replace(",","")); }
+                catch
+                {
+                    MessageBox.Show("Could not convert value to a whole number", "Error");
+                        return; 
+                }
+
+
+                fs = new System.IO.StreamReader(filename);
+                string data = fs.ReadToEnd();
+                fs.Close();
+
+                string[] lines = data.Split('\n');
+
+                string term = "Features";
+                defination = "";
+                AddSingleFeatureListAndSortState();
+
+                string[] items = null;
+                string dataInfo = "";
+                string sequence = "";
+                foreach (string line in lines) 
+                {
+                    if (line.StartsWith(">") == true && dataInfo.Length>0)
+                    {
+                        dataInfo += ";" + sequence.Length.ToString();
+                        items = dataInfo.Split(';');
+
+                        if (defination =="")
+                        { defination = items[0].Trim(); }
+                        
+                        feature f = new feature(items, 0, 0, term, "fasta");
+                        features[f.FeatureType].Add(f);
+                        dataInfo = line;
+                        sequence = "";
+                    }
+                    else if (line.StartsWith(">") == true)
+                    { dataInfo = line; }
+                    else
+                    {
+                        sequence += line.Trim();
+                    }
+                }
+
+                if (dataInfo.Length >0) 
+                {
+                    dataInfo += ";" + sequence.Length.ToString();
+                    items = dataInfo.Split(';');
+
+                    if (defination == "")
+                    { defination = items[0].Trim(); }
+
+                    feature f = new feature(items, 0, 0, term, "fasta");
+                    features[f.FeatureType].Add(f);
+                    
+
+                }                                
+
+                cboStart.Items.Clear();
+                cboStart.Items.Add("select");
+                foreach (string key in features.Keys)
+                {
+                    List<feature> lists = features[key];
+                    lists.Sort(new featureSorter());
+                    foreach (feature f in lists)
+                    { cboStart.Items.Add(key + ": " + f.Name); }
+                }
+                cboStart.SelectedIndex = 0;
+
+                drawFeatures();
+
+            }
+            catch (Exception ex)
+            { MessageBox.Show("Could not open and process the file", "Error"); }
+            finally
+            { if (fs != null) { fs.Close(); } }
+        }
+
+        private void AddSingleFeatureListAndSortState()
+        {
+            chlTerms.Items.Clear();
+            features = new Dictionary<string, List<feature>>();
+            Brush[] colourSet = { Brushes.PaleGreen, Brushes.Pink, Brushes.LightBlue, Brushes.LightGray, Brushes.Orange, Brushes.GreenYellow, Brushes.Orchid };
+            colours = new Dictionary<string, Brush>();
+            string term = "Features";
+
+            features.Add(term, new List<feature>());
+            colours.Add(term, colourSet[0]);
+            chlTerms.Items.Add(term);
+            chlTerms.SetItemChecked(0, true);
+
+        }
+
+        private void openGenBank(string filename)
+        { 
             System.IO.StreamReader fs = null;
 
             try 
@@ -84,7 +327,7 @@ namespace circularMT
                     {
                         if (lines[startOfFeatures[place]].Contains("..") == true)
                         {
-                            feature f = new feature(lines, startOfFeatures[place], startOfFeatures[place + 1], lines[startOfFeatures[place]].Substring(0, 21).Trim());
+                            feature f = new feature(lines, startOfFeatures[place], startOfFeatures[place + 1], lines[startOfFeatures[place]].Substring(0, 21).Trim(), "genbank");
                             features[f.FeatureType].Add(f);
                         }
                     }
@@ -92,7 +335,7 @@ namespace circularMT
                     {
                         if (lines[startOfFeatures[place]].Contains("..") == true)
                         {
-                            feature f = new feature(lines, startOfFeatures[place], lastPlace, lines[startOfFeatures[place]].Substring(0, 21).Trim());
+                            feature f = new feature(lines, startOfFeatures[place], lastPlace, lines[startOfFeatures[place]].Substring(0, 21).Trim(), "genbank");
                             features[f.FeatureType].Add(f);
                         }
                     }
@@ -230,7 +473,7 @@ namespace circularMT
 
                 if (all.Count > 1)
                 {
-                    for (int index = 0; index < all.Count - 1; index++)
+                    for (int index = 0; index < all.Count; index++)
                     {
                         if (index + 1 < all.Count)
                         {
@@ -241,17 +484,33 @@ namespace circularMT
                                 all[index + 1].Clash = true;
                             }
                         }
+                        else if (index + 1 == all.Count)
+                        {
+                            int diff = Distance(all[index].TextPoint, all[0].TextPoint);
+                            if (Math.Abs(diff) <= 25 && diff > 0)
+                            {
+                                all[index].Clash = true;
+                                all[0].Clash = true;
+                            }
+                        }
                     }
 
                     int count = 0;
-                    for (int index = 0; index < all.Count; index++)
+                    for (int index = 0; index < all.Count + 1; index++)
                     {
-                        if (all[index].Clash == true)
+                        if (index < all.Count && all[index].Clash == true)
                         {
                             count++;
                             Point p = all[index].ClashData;
                             p.X = count;
                             all[index].ClashData = p;
+                        }
+                        else if (index == all.Count && all[0].Clash== true)
+                        {
+                            count++;
+                            Point p = all[0].ClashData;
+                            p.X = count;
+                            all[0].ClashData = p;
                         }
                         else { count = 0; }
                     }
@@ -354,42 +613,73 @@ namespace circularMT
         }
 
         private Point[] getArrow(float startPoint, float endPoint, int radius, Point center, bool start)
-        {           
+        {
             List<Point> places = new List<Point>();
 
             double radion;
 
-            if (start == true)
-            { endPoint -= 1.0f; }
+            if (endPoint - startPoint < 1.1)
+            {
+                if (start == true)
+                {
+                    radion = (startPoint * 2 * Math.PI) / 360;
+                    Point p = new Point((int)(Math.Cos(radion) * (radius + 22)) + center.X, (int)(Math.Sin(radion) * (radius + 22)) + center.Y);
+                    places.Add(p);
+                    radion = (startPoint * 2 * Math.PI) / 360;
+                    p = new Point((int)(Math.Cos(radion) * (radius - 22)) + center.X, (int)(Math.Sin(radion) * (radius - 22)) + center.Y);
+                    places.Add(p);
+                    radion = ((endPoint + 1.0f) * 2 * Math.PI) / 360;
+                     p = new Point((int)(Math.Cos(radion) * radius) + center.X, (int)(Math.Sin(radion) * radius) + center.Y);
+                    places.Add(p);
+                }
+                else
+                {
+                    radion = (endPoint * 2 * Math.PI) / 360;
+                    Point p = new Point((int)(Math.Cos(radion) * (radius + 22)) + center.X, (int)(Math.Sin(radion) * (radius + 22)) + center.Y);
+                    places.Add(p);
+                    radion = (endPoint * 2 * Math.PI) / 360;
+                    p = new Point((int)(Math.Cos(radion) * (radius - 22)) + center.X, (int)(Math.Sin(radion) * (radius - 22)) + center.Y);
+                    places.Add(p);
+                    radion = ((startPoint + 1.0f) * 2 * Math.PI) / 360;
+                    p = new Point((int)(Math.Cos(radion) * radius) + center.X, (int)(Math.Sin(radion) * radius) + center.Y);
+                    places.Add(p);
+                }
+            }
             else
             {
-                radion = (startPoint * 2 * Math.PI) / 360;
-                Point p = new Point((int)(Math.Cos(radion) * radius)  + center.X, (int)(Math.Sin(radion) * radius) + center.Y);
-                places.Add(p);
-                startPoint += 1.0f;
-            }
+                if (start == true)
+                { endPoint -= 1.0f; }
+                else
+                {
+                    radion = (startPoint * 2 * Math.PI) / 360;
+                    Point p = new Point((int)(Math.Cos(radion) * radius) + center.X, (int)(Math.Sin(radion) * radius) + center.Y);
+                    places.Add(p);
+                    startPoint += 1.0f;
+                }
 
-            for (float place = startPoint; place < endPoint + 0.1f; place += 0.1f)
-            {
-                radion = (place * 2 * Math.PI) / 360;
-                Point p = new Point((int)(Math.Cos(radion) * (radius + 22)) + center.X, (int)(Math.Sin(radion) * (radius + 22)) + center.Y);
-                places.Add(p);
-            }
 
-            if (start == true)
-            {
-                radion = ((endPoint + 1.0f) * 2 * Math.PI) / 360;
-                Point p = new Point((int)(Math.Cos(radion) * radius) + center.X, (int)(Math.Sin(radion) * radius) + center.Y);
-                places.Add(p);
-            }
+                for (float place = startPoint; place < endPoint + 0.1f; place += 0.1f)
+                {
+                    radion = (place * 2 * Math.PI) / 360;
+                    Point p = new Point((int)(Math.Cos(radion) * (radius + 22)) + center.X, (int)(Math.Sin(radion) * (radius + 22)) + center.Y);
+                    places.Add(p);
+                }
 
-            for (float place = endPoint; place > startPoint - 0.1f; place -= 0.1f)
-            {
-                radion = (place * 2 * Math.PI) / 360;
-                Point p = new Point((int)(Math.Cos(radion) * (radius - 22)) + center.X, (int)(Math.Sin(radion) * (radius - 22)) + center.Y);
-                places.Add(p);
-            }
 
+                if (start == true)
+                {
+                    radion = ((endPoint + 1.0f) * 2 * Math.PI) / 360;
+                    Point p = new Point((int)(Math.Cos(radion) * radius) + center.X, (int)(Math.Sin(radion) * radius) + center.Y);
+                    places.Add(p);
+                }
+
+                for (float place = endPoint; place > startPoint - 0.1f; place -= 0.1f)
+                {
+                    radion = (place * 2 * Math.PI) / 360;
+                    Point p = new Point((int)(Math.Cos(radion) * (radius - 22)) + center.X, (int)(Math.Sin(radion) * (radius - 22)) + center.Y);
+                    places.Add(p);
+                }
+            }
 
             return places.ToArray();
         }
@@ -603,7 +893,8 @@ namespace circularMT
                 {
                     if (length < f.EndPoint) { length = f.EndPoint; }
                 }
-            }
+            }          
+
             return length;
         }
 

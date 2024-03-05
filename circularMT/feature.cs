@@ -19,16 +19,101 @@ namespace circularMT
         private int too = -1;
         private bool forward = true;
 
-        public feature(string[] lines, int index, int endIndex, string FeatureType)
+        public feature(string[] lines, int index, int endIndex, string FeatureType, string dataType)
         {
             featureType = FeatureType;
+
+            if (dataType == "genbank")
+            { Genbank(lines, index, endIndex, featureType); }
+            else if (dataType == "fasta")
+            { Fasta(lines); }
+            else if (dataType == "gff")
+            { GFF(lines, FeatureType); }
+        }
+
+        private void GFF(string[] data, string FeatureType)
+        {
+            featureType = FeatureType;
+
+            if (data[6].Trim() == "-")
+            { forward = false; }
+
+            if (data[2].ToLower() == "region")
+            { 
+                name = "Region"; 
+                gene = name; 
+            }
+            else
+            {
+                int one = data[8].IndexOf("Name=") + 5;
+                int two = data[8].IndexOf(";", one);
+
+                if (one > 4 && two > one)
+                { name = data[8].Substring(one, two - one); }
+                else if (one > 4 && two == -1)
+                { name = data[8].Substring(one).Trim(); }
+                else { name = ""; }
+
+                 one = data[8].IndexOf("gene_id=") + 8;
+                 two = data[8].IndexOf(";", one);
+
+                if (one > 5 && two > one)
+                { gene = data[8].Substring(one, two - one); }
+                else if (one > 5 && two == -1)
+                { gene = data[8].Substring(one).Trim(); }
+                else { gene = ""; }
+
+                if (gene == "" && name != "")
+                { gene = name; }
+
+                if (gene != "" && name == "")
+                { name = gene; }
+
+
+            }
+
+            try
+            {
+                from = Convert.ToInt32(data[3]);
+                too = Convert.ToInt32(data[4]);                
+            }
+            catch (Exception ex)
+            { throw new Exception("Error getting coordinates from " + name); }
+
+        }
+
+        private void Fasta(string[] data)
+        {
+            if (data[2].Trim() == "-")
+            { forward = false; }
+            name = data[3].Trim().Replace(">","");
+            gene = name;
+           
+            string[] items = data[1].Trim().Split('-');
+
+            try
+            {
+                from = Convert.ToInt32(items[0]);
+                too = Convert.ToInt32(items[1]);
+                if (too < from)
+                { from = too - Convert.ToInt32(data[4]); }
+
+            }
+            catch (Exception ex)
+            { throw new Exception("Error getting coordinates from " + name); }
+
+        }
+
+        private void Genbank(string[] lines, int index, int endIndex, string FeatureType)
+        {
+            featureType = FeatureType; 
             if (lines[index][21] == 'c')
             { forward = false; }
 
             gene = FeatureType;
             name = gene;
 
-            for (int lineIndex = index+1; lineIndex < endIndex; lineIndex++) 
+            for (int lineIndex = index + 1; lineIndex < endIndex; lineIndex++)
             {
                 if (lines[lineIndex].ToLower().Contains("/ID") == true)
                 { setName(lines[lineIndex]); }
@@ -45,7 +130,7 @@ namespace circularMT
 
             }
 
-            setcoordinates( lines[index]);
+            setcoordinates(lines[index]);
         }
 
         private void setName(string line)
@@ -144,6 +229,12 @@ namespace circularMT
                 from += sequencelength;
                 too += sequencelength;
             }
+        }
+
+        public void ResetCoordinatesOfFeatureSpanningContigEnds(int sequencelength) 
+        {
+            int diff = from - sequencelength;
+            from = diff;
         }
 
         public float arcEndAngle(int length)
