@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace circularMT
 {
@@ -45,7 +46,6 @@ namespace circularMT
             }
 
             setcoordinates( lines[index]);
-
         }
 
         private void setName(string line)
@@ -181,6 +181,33 @@ namespace circularMT
 
         public string Name
         { get { return name; } }
+              
+        Point textPoint = new Point(-1,-1);
+        public Point TextPoint
+        {
+            get { return textPoint; }
+            set { textPoint = value; }
+        }
 
+        public void ResetClash()
+        {
+            clash = false;
+            textPoint = new Point(-1, -1);
+            clashData = new Point(0, 0);
+        }
+
+        public bool clash = false;
+        public bool Clash
+        {
+            get { return clash; }
+            set { clash = value; }
+        }
+
+        Point clashData = new Point(0,0);
+        public Point ClashData
+        {
+            get { return clashData; }
+            set { clashData = value; }
+        }
     }
 }

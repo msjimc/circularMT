@@ -111,7 +111,7 @@ namespace circularMT
                 }
                 cboStart.SelectedIndex = 0;
 
-                drawfeatures();
+                drawFeatures();
 
             }
             catch (Exception ex)
@@ -152,7 +152,7 @@ namespace circularMT
             }
         }
 
-        private void drawfeatures()
+        private void drawFeatures()
         {
             Bitmap bmp = new Bitmap(p1.Width, p1.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
             Graphics g = Graphics.FromImage(bmp);            
@@ -167,8 +167,12 @@ namespace circularMT
             
             int step = 50;
             int stepTwo = 100;
+
+            ResetClash();
             int overhang = GetOverhang(g, center, radius);
             if (overhang < 10) { radius += (overhang - 10); }
+
+            ClashDetection();
 
             g.Clear(Color.White);
             writeDefinition(g, center,radius);                                  
@@ -192,10 +196,91 @@ namespace circularMT
             p1.Image = bmp;
         }
 
+        private void ResetClash()
+        {
+            if (chlTerms.CheckedItems.Count > 0)
+            {
+                foreach (string key in chlTerms.CheckedItems)
+                {
+                    List<feature> list = features[key];
+                    foreach (feature f in list)
+                    { f.ResetClash(); }
+                }
+            }
+        }
+
+        private void ClashDetection()
+        {
+            List<feature> all = new List<feature>();
+            if (chlTerms.CheckedItems.Count > 0)
+            {
+                foreach (string key in chlTerms.CheckedItems)
+                {
+                    List<feature> list = features[key];
+
+                    if (list.Count > 1)
+                    {
+                        for (int index = 0; index < list.Count; index++)
+                        {
+                            all.Add(list[index]);
+                        }
+                    }
+                }
+                all.Sort(new featureSorter());
+
+                if (all.Count > 1)
+                {
+                    for (int index = 0; index < all.Count - 1; index++)
+                    {
+                        if (index + 1 < all.Count)
+                        {
+                            int diff = Distance(all[index].TextPoint, all[index + 1].TextPoint);
+                            if (Math.Abs(diff) <= 25 && diff > 0)
+                            {
+                                all[index].Clash = true;
+                                all[index + 1].Clash = true;
+                            }
+                        }
+                    }
+
+                    int count = 0;
+                    for (int index = 0; index < all.Count; index++)
+                    {
+                        if (all[index].Clash == true)
+                        {
+                            count++;
+                            Point p = all[index].ClashData;
+                            p.X = count;
+                            all[index].ClashData = p;
+                        }
+                        else { count = 0; }
+                    }
+                    count = 0;
+                    for (int index = all.Count - 1; index >= 0; index--)
+                    {
+                        if (all[index].ClashData.X > count)
+                        {
+                            count = all[index].ClashData.X;
+                            Point p = all[index].ClashData;
+                            p.Y = count;
+                            all[index].ClashData = p;
+                        }
+                        else if (all[index].ClashData.X > 0)
+                        {
+                            Point p = all[index].ClashData;
+                            p.Y = count;
+                            all[index].ClashData = p;
+                        }
+                        else { count = 0; }
+                    }
+                }
+            }
+        }
+
         private void writeDefinition(Graphics g, Point center, int radius)
         {
             if (string.IsNullOrEmpty(defination) == true) { return; }
-            radius -= 120;
+            radius -= 160;
             int fontSize = 20;
             Font f = new Font(FontFamily.GenericSansSerif, fontSize, FontStyle.Bold);
             SizeF s = g.MeasureString(defination, f);
@@ -210,10 +295,12 @@ namespace circularMT
             }
 
             int x = (int)s.Width / 2;
-            g.DrawString(defination,f,Brushes.Black,center.X-x,center.Y- (fontSize/2));
+            g.DrawString(defination,f,Brushes.Black,center.X-x,center.Y - (fontSize));
+            s = g.MeasureString(sequencelength.ToString("N0") + " bp", f);
+            x = (int)s.Width / 2;
+            g.DrawString(sequencelength.ToString("N0") + " bp", f, Brushes.Black, center.X - x, center.Y + (fontSize * 0.5f));
 
         }
-       
 
         private void drawTicks(Graphics g, Point center, int radius)
         {
@@ -409,42 +496,102 @@ namespace circularMT
            
             float startPoint = f.arcStartAngle(sequencelength);
             float endPoint = f.arcEndAngle(sequencelength);
-            Font font = new Font(FontFamily.GenericSansSerif, 11, FontStyle.Bold);
 
-            int add = 0;
-            if (f.Forward == false)
-            { add = 60; }
+            Font font;
+            if (f.Forward == true)
+            { font = new Font(FontFamily.GenericSansSerif, 11, FontStyle.Bold); }
+            else { font = new Font(FontFamily.GenericSansSerif, 10, FontStyle.Bold); }
 
             float middle = ((float)(startPoint + endPoint) / 2.0f);
             float spin = 0.0f;
             if (middle < 270 && middle > 90) { spin = 180; }
 
             double radion = (middle * 2 * Math.PI) / 360;
-            float x = (int)(Math.Cos(radion) * (radius + add - 10)) + center.X;
-            float y = (int)(Math.Sin(radion) * (radius + add - 10)) + center.Y;
+            float x = (int)(Math.Cos(radion) * (radius - 10)) + center.X;
+            float y = (int)(Math.Sin(radion) * (radius - 10)) + center.Y;
+
             g.TranslateTransform(x, y);
+
+            if (f.Clash == true)
+            {
+                Point cd = f.ClashData;
+                int half = (cd.Y / 2) ;
+                int cX = cd.X;
+                
+                if (f.Forward != false)//chcReverseSequence.Checked)
+                {
+                    int wiggle =  (5 * (half + 1 - cX));
+                    middle -= wiggle; 
+                }
+                else 
+                {
+                    int wiggle = (8 * (half + 1 - cX));
+                    middle += wiggle; 
+                }
+            }
+
             g.RotateTransform(middle - spin);
 
             SizeF s = g.MeasureString(name, font);
             if (spin == 180)
-            { g.DrawString(name, font, Brushes.Black, -38 - s.Width, -6); }
+            {
+                if (f.Forward == true)
+                { g.DrawString(name, font, Brushes.Black, -38 - s.Width, -6); }
+                else
+                { g.DrawString(name, font, Brushes.Black, 20, -10); }
+            }
             else
-            { g.DrawString(name, font, Brushes.Black, 38, -6); }
+            {
+                if (f.Forward == true)
+                { g.DrawString(name, font, Brushes.Black, 38, -10); }
+                else
+                { g.DrawString(name, font, Brushes.Black, -16 - s.Width, -6); }
+            }
             
             g.ResetTransform();
-            if (spin == 180)
+
+            if (f.Forward == true)
             {
-                float dX = (int)(Math.Cos(-radion) * -(38 - add + s.Width));
-                float dY = (int)(Math.Sin(-radion) * +(38 - add + s.Width));
-                answer = new Point((int)(x - dX), (int)(y - dY));                
+                if (spin == 180)
+                {
+                    float dX = (int)(Math.Cos(-radion) * -(38 + s.Width));
+                    float dY = (int)(Math.Sin(-radion) * +(38 + s.Width));
+                    answer = new Point((int)(x - dX), (int)(y - dY));
+                    f.TextPoint = new Point((int)(x - dX), (int)(y - dY));
+                }
+                else
+                {
+                    float dX = (int)(Math.Cos(-radion) * -(38 + s.Width));
+                    float dY = (int)(Math.Sin(-radion) * +(38 + s.Width));
+                    answer = new Point((int)(x - dX), (int)(y - dY));
+                    f.TextPoint = new Point((int)(x - dX), (int)(y - dY));
+                }
             }
-            else
-            {
-                float dX = (int)(Math.Cos(-radion) * -(38 - add +  s.Width));
-                float dY = (int)(Math.Sin(-radion) * +(38 -+ add + s.Width));                 
-                answer = new Point((int)(x - dX), (int)(y - dY));                
+            else 
+            { 
+                if (spin  == 180)
+                {
+                    float dX = (int)(Math.Cos(-radion) * 20);
+                    float dY = (int)(Math.Sin(-radion) * -20);
+                    f.TextPoint  = new Point((int)(x - dX), (int)(y - dY));
+                }
+                else
+                {
+                    float dX = (int)(Math.Cos(-radion) * -(16 ));
+                    float dY = (int)(Math.Sin(-radion) * (16 ));                    
+                    f.TextPoint = new Point((int)(x + dX), (int)(y + dY));
+                }
             }
+
+
             return answer;
+        }
+
+        public int Distance(Point one, Point two)
+        {
+            double square = Math.Pow((one.X - two.X), 2) + Math.Pow((one.Y - two.Y), 2);
+            int answer =  (int)Math.Sqrt(square);
+            return  answer;
         }
 
         private int getlength()
@@ -476,16 +623,16 @@ namespace circularMT
                 }
             }
             cboStart.SelectedIndex = 0;
-            drawfeatures();
+            drawFeatures();
         }
 
         private void p1_MouseClick(object sender, MouseEventArgs e)
         {
-            drawfeatures();
+            drawFeatures();
         }
 
         private int GetOverhang(Graphics g, Point center, int radius)
-        {
+        {            
             int answer = 0;
             if (chlTerms.CheckedItems.Count != 0)
             {
@@ -522,7 +669,7 @@ namespace circularMT
                     f.ReverseComplementSequence(sequencelength);
                 }
             }
-            drawfeatures();
+            drawFeatures();
         }
 
         private void cboStart_SelectedIndexChanged(object sender, EventArgs e)
@@ -553,7 +700,7 @@ namespace circularMT
                     }
                 }
             }
-            drawfeatures();
+            drawFeatures();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -571,7 +718,7 @@ namespace circularMT
                     f.SetDisplayName(cboNameOptions.Text);
                 }
             }
-            drawfeatures();
+            drawFeatures();
         }
     }
 }
