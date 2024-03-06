@@ -67,6 +67,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdjustColours.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdjustColours.Designer.cs">
+      <DependentUpon>AdjustColours.cs</DependentUpon>
+    </Compile>
     <Compile Include="feature.cs" />
     <Compile Include="featureSorter.cs" />
     <Compile Include="FileAccessClass.cs" />
@@ -76,8 +82,12 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="ImageScaling.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AdjustColours.resx">
+      <DependentUpon>AdjustColours.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>

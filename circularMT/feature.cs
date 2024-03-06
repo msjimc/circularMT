@@ -8,7 +8,7 @@ using System.Drawing;
 
 namespace circularMT
 {
-    internal class feature
+    public  class feature
     {
         private string name = "";
         private string gene = "";
@@ -18,6 +18,10 @@ namespace circularMT
         private int from = -1;
         private int too = -1;
         private bool forward = true;
+        private Point textPoint = new Point(-1, -1);
+        Point clashData = new Point(0, 0);
+        private Brush color = Brushes.Gray;
+        private Point[] arrows = null;
 
         public feature(string[] lines, int index, int endIndex, string FeatureType, string dataType)
         {
@@ -104,7 +108,7 @@ namespace circularMT
                 from = Convert.ToInt32(data[1]);
                 too = Convert.ToInt32(data[2]);
                 if (too < from)
-                { from = Convert.ToInt32(data[14]) + too; }
+                { from = Convert.ToInt32(data[6]) + too; }
             }
             catch (Exception ex)
             { throw new Exception("Error getting coordinates from " + name); }
@@ -228,7 +232,7 @@ namespace circularMT
                 from = Convert.ToInt32(items[0]);
                 too = Convert.ToInt32(items[1]);
                 if (too < from)
-                { from = Convert.ToInt32(data[14]) + too; ; }
+                { from = Convert.ToInt32(data[4]) + too; ; }
 
             }
             catch (Exception ex)
@@ -399,13 +403,18 @@ namespace circularMT
         public int EndPoint
         { get { return too; } }
 
+        public void ReSetEndPoint(int currentLength, int newLength)
+        {
+            int t = too - currentLength;
+            too = newLength + too;
+        }
+
         public bool Forward
         { get { return forward; } }
 
         public string Name
         { get { return (name + new string(' ', 18)).Substring(0,17).Trim(); } }
-              
-        Point textPoint = new Point(-1,-1);
+                    
         public Point TextPoint
         {
             get { return textPoint; }
@@ -426,11 +435,23 @@ namespace circularMT
             set { clash = value; }
         }
 
-        Point clashData = new Point(0,0);
         public Point ClashData
         {
             get { return clashData; }
             set { clashData = value; }
         }
+
+        public Brush FeatureColour
+        {
+            get { return color; }
+            set { color = value; }
+        }
+
+        public Point[] Arrows
+        {
+            get { return arrows; }
+            set { arrows = value; }
+        }
+
     }
 }

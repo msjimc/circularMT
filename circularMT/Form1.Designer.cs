@@ -28,9 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.p1 = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.chkDrawOrder = new System.Windows.Forms.CheckBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.btnChangeColours = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.btnResetName = new System.Windows.Forms.Button();
+            this.label5 = new System.Windows.Forms.Label();
+            this.btnNewLenght = new System.Windows.Forms.Button();
             this.cboNameOptions = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.cboStart = new System.Windows.Forms.ComboBox();
@@ -40,6 +48,9 @@
             this.chlTerms = new System.Windows.Forms.CheckedListBox();
             this.btnGenBank = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.label8 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.p1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -72,6 +83,15 @@
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.chkDrawOrder);
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.btnChangeColours);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.btnResetName);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.btnNewLenght);
             this.groupBox2.Controls.Add(this.cboNameOptions);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.cboStart);
@@ -88,6 +108,78 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Options";
             // 
+            // chkDrawOrder
+            // 
+            this.chkDrawOrder.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkDrawOrder.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkDrawOrder.Checked = true;
+            this.chkDrawOrder.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkDrawOrder.Location = new System.Drawing.Point(6, 376);
+            this.chkDrawOrder.Name = "chkDrawOrder";
+            this.chkDrawOrder.Size = new System.Drawing.Size(204, 24);
+            this.chkDrawOrder.TabIndex = 15;
+            this.chkDrawOrder.Text = "Draw smaller features last";
+            this.chkDrawOrder.UseVisualStyleBackColor = true;
+            this.chkDrawOrder.CheckedChanged += new System.EventHandler(this.chkDrawOrder_CheckedChanged);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 352);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(108, 13);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "Adjust colour scheme";
+            // 
+            // btnChangeColours
+            // 
+            this.btnChangeColours.Location = new System.Drawing.Point(136, 347);
+            this.btnChangeColours.Name = "btnChangeColours";
+            this.btnChangeColours.Size = new System.Drawing.Size(75, 23);
+            this.btnChangeColours.TabIndex = 13;
+            this.btnChangeColours.Text = "Reset";
+            this.btnChangeColours.UseVisualStyleBackColor = true;
+            this.btnChangeColours.Click += new System.EventHandler(this.btnChangeColours_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 323);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(105, 13);
+            this.label6.TabIndex = 12;
+            this.label6.Text = "Reset genome name";
+            // 
+            // btnResetName
+            // 
+            this.btnResetName.Location = new System.Drawing.Point(136, 318);
+            this.btnResetName.Name = "btnResetName";
+            this.btnResetName.Size = new System.Drawing.Size(75, 23);
+            this.btnResetName.TabIndex = 11;
+            this.btnResetName.Text = "Reset";
+            this.btnResetName.UseVisualStyleBackColor = true;
+            this.btnResetName.Click += new System.EventHandler(this.btnResetName_Click);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 294);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(108, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Reset genome length";
+            // 
+            // btnNewLenght
+            // 
+            this.btnNewLenght.Location = new System.Drawing.Point(136, 289);
+            this.btnNewLenght.Name = "btnNewLenght";
+            this.btnNewLenght.Size = new System.Drawing.Size(75, 23);
+            this.btnNewLenght.TabIndex = 9;
+            this.btnNewLenght.Text = "Reset";
+            this.btnNewLenght.UseVisualStyleBackColor = true;
+            this.btnNewLenght.Click += new System.EventHandler(this.btnNewLenght_Click);
+            // 
             // cboNameOptions
             // 
             this.cboNameOptions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -102,7 +194,6 @@
             this.cboNameOptions.Name = "cboNameOptions";
             this.cboNameOptions.Size = new System.Drawing.Size(201, 21);
             this.cboNameOptions.TabIndex = 8;
-            this.cboNameOptions.Visible = false;
             this.cboNameOptions.SelectedIndexChanged += new System.EventHandler(this.cboNameOptions_SelectedIndexChanged);
             // 
             // label4
@@ -113,7 +204,6 @@
             this.label4.Size = new System.Drawing.Size(84, 13);
             this.label4.TabIndex = 7;
             this.label4.Text = "Select name tag";
-            this.label4.Visible = false;
             // 
             // cboStart
             // 
@@ -138,11 +228,13 @@
             // 
             // chcReverseSequence
             // 
-            this.chcReverseSequence.AutoSize = true;
+            this.chcReverseSequence.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.chcReverseSequence.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chcReverseSequence.Location = new System.Drawing.Point(9, 164);
             this.chcReverseSequence.Margin = new System.Windows.Forms.Padding(2);
             this.chcReverseSequence.Name = "chcReverseSequence";
-            this.chcReverseSequence.Size = new System.Drawing.Size(176, 17);
+            this.chcReverseSequence.Size = new System.Drawing.Size(201, 17);
             this.chcReverseSequence.TabIndex = 4;
             this.chcReverseSequence.Text = "Reverse complement sequence";
             this.chcReverseSequence.UseVisualStyleBackColor = true;
@@ -188,6 +280,29 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "GenBank file:";
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(6, 411);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(63, 13);
+            this.label8.TabIndex = 16;
+            this.label8.Text = "Save image";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(135, 406);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 17;
+            this.button1.Text = "Save";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -198,6 +313,7 @@
             this.Name = "Form1";
             this.Text = "Circular MT";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.Resize += new System.EventHandler(this.Form1_Resize);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.p1)).EndInit();
             this.groupBox2.ResumeLayout(false);
@@ -220,6 +336,16 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cboNameOptions;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button btnNewLenght;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnResetName;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btnChangeColours;
+        private System.Windows.Forms.CheckBox chkDrawOrder;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label8;
     }
 }
 

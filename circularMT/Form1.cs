@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using Microsoft.VisualBasic;
@@ -20,9 +21,14 @@ namespace circularMT
         Dictionary<string, List<feature>> features = new Dictionary<string, List<feature>>();
         int sequencelength = -1;
         Dictionary<string, Brush> colours;
+        bool resising = false;
+        ImageScaling scaling = null;
+
         public Form1()
         {
             InitializeComponent();
+
+            scaling = new ImageScaling(96);
         }
 
         private void btnGenBank_Click(object sender, EventArgs e)
@@ -32,7 +38,7 @@ namespace circularMT
 
             string extension = filename.Substring(filename.LastIndexOf('.')).ToLower();
 
-            switch (extension) 
+            switch (extension)
             {
                 case ".gb":
                 case ".genbank":
@@ -41,13 +47,13 @@ namespace circularMT
                 case ".fa":
                 case ".fas":
                 case ".fasta":
-                    openFastaFile(filename); 
+                    openFastaFile(filename);
                     break;
                 case ".gff":
                     openGFFFile(filename);
                     break;
                 case ".gtf":
-                    openGTFFile(filename); 
+                    openGTFFile(filename);
                     break;
                 case ".mitos":
                     openMITOSFile(filename);
@@ -55,11 +61,11 @@ namespace circularMT
                 case ".seq":
                     openSEQFile(filename);
                     break;
-                case ".bed": 
+                case ".bed":
                     openBedFile(filename);
                     break;
                 case ".txt":
-                    
+
                     break;
             }
 
@@ -69,15 +75,10 @@ namespace circularMT
         {
             defination = "";
             features = new Dictionary<string, List<feature>>();
-            sequencelength = -1;
-            string input = Interaction.InputBox("Enter the genome length", "Genome length");
-            try
-            { sequencelength = Convert.ToInt32(input.Trim().Replace(",", "")); }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Could not convert value to a whole number", "Error");
-                return;
-            }
+            int newValue = getSequenceLength();
+            if (newValue >-1)
+            { sequencelength = newValue; }
+            else { return; }
 
             System.IO.StreamReader fs = null;
             try
@@ -95,7 +96,7 @@ namespace circularMT
 
                 items = null;
                 string name = "";
-                for (int index = lines.Length - 1; index > -1;index--)
+                for (int index = lines.Length - 1; index > -1; index--)
                 {
                     if (lines[index].StartsWith("\t\t\t") == true)
                     {
@@ -115,7 +116,7 @@ namespace circularMT
                         features[f.FeatureType].Add(f);
                     }
                 }
-     
+
                 SetUpProgramsData();
 
                 cboStart.Items.Clear();
@@ -129,7 +130,7 @@ namespace circularMT
                 }
                 cboStart.SelectedIndex = 0;
 
-                drawFeatures();
+                drawFeatures("", scaling);
 
             }
             catch (Exception ex)
@@ -138,19 +139,16 @@ namespace circularMT
             { if (fs != null) { fs.Close(); } }
 
         }
+
         private void openGFFFile(string filename)
         {
             defination = "";
             features = new Dictionary<string, List<feature>>();
-            sequencelength = -1;
-            string input = Interaction.InputBox("Enter the genome length", "Genome length");
-            try
-            { sequencelength = Convert.ToInt32(input.Trim().Replace(",", "")); }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Could not convert value to a whole number", "Error");
-                return;
-            }
+            
+            int newValue = getSequenceLength();
+            if (newValue > -1)
+            { sequencelength = newValue; }
+            else { return; }
 
             System.IO.StreamReader fs = null;
 
@@ -165,21 +163,21 @@ namespace circularMT
                 string term = "Feature";
                 string[] items = lines[0].Split('\t');
 
-                items = null;                
+                items = null;
                 foreach (string line in lines)
                 {
                     items = line.Split('\t');
                     if (items.Length == 9 && items[0].StartsWith("#") == false)
                     {
-                         if (defination == "") { defination = items[0].Trim(); }
-                   term = items[2].Trim();
+                        if (defination == "") { defination = items[0].Trim(); }
+                        term = items[2].Trim();
                         feature f = new feature(items, 0, 0, term, "gff");
-                       
-                        if (features.ContainsKey(f.FeatureType.Trim()) == false )
+
+                        if (features.ContainsKey(f.FeatureType.Trim()) == false)
                         { features.Add(f.FeatureType, new List<feature>()); }
 
                         features[f.FeatureType].Add(f);
-                    }                    
+                    }
                 }
 
                 SetUpProgramsData();
@@ -195,7 +193,7 @@ namespace circularMT
                 }
                 cboStart.SelectedIndex = 0;
 
-                drawFeatures();
+                drawFeatures("", scaling);
 
             }
             catch (Exception ex)
@@ -214,6 +212,8 @@ namespace circularMT
             int index = 0;
             foreach (string term in features.Keys)
             {
+                foreach (feature f in features[term])
+                { f.FeatureColour = colourSet[index]; }
 
                 colours.Add(term, colourSet[index]);
                 chlTerms.Items.Add(term);
@@ -231,15 +231,12 @@ namespace circularMT
 
         private void openGTFFile(string filename)
         {
-            sequencelength = -1;
-            string input = Interaction.InputBox("Enter the genome length", "Genome length");
-            try
-            { sequencelength = Convert.ToInt32(input.Trim().Replace(",", "")); }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Could not convert value to a whole number", "Error");
-                return;
-            }
+            defination = "";
+            features = new Dictionary<string, List<feature>>();            
+            int newValue = getSequenceLength();
+            if (newValue > -1)
+            { sequencelength = newValue; }
+            else { return; }
 
             System.IO.StreamReader fs = null;
 
@@ -285,7 +282,7 @@ namespace circularMT
                 }
                 cboStart.SelectedIndex = 0;
 
-                drawFeatures();
+                drawFeatures("", scaling);
 
             }
             catch (Exception ex)
@@ -293,20 +290,15 @@ namespace circularMT
             finally
             { if (fs != null) { fs.Close(); } }
         }
-        
+
         private void openBedFile(string filename)
         {
             defination = "";
-            sequencelength = -1;
             features = new Dictionary<string, List<feature>>();
-            string input = Interaction.InputBox("Enter the genome length", "Genome length");
-            try
-            { sequencelength = Convert.ToInt32(input.Trim().Replace(",", "")); }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Could not convert value to a whole number", "Error");
-                return;
-            }
+            int newValue = getSequenceLength();
+            if (newValue > -1)
+            { sequencelength = newValue; }
+            else { return; }
 
             System.IO.StreamReader fs = null;
 
@@ -350,7 +342,7 @@ namespace circularMT
                 }
                 cboStart.SelectedIndex = 0;
 
-                drawFeatures();
+                drawFeatures("", scaling);
 
             }
             catch (Exception ex)
@@ -363,16 +355,11 @@ namespace circularMT
         private void openMITOSFile(string filename)
         {
             defination = "";
-            sequencelength = -1;
             features = new Dictionary<string, List<feature>>();
-            string input = Interaction.InputBox("Enter the genome length", "Genome length");
-            try
-            { sequencelength = Convert.ToInt32(input.Trim().Replace(",", "")); }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Could not convert value to a whole number", "Error");
-                return;
-            }
+            int newValue = getSequenceLength();
+            if (newValue > -1)
+            { sequencelength = newValue; }
+            else { return; }
 
             System.IO.StreamReader fs = null;
 
@@ -417,7 +404,7 @@ namespace circularMT
                 }
                 cboStart.SelectedIndex = 0;
 
-                drawFeatures();
+                drawFeatures("", scaling);
 
             }
             catch (Exception ex)
@@ -429,20 +416,17 @@ namespace circularMT
         private void openFastaFile(string filename)
         {
 
+            defination = "";
+            features = new Dictionary<string, List<feature>>();
+            int newValue = getSequenceLength();
+            if (newValue > -1)
+            { sequencelength = newValue; }
+            else { return; }
+
             System.IO.StreamReader fs = null;
 
             try
             {
-                string input = Interaction.InputBox("Enter the genome length", "Genome length");
-                try
-                { sequencelength = Convert.ToInt32(input.Trim().Replace(",","")); }
-                catch
-                {
-                    MessageBox.Show("Could not convert value to a whole number", "Error");
-                        return; 
-                }
-
-
                 fs = new System.IO.StreamReader(filename);
                 string data = fs.ReadToEnd();
                 fs.Close();
@@ -450,23 +434,26 @@ namespace circularMT
                 string[] lines = data.Split('\n');
 
                 string term = "Features";
-                defination = "";
-                AddSingleFeatureListAndSortState();
+                defination = "";               
 
                 string[] items = null;
                 string dataInfo = "";
                 string sequence = "";
-                foreach (string line in lines) 
+                foreach (string line in lines)
                 {
-                    if (line.StartsWith(">") == true && dataInfo.Length>0)
+                    if (line.StartsWith(">") == true && dataInfo.Length > 0)
                     {
                         dataInfo += ";" + sequence.Length.ToString();
                         items = dataInfo.Split(';');
 
-                        if (defination =="")
+                        if (defination == "")
                         { defination = items[0].Trim(); }
-                        
+
                         feature f = new feature(items, 0, 0, term, "fasta");
+
+                        if (features.ContainsKey(term) == false)
+                        { features.Add(term, new List<feature>()); }
+
                         features[f.FeatureType].Add(f);
                         dataInfo = line.Trim();
                         sequence = "";
@@ -479,7 +466,7 @@ namespace circularMT
                     }
                 }
 
-                if (dataInfo.Length >0) 
+                if (dataInfo.Length > 0)
                 {
                     dataInfo += ";" + sequence.Length.ToString();
                     items = dataInfo.Split(';');
@@ -489,9 +476,10 @@ namespace circularMT
 
                     feature f = new feature(items, 0, 0, term, "fasta");
                     features[f.FeatureType].Add(f);
-                    
+                }
 
-                }                                
+
+                SetUpProgramsData();
 
                 cboStart.Items.Clear();
                 cboStart.Items.Add("select");
@@ -504,7 +492,7 @@ namespace circularMT
                 }
                 cboStart.SelectedIndex = 0;
 
-                drawFeatures();
+                drawFeatures("", scaling);
 
             }
             catch (Exception ex)
@@ -512,37 +500,29 @@ namespace circularMT
             finally
             { if (fs != null) { fs.Close(); } }
         }
-
-        private void AddSingleFeatureListAndSortState()
-        {
-            chlTerms.Items.Clear();
-            features = new Dictionary<string, List<feature>>();
-            Brush[] colourSet = { Brushes.PaleGreen, Brushes.Pink, Brushes.LightBlue, Brushes.LightGray, Brushes.Orange, Brushes.GreenYellow, Brushes.Orchid };
-            colours = new Dictionary<string, Brush>();
-            string term = "Features";
-
-            features.Add(term, new List<feature>());
-            colours.Add(term, colourSet[0]);
-            chlTerms.Items.Add(term);
-            chlTerms.SetItemChecked(0, true);
-
-        }
-
+        
         private void openGenBank(string filename)
-        { 
+        {
+            defination = "";
+            features = new Dictionary<string, List<feature>>();
+            int newValue = getSequenceLength();
+            if (newValue > -1)
+            { sequencelength = newValue; }
+            else { return; }
+
             System.IO.StreamReader fs = null;
 
-            try 
+            try
             {
-                fs= new System.IO.StreamReader(filename);
+                fs = new System.IO.StreamReader(filename);
                 string data = fs.ReadToEnd();
                 fs.Close();
 
                 string[] lines = data.Split('\n');
-                for (int line = 0;line < lines.Length;line++)
-                { lines[line] = lines[line].Replace("\r",""); }
+                for (int line = 0; line < lines.Length; line++)
+                { lines[line] = lines[line].Replace("\r", ""); }
 
-                data = "";              
+                data = "";
 
                 int index = 0;
                 while (index < lines.Length)
@@ -558,30 +538,30 @@ namespace circularMT
                 }
 
                 int lastPlace = -1;
-                List<int> startOfFeatures=new List<int>();
+                List<int> startOfFeatures = new List<int>();
 
                 while (index < lines.Length)
-                {   
+                {
                     if (lines[index].StartsWith("      ") == false && lines[index].StartsWith("ORIGIN") == false)
-                    { 
+                    {
                         startOfFeatures.Add(index);
                     }
                     else if (lines[index].StartsWith("ORIGIN") == true)
                     {
                         lastPlace = index;
                         break;
-                    }                 
+                    }
                     index++;
                 }
 
                 string[] trimmedLines = new string[lastPlace];
                 Array.Copy(lines, trimmedLines, trimmedLines.Length);
                 lines = trimmedLines;
-                trimmedLines= null;
+                trimmedLines = null;
 
                 addListsToFeatureDictionary(lines);
 
-                for(int place =0; place < startOfFeatures.Count;place++)
+                for (int place = 0; place < startOfFeatures.Count; place++)
                 {
                     if (place != startOfFeatures.Count - 1)
                     {
@@ -605,8 +585,8 @@ namespace circularMT
 
                 cboStart.Items.Clear();
                 cboStart.Items.Add("select");
-                foreach(string key in features.Keys)                
-                { 
+                foreach (string key in features.Keys)
+                {
                     List<feature> lists = features[key];
                     lists.Sort(new featureSorter());
                     foreach (feature f in lists)
@@ -614,7 +594,7 @@ namespace circularMT
                 }
                 cboStart.SelectedIndex = 0;
 
-                drawFeatures();
+                drawFeatures("", scaling);
 
             }
             catch (Exception ex)
@@ -625,10 +605,10 @@ namespace circularMT
         }
 
         private void addListsToFeatureDictionary(string[] lines)
-        {            
+        {
             chlTerms.Items.Clear();
             features = new Dictionary<string, List<feature>>();
-            Brush[] colourSet = {Brushes.PaleGreen, Brushes.Pink, Brushes.LightBlue, Brushes.LightGray,Brushes.Orange, Brushes.GreenYellow, Brushes.Orchid};
+            Brush[] colourSet = { Brushes.PaleGreen, Brushes.Pink, Brushes.LightBlue, Brushes.LightGray, Brushes.Orange, Brushes.GreenYellow, Brushes.Orchid };
             colours = new Dictionary<string, Brush>();
             int index = 0;
 
@@ -641,9 +621,9 @@ namespace circularMT
                     {
                         features.Add(term, new List<feature>());
                         colours.Add(term, colourSet[index]);
-                        chlTerms.Items.Add(term);                        
+                        chlTerms.Items.Add(term);
                         index++;
-                        if (index>= colourSet.Length)
+                        if (index >= colourSet.Length)
                         { index = 0; }
                     }
                 }
@@ -655,51 +635,151 @@ namespace circularMT
             }
         }
 
-        private void drawFeatures()
+        public void ReDrawFromOutSide()
+        { drawFeatures("", scaling); }
+
+        //private void drawFeatures()
+        //{
+
+        //    if (WindowState == FormWindowState.Minimized) { return; }
+
+        //    ImageScaling scaling = new ImageScaling(96);
+
+        //    Bitmap bmp = new Bitmap(p1.Width, p1.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+        //    Graphics g = Graphics.FromImage(bmp);
+        //    g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+        //    scaling = new ImageScaling(300);
+
+        //    Point center = new Point(bmp.Width / 2, bmp.Height / 2);
+        //    int radius = -1;
+        //    if (bmp.Width > bmp.Height)
+        //    { radius = center.Y - 40; }
+        //    else
+        //    { radius = center.X - 40; }
+
+        //    ResetClash();
+        //    int overhang = GetOverhang(g, center, radius);
+        //    if (overhang < 10) { radius += (overhang - 10); }
+        //    if (radius < 150)
+        //    { radius = 150; }
+
+        //    ClashDetection();
+
+        //    g.Clear(Color.White);
+        //    writeDefinition(g, center, radius);
+
+        //    Rectangle area = new Rectangle(center.X - radius + 30, center.Y - radius + 30, (radius - 30) * 2, (radius - 30) * 2);
+        //    g.DrawEllipse(new Pen(Color.Black, 3), area);
+
+        //    drawTicks(g, center, radius - 30);
+
+        //    int largerThan = 0;
+        //    int smallerThan = sequencelength / 3;
+        //    if (chkDrawOrder.Checked == false)
+        //    {
+        //        if (chlTerms.CheckedItems.Count != 0)
+        //        {
+        //            for (int index = 0; index < chlTerms.CheckedItems.Count; index++)
+        //            {
+        //                string key = chlTerms.CheckedItems[index].ToString();
+        //                drawFeatures(g, key, center, radius, largerThan, smallerThan);
+        //            }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        largerThan = 150;
+        //        for (int loop = 0; loop < 2; loop++)
+        //        {
+        //            if (chlTerms.CheckedItems.Count != 0)
+        //            {
+        //                for (int index = 0; index < chlTerms.CheckedItems.Count; index++)
+        //                {
+        //                    string key = chlTerms.CheckedItems[index].ToString();
+        //                    drawFeatures(g, key, center, radius, largerThan, smallerThan);
+        //                }
+        //            }
+        //            smallerThan = 151;
+        //            largerThan = 0;
+        //        }
+        //    }
+
+        //    p1.Image = bmp;
+        //}
+
+        private void drawFeatures(string fileName, ImageScaling scaling)
         {
-            Bitmap bmp = new Bitmap(p1.Width, p1.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-            Graphics g = Graphics.FromImage(bmp);            
+
+            if (WindowState == FormWindowState.Minimized) { return; }
+
+            
+            Bitmap bmp = new Bitmap(p1.Width * scaling.one, p1.Height * scaling.one, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            bmp.SetResolution(scaling.hundred, scaling.hundred);
+            Graphics g = Graphics.FromImage(bmp);
             g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+                        
 
             Point center = new Point(bmp.Width / 2, bmp.Height / 2);
             int radius = -1;
             if (bmp.Width > bmp.Height)
-            { radius = center.Y - 40; }
+            { radius = center.Y - scaling.fourty; }
             else
-            { radius = center.X - 40; }
-            
-            int step = 50;
-            int stepTwo = 100;
+            { radius = center.X - scaling.fourty; }
 
             ResetClash();
-            int overhang = GetOverhang(g, center, radius);
-            if (overhang < 10) { radius += (overhang - 10); }
-            if (radius < 150)
-            { radius = 150; }
+            int overhang = GetOverhang(g, center, radius, scaling);
+            if (overhang < scaling.ten) { radius += (overhang - scaling.ten); }
+            if (radius < 150 * scaling.one)
+            { radius = 150 * scaling.one; }
 
-            ClashDetection();
+            ClashDetection(scaling);
 
             g.Clear(Color.White);
-            writeDefinition(g, center,radius);                                  
+            writeDefinition(g, center, radius, scaling);
 
-            Rectangle area = new Rectangle(center.X - radius + 30, center.Y - radius + 30, (radius - 30) * 2, (radius - 30) * 2);
-            g.DrawEllipse(new Pen(Color.Black, 3), area);
+            Rectangle area = new Rectangle(center.X - radius + scaling.thirty, center.Y - radius + scaling.thirty, (radius - scaling.thirty) * 2, (radius - scaling.thirty) * 2);
+            g.DrawEllipse(new Pen(Color.Black, scaling.three), area);
 
-            drawTicks(g, center, radius - 30);
+            drawTicks(g, center, radius - scaling.thirty, scaling);
 
-            if (chlTerms.CheckedItems.Count != 0)
+            int largerThan = 0;
+            int smallerThan = sequencelength / 3;
+            if (chkDrawOrder.Checked == false)
             {
-                for (int index = 0; index < chlTerms.CheckedItems.Count; index++)
+                if (chlTerms.CheckedItems.Count != 0)
                 {
-                    if (area.Height < step || area.Width < step) { break; }
-                    string key = chlTerms.CheckedItems[index].ToString();
-                    drawFeatures(g, key, center, radius);
-                    area = new Rectangle(area.X + step, area.Y + step, area.Width - stepTwo, area.Height - stepTwo);
+                    for (int index = 0; index < chlTerms.CheckedItems.Count; index++)
+                    {
+                        string key = chlTerms.CheckedItems[index].ToString();
+                        drawFeatures(g, key, center, radius, largerThan, smallerThan, scaling);
+                    }
+                }
+            }
+            else
+            {
+                largerThan = 150;
+                for (int loop = 0; loop < 2; loop++)
+                {
+                    if (chlTerms.CheckedItems.Count != 0)
+                    {
+                        for (int index = 0; index < chlTerms.CheckedItems.Count; index++)
+                        {
+                            string key = chlTerms.CheckedItems[index].ToString();
+                            drawFeatures(g, key, center, radius, largerThan, smallerThan, scaling);
+                        }
+                    }
+                    smallerThan = 151;
+                    largerThan = 0;
                 }
             }
 
-            p1.Image = bmp;
+            if (string.IsNullOrWhiteSpace(fileName) == true)
+            { p1.Image = bmp; }
+            else
+            { bmp.Save(fileName); }
         }
+
 
         private void ResetClash()
         {
@@ -714,7 +794,7 @@ namespace circularMT
             }
         }
 
-        private void ClashDetection()
+        private void ClashDetection(ImageScaling scaling)
         {
             List<feature> all = new List<feature>();
             if (chlTerms.CheckedItems.Count > 0)
@@ -740,7 +820,7 @@ namespace circularMT
                         if (index + 1 < all.Count)
                         {
                             int diff = Distance(all[index].TextPoint, all[index + 1].TextPoint);
-                            if (Math.Abs(diff) <= 25 && diff > 0)
+                            if (Math.Abs(diff) <= scaling.twentyFive && diff > 0)
                             {
                                 all[index].Clash = true;
                                 all[index + 1].Clash = true;
@@ -749,7 +829,7 @@ namespace circularMT
                         else if (index + 1 == all.Count)
                         {
                             int diff = Distance(all[index].TextPoint, all[0].TextPoint);
-                            if (Math.Abs(diff) <= 25 && diff > 0)
+                            if (Math.Abs(diff) <= scaling.twentyFive && diff > 0)
                             {
                                 all[index].Clash = true;
                                 all[0].Clash = true;
@@ -767,7 +847,7 @@ namespace circularMT
                             p.X = count;
                             all[index].ClashData = p;
                         }
-                        else if (index == all.Count && all[0].Clash== true)
+                        else if (index == all.Count && all[0].Clash == true)
                         {
                             count++;
                             Point p = all[0].ClashData;
@@ -798,17 +878,17 @@ namespace circularMT
             }
         }
 
-        private void writeDefinition(Graphics g, Point center, int radius)
+        private void writeDefinition(Graphics g, Point center, int radius, ImageScaling scaling)
         {
             if (string.IsNullOrEmpty(defination) == true) { return; }
-            radius -= 160;
+            radius -= scaling.sixty ;
             int fontSize = 20;
             Font f = new Font(FontFamily.GenericSansSerif, fontSize, FontStyle.Bold);
             SizeF s = g.MeasureString(defination, f);
-            
-            int gap = (radius * 2) ;
 
-            while (s.Width  > gap)
+            int gap = (radius * 2) - (int)(160 *scaling.scale);
+
+            while (s.Width > gap)
             {
                 f = new Font(FontFamily.GenericSansSerif, fontSize, FontStyle.Bold);
                 s = g.MeasureString(defination, f);
@@ -816,16 +896,16 @@ namespace circularMT
             }
 
             int x = (int)s.Width / 2;
-            g.DrawString(defination,f,Brushes.Black,center.X-x,center.Y - (fontSize));
+            g.DrawString(defination, f, Brushes.Black, center.X - x, center.Y - (fontSize));
             s = g.MeasureString(sequencelength.ToString("N0") + " bp", f);
             x = (int)s.Width / 2;
             g.DrawString(sequencelength.ToString("N0") + " bp", f, Brushes.Black, center.X - x, center.Y + (fontSize * 0.5f));
 
         }
 
-        private void drawTicks(Graphics g, Point center, int radius)
+        private void drawTicks(Graphics g, Point center, int radius, ImageScaling scaling)
         {
-            Pen black =new Pen(Color.Black, 2);
+            Pen black = new Pen(Color.Black, scaling.two);
             for (int index = 0; index < sequencelength; index += 1000)
             {
                 float angle = (float)index * 360.0f / sequencelength;
@@ -834,45 +914,44 @@ namespace circularMT
                 float y1 = (int)(Math.Sin(radion) * (radius + 6)) + center.Y;
                 float x2 = (int)(Math.Cos(radion) * (radius - 5)) + center.X;
                 float y2 = (int)(Math.Sin(radion) * (radius - 5)) + center.Y;
-                g.DrawLine(black, x1, y1, x2, y2);             
+                g.DrawLine(black, x1, y1, x2, y2);
             }
         }
 
-        private void drawFeatures(Graphics g, string featureSet, Point center, int radius)
-        {        
-            Brush colour = colours[featureSet];
-
+        private void drawFeatures(Graphics g, string featureSet, Point center, int radius, int largerThan, int smallerThan, ImageScaling scaling)
+        { 
             foreach (feature f in features[featureSet])
             {
-                if (f.EndPoint - f.StartPoint < sequencelength / 3)
+                if (f.EndPoint - f.StartPoint > largerThan && f.EndPoint - f.StartPoint < smallerThan && f.EndPoint - f.StartPoint < sequencelength / 3 )
                 {
                     if (f.Forward == true)
                     {
-                        Point[] p = getArrow(f.arcStartAngle(sequencelength), f.arcEndAngle(sequencelength), radius, center, true);
-                        g.FillPolygon(colour, p);
-                        g.DrawPolygon(Pens.Black, p);
+                        f.Arrows = getArrow(f.arcStartAngle(sequencelength), f.arcEndAngle(sequencelength), radius, center, true, scaling);
+                        g.FillPolygon(f.FeatureColour, f.Arrows);
+                        g.DrawPolygon(Pens.Black, f.Arrows);
                     }
                     else
                     {
-                        Point[] p = getArrow( f.arcStartAngle(sequencelength), f.arcEndAngle(sequencelength), radius - 60, center, false);
-                        g.FillPolygon(colour, p);
-                        g.DrawPolygon(Pens.Black, p);
-                     }                   
-                }                
+                        f.Arrows = getArrow(f.arcStartAngle(sequencelength), f.arcEndAngle(sequencelength), radius - scaling.sixty, center, false, scaling);
+                        g.FillPolygon(f.FeatureColour, f.Arrows);
+                        g.DrawPolygon(Pens.Black, f.Arrows);
+                    }
+                }
             }
+
             foreach (feature f in features[featureSet])
             {
-                if (f.EndPoint - f.StartPoint < sequencelength / 3)
+                if (f.EndPoint - f.StartPoint > largerThan && f.EndPoint - f.StartPoint < smallerThan && f.EndPoint - f.StartPoint < sequencelength / 3)
                 {
                     if (f.Forward == true)
-                    { writeName(g, f,  center, radius); }
+                    { writeName(g, f, center, radius, scaling); }
                     else
-                    { writeName(g, f, center, radius - 60); }
+                    { writeName(g, f, center, radius - scaling.sixty, scaling); }
                 }
             }
         }
 
-        private Point[] getArrow(float startPoint, float endPoint, int radius, Point center, bool start)
+        private Point[] getArrow(float startPoint, float endPoint, int radius, Point center, bool start, ImageScaling scaling)
         {
             List<Point> places = new List<Point>();
 
@@ -883,22 +962,22 @@ namespace circularMT
                 if (start == true)
                 {
                     radion = (startPoint * 2 * Math.PI) / 360;
-                    Point p = new Point((int)(Math.Cos(radion) * (radius + 22)) + center.X, (int)(Math.Sin(radion) * (radius + 22)) + center.Y);
+                    Point p = new Point((int)(Math.Cos(radion) * (radius + scaling.twentyTwo)) + center.X, (int)(Math.Sin(radion) * (radius + scaling.twentyTwo)) + center.Y);
                     places.Add(p);
                     radion = (startPoint * 2 * Math.PI) / 360;
-                    p = new Point((int)(Math.Cos(radion) * (radius - 22)) + center.X, (int)(Math.Sin(radion) * (radius - 22)) + center.Y);
+                    p = new Point((int)(Math.Cos(radion) * (radius - scaling.twentyTwo)) + center.X, (int)(Math.Sin(radion) * (radius - scaling.twentyTwo)) + center.Y);
                     places.Add(p);
                     radion = ((endPoint + 1.0f) * 2 * Math.PI) / 360;
-                     p = new Point((int)(Math.Cos(radion) * radius) + center.X, (int)(Math.Sin(radion) * radius) + center.Y);
+                    p = new Point((int)(Math.Cos(radion) * radius) + center.X, (int)(Math.Sin(radion) * radius) + center.Y);
                     places.Add(p);
                 }
                 else
                 {
                     radion = (endPoint * 2 * Math.PI) / 360;
-                    Point p = new Point((int)(Math.Cos(radion) * (radius + 22)) + center.X, (int)(Math.Sin(radion) * (radius + 22)) + center.Y);
+                    Point p = new Point((int)(Math.Cos(radion) * (radius + scaling.twentyTwo)) + center.X, (int)(Math.Sin(radion) * (radius + scaling.twentyTwo)) + center.Y);
                     places.Add(p);
                     radion = (endPoint * 2 * Math.PI) / 360;
-                    p = new Point((int)(Math.Cos(radion) * (radius - 22)) + center.X, (int)(Math.Sin(radion) * (radius - 22)) + center.Y);
+                    p = new Point((int)(Math.Cos(radion) * (radius - scaling.twentyTwo)) + center.X, (int)(Math.Sin(radion) * (radius - scaling.twentyTwo)) + center.Y);
                     places.Add(p);
                     radion = ((startPoint + 1.0f) * 2 * Math.PI) / 360;
                     p = new Point((int)(Math.Cos(radion) * radius) + center.X, (int)(Math.Sin(radion) * radius) + center.Y);
@@ -921,7 +1000,7 @@ namespace circularMT
                 for (float place = startPoint; place < endPoint + 0.1f; place += 0.1f)
                 {
                     radion = (place * 2 * Math.PI) / 360;
-                    Point p = new Point((int)(Math.Cos(radion) * (radius + 22)) + center.X, (int)(Math.Sin(radion) * (radius + 22)) + center.Y);
+                    Point p = new Point((int)(Math.Cos(radion) * (radius + scaling.twentyTwo)) + center.X, (int)(Math.Sin(radion) * (radius + scaling.twentyTwo)) + center.Y);
                     places.Add(p);
                 }
 
@@ -936,7 +1015,7 @@ namespace circularMT
                 for (float place = endPoint; place > startPoint - 0.1f; place -= 0.1f)
                 {
                     radion = (place * 2 * Math.PI) / 360;
-                    Point p = new Point((int)(Math.Cos(radion) * (radius - 22)) + center.X, (int)(Math.Sin(radion) * (radius - 22)) + center.Y);
+                    Point p = new Point((int)(Math.Cos(radion) * (radius - scaling.twentyTwo)) + center.X, (int)(Math.Sin(radion) * (radius - scaling.twentyTwo)) + center.Y);
                     places.Add(p);
                 }
             }
@@ -944,14 +1023,14 @@ namespace circularMT
             return places.ToArray();
         }
 
-        private Point[] writeName(Graphics g,feature f, Point center, int radius)
+        private Point[] writeName(Graphics g, feature f, Point center, int radius, ImageScaling scaling)
         {
-            Point[] answer = { new Point(0, 0), new Point(0, 0) }; 
+            Point[] answer = { new Point(0, 0), new Point(0, 0) };
             string name = f.Name;
-            
+
             float startPoint = f.arcStartAngle(sequencelength);
             float endPoint = f.arcEndAngle(sequencelength);
-            
+
             Font font = new Font(FontFamily.GenericSansSerif, 20, FontStyle.Bold);
             SizeF lenght = g.MeasureString(name, font);
             float circumference = (float)(2 * radius * Math.PI);
@@ -963,13 +1042,12 @@ namespace circularMT
             {
                 fontRadiusOffset++;
                 font = new Font(FontFamily.GenericSansSerif, fontSize, FontStyle.Bold);
-                 lenght = g.MeasureString(name, font);
-                 circumference = (float)(2 * radius * Math.PI);
+                lenght = g.MeasureString(name, font);
+                circumference = (float)(2 * radius * Math.PI);
 
-                 arcLength = circumference * (endPoint - startPoint) / 360;
+                arcLength = circumference * (endPoint - startPoint) / 360;
                 fontSize--;
             }
-
 
             if (lenght.Width < arcLength)
             {
@@ -979,7 +1057,7 @@ namespace circularMT
 
                 if (angle < 0 || angle > 180)
                 {
-                    radius += 28;
+                    radius += scaling.twentyEight;
                     diff = (arcLength - lenght.Width) / 2.0f;
                     offset = diff * 360 / circumference;
 
@@ -989,8 +1067,8 @@ namespace circularMT
                     {
                         SizeF s = g.MeasureString(new string(name[index], 1), font);
                         double radion = (angle * 2 * Math.PI) / 360;
-                        float x = (int)(Math.Cos(radion) * (radius - fontRadiusOffset - 13)) + center.X;
-                        float y = (int)(Math.Sin(radion) * (radius - fontRadiusOffset - 13)) + center.Y;
+                        float x = (int)(Math.Cos(radion) * (radius - fontRadiusOffset - scaling.thirteen)) + center.X;
+                        float y = (int)(Math.Sin(radion) * (radius - fontRadiusOffset - scaling.thirteen)) + center.Y;
                         g.TranslateTransform(x, y);
                         g.RotateTransform((float)angle + 90.0f);
                         g.DrawString(new string(name[index], 1), font, Brushes.Black, 0, 0);
@@ -1000,7 +1078,7 @@ namespace circularMT
                 }
                 else
                 {
-                    radius -= 10;
+                    radius -= scaling.ten;
                     diff = (arcLength - (lenght.Width * (name.Length - 2) / name.Length)) / 2.0f;
                     offset = diff * 360 / circumference;
 
@@ -1029,7 +1107,7 @@ namespace circularMT
             }
             else
             {
-                Point answerSingle = writeRadially(g, f, center, radius);
+                Point answerSingle = writeRadially(g, f, center, radius, scaling);
                 if (answerSingle.X < answer[0].X) { answer[0].X = answerSingle.X; }
                 if (answerSingle.Y < answer[0].Y) { answer[0].Y = answerSingle.Y; }
                 if (answerSingle.X > answer[1].X) { answer[1].X = answerSingle.X; }
@@ -1038,12 +1116,12 @@ namespace circularMT
             return answer;
         }
 
-        private Point writeRadially(Graphics g, feature f, Point center, int radius)
+        private Point writeRadially(Graphics g, feature f, Point center, int radius, ImageScaling scaling)
         {
             Point answer = new Point(0, 0);
 
             string name = f.Name;
-           
+
             float startPoint = f.arcStartAngle(sequencelength);
             float endPoint = f.arcEndAngle(sequencelength);
 
@@ -1057,26 +1135,26 @@ namespace circularMT
             if (middle < 270 && middle > 90) { spin = 180; }
 
             double radion = (middle * 2 * Math.PI) / 360;
-            float x = (int)(Math.Cos(radion) * (radius - 10)) + center.X;
-            float y = (int)(Math.Sin(radion) * (radius - 10)) + center.Y;
+            float x = (int)(Math.Cos(radion) * (radius - scaling.ten)) + center.X;
+            float y = (int)(Math.Sin(radion) * (radius - scaling.ten)) + center.Y;
 
             g.TranslateTransform(x, y);
 
             if (f.Clash == true)
             {
                 Point cd = f.ClashData;
-                int half = (cd.Y / 2) ;
+                int half = (cd.Y / 2);
                 int cX = cd.X;
-                
-                if (f.Forward != false)//chcReverseSequence.Checked)
+
+                if (f.Forward != false)
                 {
-                    int wiggle =  (5 * (half + 1 - cX));
-                    middle -= wiggle; 
+                    int wiggle = (5 * (half + 1 - cX));
+                    middle -= wiggle;
                 }
-                else 
+                else
                 {
                     int wiggle = (8 * (half + 1 - cX));
-                    middle += wiggle; 
+                    middle += wiggle;
                 }
             }
 
@@ -1086,49 +1164,49 @@ namespace circularMT
             if (spin == 180)
             {
                 if (f.Forward == true)
-                { g.DrawString(name, font, Brushes.Black, -38 - s.Width, -6); }
+                { g.DrawString(name, font, Brushes.Black, -scaling.thirtyEight - s.Width, -scaling.six); }
                 else
-                { g.DrawString(name, font, Brushes.Black, 20, -10); }
+                { g.DrawString(name, font, Brushes.Black, scaling.twenty, -scaling.ten); }
             }
             else
             {
                 if (f.Forward == true)
-                { g.DrawString(name, font, Brushes.Black, 38, -10); }
+                { g.DrawString(name, font, Brushes.Black, scaling.thirtyEight, -scaling.ten); }
                 else
-                { g.DrawString(name, font, Brushes.Black, -16 - s.Width, -6); }
+                { g.DrawString(name, font, Brushes.Black, -scaling.sixteen - s.Width, -scaling.six); }
             }
-            
+
             g.ResetTransform();
 
             if (f.Forward == true)
             {
                 if (spin == 180)
                 {
-                    float dX = (int)(Math.Cos(-radion) * -(38 + s.Width));
-                    float dY = (int)(Math.Sin(-radion) * +(38 + s.Width));
+                    float dX = (int)(Math.Cos(-radion) * -(scaling.thirtyEight + s.Width));
+                    float dY = (int)(Math.Sin(-radion) * +(scaling.thirtyEight + s.Width));
                     answer = new Point((int)(x - dX), (int)(y - dY));
                     f.TextPoint = new Point((int)(x - dX), (int)(y - dY));
                 }
                 else
                 {
-                    float dX = (int)(Math.Cos(-radion) * -(38 + s.Width));
-                    float dY = (int)(Math.Sin(-radion) * +(38 + s.Width));
+                    float dX = (int)(Math.Cos(-radion) * -(scaling.thirtyEight + s.Width));
+                    float dY = (int)(Math.Sin(-radion) * +(scaling.thirtyEight + s.Width));
                     answer = new Point((int)(x - dX), (int)(y - dY));
                     f.TextPoint = new Point((int)(x - dX), (int)(y - dY));
                 }
             }
-            else 
-            { 
-                if (spin  == 180)
+            else
+            {
+                if (spin == 180)
                 {
-                    float dX = (int)(Math.Cos(-radion) * 20);
-                    float dY = (int)(Math.Sin(-radion) * -20);
-                    f.TextPoint  = new Point((int)(x - dX), (int)(y - dY));
+                    float dX = (int)(Math.Cos(-radion) * scaling.twenty);
+                    float dY = (int)(Math.Sin(-radion) * -scaling.twenty);
+                    f.TextPoint = new Point((int)(x - dX), (int)(y - dY));
                 }
                 else
                 {
-                    float dX = (int)(Math.Cos(-radion) * -(16 ));
-                    float dY = (int)(Math.Sin(-radion) * (16 ));                    
+                    float dX = (int)(Math.Cos(-radion) * -(scaling.sixteen));
+                    float dY = (int)(Math.Sin(-radion) * (scaling.sixteen));
                     f.TextPoint = new Point((int)(x + dX), (int)(y + dY));
                 }
             }
@@ -1140,8 +1218,8 @@ namespace circularMT
         public int Distance(Point one, Point two)
         {
             double square = Math.Pow((one.X - two.X), 2) + Math.Pow((one.Y - two.Y), 2);
-            int answer =  (int)Math.Sqrt(square);
-            return  answer;
+            int answer = (int)Math.Sqrt(square);
+            return answer;
         }
 
         private int getlength()
@@ -1153,7 +1231,7 @@ namespace circularMT
                 {
                     if (length < f.EndPoint) { length = f.EndPoint; }
                 }
-            }          
+            }
 
             return length;
         }
@@ -1168,22 +1246,22 @@ namespace circularMT
                 {
                     string key = chlTerms.CheckedItems[index].ToString();
                     List<feature> lists = features[key];
-                    
+
                     foreach (feature f in lists)
                     { cboStart.Items.Add(key + ": " + f.Name); }
                 }
             }
             cboStart.SelectedIndex = 0;
-            drawFeatures();
+            drawFeatures("", scaling);
         }
 
         private void p1_MouseClick(object sender, MouseEventArgs e)
         {
-            drawFeatures();
+            drawFeatures("", scaling);
         }
 
-        private int GetOverhang(Graphics g, Point center, int radius)
-        {            
+        private int GetOverhang(Graphics g, Point center, int radius, ImageScaling scaling)
+        {
             int answer = 0;
             if (chlTerms.CheckedItems.Count != 0)
             {
@@ -1193,18 +1271,18 @@ namespace circularMT
                     foreach (feature f in features[key])
                     {
                         string name = f.Name;
-                        Point[] answerP = writeName(g, f, center, radius);
+                        Point[] answerP = writeName(g, f, center, radius, scaling);
                         if (answer > answerP[0].X)
                         { answer = answerP[0].X; }
 
                         if (answer > answerP[0].Y)
                         { answer = answerP[0].Y; }
 
-                        if (answer > p1.Width - answerP[1].X)
-                        { answer = (p1.Width - answerP[1].X); }
+                        if (answer > (p1.Width * scaling.scale) - answerP[1].X)
+                        { answer = ((int)(p1.Width * scaling.scale) - answerP[1].X); }
 
-                        if (answer > p1.Height - answerP[1].Y)
-                        { answer = (p1.Height - answerP[1].Y); }
+                        if (answer > (p1.Height * scaling.scale) - answerP[1].Y)
+                        { answer = ((int)(p1.Height * scaling.scale) - answerP[1].Y); }
                     }
                 }
             }
@@ -1220,7 +1298,7 @@ namespace circularMT
                     f.ReverseComplementSequence(sequencelength);
                 }
             }
-            drawFeatures();
+            drawFeatures("", scaling);
         }
 
         private void cboStart_SelectedIndexChanged(object sender, EventArgs e)
@@ -1243,7 +1321,7 @@ namespace circularMT
                     }
                 }
 
-                foreach(List<feature> listF in features.Values)
+                foreach (List<feature> listF in features.Values)
                 {
                     foreach (feature f in listF)
                     {
@@ -1251,7 +1329,7 @@ namespace circularMT
                     }
                 }
             }
-            drawFeatures();
+            drawFeatures("", scaling);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -1263,13 +1341,94 @@ namespace circularMT
         {
             if (features == null) { return; }
             foreach (List<feature> list in features.Values)
-            { 
+            {
                 foreach (feature f in list)
                 {
                     f.SetDisplayName(cboNameOptions.Text);
                 }
             }
-            drawFeatures();
+            drawFeatures("", scaling);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (resising == true)
+            { resising = false; }
+            else
+            {
+                timer1.Enabled = false;
+                drawFeatures("", scaling);
+            }
+
+        }
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            resising = true;
+            timer1.Enabled = true;
+        }
+
+        private void btnNewLenght_Click(object sender, EventArgs e)
+        {
+            int newValue = getSequenceLength();
+            if (newValue > -1 && newValue != sequencelength)
+            {
+                foreach (List<feature> list in features.Values)
+                {
+                    foreach(feature f in list)
+                    {
+                        if (f.EndPoint > sequencelength)
+                        { }
+                    }
+                }
+            }
+
+            sequencelength= newValue;
+            drawFeatures("", scaling);           
+        }
+
+        private int getSequenceLength()
+        {
+            int newValue = -1;
+            string input = Interaction.InputBox("Enter the genome length", "Genome length", sequencelength.ToString("N0"));
+            if (string.IsNullOrEmpty(input) == true) { return -1; }
+            try
+            { newValue = Convert.ToInt32(input.Trim().Replace(",", "")); }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Could not convert value to a whole number", "Error");
+                return -1;
+            }
+            return newValue;
+        }
+
+        private void btnResetName_Click(object sender, EventArgs e)
+        {
+
+            string input = Interaction.InputBox("Enter the genome name", "Genome name", defination);
+            if (string.IsNullOrEmpty(input) == true) { return ; }
+            defination = input;
+            drawFeatures("", scaling);
+        }
+
+        private void btnChangeColours_Click(object sender, EventArgs e)
+        {
+            AdjustColours ac = new AdjustColours(colours, features, this);
+            ac.ShowDialog();
+        }
+
+        private void chkDrawOrder_CheckedChanged(object sender, EventArgs e)
+        {
+            drawFeatures("", scaling);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string fileName = FileAccessClass.FileString(FileAccessClass.FileJob.SaveAs, "Save image as", "Image file (*.tif)|*.tif");
+            if (fileName == "Cancel") { return; }
+
+            ImageScaling saveAs = new ImageScaling(300.0f);
+            drawFeatures(fileName, saveAs);
         }
     }
 }
