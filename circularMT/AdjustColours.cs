@@ -15,7 +15,7 @@ namespace circularMT
         private Dictionary<string, Brush> colourscheme = null;
         private Dictionary<string, List<feature>> features = new Dictionary<string, List<feature>>();
         public Form1 parent = null;
-        public AdjustColours(Dictionary<string, Brush> colourscheme, Dictionary<string, List<feature>> features, Form1 parent)
+        public AdjustColours(Dictionary<string, Brush> colourscheme, Dictionary<string, List<feature>> features, Form1 parent, List<string> terms)
         {
             InitializeComponent();
             this.colourscheme = colourscheme;
@@ -23,7 +23,7 @@ namespace circularMT
             this.parent = parent;
 
             cboTerms.Items.Add("Select");
-            foreach (string term in features.Keys)
+            foreach (string term in terms)
             { cboTerms.Items.Add(term); }
             cboTerms.SelectedIndex = 0;
 
@@ -41,10 +41,13 @@ namespace circularMT
             {  txtNames.Enabled= true; }
             else
             { txtNames.Enabled= false; }
+            txtNames_TextChanged(txtNames, new EventArgs());
         }
 
         private void txtNames_TextChanged(object sender, EventArgs e)
         {
+            if (features == null || cboTerms.Text == "Select") { return; }
+
             string namePart = txtNames.Text.Trim().ToLower();            
             txtListOfNames.Clear();
             btnSelect.Enabled = false;

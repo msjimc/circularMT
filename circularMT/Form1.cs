@@ -637,77 +637,7 @@ namespace circularMT
 
         public void ReDrawFromOutSide()
         { drawFeatures("", scaling); }
-
-        //private void drawFeatures()
-        //{
-
-        //    if (WindowState == FormWindowState.Minimized) { return; }
-
-        //    ImageScaling scaling = new ImageScaling(96);
-
-        //    Bitmap bmp = new Bitmap(p1.Width, p1.Height, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
-        //    Graphics g = Graphics.FromImage(bmp);
-        //    g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-
-        //    scaling = new ImageScaling(300);
-
-        //    Point center = new Point(bmp.Width / 2, bmp.Height / 2);
-        //    int radius = -1;
-        //    if (bmp.Width > bmp.Height)
-        //    { radius = center.Y - 40; }
-        //    else
-        //    { radius = center.X - 40; }
-
-        //    ResetClash();
-        //    int overhang = GetOverhang(g, center, radius);
-        //    if (overhang < 10) { radius += (overhang - 10); }
-        //    if (radius < 150)
-        //    { radius = 150; }
-
-        //    ClashDetection();
-
-        //    g.Clear(Color.White);
-        //    writeDefinition(g, center, radius);
-
-        //    Rectangle area = new Rectangle(center.X - radius + 30, center.Y - radius + 30, (radius - 30) * 2, (radius - 30) * 2);
-        //    g.DrawEllipse(new Pen(Color.Black, 3), area);
-
-        //    drawTicks(g, center, radius - 30);
-
-        //    int largerThan = 0;
-        //    int smallerThan = sequencelength / 3;
-        //    if (chkDrawOrder.Checked == false)
-        //    {
-        //        if (chlTerms.CheckedItems.Count != 0)
-        //        {
-        //            for (int index = 0; index < chlTerms.CheckedItems.Count; index++)
-        //            {
-        //                string key = chlTerms.CheckedItems[index].ToString();
-        //                drawFeatures(g, key, center, radius, largerThan, smallerThan);
-        //            }
-        //        }
-        //    }
-        //    else
-        //    {
-        //        largerThan = 150;
-        //        for (int loop = 0; loop < 2; loop++)
-        //        {
-        //            if (chlTerms.CheckedItems.Count != 0)
-        //            {
-        //                for (int index = 0; index < chlTerms.CheckedItems.Count; index++)
-        //                {
-        //                    string key = chlTerms.CheckedItems[index].ToString();
-        //                    drawFeatures(g, key, center, radius, largerThan, smallerThan);
-        //                }
-        //            }
-        //            smallerThan = 151;
-        //            largerThan = 0;
-        //        }
-        //    }
-
-        //    p1.Image = bmp;
-        //}
-
+            
         private void drawFeatures(string fileName, ImageScaling scaling)
         {
 
@@ -1390,7 +1320,12 @@ namespace circularMT
         private int getSequenceLength()
         {
             int newValue = -1;
-            string input = Interaction.InputBox("Enter the genome length", "Genome length", sequencelength.ToString("N0"));
+            string input;
+            if (sequencelength == -1)
+            { input = Interaction.InputBox("Enter the genome length", "Genome length"); }
+            else
+            { input = Interaction.InputBox("Enter the genome length", "Genome length", sequencelength.ToString("N0")); }
+
             if (string.IsNullOrEmpty(input) == true) { return -1; }
             try
             { newValue = Convert.ToInt32(input.Trim().Replace(",", "")); }
@@ -1413,7 +1348,15 @@ namespace circularMT
 
         private void btnChangeColours_Click(object sender, EventArgs e)
         {
-            AdjustColours ac = new AdjustColours(colours, features, this);
+            if (chlTerms.CheckedItems.Count == 0) { return ; }
+            List<string> terms= new List<string>();
+
+            for (int index = 0; index < chlTerms.CheckedItems.Count; index++)
+            {
+                terms.Add( chlTerms.CheckedItems[index].ToString());               
+            }
+
+            AdjustColours ac = new AdjustColours(colours, features, this, terms);
             ac.ShowDialog();
         }
 
