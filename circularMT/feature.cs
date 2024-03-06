@@ -14,6 +14,7 @@ namespace circularMT
         private string gene = "";
         private string product = "";
         private string gene_synonym = "";
+        private string userSet = "";
         private string featureType = "";
         private int from = -1;
         private int too = -1;
@@ -77,10 +78,9 @@ namespace circularMT
             { throw new Exception("Error getting coordinates from " + name); }
         }
 
-
         private void MITOS(string[] data, string Feature)
         {
-            if (data[9].Trim() == "-")
+            if (data[6].Trim() == "-1")
             { forward = false; }
             name = data[2].Trim();
             gene = name;
@@ -297,6 +297,8 @@ namespace circularMT
             { name = product; }
             else if (option == "Gene synonym" && string.IsNullOrEmpty(gene_synonym) == false)
             { name = gene_synonym; }
+            else if (option == "User set" && string.IsNullOrEmpty(userSet) == false)
+            { name = userSet; }
             else { name = gene; }
         }
 

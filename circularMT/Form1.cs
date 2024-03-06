@@ -1373,5 +1373,10 @@ namespace circularMT
             ImageScaling saveAs = new ImageScaling(300.0f);
             drawFeatures(fileName, saveAs);
         }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

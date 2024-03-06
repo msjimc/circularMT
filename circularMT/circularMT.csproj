@@ -73,6 +73,12 @@
     <Compile Include="AdjustColours.Designer.cs">
       <DependentUpon>AdjustColours.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditNames.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditNames.Designer.cs">
+      <DependentUpon>EditNames.cs</DependentUpon>
+    </Compile>
     <Compile Include="feature.cs" />
     <Compile Include="featureSorter.cs" />
     <Compile Include="FileAccessClass.cs" />
@@ -87,6 +93,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AdjustColours.resx">
       <DependentUpon>AdjustColours.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditNames.resx">
+      <DependentUpon>EditNames.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
