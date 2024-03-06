@@ -29,8 +29,87 @@ namespace circularMT
             { Fasta(lines); }
             else if (dataType == "gff")
             { GFF(lines, FeatureType); }
+            else if (dataType == "gtf")
+            { GTF(lines, FeatureType); }
+            else if (dataType == "bed")
+            { BED(lines, FeatureType); }
+            else if (dataType == "mitos")
+            { MITOS(lines, FeatureType); }
+            else if (dataType == "seq")
+            { SEQ(lines, FeatureType); }
         }
 
+        private void SEQ(string[] data, string Feature)
+        {           
+            name = data[3].Trim();
+            gene = name;
+
+            try
+            {
+                from = Convert.ToInt32(data[0]);
+                too = Convert.ToInt32(data[1]);
+                int seqLen = Convert.ToInt32(data[4]);
+                if (Math.Abs(too-from) > seqLen / 3)
+                {
+                    from = too - Convert.ToInt32(data[4]);
+                }
+
+                if (from < too)
+                { 
+                    forward = true; 
+                }
+                else if (too < from)
+                { 
+                    forward = false;
+                    int t = from;
+                    from = too;
+                    too = t;
+                }
+
+                if (too < from)
+                { from = too - Convert.ToInt32(data[4]); }
+            }
+            catch (Exception ex)
+            { throw new Exception("Error getting coordinates from " + name); }
+        }
+
+
+        private void MITOS(string[] data, string Feature)
+        {
+            if (data[9].Trim() == "-")
+            { forward = false; }
+            name = data[2].Trim();
+            gene = name;
+
+            try
+            {
+                from = Convert.ToInt32(data[4]);
+                too = Convert.ToInt32(data[5]);
+                if (too < from)
+                { from =  Convert.ToInt32(data[14])  + too; }
+            }
+            catch (Exception ex)
+            { throw new Exception("Error getting coordinates from " + name); }
+        }
+
+        private void BED(string[] data, string Feature)
+        {
+            if (data[5].Trim() == "-")
+            { forward = false; }
+            name = data[3].Trim();
+            gene = name;
+
+            try
+            {
+                from = Convert.ToInt32(data[1]);
+                too = Convert.ToInt32(data[2]);
+                if (too < from)
+                { from = Convert.ToInt32(data[14]) + too; }
+            }
+            catch (Exception ex)
+            { throw new Exception("Error getting coordinates from " + name); }
+        }
+       
         private void GFF(string[] data, string FeatureType)
         {
             featureType = FeatureType;
@@ -68,6 +147,57 @@ namespace circularMT
 
                 if (gene != "" && name == "")
                 { name = gene; }
+            }
+
+            try
+            {
+                from = Convert.ToInt32(data[3]);
+                too = Convert.ToInt32(data[4]);
+                if (too < from)
+                { from = Convert.ToInt32(data[14]) + too; ; }
+            }
+            catch (Exception ex)
+            { throw new Exception("Error getting coordinates from " + name); }
+
+        }
+
+        private void GTF(string[] data, string FeatureType)
+        {
+            featureType = FeatureType;
+
+            if (data[6].Trim() == "-")
+            { forward = false; }
+
+            if (data[2].ToLower() == "region")
+            {
+                name = "Region";
+                gene = name;
+            }
+            else
+            {
+                int one = data[8].IndexOf("gene_id ") + 8;
+                int two = data[8].IndexOf(";", one);
+
+                if (one > 4 && two > one)
+                { name = data[8].Substring(one, two - one).Replace("\"",""); }
+                else if (one > 4 && two == -1)
+                { name = data[8].Substring(one).Trim().Replace("\"", ""); }
+                else { name = ""; }
+
+                one = data[8].IndexOf("transcript_name ") + 15;
+                two = data[8].IndexOf(";", one);
+
+                if (one > 5 && two > one)
+                { gene = data[8].Substring(one, two - one).Replace("\"", ""); }
+                else if (one > 5 && two == -1)
+                { gene = data[8].Substring(one).Trim().Replace("\"", ""); }
+                else { gene = ""; }
+
+                if (gene == "" && name != "")
+                { gene = name; }
+
+                if (gene != "" && name == "")
+                { name = gene; }
 
 
             }
@@ -75,7 +205,9 @@ namespace circularMT
             try
             {
                 from = Convert.ToInt32(data[3]);
-                too = Convert.ToInt32(data[4]);                
+                too = Convert.ToInt32(data[4]);
+                if (too < from)
+                { from = Convert.ToInt32(data[14]) + too; ; }
             }
             catch (Exception ex)
             { throw new Exception("Error getting coordinates from " + name); }
@@ -96,7 +228,7 @@ namespace circularMT
                 from = Convert.ToInt32(items[0]);
                 too = Convert.ToInt32(items[1]);
                 if (too < from)
-                { from = too - Convert.ToInt32(data[4]); }
+                { from = Convert.ToInt32(data[14]) + too; ; }
 
             }
             catch (Exception ex)
@@ -271,7 +403,7 @@ namespace circularMT
         { get { return forward; } }
 
         public string Name
-        { get { return name; } }
+        { get { return (name + new string(' ', 18)).Substring(0,17).Trim(); } }
               
         Point textPoint = new Point(-1,-1);
         public Point TextPoint

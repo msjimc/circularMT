@@ -50,10 +50,10 @@ namespace circularMT
                     openGTFFile(filename); 
                     break;
                 case ".mitos":
-
+                    openMITOSFile(filename);
                     break;
                 case ".seq":
-
+                    openSEQFile(filename);
                     break;
                 case ".bed": 
                     openBedFile(filename);
@@ -65,7 +65,171 @@ namespace circularMT
 
         }
 
+        private void openSEQFile(string filename)
+        {
+            defination = "";
+            features = new Dictionary<string, List<feature>>();
+            sequencelength = -1;
+            string input = Interaction.InputBox("Enter the genome length", "Genome length");
+            try
+            { sequencelength = Convert.ToInt32(input.Trim().Replace(",", "")); }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Could not convert value to a whole number", "Error");
+                return;
+            }
+
+            System.IO.StreamReader fs = null;
+            try
+            {
+                fs = new System.IO.StreamReader(filename);
+                string data = fs.ReadToEnd();
+                fs.Close();
+
+                string[] lines = data.Split('\n');
+                string term = "Feature";
+                string[] items = lines[0].Split('\t');
+
+                int one = lines[0].IndexOf(" ") + 1;
+                defination = lines[0].Substring(one).Trim();
+
+                items = null;
+                string name = "";
+                for (int index = lines.Length - 1; index > -1;index--)
+                {
+                    if (lines[index].StartsWith("\t\t\t") == true)
+                    {
+                        items = lines[index].Split('\t');
+                        name = items[4].Trim();
+                    }
+                    else if (string.IsNullOrEmpty(name) == false && lines[index].StartsWith(">") == false)
+                    {
+                        string line = lines[index].Trim() + "\t" + name + "\t" + sequencelength.ToString();
+                        items = line.Split('\t');
+                        term = items[2];
+                        feature f = new feature(items, 0, 0, term, "seq");
+
+                        if (features.ContainsKey(f.FeatureType.Trim()) == false)
+                        { features.Add(f.FeatureType, new List<feature>()); }
+
+                        features[f.FeatureType].Add(f);
+                    }
+                }
+     
+                SetUpProgramsData();
+
+                cboStart.Items.Clear();
+                cboStart.Items.Add("select");
+                foreach (string key in features.Keys)
+                {
+                    List<feature> lists = features[key];
+                    lists.Sort(new featureSorter());
+                    foreach (feature f in lists)
+                    { cboStart.Items.Add(key + ": " + f.Name); }
+                }
+                cboStart.SelectedIndex = 0;
+
+                drawFeatures();
+
+            }
+            catch (Exception ex)
+            { MessageBox.Show("Could not open and process the file", "Error"); }
+            finally
+            { if (fs != null) { fs.Close(); } }
+
+        }
         private void openGFFFile(string filename)
+        {
+            defination = "";
+            features = new Dictionary<string, List<feature>>();
+            sequencelength = -1;
+            string input = Interaction.InputBox("Enter the genome length", "Genome length");
+            try
+            { sequencelength = Convert.ToInt32(input.Trim().Replace(",", "")); }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Could not convert value to a whole number", "Error");
+                return;
+            }
+
+            System.IO.StreamReader fs = null;
+
+            try
+            {
+
+                fs = new System.IO.StreamReader(filename);
+                string data = fs.ReadToEnd();
+                fs.Close();
+
+                string[] lines = data.Split('\n');
+                string term = "Feature";
+                string[] items = lines[0].Split('\t');
+
+                items = null;                
+                foreach (string line in lines)
+                {
+                    items = line.Split('\t');
+                    if (items.Length == 9 && items[0].StartsWith("#") == false)
+                    {
+                         if (defination == "") { defination = items[0].Trim(); }
+                   term = items[2].Trim();
+                        feature f = new feature(items, 0, 0, term, "gff");
+                       
+                        if (features.ContainsKey(f.FeatureType.Trim()) == false )
+                        { features.Add(f.FeatureType, new List<feature>()); }
+
+                        features[f.FeatureType].Add(f);
+                    }                    
+                }
+
+                SetUpProgramsData();
+
+                cboStart.Items.Clear();
+                cboStart.Items.Add("select");
+                foreach (string key in features.Keys)
+                {
+                    List<feature> lists = features[key];
+                    lists.Sort(new featureSorter());
+                    foreach (feature f in lists)
+                    { cboStart.Items.Add(key + ": " + f.Name); }
+                }
+                cboStart.SelectedIndex = 0;
+
+                drawFeatures();
+
+            }
+            catch (Exception ex)
+            { MessageBox.Show("Could not open and process the file", "Error"); }
+            finally
+            { if (fs != null) { fs.Close(); } }
+
+        }
+
+        private void SetUpProgramsData()
+        {
+            chlTerms.Items.Clear();
+            Brush[] colourSet = { Brushes.PaleGreen, Brushes.Pink, Brushes.LightBlue, Brushes.LightGray, Brushes.Orange, Brushes.GreenYellow, Brushes.Orchid };
+            colours = new Dictionary<string, Brush>();
+
+            int index = 0;
+            foreach (string term in features.Keys)
+            {
+
+                colours.Add(term, colourSet[index]);
+                chlTerms.Items.Add(term);
+                index++;
+                if (index >= colourSet.Length)
+                { index = 0; }
+
+            }
+
+            for (int count = 0; count < chlTerms.Items.Count; count++)
+            {
+                chlTerms.SetItemChecked(count, true);
+            }
+        }
+
+        private void openGTFFile(string filename)
         {
             sequencelength = -1;
             string input = Interaction.InputBox("Enter the genome length", "Genome length");
@@ -91,24 +255,89 @@ namespace circularMT
                 string[] items = lines[0].Split('\t');
 
                 defination = "";
-               items = null;                
+                items = null;
                 foreach (string line in lines)
                 {
                     items = line.Split('\t');
                     if (items.Length == 9 && items[0].StartsWith("#") == false)
                     {
-                         if (defination == "") { defination = items[0].Trim(); }
-                   term = items[2].Trim();
-                        feature f = new feature(items, 0, 0, term, "gff");
-                       
-                        if (features.ContainsKey(f.FeatureType.Trim()) == false )
+                        if (defination == "") { defination = items[0].Trim(); }
+                        term = items[2].Trim();
+                        feature f = new feature(items, 0, 0, term, "gtf");
+
+                        if (features.ContainsKey(f.FeatureType.Trim()) == false)
                         { features.Add(f.FeatureType, new List<feature>()); }
 
                         features[f.FeatureType].Add(f);
-                    }                    
+                    }
                 }
 
-                SetUpProgramStata();
+                SetUpProgramsData();
+
+                cboStart.Items.Clear();
+                cboStart.Items.Add("select");
+                foreach (string key in features.Keys)
+                {
+                    List<feature> lists = features[key];
+                    lists.Sort(new featureSorter());
+                    foreach (feature f in lists)
+                    { cboStart.Items.Add(key + ": " + f.Name); }
+                }
+                cboStart.SelectedIndex = 0;
+
+                drawFeatures();
+
+            }
+            catch (Exception ex)
+            { MessageBox.Show("Could not open and process the file", "Error"); }
+            finally
+            { if (fs != null) { fs.Close(); } }
+        }
+        
+        private void openBedFile(string filename)
+        {
+            defination = "";
+            sequencelength = -1;
+            features = new Dictionary<string, List<feature>>();
+            string input = Interaction.InputBox("Enter the genome length", "Genome length");
+            try
+            { sequencelength = Convert.ToInt32(input.Trim().Replace(",", "")); }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Could not convert value to a whole number", "Error");
+                return;
+            }
+
+            System.IO.StreamReader fs = null;
+
+            try
+            {
+                fs = new System.IO.StreamReader(filename);
+                string data = fs.ReadToEnd();
+                fs.Close();
+
+                string[] lines = data.Split('\n');
+                string term = "Feature";
+                string[] items = lines[0].Split('\t');
+
+                defination = "";
+                items = null;
+                foreach (string line in lines)
+                {
+                    items = (line.Trim() + "\t" + sequencelength.ToString()).Split('\t');
+                    if (items.Length == 7)
+                    {
+                        if (defination == "") { defination = items[0].Trim(); }
+                        feature f = new feature(items, 0, 0, term, "bed");
+
+                        if (features.ContainsKey(f.FeatureType.Trim()) == false)
+                        { features.Add(f.FeatureType, new List<feature>()); }
+
+                        features[f.FeatureType].Add(f);
+                    }
+                }
+
+                SetUpProgramsData();
 
                 cboStart.Items.Clear();
                 cboStart.Items.Add("select");
@@ -129,42 +358,73 @@ namespace circularMT
             finally
             { if (fs != null) { fs.Close(); } }
 
-        }        
+        }
 
-        private void SetUpProgramStata()
+        private void openMITOSFile(string filename)
         {
-            chlTerms.Items.Clear();
-            Brush[] colourSet = { Brushes.PaleGreen, Brushes.Pink, Brushes.LightBlue, Brushes.LightGray, Brushes.Orange, Brushes.GreenYellow, Brushes.Orchid };
-            colours = new Dictionary<string, Brush>();
-            
-            int index = 0;
-                        foreach (string term in features.Keys)
+            defination = "";
+            sequencelength = -1;
+            features = new Dictionary<string, List<feature>>();
+            string input = Interaction.InputBox("Enter the genome length", "Genome length");
+            try
+            { sequencelength = Convert.ToInt32(input.Trim().Replace(",", "")); }
+            catch (Exception ex)
             {
-
-                colours.Add(term, colourSet[index]);
-                chlTerms.Items.Add(term);
-                index++;
-                if (index >= colourSet.Length)
-                { index = 0; }
-
+                MessageBox.Show("Could not convert value to a whole number", "Error");
+                return;
             }
 
-            for (int count = 0; count < chlTerms.Items.Count; count++)
+            System.IO.StreamReader fs = null;
+
+            try
             {
-                chlTerms.SetItemChecked(count, true);
+                fs = new System.IO.StreamReader(filename);
+                string data = fs.ReadToEnd();
+                fs.Close();
+
+                string[] lines = data.Split('\n');
+                string term = "Feature";
+                string[] items = lines[0].Split('\t');
+
+                defination = "";
+                items = null;
+                foreach (string line in lines)
+                {
+                    items = (line.Trim() + "\t" + sequencelength.ToString()).Split('\t');
+                    if (items.Length == 15)
+                    {
+                        if (defination == "") { defination = items[0].Trim(); }
+                        term = items[1].Trim();
+                        feature f = new feature(items, 0, 0, term, "mitos");
+
+                        if (features.ContainsKey(f.FeatureType.Trim()) == false)
+                        { features.Add(f.FeatureType, new List<feature>()); }
+
+                        features[f.FeatureType].Add(f);
+                    }
+                }
+
+                SetUpProgramsData();
+
+                cboStart.Items.Clear();
+                cboStart.Items.Add("select");
+                foreach (string key in features.Keys)
+                {
+                    List<feature> lists = features[key];
+                    lists.Sort(new featureSorter());
+                    foreach (feature f in lists)
+                    { cboStart.Items.Add(key + ": " + f.Name); }
+                }
+                cboStart.SelectedIndex = 0;
+
+                drawFeatures();
+
             }
+            catch (Exception ex)
+            { MessageBox.Show("Could not open and process the file", "Error"); }
+            finally
+            { if (fs != null) { fs.Close(); } }
         }
-
-
-        private void openGTFFile(string filename)
-        {
-
-        }
-        private void openBedFile(string filename)
-        {
-
-        }
-
 
         private void openFastaFile(string filename)
         {
@@ -208,7 +468,7 @@ namespace circularMT
                         
                         feature f = new feature(items, 0, 0, term, "fasta");
                         features[f.FeatureType].Add(f);
-                        dataInfo = line;
+                        dataInfo = line.Trim();
                         sequence = "";
                     }
                     else if (line.StartsWith(">") == true)
@@ -414,6 +674,8 @@ namespace circularMT
             ResetClash();
             int overhang = GetOverhang(g, center, radius);
             if (overhang < 10) { radius += (overhang - 10); }
+            if (radius < 150)
+            { radius = 150; }
 
             ClashDetection();
 
@@ -608,8 +870,6 @@ namespace circularMT
                     { writeName(g, f, center, radius - 60); }
                 }
             }
-
-
         }
 
         private Point[] getArrow(float startPoint, float endPoint, int radius, Point center, bool start)
