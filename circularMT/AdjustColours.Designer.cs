@@ -66,7 +66,7 @@
             this.btnSelect.Location = new System.Drawing.Point(431, 137);
             this.btnSelect.Name = "btnSelect";
             this.btnSelect.Size = new System.Drawing.Size(75, 23);
-            this.btnSelect.TabIndex = 7;
+            this.btnSelect.TabIndex = 4;
             this.btnSelect.Text = "Select";
             this.btnSelect.UseVisualStyleBackColor = true;
             this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
@@ -89,7 +89,7 @@
             this.txtListOfNames.Multiline = true;
             this.txtListOfNames.Name = "txtListOfNames";
             this.txtListOfNames.Size = new System.Drawing.Size(497, 45);
-            this.txtListOfNames.TabIndex = 5;
+            this.txtListOfNames.TabIndex = 3;
             // 
             // txtNames
             // 
@@ -99,7 +99,7 @@
             this.txtNames.Location = new System.Drawing.Point(9, 59);
             this.txtNames.Name = "txtNames";
             this.txtNames.Size = new System.Drawing.Size(497, 20);
-            this.txtNames.TabIndex = 4;
+            this.txtNames.TabIndex = 2;
             this.txtNames.TextChanged += new System.EventHandler(this.txtNames_TextChanged);
             // 
             // label2
@@ -120,7 +120,7 @@
             this.cboTerms.Location = new System.Drawing.Point(229, 13);
             this.cboTerms.Name = "cboTerms";
             this.cboTerms.Size = new System.Drawing.Size(277, 21);
-            this.cboTerms.TabIndex = 2;
+            this.cboTerms.TabIndex = 1;
             this.cboTerms.SelectedIndexChanged += new System.EventHandler(this.cboTerms_SelectedIndexChanged);
             // 
             // label1
@@ -138,7 +138,7 @@
             this.btnClose.Location = new System.Drawing.Point(21, 191);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
-            this.btnClose.TabIndex = 0;
+            this.btnClose.TabIndex = 5;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);

@@ -15,8 +15,7 @@ namespace circularMT
         private Dictionary<string, List<feature>> features = new Dictionary<string, List<feature>>();
         public Form1 parent = null;
         private bool oneSelected = false;
-        private bool NameWritten = false;
-
+        
         public EditNames(Dictionary<string, List<feature>> features, Form1 parent, List<string> terms)
         {
             InitializeComponent();
@@ -68,8 +67,31 @@ namespace circularMT
             if (counter == 1)
             {  oneSelected = true; }
             else { oneSelected = false; }
+            
+            if (counter > 1)
+            { btnNumber.Enabled = true;}
+            else { btnNumber.Enabled = false; }
 
             txtNew.Enabled = oneSelected;
+        }
+
+        private void btnNumber_Click(object sender, EventArgs e)
+        {
+            
+            if (features == null || cboTerms.Text == "Select") { return; }
+
+            int count = 1;
+            string namePart = txtNames.Text.Trim();
+            foreach (feature f in features[cboTerms.Text])
+            {
+                if (f.Name.StartsWith(namePart) == true)
+                {
+                    f.Name += " - " + count.ToString();
+                    count += 1;
+                }
+            }
+            if (count>0)
+            { parent.ReDrawFromOutSide(); }
         }
 
         private void txtNew_TextChanged(object sender, EventArgs e)
@@ -96,14 +118,13 @@ namespace circularMT
             if (changed == true)
             { parent.ReDrawFromOutSide(); }
 
-
+            txtNew.Clear();
         }   
         
         private void btnClose_Click(object sender, EventArgs e)
         {
             Close();
         }
-
- 
+  
     }
 }

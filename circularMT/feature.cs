@@ -52,7 +52,7 @@ namespace circularMT
             try
             {
                 from = Convert.ToInt32(data[0]);
-                too = Convert.ToInt32(data[1]);
+                too = Convert.ToInt32(data[1]);                
                 int seqLen = Convert.ToInt32(data[4]);
                 if (Math.Abs(too-from) > seqLen / 3)
                 {
@@ -72,7 +72,7 @@ namespace circularMT
                 }
 
                 if (too < from)
-                { from = too - Convert.ToInt32(data[4]); }
+                { too = too - Convert.ToInt32(data[4]); }
             }
             catch (Exception ex)
             { throw new Exception("Error getting coordinates from " + name); }
@@ -88,9 +88,9 @@ namespace circularMT
             try
             {
                 from = Convert.ToInt32(data[4]);
-                too = Convert.ToInt32(data[5]);
+                too = Convert.ToInt32(data[5]);                
                 if (too < from)
-                { from =  Convert.ToInt32(data[14])  + too; }
+                { too =  Convert.ToInt32(data[14])  + too; }
             }
             catch (Exception ex)
             { throw new Exception("Error getting coordinates from " + name); }
@@ -108,7 +108,7 @@ namespace circularMT
                 from = Convert.ToInt32(data[1]);
                 too = Convert.ToInt32(data[2]);
                 if (too < from)
-                { from = Convert.ToInt32(data[6]) + too; }
+                { too = Convert.ToInt32(data[6]) + too; }
             }
             catch (Exception ex)
             { throw new Exception("Error getting coordinates from " + name); }
@@ -158,7 +158,7 @@ namespace circularMT
                 from = Convert.ToInt32(data[3]);
                 too = Convert.ToInt32(data[4]);
                 if (too < from)
-                { from = Convert.ToInt32(data[14]) + too; ; }
+                { too = Convert.ToInt32(data[14]) + too; ; }
             }
             catch (Exception ex)
             { throw new Exception("Error getting coordinates from " + name); }
@@ -211,7 +211,7 @@ namespace circularMT
                 from = Convert.ToInt32(data[3]);
                 too = Convert.ToInt32(data[4]);
                 if (too < from)
-                { from = Convert.ToInt32(data[14]) + too; ; }
+                { too = Convert.ToInt32(data[14]) + too; ; }
             }
             catch (Exception ex)
             { throw new Exception("Error getting coordinates from " + name); }
@@ -232,7 +232,7 @@ namespace circularMT
                 from = Convert.ToInt32(items[0]);
                 too = Convert.ToInt32(items[1]);
                 if (too < from)
-                { from = Convert.ToInt32(data[4]) + too; ; }
+                { too = Convert.ToInt32(data[4]) + too; ; }
 
             }
             catch (Exception ex)

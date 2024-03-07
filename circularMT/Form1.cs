@@ -63,10 +63,7 @@ namespace circularMT
                     break;
                 case ".bed":
                     openBedFile(filename);
-                    break;
-                case ".txt":
-
-                    break;
+                    break;                                  
             }
 
         }
@@ -647,9 +644,9 @@ namespace circularMT
             Bitmap bmp = new Bitmap(p1.Width * scaling.one, p1.Height * scaling.one, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
             bmp.SetResolution(scaling.hundred, scaling.hundred);
             Graphics g = Graphics.FromImage(bmp);
-            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
-                        
-
+           g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighSpeed;
+            g.TextContrast = 0;
+           
             Point center = new Point(bmp.Width / 2, bmp.Height / 2);
             int radius = -1;
             if (bmp.Width > bmp.Height)
@@ -752,6 +749,9 @@ namespace circularMT
                     {
                         if (index + 1 < all.Count)
                         {
+                            System.Diagnostics.Debug.WriteLine(all[index + 1].Name);
+                            if (all[index + 1].Name == "trnM")
+                            { }
                             int diff = Distance(all[index].TextPoint, all[index + 1].TextPoint);
                             if (Math.Abs(diff) <= scaling.twenty && diff > 0)
                             {
@@ -770,14 +770,7 @@ namespace circularMT
                             Point p = all[index].ClashData;
                             p.X = count;
                             all[index].ClashData = p;
-                        }
-                        else if (index == all.Count && all[0].Clash == true)
-                        {
-                            count++;
-                            Point p = all[0].ClashData;
-                            p.X = count;
-                            all[0].ClashData = p;
-                        }
+                        }                        
                         else { count = 0; }
                     }
                     count = 0;
@@ -1399,5 +1392,18 @@ namespace circularMT
             en.ShowDialog();
         }
 
+        private void btnRemove_Click(object sender, EventArgs e)
+        {
+            if (chlTerms.CheckedItems.Count == 0) { return; }
+            List<string> terms = new List<string>();
+
+            for (int index = 0; index < chlTerms.CheckedItems.Count; index++)
+            {
+                terms.Add(chlTerms.CheckedItems[index].ToString());
+            }
+
+            Deletefeature df = new Deletefeature(features, this, terms);
+            df.ShowDialog();
+        }
     }
 }

@@ -32,6 +32,9 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.p1 = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.btnRemove = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.chkSwitchStrands = new System.Windows.Forms.CheckBox();
             this.label9 = new System.Windows.Forms.Label();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
@@ -53,9 +56,7 @@
             this.btnGenBank = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.chkSwitchStrands = new System.Windows.Forms.CheckBox();
-            this.label10 = new System.Windows.Forms.Label();
-            this.btnRemove = new System.Windows.Forms.Button();
+            this.Quit = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.p1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -88,6 +89,7 @@
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.Quit);
             this.groupBox2.Controls.Add(this.btnRemove);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.chkSwitchStrands);
@@ -118,6 +120,39 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Options";
             // 
+            // btnRemove
+            // 
+            this.btnRemove.Location = new System.Drawing.Point(136, 430);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(75, 23);
+            this.btnRemove.TabIndex = 12;
+            this.btnRemove.Text = "Remove";
+            this.btnRemove.UseVisualStyleBackColor = true;
+            this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(6, 435);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(92, 13);
+            this.label10.TabIndex = 21;
+            this.label10.Text = "Remove a feature";
+            // 
+            // chkSwitchStrands
+            // 
+            this.chkSwitchStrands.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkSwitchStrands.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkSwitchStrands.Location = new System.Drawing.Point(9, 172);
+            this.chkSwitchStrands.Margin = new System.Windows.Forms.Padding(2);
+            this.chkSwitchStrands.Name = "chkSwitchStrands";
+            this.chkSwitchStrands.Size = new System.Drawing.Size(201, 17);
+            this.chkSwitchStrands.TabIndex = 4;
+            this.chkSwitchStrands.Text = "Switch strand";
+            this.chkSwitchStrands.UseVisualStyleBackColor = true;
+            this.chkSwitchStrands.CheckedChanged += new System.EventHandler(this.chkSwitchStrands_CheckedChanged);
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -132,7 +167,7 @@
             this.btnEdit.Location = new System.Drawing.Point(136, 401);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(75, 23);
-            this.btnEdit.TabIndex = 18;
+            this.btnEdit.TabIndex = 11;
             this.btnEdit.Text = "Edit";
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
@@ -142,7 +177,7 @@
             this.btnSave.Location = new System.Drawing.Point(135, 459);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 17;
+            this.btnSave.TabIndex = 13;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -166,7 +201,7 @@
             this.chkDrawOrder.Location = new System.Drawing.Point(6, 376);
             this.chkDrawOrder.Name = "chkDrawOrder";
             this.chkDrawOrder.Size = new System.Drawing.Size(204, 24);
-            this.chkDrawOrder.TabIndex = 15;
+            this.chkDrawOrder.TabIndex = 10;
             this.chkDrawOrder.Text = "Draw smaller features last";
             this.chkDrawOrder.UseVisualStyleBackColor = true;
             this.chkDrawOrder.CheckedChanged += new System.EventHandler(this.chkDrawOrder_CheckedChanged);
@@ -185,7 +220,7 @@
             this.btnChangeColours.Location = new System.Drawing.Point(136, 347);
             this.btnChangeColours.Name = "btnChangeColours";
             this.btnChangeColours.Size = new System.Drawing.Size(75, 23);
-            this.btnChangeColours.TabIndex = 13;
+            this.btnChangeColours.TabIndex = 9;
             this.btnChangeColours.Text = "Reset";
             this.btnChangeColours.UseVisualStyleBackColor = true;
             this.btnChangeColours.Click += new System.EventHandler(this.btnChangeColours_Click);
@@ -204,7 +239,7 @@
             this.btnResetName.Location = new System.Drawing.Point(136, 318);
             this.btnResetName.Name = "btnResetName";
             this.btnResetName.Size = new System.Drawing.Size(75, 23);
-            this.btnResetName.TabIndex = 11;
+            this.btnResetName.TabIndex = 8;
             this.btnResetName.Text = "Reset";
             this.btnResetName.UseVisualStyleBackColor = true;
             this.btnResetName.Click += new System.EventHandler(this.btnResetName_Click);
@@ -223,7 +258,7 @@
             this.btnNewLenght.Location = new System.Drawing.Point(136, 289);
             this.btnNewLenght.Name = "btnNewLenght";
             this.btnNewLenght.Size = new System.Drawing.Size(75, 23);
-            this.btnNewLenght.TabIndex = 9;
+            this.btnNewLenght.TabIndex = 7;
             this.btnNewLenght.Text = "Reset";
             this.btnNewLenght.UseVisualStyleBackColor = true;
             this.btnNewLenght.Click += new System.EventHandler(this.btnNewLenght_Click);
@@ -241,7 +276,7 @@
             this.cboNameOptions.Location = new System.Drawing.Point(9, 260);
             this.cboNameOptions.Name = "cboNameOptions";
             this.cboNameOptions.Size = new System.Drawing.Size(201, 21);
-            this.cboNameOptions.TabIndex = 8;
+            this.cboNameOptions.TabIndex = 6;
             this.cboNameOptions.SelectedIndexChanged += new System.EventHandler(this.cboNameOptions_SelectedIndexChanged);
             // 
             // label4
@@ -262,7 +297,7 @@
             this.cboStart.Location = new System.Drawing.Point(9, 211);
             this.cboStart.Name = "cboStart";
             this.cboStart.Size = new System.Drawing.Size(201, 21);
-            this.cboStart.TabIndex = 6;
+            this.cboStart.TabIndex = 5;
             this.cboStart.SelectedIndexChanged += new System.EventHandler(this.cboStart_SelectedIndexChanged);
             // 
             // label3
@@ -283,7 +318,7 @@
             this.chcReverseSequence.Margin = new System.Windows.Forms.Padding(2);
             this.chcReverseSequence.Name = "chcReverseSequence";
             this.chcReverseSequence.Size = new System.Drawing.Size(201, 17);
-            this.chcReverseSequence.TabIndex = 4;
+            this.chcReverseSequence.TabIndex = 3;
             this.chcReverseSequence.Text = "Reverse complement sequence";
             this.chcReverseSequence.UseVisualStyleBackColor = true;
             this.chcReverseSequence.CheckedChanged += new System.EventHandler(this.chcReverseSequence_CheckedChanged);
@@ -332,37 +367,14 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // chkSwitchStrands
+            // Quit
             // 
-            this.chkSwitchStrands.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.chkSwitchStrands.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.chkSwitchStrands.Location = new System.Drawing.Point(9, 172);
-            this.chkSwitchStrands.Margin = new System.Windows.Forms.Padding(2);
-            this.chkSwitchStrands.Name = "chkSwitchStrands";
-            this.chkSwitchStrands.Size = new System.Drawing.Size(201, 17);
-            this.chkSwitchStrands.TabIndex = 20;
-            this.chkSwitchStrands.Text = "Switch strand";
-            this.chkSwitchStrands.UseVisualStyleBackColor = true;
-            this.chkSwitchStrands.CheckedChanged += new System.EventHandler(this.chkSwitchStrands_CheckedChanged);
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(6, 435);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(92, 13);
-            this.label10.TabIndex = 21;
-            this.label10.Text = "Remove a feature";
-            // 
-            // btnRemove
-            // 
-            this.btnRemove.Location = new System.Drawing.Point(136, 430);
-            this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(75, 23);
-            this.btnRemove.TabIndex = 22;
-            this.btnRemove.Text = "Remove";
-            this.btnRemove.UseVisualStyleBackColor = true;
+            this.Quit.Location = new System.Drawing.Point(136, 724);
+            this.Quit.Name = "Quit";
+            this.Quit.Size = new System.Drawing.Size(75, 23);
+            this.Quit.TabIndex = 15;
+            this.Quit.Text = "Quit";
+            this.Quit.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -413,6 +425,7 @@
         private System.Windows.Forms.CheckBox chkSwitchStrands;
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Button Quit;
     }
 }
 
