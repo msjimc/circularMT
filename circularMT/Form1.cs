@@ -126,7 +126,7 @@ namespace circularMT
                     { cboStart.Items.Add(key + ": " + f.Name); }
                 }
                 cboStart.SelectedIndex = 0;
-
+                setColours();
                 drawFeatures("", scaling);
 
             }
@@ -189,7 +189,7 @@ namespace circularMT
                     { cboStart.Items.Add(key + ": " + f.Name); }
                 }
                 cboStart.SelectedIndex = 0;
-
+                setColours();
                 drawFeatures("", scaling);
 
             }
@@ -278,7 +278,7 @@ namespace circularMT
                     { cboStart.Items.Add(key + ": " + f.Name); }
                 }
                 cboStart.SelectedIndex = 0;
-
+                setColours();
                 drawFeatures("", scaling);
 
             }
@@ -338,7 +338,7 @@ namespace circularMT
                     { cboStart.Items.Add(key + ": " + f.Name); }
                 }
                 cboStart.SelectedIndex = 0;
-
+                setColours();
                 drawFeatures("", scaling);
 
             }
@@ -400,7 +400,7 @@ namespace circularMT
                     { cboStart.Items.Add(key + ": " + f.Name); }
                 }
                 cboStart.SelectedIndex = 0;
-
+                setColours();
                 drawFeatures("", scaling);
 
             }
@@ -488,7 +488,7 @@ namespace circularMT
                     { cboStart.Items.Add(key + ": " + f.Name); }
                 }
                 cboStart.SelectedIndex = 0;
-
+                setColours();
                 drawFeatures("", scaling);
 
             }
@@ -590,7 +590,7 @@ namespace circularMT
                     { cboStart.Items.Add(key + ": " + f.Name); }
                 }
                 cboStart.SelectedIndex = 0;
-
+                setColours();
                 drawFeatures("", scaling);
 
             }
@@ -629,6 +629,18 @@ namespace circularMT
             for (int count = 0; count < chlTerms.Items.Count; count++)
             {
                 chlTerms.SetItemChecked(count, true);
+            }
+        }
+
+        private void setColours()
+        {
+            foreach (string key in features.Keys)
+            {
+                Brush b = colours[key];
+                foreach (feature f in features[key])
+                {
+                    f.FeatureColour = b;
+                }
             }
         }
 
@@ -730,7 +742,7 @@ namespace circularMT
                 {
                     List<feature> list = features[key];
 
-                    if (list.Count > 1)
+                    if (list.Count > 0)
                     {
                         for (int index = 0; index < list.Count; index++)
                         {
@@ -739,9 +751,6 @@ namespace circularMT
                     }
                 }
                 all.Sort(new featureSorter());
-                all.Add(all[0]);
-                all.Add(all[1]);
-                all.Add(all[2]);
 
                 if (all.Count > 1)
                 {
