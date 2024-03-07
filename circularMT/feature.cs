@@ -358,6 +358,11 @@ namespace circularMT
             from = t;
         }
 
+        public void SwitchStrands()
+        {
+            forward = !forward;
+        }
+
         public void ResetStart(int sequencelength, int newStart)
         {
             from -= newStart;

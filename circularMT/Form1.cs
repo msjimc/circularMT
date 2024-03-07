@@ -1219,13 +1219,25 @@ namespace circularMT
             return answer;
         }
 
-        private void chcReverseSequence_CheckedChanged(object sender, EventArgs e)
+        private void chkReverseSequence_CheckedChanged(object sender, EventArgs e)
         {
             foreach (List<feature> list in features.Values)
             {
                 foreach (feature f in list)
                 {
                     f.ReverseComplementSequence(sequencelength);
+                }
+            }
+            drawFeatures("", scaling);
+        }
+
+        private void chkSwitchStrands_CheckedChanged(object sender, EventArgs e)
+        {
+            foreach (List<feature> list in features.Values)
+            {
+                foreach (feature f in list)
+                {
+                    f.SwitchStrands();
                 }
             }
             drawFeatures("", scaling);
@@ -1365,7 +1377,7 @@ namespace circularMT
             drawFeatures("", scaling);
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
             string fileName = FileAccessClass.FileString(FileAccessClass.FileJob.SaveAs, "Save image as", "Image file (*.tif)|*.tif");
             if (fileName == "Cancel") { return; }
@@ -1378,5 +1390,7 @@ namespace circularMT
         {
 
         }
+
+ 
     }
 }
