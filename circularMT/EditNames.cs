@@ -32,30 +32,33 @@ namespace circularMT
 
         private void cboTerms_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtNames.Clear();
+            
             if (cboTerms.SelectedIndex > 0)
             { txtNames.Enabled = true; }
             else
             { txtNames.Enabled = false; }
             txtNames.Clear();
+            txtListOfNames.Clear();
         }
 
         private void txtNames_TextChanged(object sender, EventArgs e)
         {
             if (features == null || cboTerms.Text == "Select") { return; }
                         
-            string namePart = txtNames.Text.Trim().ToLower();
-            if (string.IsNullOrEmpty(namePart)) { return; }
-
-            txtNames.Enabled = false;
-            txtNames.Clear();
+            string namePart = txtNames.Text.Trim();
+            if (string.IsNullOrEmpty(namePart)) 
+            {
+                txtListOfNames.Clear();
+                txtListOfNames.Enabled = false;
+                return; 
+            }            
 
             txtListOfNames.Clear();
             btnSelect.Enabled = false;
             int counter = 0;
             foreach (feature f in features[cboTerms.Text])
             {
-                if (f.Name.ToLower().StartsWith(namePart) == true)
+                if (f.Name.StartsWith(namePart) == true)
                 {
                     txtListOfNames.Text += f.Name + " ";
                     counter += 1;
@@ -69,6 +72,38 @@ namespace circularMT
             txtNew.Enabled = oneSelected;
         }
 
+        private void txtNew_TextChanged(object sender, EventArgs e)
+        {
+            if (txtNew.Text.Trim().Length > 0 && oneSelected == true)
+            { btnSelect.Enabled = true; }
+            else { btnSelect.Enabled = false; }
+        }
 
+        private void btnSelect_Click(object sender, EventArgs e)
+        {
+            string namePart = txtNames.Text.Trim();
+
+
+            bool changed = false;
+            foreach (feature f in features[cboTerms.Text])
+            {
+                if (f.Name.StartsWith(namePart) == true)
+                {
+                    f.Name = txtNew.Text.Trim();
+                    changed = true;
+                }
+            }
+            if (changed == true)
+            { parent.ReDrawFromOutSide(); }
+
+
+        }   
+        
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+ 
     }
 }

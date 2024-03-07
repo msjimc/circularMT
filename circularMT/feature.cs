@@ -420,7 +420,10 @@ namespace circularMT
         { get { return forward; } }
 
         public string Name
-        { get { return (name + new string(' ', 18)).Substring(0,17).Trim(); } }
+        { 
+            get { return (name + new string(' ', 18)).Substring(0,17).Trim(); }
+            set { name = value; }    
+        }
                     
         public Point TextPoint
         {

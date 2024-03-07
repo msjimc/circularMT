@@ -742,29 +742,23 @@ namespace circularMT
                     }
                 }
                 all.Sort(new featureSorter());
+                all.Add(all[0]);
+                all.Add(all[1]);
+                all.Add(all[2]);
 
                 if (all.Count > 1)
                 {
-                    for (int index = 0; index < all.Count; index++)
+                    for (int index = 0; index < all.Count - 1; index++)
                     {
                         if (index + 1 < all.Count)
                         {
                             int diff = Distance(all[index].TextPoint, all[index + 1].TextPoint);
-                            if (Math.Abs(diff) <= scaling.twentyFive && diff > 0)
+                            if (Math.Abs(diff) <= scaling.twenty && diff > 0)
                             {
                                 all[index].Clash = true;
                                 all[index + 1].Clash = true;
                             }
-                        }
-                        else if (index + 1 == all.Count)
-                        {
-                            int diff = Distance(all[index].TextPoint, all[0].TextPoint);
-                            if (Math.Abs(diff) <= scaling.twentyFive && diff > 0)
-                            {
-                                all[index].Clash = true;
-                                all[0].Clash = true;
-                            }
-                        }
+                        }                        
                     }
 
                     int count = 0;
@@ -816,7 +810,7 @@ namespace circularMT
             Font f = new Font(FontFamily.GenericSansSerif, fontSize, FontStyle.Bold);
             SizeF s = g.MeasureString(defination, f);
 
-            int gap = (radius * 2) - (int)(160 *scaling.scale);
+            int gap = (radius * 2) - (int)(160 * scaling.scale);
 
             while (s.Width > gap)
             {
@@ -826,10 +820,10 @@ namespace circularMT
             }
 
             int x = (int)s.Width / 2;
-            g.DrawString(defination, f, Brushes.Black, center.X - x, center.Y - (fontSize));
+            g.DrawString(defination, f, Brushes.Black, center.X - x, center.Y - (scaling.scale * fontSize));
             s = g.MeasureString(sequencelength.ToString("N0") + " bp", f);
             x = (int)s.Width / 2;
-            g.DrawString(sequencelength.ToString("N0") + " bp", f, Brushes.Black, center.X - x, center.Y + (fontSize * 0.5f));
+            g.DrawString(sequencelength.ToString("N0") + " bp", f, Brushes.Black, center.X - x, center.Y + (scaling.scale * fontSize * 0.5f));
 
         }
 
@@ -955,12 +949,18 @@ namespace circularMT
 
         private Point[] writeName(Graphics g, feature f, Point center, int radius, ImageScaling scaling)
         {
+            
             Point[] answer = { new Point(0, 0), new Point(0, 0) };
             string name = f.Name;
 
             float startPoint = f.arcStartAngle(sequencelength);
             float endPoint = f.arcEndAngle(sequencelength);
+            if (f.Name == "nad3")
+            {
+                float a = (Math.Abs(endPoint) - Math.Abs(startPoint));
+                float r = (endPoint - startPoint);
 
+            }
             Font font = new Font(FontFamily.GenericSansSerif, 20, FontStyle.Bold);
             SizeF lenght = g.MeasureString(name, font);
             float circumference = (float)(2 * radius * Math.PI);
@@ -968,18 +968,18 @@ namespace circularMT
             float arcLength = circumference * (endPoint - startPoint) / 360;
             int fontSize = 19;
             float fontRadiusOffset = 0;
-            while (lenght.Width > arcLength && fontSize > 10)
+            while (lenght.Width > arcLength - scaling.ten && fontSize > 10)
             {
                 fontRadiusOffset++;
                 font = new Font(FontFamily.GenericSansSerif, fontSize, FontStyle.Bold);
                 lenght = g.MeasureString(name, font);
                 circumference = (float)(2 * radius * Math.PI);
 
-                arcLength = circumference * (endPoint - startPoint) / 360;
+                arcLength = circumference * (endPoint- startPoint) / 360;
                 fontSize--;
             }
 
-            if (lenght.Width < arcLength)
+            if (lenght.Width < arcLength - scaling.ten)
             {
                 float diff = (arcLength - lenght.Width) / 2.0f;
                 float offset = diff * 360 / circumference;
@@ -991,14 +991,14 @@ namespace circularMT
                     diff = (arcLength - lenght.Width) / 2.0f;
                     offset = diff * 360 / circumference;
 
-                    angle = startPoint + offset;
+                    angle = startPoint + offset - 0.5f;
 
                     for (int index = 0; index < name.Length; index++)
                     {
                         SizeF s = g.MeasureString(new string(name[index], 1), font);
                         double radion = (angle * 2 * Math.PI) / 360;
-                        float x = (int)(Math.Cos(radion) * (radius - fontRadiusOffset - scaling.thirteen)) + center.X;
-                        float y = (int)(Math.Sin(radion) * (radius - fontRadiusOffset - scaling.thirteen)) + center.Y;
+                        float x = (int)(Math.Cos(radion) * (radius - (fontRadiusOffset * scaling.scale) - scaling.thirteen)) + center.X;
+                        float y = (int)(Math.Sin(radion) * (radius - (fontRadiusOffset *scaling.scale) - scaling.thirteen)) + center.Y;
                         g.TranslateTransform(x, y);
                         g.RotateTransform((float)angle + 90.0f);
                         g.DrawString(new string(name[index], 1), font, Brushes.Black, 0, 0);
@@ -1018,8 +1018,8 @@ namespace circularMT
                         string letter = new string(name[name.Length - (1 + index)], 1);
 
                         double radion = (angle * 2 * Math.PI) / 360;
-                        float x = (int)(Math.Cos(radion) * (radius + fontRadiusOffset - 3)) + center.X;
-                        float y = (int)(Math.Sin(radion) * (radius + fontRadiusOffset - 3)) + center.Y;
+                        float x = (int)(Math.Cos(radion) * (radius + (fontRadiusOffset * scaling.scale) - scaling.eight)) + center.X;
+                        float y = (int)(Math.Sin(radion) * (radius + (fontRadiusOffset * scaling.scale) - scaling.eight)) + center.Y;
                         g.TranslateTransform(x, y);
                         g.RotateTransform((float)angle + 270.0f);
                         g.DrawString(letter, font, Brushes.Black, 0, 0);
@@ -1219,7 +1219,7 @@ namespace circularMT
             return answer;
         }
 
-        private void chkReverseSequence_CheckedChanged(object sender, EventArgs e)
+        private void chcReverseSequence_CheckedChanged(object sender, EventArgs e)
         {
             foreach (List<feature> list in features.Values)
             {
@@ -1242,7 +1242,6 @@ namespace circularMT
             }
             drawFeatures("", scaling);
         }
-
         private void cboStart_SelectedIndexChanged(object sender, EventArgs e)
         {
             int start = 0;
@@ -1388,9 +1387,17 @@ namespace circularMT
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
+            if (chlTerms.CheckedItems.Count == 0) { return; }
+            List<string> terms = new List<string>();
 
+            for (int index = 0; index < chlTerms.CheckedItems.Count; index++)
+            {
+                terms.Add(chlTerms.CheckedItems[index].ToString());
+            }
+
+            EditNames en = new EditNames(features, this, terms);
+            en.ShowDialog();
         }
 
- 
     }
 }
