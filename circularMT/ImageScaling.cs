@@ -21,6 +21,7 @@ namespace circularMT
         public readonly int thirteen = 13;
         public readonly int fourteen = 14;
         public readonly int sixteen = 16;
+        public readonly int seventeen = 17;
         public readonly int nineteen = 19;
         public readonly int twenty = 20;
         public readonly int twentyTwo = 22;
@@ -48,8 +49,9 @@ namespace circularMT
             ten = (int)((10 * scale) + 0.5f); 
             eleven = (int)((11 * scale) + 0.5f); 
             thirteen = (int)((13 * scale) + 0.5f);
-            fourteen = (int)((14 * scale) + 0.5f); 
-            sixteen = (int)((16 * scale) + 0.5f); 
+            fourteen = (int)((14 * scale) + 0.5f);
+            sixteen = (int)((16 * scale) + 0.5f);
+            seventeen = (int)((17 * scale) + 0.5f);
             nineteen = (int)((19 * scale) + 0.5f); 
             twenty = (int)((20 * scale) + 0.5f); ;
             twentyTwo = (int)((22 * scale) + 0.5f); 

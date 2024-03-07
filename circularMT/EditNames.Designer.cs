@@ -30,6 +30,8 @@
         {
             this.btnClose = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtNew = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.btnSelect = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.txtListOfNames = new System.Windows.Forms.TextBox();
@@ -37,8 +39,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cboTerms = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtNew = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -51,6 +51,7 @@
             this.btnClose.TabIndex = 1;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // groupBox1
             // 
@@ -73,6 +74,26 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Edit names";
             // 
+            // txtNew
+            // 
+            this.txtNew.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtNew.Enabled = false;
+            this.txtNew.Location = new System.Drawing.Point(96, 115);
+            this.txtNew.Name = "txtNew";
+            this.txtNew.Size = new System.Drawing.Size(410, 20);
+            this.txtNew.TabIndex = 9;
+            this.txtNew.TextChanged += new System.EventHandler(this.txtNew_TextChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 118);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(84, 13);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Enter new name";
+            // 
             // btnSelect
             // 
             this.btnSelect.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -83,6 +104,7 @@
             this.btnSelect.TabIndex = 7;
             this.btnSelect.Text = "Change";
             this.btnSelect.UseVisualStyleBackColor = true;
+            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
             // 
             // label3
             // 
@@ -143,25 +165,6 @@
             this.label1.Size = new System.Drawing.Size(207, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "Select the type of feature you want to edit ";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 118);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(84, 13);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Enter new name";
-            // 
-            // txtNew
-            // 
-            this.txtNew.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtNew.Enabled = false;
-            this.txtNew.Location = new System.Drawing.Point(96, 115);
-            this.txtNew.Name = "txtNew";
-            this.txtNew.Size = new System.Drawing.Size(410, 20);
-            this.txtNew.TabIndex = 9;
             // 
             // EditNames
             // 
