@@ -67,6 +67,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddFeature.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddFeature.Designer.cs">
+      <DependentUpon>AddFeature.cs</DependentUpon>
+    </Compile>
     <Compile Include="AdjustColours.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +103,9 @@
     <Compile Include="ImageScaling.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddFeature.resx">
+      <DependentUpon>AddFeature.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="AdjustColours.resx">
       <DependentUpon>AdjustColours.cs</DependentUpon>
     </EmbeddedResource>

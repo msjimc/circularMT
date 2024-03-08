@@ -954,20 +954,16 @@ namespace circularMT
             
             Point[] answer = { new Point(0, 0), new Point(0, 0) };
             string name = f.Name;
-
+            if (name.StartsWith("cyto")==true)
+            { }
             float startPoint = f.arcStartAngle(sequencelength);
             float endPoint = f.arcEndAngle(sequencelength);
-            if (f.Name == "nad3")
-            {
-                float a = (Math.Abs(endPoint) - Math.Abs(startPoint));
-                float r = (endPoint - startPoint);
 
-            }
             Font font = new Font(FontFamily.GenericSansSerif, 20, FontStyle.Bold);
             SizeF lenght = g.MeasureString(name, font);
             float circumference = (float)(2 * radius * Math.PI);
 
-            float arcLength = circumference * (endPoint - startPoint) / 360;
+            float arcLength = circumference * (endPoint - (startPoint + 1)) / 360;
             int fontSize = 19;
             float fontRadiusOffset = 0;
             while (lenght.Width > arcLength - scaling.ten && fontSize > 10)
@@ -1067,8 +1063,12 @@ namespace circularMT
             if (middle < 270 && middle > 90) { spin = 180; }
 
             double radion = (middle * 2 * Math.PI) / 360;
-            float x = (int)(Math.Cos(radion) * (radius - scaling.ten)) + center.X;
-            float y = (int)(Math.Sin(radion) * (radius - scaling.ten)) + center.Y;
+            int extra = 0;
+            if (f.Forward == false && name.Length > 15) 
+            { extra = scaling.sixty; }
+            float x = (int)(Math.Cos(radion) * (radius + extra - scaling.ten)) + center.X;
+            float y = (int)(Math.Sin(radion) * (radius + extra - scaling.ten)) + center.Y;
+
 
             g.TranslateTransform(x, y);
 
@@ -1095,14 +1095,14 @@ namespace circularMT
             SizeF s = g.MeasureString(name, font);
             if (spin == 180)
             {
-                if (f.Forward == true)
+                if (f.Forward == true || name.Length > 15)
                 { g.DrawString(name, font, Brushes.Black, -scaling.thirtyEight - s.Width, -scaling.six); }
                 else
                 { g.DrawString(name, font, Brushes.Black, scaling.twenty, -scaling.ten); }
             }
             else
             {
-                if (f.Forward == true)
+                if (f.Forward == true || name.Length > 15)
                 { g.DrawString(name, font, Brushes.Black, scaling.thirtyEight, -scaling.ten); }
                 else
                 { g.DrawString(name, font, Brushes.Black, -scaling.sixteen - s.Width, -scaling.six); }
@@ -1110,7 +1110,7 @@ namespace circularMT
 
             g.ResetTransform();
 
-            if (f.Forward == true)
+            if (f.Forward == true || name.Length > 15)
             {
                 if (spin == 180)
                 {
@@ -1401,6 +1401,10 @@ namespace circularMT
             en.ShowDialog();
         }
 
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+
+        }
         private void btnRemove_Click(object sender, EventArgs e)
         {
             if (chlTerms.CheckedItems.Count == 0) { return; }
@@ -1414,5 +1418,6 @@ namespace circularMT
             Deletefeature df = new Deletefeature(features, this, terms);
             df.ShowDialog();
         }
+
     }
 }

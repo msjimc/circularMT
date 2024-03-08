@@ -57,6 +57,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.Quit = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.p1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -89,6 +91,8 @@
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.button1);
+            this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.Quit);
             this.groupBox2.Controls.Add(this.btnRemove);
             this.groupBox2.Controls.Add(this.label10);
@@ -122,10 +126,10 @@
             // 
             // btnRemove
             // 
-            this.btnRemove.Location = new System.Drawing.Point(136, 430);
+            this.btnRemove.Location = new System.Drawing.Point(136, 459);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(75, 23);
-            this.btnRemove.TabIndex = 12;
+            this.btnRemove.TabIndex = 13;
             this.btnRemove.Text = "Remove";
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
@@ -133,7 +137,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(6, 435);
+            this.label10.Location = new System.Drawing.Point(6, 464);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(92, 13);
             this.label10.TabIndex = 21;
@@ -156,7 +160,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(6, 411);
+            this.label9.Location = new System.Drawing.Point(6, 406);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(59, 13);
             this.label9.TabIndex = 19;
@@ -174,10 +178,10 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(135, 459);
+            this.btnSave.Location = new System.Drawing.Point(135, 488);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 13;
+            this.btnSave.TabIndex = 14;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -185,7 +189,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 464);
+            this.label8.Location = new System.Drawing.Point(6, 493);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(63, 13);
             this.label8.TabIndex = 16;
@@ -221,7 +225,7 @@
             this.btnChangeColours.Name = "btnChangeColours";
             this.btnChangeColours.Size = new System.Drawing.Size(75, 23);
             this.btnChangeColours.TabIndex = 9;
-            this.btnChangeColours.Text = "Reset";
+            this.btnChangeColours.Text = "Adjust";
             this.btnChangeColours.UseVisualStyleBackColor = true;
             this.btnChangeColours.Click += new System.EventHandler(this.btnChangeColours_Click);
             // 
@@ -230,9 +234,9 @@
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(6, 323);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(105, 13);
+            this.label6.Size = new System.Drawing.Size(95, 13);
             this.label6.TabIndex = 12;
-            this.label6.Text = "Reset genome name";
+            this.label6.Text = "Edit genome name";
             // 
             // btnResetName
             // 
@@ -240,7 +244,7 @@
             this.btnResetName.Name = "btnResetName";
             this.btnResetName.Size = new System.Drawing.Size(75, 23);
             this.btnResetName.TabIndex = 8;
-            this.btnResetName.Text = "Reset";
+            this.btnResetName.Text = "Edit";
             this.btnResetName.UseVisualStyleBackColor = true;
             this.btnResetName.Click += new System.EventHandler(this.btnResetName_Click);
             // 
@@ -369,12 +373,32 @@
             // 
             // Quit
             // 
+            this.Quit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.Quit.Location = new System.Drawing.Point(136, 724);
             this.Quit.Name = "Quit";
             this.Quit.Size = new System.Drawing.Size(75, 23);
             this.Quit.TabIndex = 15;
             this.Quit.Text = "Quit";
             this.Quit.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(136, 430);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Add";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 435);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(71, 13);
+            this.label11.TabIndex = 23;
+            this.label11.Text = "Add a feature";
             // 
             // Form1
             // 
@@ -426,6 +450,8 @@
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Button Quit;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label11;
     }
 }
 

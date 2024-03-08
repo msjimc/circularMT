@@ -24,6 +24,13 @@ namespace circularMT
         private Brush color = Brushes.Gray;
         private Point[] arrows = null;
 
+        public feature(string Name, int startPoint, int length, bool strand)
+        {
+            name = Name;
+            from = startPoint;
+            too = from + length;
+            forward = strand;
+        }
         public feature(string[] lines, int index, int endIndex, string FeatureType, string dataType)
         {
             featureType = FeatureType;
@@ -421,7 +428,7 @@ namespace circularMT
 
         public string Name
         { 
-            get { return (name + new string(' ', 18)).Substring(0,17).Trim(); }
+            get { return name; }
             set { name = value; }    
         }
                     
