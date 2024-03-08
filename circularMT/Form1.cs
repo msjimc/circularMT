@@ -656,10 +656,13 @@ namespace circularMT
             Bitmap bmp = new Bitmap(p1.Width * scaling.one, p1.Height * scaling.one, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
             bmp.SetResolution(scaling.hundred, scaling.hundred);
             Graphics g = Graphics.FromImage(bmp);
-           g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighSpeed;
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             g.TextContrast = 0;
            
             Point center = new Point(bmp.Width / 2, bmp.Height / 2);
+            center.X += (int)nupLeftRight.Value;
+            center.Y += (int)nupUPDown.Value;
+
             int radius = -1;
             if (bmp.Width > bmp.Height)
             { radius = center.Y - scaling.fourty; }
@@ -1419,5 +1422,14 @@ namespace circularMT
             df.ShowDialog();
         }
 
+        private void nupLeftRight_ValueChanged(object sender, EventArgs e)
+        {
+            drawFeatures("", scaling);
+        }
+
+        private void nupUPDown_ValueChanged(object sender, EventArgs e)
+        {
+            drawFeatures("", scaling);
+        }
     }
 }

@@ -32,6 +32,9 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.p1 = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.Quit = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.chkSwitchStrands = new System.Windows.Forms.CheckBox();
@@ -56,12 +59,15 @@
             this.btnGenBank = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.Quit = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
+            this.nupUPDown = new System.Windows.Forms.NumericUpDown();
+            this.nupLeftRight = new System.Windows.Forms.NumericUpDown();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.p1)).BeginInit();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nupUPDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nupLeftRight)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -91,6 +97,10 @@
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.label13);
+            this.groupBox2.Controls.Add(this.label12);
+            this.groupBox2.Controls.Add(this.nupLeftRight);
+            this.groupBox2.Controls.Add(this.nupUPDown);
             this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.Quit);
@@ -123,6 +133,35 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Options";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(136, 430);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Add";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(6, 435);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(71, 13);
+            this.label11.TabIndex = 23;
+            this.label11.Text = "Add a feature";
+            // 
+            // Quit
+            // 
+            this.Quit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.Quit.Location = new System.Drawing.Point(136, 724);
+            this.Quit.Name = "Quit";
+            this.Quit.Size = new System.Drawing.Size(75, 23);
+            this.Quit.TabIndex = 17;
+            this.Quit.Text = "Quit";
+            this.Quit.UseVisualStyleBackColor = true;
             // 
             // btnRemove
             // 
@@ -178,10 +217,10 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(135, 488);
+            this.btnSave.Location = new System.Drawing.Point(136, 540);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
-            this.btnSave.TabIndex = 14;
+            this.btnSave.TabIndex = 16;
             this.btnSave.Text = "Save";
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -189,7 +228,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 493);
+            this.label8.Location = new System.Drawing.Point(7, 545);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(63, 13);
             this.label8.TabIndex = 16;
@@ -371,34 +410,59 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // Quit
+            // nupUPDown
             // 
-            this.Quit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.Quit.Location = new System.Drawing.Point(136, 724);
-            this.Quit.Name = "Quit";
-            this.Quit.Size = new System.Drawing.Size(75, 23);
-            this.Quit.TabIndex = 15;
-            this.Quit.Text = "Quit";
-            this.Quit.UseVisualStyleBackColor = true;
+            this.nupUPDown.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.nupUPDown.Location = new System.Drawing.Point(136, 514);
+            this.nupUPDown.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.nupUPDown.Name = "nupUPDown";
+            this.nupUPDown.Size = new System.Drawing.Size(75, 20);
+            this.nupUPDown.TabIndex = 15;
+            this.nupUPDown.ValueChanged += new System.EventHandler(this.nupUPDown_ValueChanged);
             // 
-            // button1
+            // nupLeftRight
             // 
-            this.button1.Location = new System.Drawing.Point(136, 430);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "Add";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.btnAdd_Click);
+            this.nupLeftRight.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.nupLeftRight.Location = new System.Drawing.Point(136, 488);
+            this.nupLeftRight.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.nupLeftRight.Name = "nupLeftRight";
+            this.nupLeftRight.Size = new System.Drawing.Size(75, 20);
+            this.nupLeftRight.TabIndex = 14;
+            this.nupLeftRight.ValueChanged += new System.EventHandler(this.nupLeftRight_ValueChanged);
             // 
-            // label11
+            // label12
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(6, 435);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(71, 13);
-            this.label11.TabIndex = 23;
-            this.label11.Text = "Add a feature";
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(7, 490);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(71, 13);
+            this.label12.TabIndex = 26;
+            this.label12.Text = "More left-right";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(7, 516);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(79, 13);
+            this.label13.TabIndex = 27;
+            this.label13.Text = "More Up-Down";
             // 
             // Form1
             // 
@@ -416,6 +480,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.p1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nupUPDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nupLeftRight)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -452,6 +518,10 @@
         private System.Windows.Forms.Button Quit;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.NumericUpDown nupLeftRight;
+        private System.Windows.Forms.NumericUpDown nupUPDown;
     }
 }
 
