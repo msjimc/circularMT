@@ -1342,13 +1342,13 @@ namespace circularMT
             else
             { input = Interaction.InputBox("Enter the genome length", "Genome length", sequencelength.ToString("N0")); }
 
-            if (string.IsNullOrEmpty(input) == true) { return -1; }
+            if (string.IsNullOrEmpty(input) == true) { return sequencelength; }
             try
             { newValue = Convert.ToInt32(input.Trim().Replace(",", "")); }
             catch (Exception ex)
             {
                 MessageBox.Show("Could not convert value to a whole number", "Error");
-                return -1;
+                return sequencelength;
             }
             return newValue;
         }
