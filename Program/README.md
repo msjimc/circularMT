@@ -5,20 +5,15 @@ It is possible to download the whole repository by clicking on the green '<> Cod
 Download program only
 
 This folder contains the precompiled program, dll and config files as both individual files and a zip file. Due to heightened security by some organisation's IT departments it may not be possible to run a program extracted from a zip file. Consequently, you may have to try downloading the program both ways until one way works. 
-
-<hr />
-
-#### Important note  
-
-Once downloaded it is important that the AgileStructure.exe, AgileStructure.dll and AgileStructure.runtimeconfig.json are located in the same folder. 
+ 
 <hr />
 
 * [Downloading the zip file](#downloading-the-zip-file)
-* [Downloading the individual files](#downloading-the-individual-files)
+* [Downloading the executable](#downloading-the-executable)
 
 ## Downloading the zip file
 
-First click on the program file (AgileStructure.zip in the table above) which will take you to a new page, on the upper righthand corner click on the icon of a tray with an arrow pointing to it (Figure 1). This will then start the download which will ultimately prompt you to either save it or open the zip file (Figure 2).
+First click on the program file (circularMT.zip in the table above) which will take you to a new page, on the upper right hand corner click on the icon of a tray with an arrow pointing to it (Figure 1). This will then start the download which will ultimately prompt you to either save it or open the zip file (Figure 2).
 
 ![figure 1](images/figure1.jpg)
 
@@ -36,7 +31,7 @@ Once downloaded go to the zip file and extract it, saving the files to the desir
 
 Figure 3
 
-When you double click on the AgileStructure.exe file you'll get a warning message, click on the 'Run  anyway' option (Figure 4)
+When you double click on the circularMT.exe file you'll get a warning message, click on the 'More info' option (Figure 4)
 
 ![figure 4](images/figure4.jpg)
 
@@ -48,9 +43,9 @@ And finally, click on the 'Run  anyway' option and the program should start (Fig
 
 Figure 5
 
-## Downloading the individual files
+## Downloading the executable
 
-First click on the program file (AgileStructure.exe in the table above) which will take you to a new page, on the upper righthand corner click on the icon of a tray with an arrow pointing to it (Figure 6). This will then start the download which will ultimately get you to the first warning (Figure 2).
+First click on the program file (circularMT.exe in the table above) which will take you to a new page, on the upper righthand corner click on the icon of a tray with an arrow pointing to it (Figure 6). This will then start the download which will ultimately get you to the first warning (Figure 2).
 
 ![figure 6](images/figure6.jpg)
 
@@ -80,11 +75,11 @@ And finally, select the 'Keep anyway' option (Figure 10) and the download will s
 
 Figure 5
 
-Repeat the process for the AgileStructure.dll and AgileStructure.runtimeconfig.json file.
+Repeat the process for the circularMT.dll and circularMT.runtimeconfig.json file.
 
-# Running AgileStructure
+# Running circularMT
 
-To run AgileStructure double click on the file in File Explorer and it should start. If it doesn't, first make sure that all three files are in the same folder (AgileStructure.exe, AgileStructure.dll and AgileStructure.runtimeconfig.json). If you get an error message such as the one in Figure 6, go to the [.Net download page](https://dotnet.microsoft.com/en-us/download/dotnet/7.0) and select the appropriate ".NET Desktop Runtime". There are a number of options make sure you chose the Desktop version.
+To run circularMT double click on the file in File Explorer and it should start. If it doesn't, first make sure that all three files are in the same folder (circularMT.exe, circularMT.dll and circularMT.runtimeconfig.json). If you get an error message such as the one in Figure 6, go to the [.Net download page](https://dotnet.microsoft.com/en-us/download/dotnet/7.0) and select the appropriate ".NET Desktop Runtime". There are a number of options make sure you chose the Desktop version.
 
 
 ![figure 6](images/figure11.jpg)
