@@ -45,6 +45,7 @@ The ___join___ key word indicates the feature contains sequences in two or more 
 LOCUS&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NC_020333&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;14780&nbsp;bp&nbsp;&nbsp;&nbsp;&nbsp;DNA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;circular&nbsp;INV 03-APR-2023  
 DEFINITION&nbsp;&nbsp;Amblyomma cajennense mitochondrion, complete genome.  
 
+
 #### Features
 
      source          1..14780
@@ -90,9 +91,8 @@ Note the file has no column headers.
 
 ## Seq files
 
-Seq files start with a '>' character and the name of the reference sequence the file refers too e.g. 
->Feature L20  
-
+Seq files start with a '>' character and the name of the reference sequence the file refers too e.g.  
+&#62;Feature L20  
 where L20 is the reference sequence's name.
 
 The remained of the file is tab-delimited text: each sequence is described over at least two lines. In any set the last line is indented bt 3 tab characters and consists of a key word describing the feature's name (i.e. ___gene___, ___product___ or ___note___) followed by a tab character and then the features name. This line is preceded by one or more lines which give the start and end points of the feature and then the type of feature. When ```circularMT``` processes a file, it reads it from the read to the beginning and appends the the last line of a description to each of the feature lines in turn to create a series of features, stored collection of each feature type as described below:
@@ -140,7 +140,7 @@ Note the file has no column headers.
 |L20|0|1144|rrnL|0.0|-|
 |L20|1125|1187|trnV(tac)|3.6079e-05|-|
 |L20|1178|1891|rrnS|0.0|-|
-Z|20|1943|2186|OH_1|228266.8|+|
+|20|1943|2186|OH_1|228266.8|+|
 
 
 ## Fasta files 
@@ -149,21 +149,21 @@ As with Bed files, fasta files are widely used and there is a very good chance a
 
 #### Fasta file fragment 
 
->L20; 1944-2186; +; OH_1
-AAAACTCGTGTCTATCGGTTATCTGGACACATAAAAGAAATGTATGCTAAATTTTACTGG
-ACATTCTCTCGATATTGTAAATAGGTACCTACTTAGAGCTAAATGCCATCATCTCCTTTT
-TTTCTCCGAATTTATTAGTTAGTAAATGTGTGTTAGACTTAGTATGACCCTTTGTTACAT
-CTATGCAGTCCAGTAAATGAGATAGCCGGTTGTCGCCCCTTATTTTCAATAGATGTGATA
-ATA
->L20; 2197-2264; +; trnI(gat)
-AGTAAAATGCCTGAAACTTAAAGGATTATCTTGATAGGATAAATTATGTAAATTAATTAC
-TTTTACTA
->L20; 2268-2337; -; trnQ(ttg)
-TAACTTTTAGTGTATAAAAAGCACAAAAAATTTTGATTTTTTAAGAAATAATTAATATTA
-TTAAAGTTAT
->L20; 2341-2404; -; trnF(gaa)
-ATCTTTATAGTTTAATTAAAAACATTACACTGAAAATGTAAAGAAAAACTACAATTTAAA
-GATA
+&#62;L20; 1944-2186; +; OH_1
+AAAACTCGTGTCTATCGGTTATCTGGACACATAAAAGAAATGTATGCTAAATTTTACTGG  
+ACATTCTCTCGATATTGTAAATAGGTACCTACTTAGAGCTAAATGCCATCATCTCCTTTT  
+TTTCTCCGAATTTATTAGTTAGTAAATGTGTGTTAGACTTAGTATGACCCTTTGTTACAT  
+CTATGCAGTCCAGTAAATGAGATAGCCGGTTGTCGCCCCTTATTTTCAATAGATGTGATA  
+ATA  
+&#62;L20; 2197-2264; +; trnI(gat)  
+AGTAAAATGCCTGAAACTTAAAGGATTATCTTGATAGGATAAATTATGTAAATTAATTAC  
+TTTTACTA  
+&#62;L20; 2268-2337; -; trnQ(ttg)  
+TAACTTTTAGTGTATAAAAAGCACAAAAAATTTTGATTTTTTAAGAAATAATTAATATTA  
+TTAAAGTTAT  
+&#62;L20; 2341-2404; -; trnF(gaa)  
+ATCTTTATAGTTTAATTAAAAACATTACACTGAAAATGTAAAGAAAAACTACAATTTAAA  
+GATA  
 
 ## GTF and GFF files
 
