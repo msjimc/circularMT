@@ -3,8 +3,8 @@
 ## Contents
 
 - [Introduction](#Introduction)
-- [Guide](guide)
-- [Download](program)
+- [Guide](#guide)
+- [Download](#program)
 
 ## Introduction
 
