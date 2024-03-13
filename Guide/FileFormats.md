@@ -167,7 +167,7 @@ GATA
 
 ## GTF and GFF files
 
-GTF and GFF version 3.0 files have very similar formats, both start with a series of lines starting with ## or \#! that contain information on the files format version and origins: these lines are ignored. The remained of the file as a standard tab-delimited text format, with the final field an array of key-value pairs. The differences between GTF and GFF ver 3 files is limited to how the final fields is formatted with the first 8 fields the same. The table below shows format for GTF/GFF v3 files with the final field replaced with 'Not shown'
+GTF and GFF version 3.0 files have very similar formats, both start with a series of lines starting with ## or \#! that contain information on the file's format version and origins: these lines are ignored. The remained of the file has a standard tab-delimited text format, with the final field an array of key-value pairs. The differences between GTF and GFF ver 3 files is limited to how the final field is formatted with the first 8 fields the same. The table below shows format for GTF/GFF v3 files with the final field replaced with 'Not shown'
 
 #### Example of common features of a GTF and GFF v3 file
 
@@ -177,6 +177,8 @@ GTF and GFF version 3.0 files have very similar formats, both start with a serie
 |L20      |mitfi |ncRNA_gene |  1  |1144 |.  |   -  |.|   Not shown   |
 |L20      |mitfi |rRNA       |  1  |1144 |.  |   -  |.|   Not shown   |
 |L20      |mitfi |exon       |  1  |1144 |0.0|   -  |.|   Not shown   |
+
+The data in the ___Feature type___, ___Start___, ___End___ and ___Strand___ fields are retained.
 
 #### Field 9 in a GTF file
 
