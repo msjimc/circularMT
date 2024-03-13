@@ -4,7 +4,7 @@
 
 - [Introduction](#Introduction)
 - [Guide](#guide)
-- [Download](#program)
+- [Download](#download)
 
 ## Introduction
 
