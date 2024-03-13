@@ -45,7 +45,7 @@ Figure 5
 
 ## Downloading the executable
 
-First click on the program file (circularMT.exe in the table above) which will take you to a new page, on the upper righthand corner click on the icon of a tray with an arrow pointing to it (Figure 6). This will then start the download which will ultimately get you to the first warning (Figure 2).
+First click on the program file (circularMT.exe in the table above) which will take you to a new page, on the upper right hand corner click on the icon of a tray with an arrow pointing to it (Figure 6). This will then start the download which will ultimately get you to the first warning (Figure 2).
 
 ![figure 6](images/figure6.jpg)
 
