@@ -1,12 +1,12 @@
 # circularMT
 
 ### Contents
-- [Genbank](#genbank_files)  
-- [Mitos](#mitos_files)  
-- [Seq](#seq_files)  
-- [Bed](#bed_files)  
-- [Fasta](#fasta_files)  
-- [GTF and GFF](#gtf-and-gff_files)  
+- [Genbank](#genbank-files) 
+- [Mitos](#mitos-files)  
+- [Seq](#seq-files)  
+- [Bed](#bed-files)  
+- [Fasta](#fasta-files)  
+- [GTF and GFF](#gtf-and-gff-files)  
 
 ```circularMT``` is able to read a range of file types, however the official format of many of these formats does not include all the required information so in fact it would be more coorrect to say that ```circularMT``` can read standard genbank, mitos, gtf and gff and can process extended fasta and bed files. The format and required files are described below with links to example files.
 
@@ -149,7 +149,7 @@ As with Bed files, fasta files are widely used and there is a very good chance a
 
 #### Fasta file fragment 
 
-&#62;L20; 1944-2186; +; OH_1
+&#62;L20; 1944-2186; +; OH_1   
 AAAACTCGTGTCTATCGGTTATCTGGACACATAAAAGAAATGTATGCTAAATTTTACTGG  
 ACATTCTCTCGATATTGTAAATAGGTACCTACTTAGAGCTAAATGCCATCATCTCCTTTT  
 TTTCTCCGAATTTATTAGTTAGTAAATGTGTGTTAGACTTAGTATGACCCTTTGTTACAT  
