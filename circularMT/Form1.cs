@@ -502,11 +502,7 @@ namespace circularMT
         {
             defination = "";
             features = new Dictionary<string, List<feature>>();
-            int newValue = getSequenceLength();
-            if (newValue > -1)
-            { sequencelength = newValue; }
-            else { return; }
-
+            
             System.IO.StreamReader fs = null;
 
             try
@@ -531,6 +527,19 @@ namespace circularMT
                     }
                     else if (lines[index].StartsWith("DEFINITION") == true)
                     { defination = lines[index].Substring(12).Trim(); }
+                    else if (lines[index].StartsWith("LOCUS") == true)
+                    { 
+                        string t = lines[index].Substring(35);
+                        int intbp = t.IndexOf("bp");
+                        if (intbp > -1) { t= t.Substring(0, intbp-1).Trim();}
+                        try
+                        { 
+                            int len = Convert.ToInt32(t);
+                            if (len > 1000) 
+                            { sequencelength = len; } 
+                        }
+                        catch(Exception ex) { }
+                    }
                     index++;
                 }
 
@@ -578,7 +587,12 @@ namespace circularMT
                     }
                 }
 
-                sequencelength = getlength();
+                if (sequencelength == -1)
+                {
+                    int newValue = getSequenceLength();
+                    if (newValue > -1)
+                    { sequencelength = newValue; }
+                }
 
                 cboStart.Items.Clear();
                 cboStart.Items.Add("select");

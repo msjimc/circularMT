@@ -209,8 +209,6 @@ namespace circularMT
 
                 if (gene != "" && name == "")
                 { name = gene; }
-
-
             }
 
             try
