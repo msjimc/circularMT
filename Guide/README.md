@@ -74,7 +74,7 @@ As can be seen from the preceding figures there may be a number of ways to displ
 
 ![Figure 12](images/figure12.jpg)
 
-Figure 12: The th ***D-loop***, ***tRNA***, ***rRNA*** and ***CDS*** were selected such that each feature was drawn once.
+Figure 12: The ***D-loop***, ***tRNA***, ***rRNA*** and ***CDS*** were selected such that each feature was drawn once.
 
 <hr />
 
@@ -96,7 +96,7 @@ Figure 14: Checking the ```Switch strand``` option switches the features strand,
 
 ![Figure 15](images/figure15.jpg)
 
-Figure 15: Checking the ```Reverse complement sequence``` and ``Switch strand``` option draws the sequences in the reverse order.
+Figure 15: Checking the ```Reverse complement sequence``` and ```Switch strand``` option draws the sequences in the reverse order.
 
 <hr />
 
