@@ -186,21 +186,21 @@ namespace circularMT
             }
             else
             {
-                int one = data[8].IndexOf("gene_id ") + 8;
+                int one = data[8].IndexOf("gene_id=") + 8;
                 int two = data[8].IndexOf(";", one);
 
-                if (one > 4 && two > one)
+                if (one > 7 && two > one)
                 { name = data[8].Substring(one, two - one).Replace("\"",""); }
-                else if (one > 4 && two == -1)
+                else if (one > 7 && two == -1)
                 { name = data[8].Substring(one).Trim().Replace("\"", ""); }
                 else { name = ""; }
 
-                one = data[8].IndexOf("transcript_name ") + 15;
+                one = data[8].IndexOf("transcript_name=") + 15;
                 two = data[8].IndexOf(";", one);
 
-                if (one > 5 && two > one)
+                if (one > 14 && two > one)
                 { gene = data[8].Substring(one, two - one).Replace("\"", ""); }
-                else if (one > 5 && two == -1)
+                else if (one > 14 && two == -1)
                 { gene = data[8].Substring(one).Trim().Replace("\"", ""); }
                 else { gene = ""; }
 

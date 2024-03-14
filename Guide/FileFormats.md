@@ -172,6 +172,8 @@ Note the file has no column headers.
 
 As with Bed files, fasta files are widely used and there is a very good chance a fasta file will not work, but if its source suggest it contains the relevant data it may work. Fasta files may contain one or more sequences and have a simple structure. The name of the sequence (and any attributes) is in a single line starting with a "\>" characters, followed by the sequence on the following line(s). Depending on the file, the sequence may be on one line or across a series of fixed length lines. A fragment of a fasta file is shown below containing 4 sequences. The sequence name line contains the sequence's name, location, strand and the feature's name separated by a ';' character. 
 
+An example fasta files is [here](../Example%20data/result.fas).
+
 #### Fasta file fragment 
 
 &#62;L20; 1944-2186; +; OH_1   
@@ -205,6 +207,10 @@ Since the file doesn't contain a feature's type all the features are saved as ty
 
 GTF and GFF version 3.0 files have very similar formats, both start with a series of lines starting with ## or \#! that contain information on the file's format, version and origins: these lines are ignored. The remainder of the file has a standard tab-delimited text format, with the final field an array of key-value pairs. The differences between GTF and GFF ver 3 files is limited to how the final field is formatted with the first 8 fields the same. The table below shows the format for GTF/GFF v3 files with the final field replaced with 'Not shown'
 
+An example GTF file is [here](../Example%20data/result.gtf).
+An example GFF file is [here](../Example%20data/result.gff).
+
+
 #### Structure of common features of a GTF and GFF v3 file
 
 |Reference|Origin|Feature type|Start|End  | U |Strand|U|Attribute field|
@@ -219,6 +225,8 @@ The data in the ___Feature type___, ___Start___, ___End___ and ___Strand___ fiel
 #### Attribute field in a GTF file
 
 In GTF files the last field is split in to an array of key-value pairs with each key-value pair separated a '; ' (note the space). Each key-value pair as the same structure: the key is a single word followed by a space and the value written between two speech marks (see table below). Each line may contain one or more key-value pairs depending on the feature and the program that created the file.
+
+
 
 A typical array of key-value pairs from a GTF file is shown below:
 > gene_id "ENSG00000211459.2"; gene_type "Mt_rRNA"; gene_name "MT-RNR1"; level 3; hgnc_id "HGNC:7470";

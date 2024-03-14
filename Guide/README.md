@@ -147,3 +147,143 @@ In the center of the image, the sequence's name is displayed. If the name is lon
 Figure 20: Resetting the genome's name with the ```Genome name``` form. 
 
 <hr />
+
+## Changing the colours of the features
+
+Initially, the colours of each type of feature is based on the order in which the features occur in the file, consequently it is possible to change the colours of a feature set or specific feature by pressing the ```Adjust``` button to the right of the ```Adjust colour scheme``` button. This will display the ```Adjust feature colours``` window that allows the selection of the features to change and the new colour (Figure 21).
+
+![Figure 21](images/figure21.jpg)
+
+Figure 21: The ```Adjust feature colours``` window allows the colour of the features to be changed. 
+
+<hr />
+
+#### Selecting the feature(s) to change
+
+The ```Adjust feature colours``` form consists of a dropdown list of the different type of features and a text box that is disabled when the form appears. To select a feature, first select its feature set from the dropdown list (Figure 22).
+
+![Figure 22](images/figure22.jpg)
+
+Figure 22
+
+<hr />
+
+Once a feature type has been selected the text box will be active, initially all the features of the chosen type will be selected and their names will appear in a list below the text box. Typing the name of the feature in the active text box, will reduce the list of selected items to those whose name starts with the entered text. For instance in Figure 23, 'ND' has been entered and so only the CDS features ***ND1***, ***ND2***, ***ND3***, ***ND4***, ***ND4L***, ***ND5*** and ***ND6*** where selected.
+
+![Figure 23](images/figure23.jpg)
+
+Figure 23
+
+<hr />
+
+Once the features have been selected, press the ```Select``` button in the lower right corner of the form to display the ```Colour``` dialog form and pick the desired colour (Figure 24) and press the ```OK``` button. This will close the dialog form and recolour the image, in this case all of the CDS features whose names start with 'ND' were redrawn (Figure 25).
+
+![Figure 24](images/figure24.jpg)
+
+Figure 24
+
+<hr />
+
+![Figure 25](images/figure25.jpg)
+
+Figure 25
+
+<hr />
+
+## Drawing smaller features last
+
+The genes on the mitochondrial genome are very tightly packed with some sequences over lapping. This may result in smaller features such as tRNAs been obscured by larger gene sequences. To reduce the affect of this, by default features longer than 150 bp are drawn first and then the remainder are draw. Unchecking the ```Draw smaller features last``` option will cause the features to be drawn in the order the feature types are listed in the check box list in the top right of the interface, with each feature in the set drawn in positional order. Figure 26 shows the affect on trnl2(taa) sequence (draw using the [results.gtf](../Example%20data/result.gtf) file) when the option is turned off (A) and turned on (B).
+
+![Figure 26](images/figure26.jpg)
+
+Figure 26
+<hr />
+
+## Editing the names of the features
+
+The name of each feature is obtained from the data file, if you wish to change their names, press the ```Edit``` button to the right of the ```Edit names``` label. This will open the ```Edit feature names``` form, which is similar to the ```Adjust feature colours``` form. To edit a feature, first select its type from the dropdown list (Figure 27) and the start to type the name of the feature you wish to change in to the text area below the drop down list (this is case sensitive). When the entered text matches just one feature - only one feature appears in the text area below, the lowest text area will be come active allowing you to enter the new name (Figure 28). 
+
+![Figure 26](images/figure27.jpg)
+
+Figure 27
+<hr />
+
+![Figure 28](images/figure28.jpg)
+
+Figure 28
+<hr />
+
+Pressing the ```Change``` button in the lower right of the form will rename the feature in the display (Figure 29). The ```Edit feature names``` form will remain open, allowing you to edit multiple features.
+
+![Figure 29](images/figure29.jpg)
+
+Figure 29
+<hr />
+
+
+#### Note: 
+The name changes are not permanent changing the selected value in the ```Select name tag``` drop down list will reset the values to these from the file.
+
+## Adding a feature
+
+During the annotation process, some sequences will be missed and not included, if you have a strong reason to believe a feature should be add, you can do this by pressing the ```Add``` button to the right of the ```Add a feature``` label (the figures were made using the [result-one.fas](../Example%20data/result-one.fas) from which ***rrnl*** was removed). This will open the ```Add a feature``` form: select the feature (in this case ***Features*** is the only option and then enter the relevant information (figure 30).
+
+![Figure 30](images/figure30.jpg)
+
+Figure 30
+<hr />
+
+Pressing the ```Add``` button in the lower right of the form will add the feature to the image (Figure 31). The feature can now be edited like any other feature.
+
+![Figure 31](images/figure31.jpg)
+
+Figure 31
+<hr />
+
+## Removing a feature
+
+During the annotation process extra features may be erroneously added, in the [results.bed](../Example%20data/result.bed) file extra replication origins have been added: ***OH_4***, ***OH_3***, ***OH_2a*** and ***OH_2b*** (Figure 32). 
+
+![Figure 32](images/figure32.jpg)
+
+Figure 32
+<hr />
+
+To remove unwanted features, click the ```Remove``` button next to the ```Remove a feature``` label to open the ```Delete feature(s)``` form. Once opened, select the feature type from the drop down list at the top right of the form and enter the name of feature in the activated text box (this is case sensitive) (Figure 33). If text matches one or more features, the lower right ```Delete``` button will be enabled.
+
+![Figure 33](images/figure33.jpg)
+
+Figure 33: The text "OH_2" matches the ***OH_2a*** and ***OH_2b*** features. Pressing the ```Delete``` button will delete them from ```circularMT's``` database. 
+
+ Pressing the ```Delete``` button will delete any feature of the selected feature type, whose name start with the entered text (this is case sensitive) (Figure 34). Once deleted, they can not be retrieved, you'll have to either reenter the file or use the ```Add feature``` function described above. 
+
+ 
+![Figure 34](images/figure34.jpg)
+
+Figure 34: Using the ```Delete feature(s)``` form, the unwanted ***OH_4***, ***OH_3***, ***OH_2a*** and ***OH_2b*** features have been removed.
+<hr />
+
+## Recentering  the image
+
+By default, the center of the circle representing the genome is centered on the center of the image area and the circle is rescaled to stop text disappearing off the edge of the image. However, for images with long feature names the scaling process may be stopped to make sure the image doesn't become too small and the text over runs the image or the image is smaller than you'd like (Figure 35) 
+
+![Figure 35](images/figure35.jpg)
+
+Figure 35: The renamed TRNF sequence causes the image to be too small.
+<hr />
+
+The two selection controls to the right of the ```Move left-right``` amd ```Move up-down``` labels allow the position of the center to be moved. As the center mores the image will rescale its self to try to stop text over running the image area. Setting the value in the control to the right of the ```Move up-down``` label to "60" will shift the image down allowing it to increase in size while still displaying the edited text for the TRNF tRNA feature (Figure 36). If you type or copy and paste a new value in to the control, you have click on another control (i.e. the other ```Move``` control or the check box list) to redraw the image.
+
+![Figure 36](images/figure36.jpg)
+
+Figure 36: Moving the image's center down by '60' using the ```Move up-down``` control creates a better image.
+<hr />
+
+## Saving the image to a 300 dpi image
+
+Once the display as been adjusted, it can be saved as a 300 (are just over) dpi tif image by pressing the ```Save``` button to the right of the ```Save image``` label. This will prompt you to enter a location and file name before saving the image (Figure 37). Saving the image to a deeper resolution will also sharpen up the text written at near vertical angles which may appear scrappy in the user interface where it is drawn at ~96 dpi.
+
+![Figure 37](images/figure37.jpg)
+
+Figure 37: Pressing the ```Save``` button will save the current display image to a 300 dpi tif image file. 
+<hr />

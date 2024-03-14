@@ -1421,7 +1421,16 @@ namespace circularMT
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
+            if (chlTerms.CheckedItems.Count == 0) { return; }
+            List<string> terms = new List<string>();
 
+            for (int index = 0; index < chlTerms.CheckedItems.Count; index++)
+            {
+                terms.Add(chlTerms.CheckedItems[index].ToString());
+            }
+
+            AddFeature af = new AddFeature(features, this, terms, sequencelength);
+            af.ShowDialog();
         }
         private void btnRemove_Click(object sender, EventArgs e)
         {
