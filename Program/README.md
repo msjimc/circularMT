@@ -6,6 +6,10 @@ Download program only
 
 This folder contains the precompiled program, dll and config files as both individual files and a zip file. Due to heightened security by some organisation's IT departments it may not be possible to run a program extracted from a zip file. Consequently, you may have to try downloading the program both ways until one way works. 
  
+## Note
+
+The images refer to downloading AgileStructure.exe and AgileStructure.zip, but the process is the same.
+
 <hr />
 
 * [Downloading the zip file](#downloading-the-zip-file)
