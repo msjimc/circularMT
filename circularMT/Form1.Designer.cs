@@ -32,6 +32,10 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.p1 = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.nupLeftRight = new System.Windows.Forms.NumericUpDown();
+            this.nupUPDown = new System.Windows.Forms.NumericUpDown();
             this.button1 = new System.Windows.Forms.Button();
             this.label11 = new System.Windows.Forms.Label();
             this.Quit = new System.Windows.Forms.Button();
@@ -59,15 +63,11 @@
             this.btnGenBank = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.nupUPDown = new System.Windows.Forms.NumericUpDown();
-            this.nupLeftRight = new System.Windows.Forms.NumericUpDown();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.p1)).BeginInit();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nupUPDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupLeftRight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nupUPDown)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -133,6 +133,60 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Options";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(7, 516);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(79, 13);
+            this.label13.TabIndex = 27;
+            this.label13.Text = "More Up-Down";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(7, 490);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(71, 13);
+            this.label12.TabIndex = 26;
+            this.label12.Text = "More left-right";
+            // 
+            // nupLeftRight
+            // 
+            this.nupLeftRight.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.nupLeftRight.Location = new System.Drawing.Point(136, 488);
+            this.nupLeftRight.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.nupLeftRight.Name = "nupLeftRight";
+            this.nupLeftRight.Size = new System.Drawing.Size(75, 20);
+            this.nupLeftRight.TabIndex = 14;
+            this.nupLeftRight.ValueChanged += new System.EventHandler(this.nupLeftRight_ValueChanged);
+            // 
+            // nupUPDown
+            // 
+            this.nupUPDown.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.nupUPDown.Location = new System.Drawing.Point(136, 514);
+            this.nupUPDown.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.nupUPDown.Name = "nupUPDown";
+            this.nupUPDown.Size = new System.Drawing.Size(75, 20);
+            this.nupUPDown.TabIndex = 15;
+            this.nupUPDown.ValueChanged += new System.EventHandler(this.nupUPDown_ValueChanged);
             // 
             // button1
             // 
@@ -410,60 +464,6 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // nupUPDown
-            // 
-            this.nupUPDown.Increment = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.nupUPDown.Location = new System.Drawing.Point(136, 514);
-            this.nupUPDown.Minimum = new decimal(new int[] {
-            100,
-            0,
-            0,
-            -2147483648});
-            this.nupUPDown.Name = "nupUPDown";
-            this.nupUPDown.Size = new System.Drawing.Size(75, 20);
-            this.nupUPDown.TabIndex = 15;
-            this.nupUPDown.ValueChanged += new System.EventHandler(this.nupUPDown_ValueChanged);
-            // 
-            // nupLeftRight
-            // 
-            this.nupLeftRight.Increment = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.nupLeftRight.Location = new System.Drawing.Point(136, 488);
-            this.nupLeftRight.Minimum = new decimal(new int[] {
-            100,
-            0,
-            0,
-            -2147483648});
-            this.nupLeftRight.Name = "nupLeftRight";
-            this.nupLeftRight.Size = new System.Drawing.Size(75, 20);
-            this.nupLeftRight.TabIndex = 14;
-            this.nupLeftRight.ValueChanged += new System.EventHandler(this.nupLeftRight_ValueChanged);
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(7, 490);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(71, 13);
-            this.label12.TabIndex = 26;
-            this.label12.Text = "More left-right";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(7, 516);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(79, 13);
-            this.label13.TabIndex = 27;
-            this.label13.Text = "More Up-Down";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -473,15 +473,15 @@
             this.Controls.Add(this.groupBox1);
             this.MinimumSize = new System.Drawing.Size(1005, 816);
             this.Name = "Form1";
-            this.Text = "Circular MT";
+            this.Text = "circularMT";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Resize += new System.EventHandler(this.Form1_Resize);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.p1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nupUPDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupLeftRight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nupUPDown)).EndInit();
             this.ResumeLayout(false);
 
         }

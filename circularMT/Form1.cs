@@ -825,17 +825,18 @@ namespace circularMT
         {
             if (string.IsNullOrEmpty(defination) == true) { return; }
             radius -= scaling.sixty ;
-            int fontSize = 20;
+            float fontSize = 20;
             Font f = new Font(FontFamily.GenericSansSerif, fontSize, FontStyle.Bold);
             SizeF s = g.MeasureString(defination, f);
 
-            int gap = (radius * 2) - (int)(160 * scaling.scale);
+            int gap = (radius * 2) - (int)(140 * scaling.scale);
 
             while (s.Width > gap)
             {
+                if (fontSize < 2) { return; }
                 f = new Font(FontFamily.GenericSansSerif, fontSize, FontStyle.Bold);
                 s = g.MeasureString(defination, f);
-                fontSize--;
+                fontSize -= 0.5f;
             }
 
             int x = (int)s.Width / 2;
