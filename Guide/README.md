@@ -12,9 +12,9 @@
   - [Changing the feature's name to an alternative name in the data file](#changing-the-features-name-to-an-alternative-name-in-the-data-file)  
   - [Changing the displayed length of the genome](#changing-the-displayed-length-of-the-genome)  
   - [Changing the genome's name](#changing-the-genomes-name)
-  - [Changing the features colour](#changing-the-features-colour)  
+  - [Changing a feature's colour](#changing-a-features-colour)  
   - [Drawing smaller features last](#drawing-smaller-features-last)  
-  - [Manually editing a feature's names](#manually-editing-a-features-names)  
+  - [Manually editing a feature's name](#manually-editing-a-features-name)  
     - [Note](#note)
   - [Adding a feature](#adding-a-feature)  
   - [Removing a feature](#removing-a-feature)
@@ -183,7 +183,7 @@ Figure 20: Resetting the genome's name with the ```Genome name``` form.
 
 <hr />
 
-## Changing the features colour
+## Changing a feature's colour
 
 Initially, the colours of each type of feature is based on the order in which the feature types first occur in the file, to make a nicer display, it is possible to change the colour of a feature type or specific subset of features by pressing the ```Adjust``` button to the right of the ```Adjust colour scheme``` button(see blue box in Figure 21). This will display the ```Adjust feature colours``` window that allows the selection of the features to change and the new colour (Figure 21).
 
@@ -232,7 +232,7 @@ The genes on the mitochondrial genome are very tightly packed with some sequence
 Figure 26
 <hr />
 
-## Manually editing a feature's names
+## Manually editing a feature's name
 
 The name of each feature is obtained from the data file, if you wish to change their names, press the ```Edit``` button to the right of the ```Edit names``` label(see blue box in Figure 27 a). This will open the ```Edit feature names``` form, which is similar to the ```Adjust feature colours``` form. To edit a feature, first select its type from the drop down list (Figure 27 b) and the start to type the name of the feature you wish to change in to the text area below the drop down list: -this is case sensitive (see blue box in Figure 28). When the entered text matches just one feature - only one feature appears in the text area below, the lowest text area will be come active allowing you to enter the new name (see red box in Figure 28). 
 
