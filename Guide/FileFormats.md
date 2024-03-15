@@ -83,14 +83,14 @@ The ___join___ key word indicates the feature contains sequences in two or more 
                      RIFTPLLFLNYFSFKNYFKSNYSVKNFILTMNVIFSIFLLNVIMF"
 
 From the fragment above ```circularMT``` will save 4 features:
-|Feature type|Details|
-|-|-|
-|source| Location 1 to 14780|
-|tRNA| Location: 1 to 68, name: tRNA-Met|
-|gene| Location: 69 to 1034, name: ND2, product name: NADH dehydrogenase subunit 2|
-|CDS| Location: 69 to 1034, name: ND2, product name: NADH dehydrogenase subunit 2|
+|Feature type|Location|Gene name|Product name|
+|-|-|-|-|
+|source| 1 to 14780|Not present|Not present|
+|tRNA| 1 to 68| tRNA-Met|Not present|
+|gene| 69 to 1034|  ND2| NADH dehydrogenase subunit 2|
+|CDS| 69 to 1034|  ND2|NADH dehydrogenase subunit 2|
 
-It can be seen that the ND2 sequence occurs as both a gene feature and a CDS feature
+It can be seen that the ND2 sequence occurs as both a gene feature and a CDS feature.
 
 ## Mitos files
 
@@ -102,16 +102,16 @@ Note the file has no column headers.
 
 |Reference|Type|Name|Source|Start|End|Strand|
 |-|-|-|-|-|-|-|
-|L20|rRNA|rrnL|mitfi|0|1143|-1|
-|L20|tRNA|trnV|mitfi|1125|1186|-1|
-|L20|rRNA|rrnS|mitfi|1178|1890|-1|
-|L20|rep_origin|OH|mitos|1943|2185|1|
+|MT-1|rRNA|rrnL|mitfi|0|1143|-1|
+|MT-1|tRNA|trnV|mitfi|1125|1186|-1|
+|MT-1|rRNA|rrnS|mitfi|1178|1890|-1|
+|MT-1|rep_origin|OH|mitos|1943|2185|1|
 
 ## Seq files
 
 Seq files start with a '>Feature' and the name of the reference sequence the file refers too, for example:    
-&#62;Feature L20  
-where L20 is the reference sequence's name.
+&#62;Feature MT-1  
+where MT-1 is the reference sequence's name.
 
 The remainder of the file is tab-delimited text: each region of interest is described across a sett of at least two lines. In any set the last line is indented by 3 tab characters and consists of a key word describing the feature's name (i.e. ___gene___, ___product___ or ___note___) followed by a tab character and then the feature's name. This line is preceded by one or more lines which give the start and end points of the feature and then the type of feature. When ```circularMT``` processes a file, it reads it from the end to the beginning, and appends the the last line of a description to each of the feature lines in turn to create a series of features as described below:
 
@@ -120,7 +120,7 @@ The file fragment below shows the first 8 lines of a seq file.
 
 |Start|End|Feature type|attribute name|Name|
 |-    |-  |-           |-             |-   |
-|>Feature| L20|  
+|>Feature| MT-1|  
 |1143|0|gene|||
 |1143|	0|rRNA| | | 
 | | | |product|l-rRNA|  
@@ -131,7 +131,7 @@ The file fragment below shows the first 8 lines of a seq file.
 
 When processed the lines are concatenated by ```circularMT``` to create those shown below, which are then used to create 4 features.
 
-(The first line (>Feature    L20) is used to get the genome's name.)
+(The first line (>Feature    MT-1) is used to get the genome's name.)
 
 |Feature|Start|End|Feature type|attribute name|Name|
 |-|-    |-  |-           |-             |-   | 
@@ -155,9 +155,9 @@ Note the file has no column headers.
 
 |Reference|Start|End|Name|U|Strand|
 |-|-|-|-|-|-|
-|L20|0|1144|rrnL|0.0|-|
-|L20|1125|1187|trnV(tac)|3.6079e-05|-|
-|L20|1178|1891|rrnS|0.0|-|
+|MT-1|0|1144|rrnL|0.0|-|
+|MT-1|1125|1187|trnV(tac)|3.6079e-05|-|
+|MT-1|1178|1891|rrnS|0.0|-|
 |20|1943|2186|OH_1|228266.8|+|
 
 
@@ -167,19 +167,19 @@ As with Bed files, fasta files are widely used and there is a very good chance a
 
 #### Fasta file fragment 
 
-&#62;L20; 1944-2186; +; OH_1   
+&#62;MT-1; 1944-2186; +; OH_1   
 AAAACTCGTGTCTATCGGTTATCTGGACACATAAAAGAAATGTATGCTAAATTTTACTGG  
 ACATTCTCTCGATATTGTAAATAGGTACCTACTTAGAGCTAAATGCCATCATCTCCTTTT  
 TTTCTCCGAATTTATTAGTTAGTAAATGTGTGTTAGACTTAGTATGACCCTTTGTTACAT  
 CTATGCAGTCCAGTAAATGAGATAGCCGGTTGTCGCCCCTTATTTTCAATAGATGTGATA  
 ATA  
-&#62;L20; 2197-2264; +; trnI(gat)  
+&#62;MT-1; 2197-2264; +; trnI(gat)  
 AGTAAAATGCCTGAAACTTAAAGGATTATCTTGATAGGATAAATTATGTAAATTAATTAC  
 TTTTACTA  
-&#62;L20; 2268-2337; -; trnQ(ttg)  
+&#62;MT-1; 2268-2337; -; trnQ(ttg)  
 TAACTTTTAGTGTATAAAAAGCACAAAAAATTTTGATTTTTTAAGAAATAATTAATATTA  
 TTAAAGTTAT  
-&#62;L20; 2341-2404; -; trnF(gaa)  
+&#62;MT-1; 2341-2404; -; trnF(gaa)  
 ATCTTTATAGTTTAATTAAAAACATTACACTGAAAATGTAAAGAAAAACTACAATTTAAA  
 GATA  
 
@@ -202,10 +202,10 @@ GTF and GFF version 3.0 files have very similar formats, both start with a serie
 
 |Reference|Origin|Feature type|Start|End  | U |Strand|U|Attribute field|
 | -       |  -   |  -        |  -  |  -  |-  |   -  |-|       -       |
-|L20      |mitos |region     |  1  |14714|.  |   +  |.|   Not shown   |
-|L20      |mitfi |ncRNA_gene |  1  |1144 |.  |   -  |.|   Not shown   |
-|L20      |mitfi |rRNA       |  1  |1144 |.  |   -  |.|   Not shown   |
-|L20      |mitfi |exon       |  1  |1144 |0.0|   -  |.|   Not shown   |
+|MT-1      |mitos |region     |  1  |14714|.  |   +  |.|   Not shown   |
+|MT-1      |mitfi |ncRNA_gene |  1  |1144 |.  |   -  |.|   Not shown   |
+|MT-1      |mitfi |rRNA       |  1  |1144 |.  |   -  |.|   Not shown   |
+|MT-1      |mitfi |exon       |  1  |1144 |0.0|   -  |.|   Not shown   |
 
 The data in the ___Feature type___, ___Start___, ___End___ and ___Strand___ fields are retained.
 
