@@ -364,3 +364,6 @@ FodyWeavers.xsd
 /.vscode
 /.gitignore
 /.gitignore
+
+.gitignore
+.gitattributes
