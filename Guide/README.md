@@ -4,21 +4,21 @@
 - ```circularMT``` user guide  
   - [Introduction](#introduction)  
     - [File formats](#file-formats) 
-    -  [```circularMT's``` interface](#circularmt-user-guide)
+    -  [```circularMT's``` interface](#circularmts-interface)
   - [Entering data](#entering-data)
   - [Selecting which features to display](#selecting-which-features-to-display)  
   - [Changing the order and/or the strands of the sequences](#changing-the-order-andor-the-strands-of-the-sequences)  
   - [Changing the starting point of the genome](#changing-the-starting-point-of-the-genome)  
-  - [Changing the feature's name ](#changing-the-features-name)  
+  - [Changing the feature's name to an alternative name in the data file](#changing-the-features-name-to-an-alternative-name-in-the-data-file)  
   - [Changing the displayed length of the genome](#changing-the-displayed-length-of-the-genome)  
-  - [Changing the Sequence's name](#changing-the-sequences-name)
+  - [Changing the genome's name](#changing-the-genomes-name)
   - [Changing the features colour](#changing-the-features-colour)  
   - [Drawing smaller features last](#drawing-smaller-features-last)  
-  - [Editing the names of the features](#editing-the-names-of-the-features)  
+  - [Manually editing a feature's names](#manually-editing-a-features-names)  
     - [Note](#note)
   - [Adding a feature](#adding-a-feature)  
   - [Removing a feature](#removing-a-feature)
-  - [Recentering  the image](#recentering-the-image)
+  - [Moving the genome's center point](#moving-the-genomes-center-point)
   - [Saving the image to a 300 dpi image](#saving-the-image-to-a-300-dpi-image)  
 
 
@@ -143,7 +143,9 @@ Figure 16: Selecting the tRNA: TRNM from the drop down list will set the start o
 
 <hr />
 
-## Changing the feature's name
+## Changing the feature's name to an alternative name in the data file
+
+This option allows you to select different names for a feature based on data in the imported file.
 
 Some files may have a number of different names for a feature. Not all features will have a different name, but if they do they can be selected using the second drop down list that contains the ***Gene***, ***Product*** and  ***Gene_synoym*** (see blue box in Figure 17). Figure 17 shows the results of selecting the ***product***. This displays the protein/tRNA names. However, some names are too long and cross over in the middle of the image, while others go beyond the edge of the image. To try to limit this ```circularMT``` reduces the size of the font used to write the text and makes the image smaller (Figure 17). 
 
@@ -171,7 +173,7 @@ Figure 19: Resetting the genome length with the ```Genome length``` form.
 
 <hr />
 
-## Changing the Sequence's name
+## Changing the genome's name
 
 The sequence's name is displayed in the center of the image a long with the sequence's length. If the name is long, the font size is reduced to make it fit, however, for very long names it may become hard to read. This can be resolved by shortening or changing the name. This can be done by pressing the ```Edit``` button next to the ```Edit genome name``` label (see blue box in Figure 20). This will display the ```Genome name``` form (Figure 20), changing the value in the form and pressing ```OK``` will change the displayed name.  
 
@@ -230,7 +232,7 @@ The genes on the mitochondrial genome are very tightly packed with some sequence
 Figure 26
 <hr />
 
-## Editing the names of the features
+## Manually editing a feature's names
 
 The name of each feature is obtained from the data file, if you wish to change their names, press the ```Edit``` button to the right of the ```Edit names``` label(see blue box in Figure 27 a). This will open the ```Edit feature names``` form, which is similar to the ```Adjust feature colours``` form. To edit a feature, first select its type from the drop down list (Figure 27 b) and the start to type the name of the feature you wish to change in to the text area below the drop down list: -this is case sensitive (see blue box in Figure 28). When the entered text matches just one feature - only one feature appears in the text area below, the lowest text area will be come active allowing you to enter the new name (see red box in Figure 28). 
 
@@ -294,7 +296,7 @@ Figure 33: The text "OH_2" matches the ***OH_2a*** and ***OH_2b*** features. Pre
 Figure 34: Using the ```Delete feature(s)``` form, the unwanted ***OH_4***, ***OH_3***, ***OH_2a*** and ***OH_2b*** features have been removed.
 <hr />
 
-## Recentering  the image
+## Moving the genome's center point
 
 By default, the center of the circle representing the genome is placed in the middle of the image area and the circle is rescaled to stop text overrunning the edge of the image. However, for images with long feature names the scaling process may be stopped to make sure the image doesn't become too small and the text overwrites the image or the image is smaller than you'd like (Figure 35). This can be resolved by moving the center of the image so the the text doesn't over run. 
 
