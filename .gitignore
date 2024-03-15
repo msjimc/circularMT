@@ -365,5 +365,6 @@ FodyWeavers.xsd
 /.gitignore
 /.gitignore
 
-.gitignore
-.gitattributes
+# Gitfiles
+/.gitignore
+/.gitattributes
