@@ -18,8 +18,7 @@ Files that appear suitable can come from a wide range of places, but there are m
 
 ```circularMT``` will read Genbank files with the *.gb or *.genbank file extensions. These files were developed for the NCBI Genbank sequence database and attempt to describe sequences in as full a manner as possible. This means that they contain information that ```circularMT``` ignores. A number of sequence annotation applications can produce genbank formatted files, however, their aberrance to the standard, expected structure may vary requiring ```circularMT``` to read these files in a fault tolerant manner which may result in a poorly draw image.
 
-An official NCBI - Genbank file fora human mitochondrial genome is [here](../Example%20data/sequence.gb).  
-A genbank file produced by Galaxy from a GFF is  [here](../Example%20data/GalaxyGGF.genbank)
+An official NCBI - Genbank file fora human mitochondrial genome that is used for the majority of the user guide is [here](../Example%20data/sequence.gb).  
 
 #### Structure and usage
 
@@ -97,8 +96,6 @@ It can be seen that the ND2 sequence occurs as both a gene feature and a CDS fea
 
 The mitos file format is a basic tab-delimited text fformat and created by the MITOS application host on Galaxy. It thats contains a number of data fields of which the second is used to determine the class of feature, the name comes from the third column, while the start and end of the features are in fields 5 and 6. Finally, the strand is obtained from the seventh field: 1 = forward and -1 = reverse. All the other fields are ignored (and not shown below). 
 
-An example mitos file is [here](../Example%20data/result.mitos).
-
 #### Structure 
 The first four lines of an example file are shown below:  
 Note the file has no column headers.  
@@ -117,8 +114,6 @@ Seq files start with a '>Feature' and the name of the reference sequence the fil
 where L20 is the reference sequence's name.
 
 The remainder of the file is tab-delimited text: each region of interest is described across a sett of at least two lines. In any set the last line is indented by 3 tab characters and consists of a key word describing the feature's name (i.e. ___gene___, ___product___ or ___note___) followed by a tab character and then the feature's name. This line is preceded by one or more lines which give the start and end points of the feature and then the type of feature. When ```circularMT``` processes a file, it reads it from the end to the beginning, and appends the the last line of a description to each of the feature lines in turn to create a series of features as described below:
-
-An example file can be found [here](../Example%20data/result.seq).
 
 #### Structure 
 The file fragment below shows the first 8 lines of a seq file.
@@ -152,8 +147,6 @@ Features with an end value lower than the start value are set as on the reverse 
 
 The bed file format is a simple format designed to identify specific regions/features of interest in a reference sequence. It is  a tab-delimited text file with the first 3 fields identifying the features reference sequence name, start point and end point of the feature respectively. The fourth and sixth columns give the feature's name and strand (+ = forward, - = reverse) any other field is ignored. Since bed files are widely used in bioinformatics, not all bed files can be used by ```circularMT```, but if the file came from a source that is concerned with mitochondrial genomes there is a reasonable chance it will work.   
 
-An example bed files is [here](../Example%20data/result.bed).
-
 #### Structure
 
 The first four lines of a bed file are shown below, the unused fields are denoted by the 'U' in the table's header row and the contents of the unused fields after the 'strand' field have been omitted to save space.  
@@ -171,8 +164,6 @@ Note the file has no column headers.
 ## Fasta files 
 
 As with Bed files, fasta files are widely used and there is a very good chance a fasta file will not work, but if its source suggest it contains the relevant data it may work. Fasta files may contain one or more sequences and have a simple structure. The name of the sequence (and any attributes) is in a single line starting with a "\>" characters, followed by the sequence on the following line(s). Depending on the file, the sequence may be on one line or across a series of fixed length lines. A fragment of a fasta file is shown below containing 4 sequences. The sequence name line contains the sequence's name, location, strand and the feature's name separated by a ';' character. 
-
-An example fasta files is [here](../Example%20data/result.fas).
 
 #### Fasta file fragment 
 
@@ -206,10 +197,6 @@ Since the file doesn't contain a feature's type all the features are saved as ty
 ## GTF and GFF files
 
 GTF and GFF version 3.0 files have very similar formats, both start with a series of lines starting with ## or \#! that contain information on the file's format, version and origins: these lines are ignored. The remainder of the file has a standard tab-delimited text format, with the final field an array of key-value pairs. The differences between GTF and GFF ver 3 files is limited to how the final field is formatted with the first 8 fields the same. The table below shows the format for GTF/GFF v3 files with the final field replaced with 'Not shown'
-
-An example GTF file is [here](../Example%20data/result.gtf).
-An example GFF file is [here](../Example%20data/result.gff).
-
 
 #### Structure of common features of a GTF and GFF v3 file
 
