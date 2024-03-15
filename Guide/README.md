@@ -8,7 +8,7 @@
   - [Entering data](#entering-data)
   - [Selecting which features to display](#selecting-which-features-to-display)  
   - [Changing the order and/or the strands of the sequences](#changing-the-order-andor-the-strands-of-the-sequences)  
-  - [Changing the starting point of the genome](#changing-the-starting-point-of-the-genome)  
+  - [Rotating the genome's annotation](#rotating-the-genomes-annotation)  
   - [Changing the feature's name to an alternative name in the data file](#changing-the-features-name-to-an-alternative-name-in-the-data-file)  
   - [Changing the displayed length of the genome](#changing-the-displayed-length-of-the-genome)  
   - [Changing the genome's name](#changing-the-genomes-name)
@@ -133,7 +133,7 @@ Figure 15: Checking the ```Reverse complement sequence``` and ```Switch strand``
 
 <hr />
 
-## Changing the starting point of the genome
+## Rotating the genome's annotation
 
 When working with de novo assembled genomes, the contigs may not start at the same position resulting in displays that have the displays rotated relatively each other. Typically, mitochondrial genomes are draw with the start of tRNA encoding methionine as position 1. To rotate the image, select the methionine tRNA from the drop down list below the ```Switch strand``` option (see blue box in Figure 16). The drop down list is populated with all the currently draw features. To aid selection, the name of the feature type is shown followed by the feature's name.
 
