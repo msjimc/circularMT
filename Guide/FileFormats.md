@@ -20,8 +20,6 @@ Files that appear suitable can come from a wide range of places, but there are m
 
 An official NCBI - Genbank file for a human mitochondrial genome that is used for the majority of the user guide is [here](../Example%20data/sequence.gb).  
 
-### Structure and usage
-
 Genbank files consist of a series of sections each describing a feature over one or more lines. The start of a section is signalled by a key word appearing at the very start of a line, followed by a space and then the details of the feature. Secondary data or attributes may be included as lines that start with a space, followed by the attributes name/type, a second space and then the information. If the lines are very long, the data is wrapped across multiple lines.
 
 A basic genbank file may have very few sections, whereas those for a heavily annotated sequence my contain a lot of sections each containing multiple attributes. ```circularMT``` will only retain data from three sections, namely the **LOCUS**, **DEFINITION** and **FEATURES** sections. The **Locus** section is scanned to obtain the sequence's length, while the **DEFINITION** is used to obtain the sequence's name. The **FEATURES** section contains a large numbered attributes such as multiple ___tRNA___, ___gene___, ___CDS___, or ___origin_of_replic___ features, each of which in turn may have a number of attributes. Since the names of the attributes are not standardised, ```circularMT``` identifies all the names used and then collects all the features using that key word together. 
