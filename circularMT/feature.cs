@@ -24,6 +24,9 @@ namespace circularMT
         private Brush color = Brushes.Gray;
         private Point[] arrows = null;
 
+        private int verticalOffset = 0;
+        private int horizontalOffset = 0;
+        private int rotate = 0;
         public feature(string Name, int startPoint, int length, bool strand)
         {
             name = Name;
@@ -468,5 +471,22 @@ namespace circularMT
             set { arrows = value; }
         }
 
+        public int VerticalOffset
+        { 
+            get { return verticalOffset; } 
+            set { verticalOffset = value; }
+        }
+
+        public int HorizontalOffset
+        {
+            get { return horizontalOffset; } 
+            set { horizontalOffset = value; }
+        }
+
+        public int Rotate
+        { 
+            get { return rotate; }
+            set { rotate = value; } 
+        }
     }
 }

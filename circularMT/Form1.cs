@@ -445,7 +445,7 @@ namespace circularMT
                         items = dataInfo.Split(';');
 
                         if (defination == "")
-                        { defination = items[0].Trim(); }
+                        { defination = items[0].Trim().Replace(">",""); }
 
                         feature f = new feature(items, 0, 0, term, "fasta");
 
@@ -753,6 +753,8 @@ namespace circularMT
 
         private void ClashDetection(ImageScaling scaling)
         {
+            int clashDistance = (int)nupCluster.Value;
+
             List<feature> all = new List<feature>();
             if (chlTerms.CheckedItems.Count > 0)
             {
@@ -776,11 +778,8 @@ namespace circularMT
                     {
                         if (index + 1 < all.Count)
                         {
-                            System.Diagnostics.Debug.WriteLine(all[index + 1].Name);
-                            if (all[index + 1].Name == "trnM")
-                            { }
                             int diff = Distance(all[index].TextPoint, all[index + 1].TextPoint);
-                            if (Math.Abs(diff) <= scaling.twenty && diff > 0)
+                            if (Math.Abs(diff) <= (clashDistance * scaling.scale) && diff > 0)
                             {
                                 all[index].Clash = true;
                                 all[index + 1].Clash = true;
@@ -1109,22 +1108,31 @@ namespace circularMT
                 }
             }
 
-            g.RotateTransform(middle - spin);
+            g.RotateTransform(middle - spin - f.Rotate);
 
+            float upDown = (float)f.VerticalOffset * scaling.scale;
+            float backForward = (float)f.HorizontalOffset * scaling.scale;
+            if (upDown != 0)
+            { }
             SizeF s = g.MeasureString(name, font);
             if (spin == 180)
             {
+                float t1 = -scaling.six - backForward;
+                float t2 = -scaling.ten - backForward;
                 if (f.Forward == true || name.Length > 15)
-                { g.DrawString(name, font, Brushes.Black, -scaling.thirtyEight - s.Width, -scaling.six); }
+                { g.DrawString(name, font, Brushes.Black, -scaling.thirtyEight - s.Width - backForward, -scaling.six - upDown); }
                 else
-                { g.DrawString(name, font, Brushes.Black, scaling.twenty, -scaling.ten); }
+                { g.DrawString(name, font, Brushes.Black, scaling.twenty - backForward, -scaling.ten - upDown); }
             }
             else
             {
+                float t1 = -scaling.six - backForward;
+                float t2 = -scaling.ten - backForward;
+
                 if (f.Forward == true || name.Length > 15)
-                { g.DrawString(name, font, Brushes.Black, scaling.thirtyEight, -scaling.ten); }
+                { g.DrawString(name, font, Brushes.Black, scaling.thirtyEight - backForward, -scaling.ten - upDown); }
                 else
-                { g.DrawString(name, font, Brushes.Black, -scaling.sixteen - s.Width, -scaling.six); }
+                { g.DrawString(name, font, Brushes.Black, -scaling.sixteen - s.Width - backForward, -scaling.six - upDown); }
             }
 
             g.ResetTransform();
@@ -1455,6 +1463,25 @@ namespace circularMT
         private void nupUPDown_ValueChanged(object sender, EventArgs e)
         {
             drawFeatures("", scaling);
+        }
+
+        private void nupCluster_ValueChanged(object sender, EventArgs e)
+        {
+            drawFeatures("", scaling);
+        }
+
+        private void btnAdjustTextLocation_Click(object sender, EventArgs e)
+        {
+            if (chlTerms.CheckedItems.Count == 0) { return; }
+            List<string> terms = new List<string>();
+
+            for (int index = 0; index < chlTerms.CheckedItems.Count; index++)
+            {
+                terms.Add(chlTerms.CheckedItems[index].ToString());
+            }
+
+            AdjustTextLocation atl = new AdjustTextLocation(features, this, terms);
+            atl.ShowDialog();
         }
     }
 }

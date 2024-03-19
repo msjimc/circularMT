@@ -38,9 +38,22 @@ namespace circularMT
         {
             txtNames.Clear();
             if (cboTerms.SelectedIndex>0)
-            {  txtNames.Enabled= true; }
+            {  
+                txtNames.Enabled= true; 
+                cboCopy.Items.Clear();
+                cboCopy.Items.Add("Select");
+                foreach(feature f in features[cboTerms.Text])
+                { cboCopy.Items.Add(f.Name); }
+                cboCopy.SelectedIndex = 0;
+                cboCopy.Enabled = true;
+            }
             else
-            { txtNames.Enabled= false; }
+            { 
+                txtNames.Enabled= false;
+                cboCopy.Enabled = false;
+                if (cboCopy.Items.Count > 0)
+                { cboCopy.SelectedIndex = 0; }          
+            }
             txtNames_TextChanged(txtNames, new EventArgs());
         }
 
@@ -88,6 +101,38 @@ namespace circularMT
         private void btnClose_Click(object sender, EventArgs e)
         {
             Close();
-        } 
+        }
+
+        private void cboCopy_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboCopy.SelectedIndex == 0 || cboCopy.Enabled == false)
+            { btnCopy.Enabled = false; }
+            else if (btnSelect.Enabled == true)
+            { btnCopy.Enabled = true; }
+            else { btnCopy.Enabled = false; }
+        }
+
+        private void btnCopy_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                feature fFrom = features[cboTerms.Text][cboCopy.SelectedIndex - 1];
+                string namePart = txtNames.Text.Trim().ToLower();
+
+                bool changed = false;
+                foreach (feature f in features[cboTerms.Text])
+                {
+                    if (f.Name.ToLower().StartsWith(namePart) == true)
+                    {
+                        f.FeatureColour = fFrom.FeatureColour;
+                        changed = true;
+                    }
+                }
+                if (changed == true)
+                { parent.ReDrawFromOutSide(); }
+
+            }
+            catch { }
+        }
     }
 }
