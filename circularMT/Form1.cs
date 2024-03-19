@@ -33,7 +33,7 @@ namespace circularMT
 
         private void btnGenBank_Click(object sender, EventArgs e)
         {
-            string filename = FileAccessClass.FileString(FileAccessClass.FileJob.Open, "Seletct the annotation file", "*.*;|*.*");
+            string filename = FileAccessClass.FileString(FileAccessClass.FileJob.Open, "Seletct the annotation file", "Genbank file (*.gb;*.genbank)|*.gb;*.genbank|Mitos file (*.mitos)|*.mitos|GTF and GFF - ver 3(*.gtf;*.gff)|*.gtf;*.gff|Seq file (*.seq)|*.seq|Bed tile (*.bed;*.txt)|*.bed;*.txt|Fasta file (*.fasta;*.fas:*.fa)|*.fasta;*.fas;*.fa");
             if (System.IO.File.Exists(filename) == false) { return; }
 
             string extension = filename.Substring(filename.LastIndexOf('.')).ToLower();
@@ -62,6 +62,7 @@ namespace circularMT
                     openSEQFile(filename);
                     break;
                 case ".bed":
+                case ".txt":
                     openBedFile(filename);
                     break;                                  
             }
@@ -1398,7 +1399,7 @@ namespace circularMT
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            string fileName = FileAccessClass.FileString(FileAccessClass.FileJob.SaveAs, "Save image as", "Image file (*.tif)|*.tif");
+            string fileName = FileAccessClass.FileString(FileAccessClass.FileJob.SaveAs, "Save image as", "TIFF Image file (*.tif)|*.tif|Bitmap image file (*.bmp)|*.bmp|JPEG image file (*.jpg)|*.jpg|PNG image file (*.png)|*.png");
             if (fileName == "Cancel") { return; }
 
             ImageScaling saveAs = new ImageScaling(300.0f);

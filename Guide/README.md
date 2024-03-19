@@ -327,9 +327,9 @@ Figure 36: Moving the image's center down by '60' using the ```Move up-down``` c
 
 ## Saving the image to a 300 dpi image
 
-Once you are happy with the display image , it can be saved as a 300 (are just over) dpi tif image by pressing the ```Save``` button to the right of the ```Save image``` label (see blue box in Figure 37 a). This will prompt you to enter a location and file name before saving the image (Figure 37). Saving the image to a greater resolution will also sharpen up the text written at near vertical angles which may appear scrappy in the user interface where it is drawn at ~96 dpi (Figure 37 b).
+Once you are happy with the display image , it can be saved as a 300 (are just over) dpi TIFF, bitmap, PNG or JPEG image by pressing the ```Save``` button to the right of the ```Save image``` label (see blue box in Figure 37 a). This will prompt you to enter a location and file name before saving the image (Figure 37). Saving the image to a greater resolution will also sharpen up the text written at near vertical angles which may appear scrappy in the user interface where it is drawn at ~96 dpi (Figure 37 b).
 
 ![Figure 37](images/figure37.jpg)
 
-Figure 37: Pressing the ```Save``` button will save the current display image to a 300 dpi tif image file. 
+Figure 37: Pressing the ```Save``` button will save the current display image to a 300 dpi TIFF, PNG, Bitmap or JPEG image file. 
 <hr />

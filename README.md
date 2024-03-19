@@ -10,7 +10,7 @@
 
 <img align="right" src="Guide/images/intro.jpg">
 
-```circularMT``` is designed to create images of the genomic organisation of mitochondrial genomes that can be used to display the arrangement of the genes they encode. Images can be exported as 300 dpi tif files for use in reports, publications or a thesis.
+```circularMT``` is designed to create images of the genomic organisation of mitochondrial genomes that can be used to display the arrangement of the genes they encode. Images can be exported as 300 dpi TIFF, bitmap, PNG or JPEG files for use in reports, publications or a thesis.
 
 The data can be imported from a wide range of file formats such as *.fasta, *.mitos, *.gb, *.bed, *.seq, *.gtf and *.gff files. While ```circularMT``` can process these files, *.fasta and *.bed files in particular most conform to a set format not present in all files.
 
