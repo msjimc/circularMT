@@ -166,7 +166,7 @@ If the new name are too long they may run off the edge of the image, this can be
 
 ![Figure 18](images/figure18.jpg)
 
-Figure 18: Making the program's interface bigger helps resolve the issue. 
+Figure 18: Making the program's interface bigger helps resolve the issue. (Due to auto-scaling this image may not appear larger).
 
 <hr />
 
