@@ -78,6 +78,12 @@ namespace circularMT
         private void btnSelect_Click(object sender, EventArgs e)
         {
             string namePart = txtNames.Text.Trim().ToLower();            
+            Brush fontBrush = null;
+            if (rboBlack.Checked == true)
+            { fontBrush = Brushes.Black; }
+            else
+            { fontBrush = Brushes.White; }
+
 
             ColorDialog scheme = new ColorDialog();
             scheme.FullOpen = true;
@@ -90,6 +96,7 @@ namespace circularMT
                     {
                         SolidBrush sb = new SolidBrush(scheme.Color);
                         f.FeatureColour = sb;
+                        f.FontColour = fontBrush;
                         changed = true;
                     }
                 }
@@ -125,6 +132,7 @@ namespace circularMT
                     if (f.Name.ToLower().StartsWith(namePart) == true)
                     {
                         f.FeatureColour = fFrom.FeatureColour;
+                        f.FontColour = fFrom.FontColour;
                         changed = true;
                     }
                 }
@@ -134,5 +142,44 @@ namespace circularMT
             }
             catch { }
         }
+
+        private void rboWhite_CheckedChanged(object sender, EventArgs e)
+        {
+            setFontColour();
+        }
+
+        private void rboBlack_CheckedChanged(object sender, EventArgs e)
+        {
+            setFontColour();
+        }
+
+        private void setFontColour()
+        {
+            try
+            {
+                Brush fontBrush = null;
+                if (rboBlack.Checked == true)
+                { fontBrush = Brushes.Black; }
+                else
+                { fontBrush = Brushes.White; }
+
+                string namePart = txtNames.Text.Trim().ToLower();
+
+                bool changed = false;
+                foreach (feature f in features[cboTerms.Text])
+                {
+                    if (f.Name.ToLower().StartsWith(namePart) == true)
+                    {
+                        f.FontColour = fontBrush;
+                        changed = true;
+                    }
+                }
+                if (changed == true)
+                { parent.ReDrawFromOutSide(); }
+
+            }
+            catch { }
+        }
+
     }
 }

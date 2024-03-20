@@ -199,7 +199,7 @@ The genes on the mitochondrial genome are very tightly packed with some sequence
 Figure 21
 <hr />
 
-## Changing a feature's colour
+## Changing the colour of one or more features
 
 Initially, the colours of each type of feature is based on the order in which the feature types first occur in the file, to make a nicer display, it is possible to change the colour of a feature type or specific subset of features by pressing the ```Adjust``` button to the right of the ```Adjust colour scheme``` label (see blue box in Figure 22). This will display the ```Adjust feature colours``` dialog form that allows the selection of the features to change and their new colour (Figure 22).
 
@@ -239,82 +239,113 @@ Figure 26
 
 <hr />
 
-The colour selection dialog box allows you to select a colour from a preset collection of colours or to create a custom colour. WHile custom colours may create a better image, it can be difficult to create the same colour for features that can't be selected as a subset. Consequently, its possible to select a donor feature that you have previously coloured using the drop down list above the ```Select``` button. Once select, select other features as described above and then press the ```Copy``` button to the right of the drop down list. 
+## Changing the font colour of one or more features
 
-## Manually editing a feature's name
+Once you have selected one or more features as described above, you can switch their font colour from black to white, by checking the appropriate radio button (labelled ```White``` and ```Black```) located below the ```Select``` button (see blue box in Figure 27)
 
-The name of each feature is obtained from the data file, if you wish to change their names, press the ```Edit``` button to the right of the ```Edit names``` label (see blue box in Figure 27 a). This will open the ```Edit feature names``` dialog box, which is similar to the ```Adjust feature colours``` dialog box. To edit a feature, first select its type from the drop down list (Figure 27 b) and start to type the name of the feature you wish to change in to the text area below the drop down list: -this is case sensitive (see blue box in Figure 28). When the entered text matches just one feature, the lowest text box area will be come active allowing you to enter the new name (see red box in Figure 28). 
-
-![Figure 26](images/figure27.jpg)
+![Figure 27](images/figure27.jpg)
 
 Figure 27
+
 <hr />
+
+Copying the colour scheme from one feature to another
+
+The colour selection dialog box allows you to select a colour from a preset collection of colours or to create a custom colour. WHile custom colours may create a better image, it can be difficult to create the same colour for features that can't be selected as a subset. Consequently, its possible to select a donor feature that you have previously coloured using the drop down list above the ```Select``` button. Once select, select other features as described above and then press the ```Copy``` button to the right of the drop down list. 
+
 
 ![Figure 28](images/figure28.jpg)
 
 Figure 28
 <hr />
 
-Pressing the ```Change``` button in the lower right of the form will rename the feature in the display (see text underlined by the black line in Figure 29). The ```Edit feature names``` form will remain open, allowing you to edit multiple features.
+In Figure 28, ND1 was selected as the donor feature, while all CDS features whose name started with "CO" were selected as the recipient features. Pressing the ```Copy``` button transfers the colour scheme (Figure 29).
 
 ![Figure 29](images/figure29.jpg)
 
-Figure 29: The "ND5" feature is now labeled "NAD 5" (text underlined by the black line)
+Figure 29
 <hr />
 
+## Manually editing a feature's name
+
+The name of each feature is obtained from the data file, if you wish to change their names, press the ```Edit``` button to the right of the ```Edit names``` label (see blue box in Figure 30 a). This will open the ```Edit feature names``` dialog box, which is similar to the ```Adjust feature colours``` dialog box. To edit a feature, first select its type from the drop down list (Figure 30 b) and start to type the name of the feature you wish to change in to the text area below the drop down list: -this is case sensitive (see blue box in Figure 31). When the entered text matches just one feature, the lowest text box area will be come active allowing you to enter the new name (see red box in Figure 31). 
+
+![Figure 30](images/figure30.jpg)
+
+Figure 30
+<hr />
+
+![Figure 31](images/figure31.jpg)
+
+Figure 31
+<hr />
+
+Pressing the ```Change``` button in the lower right of the form will rename the feature in the display (see text underlined by the black line in Figure 32). The ```Edit feature names``` form will remain open, allowing you to edit multiple features.
+
+![Figure 32](images/figure32.jpg)
+
+Figure 32: The "ND5" feature is now labeled "NAD 5" (text underlined by the black line)
+<hr />
 
 #### Note: 
 The name changes are not permanent; changing the selected value in the ```Select name tag``` drop down list will reset the values to these from the file.
 
 ## Manually moving text written next to a feature
 
-If the arrow is small its name is written perpendicular to the arrow. If a series of tRNAs create a tandem array ```circularMT``` will fan out the names so they do not clash. However, this does not always work, consequently there are two ways to manually correct the positioning of the text. Figure 30 shows the map of the Example.mitos file (download [here](../Example%20data/Example.bed)) in which the nad3 and the TRNA names clash (The erroneous origins of replication have been removed as described [here](#removing-a-feature)). 
+If the arrow is small its name is written perpendicular to the arrow. If a series of tRNAs create a tandem array ```circularMT``` will fan out the names so they do not clash. However, this does not always work, consequently there are two ways to manually correct the positioning of the text. Figure 33 a shows the map of the Example.mitos file (download [here](../Example%20data/Example.bed)) in which the nad3 and the TRNA names clash (The erroneous origins of replication have been removed as described [here](#removing-a-feature)). 
 
 #### Note
 This section only refers to text written next to a feature, text in an arrow can not be modified.
 
 ### Changing the ```Cluster size``` value
 
-A simple way to resolve this issue is to change the ```Cluster size``` value (see blue boxes in Figure 30 a and b). This cut off is used to determine if two features clash, the smaller the value the closer two pieces of text most be before they are fanned out. In Figure 30 a the vakue is set at the default value of 20, while in Figure 30 b it has been increased to 38 which causes the "nad3" text to fan out (blue arrow in Figures 30 a and b). 
+A simple way to resolve this issue is to change the ```Cluster size``` value (see blue boxes in Figure 33 a and b). This cut off is used to determine if two features clash, the smaller the value the closer two pieces of text most be before they are rearranged. In Figure 33 a the value is set at the default value of 20, while in Figure 33 b it has been increased to 38 which causes the ***nad3*** text to move away from the ***trnA(tgc)*** text (blue arrow in Figures 33 a and b). 
 
-![Figure 30](images/figure30.jpg)
+![Figure 33](images/figure33.jpg)
 
-Figure 30
+Figure 33
 <hr />
 
-### Rotating and change the X and Y coordinates of a features name 
+### Rotating and changing the X and Y coordinates of a features name 
 
-To move the location of a feature's name press the ```Adjust``` button above the ```Cluster size``` control (see blue box in Figure 31). This open the ```Adjust text location``` dialog box (Figure 31). 
+When writing text in the circular map, the reference point is moved and the image is rotated, this means that changing the X and Y coordinates, changes them with reference to the text's orientation, not to how you see the image as a whole as shown in figure 34. Moving the text backwards and forwards moves it along the line in Figure 34 a, moving the text up and down moves it along the line in Figure 34 b, while rotating it, rotates it around the blue circle in Figure 34 c.
 
-![Figure 31](images/figure31.jpg)
+![Figure 34](images/figure34.jpg)
 
-Figure 31
+Figure 34
 <hr />
 
-To adjust a features's text, first select the features type from the upper drop down list (in this file of features are of type feature) and then enter its name in the text box below the drop down list (see blue box in figure 32). Once a single feature has been selected, the number controls will be come active (see red box in Figure 32). Adjusting these values will more the text, in Figure 32 the name of the "nad3" feature has been rotated -4 degrees so it no longer clashes with the trnA text.
+To move the location of a feature's name press the ```Adjust``` button  (see blue box in Figure 35). This opens the ```Adjust text location``` dialog box (Figure 35). 
 
-![Figure 32](images/figure32.jpg)
+![Figure 35](images/figure35.jpg)
 
-Figure 32
+Figure 35
+<hr />
+
+First, select the features type from the upper drop down list (in this file all the features are of type feature) and then enter its name in the text box below the drop down list (see blue box in figure 32). Once a single feature has been selected, the number controls will be come active (see red box in Figure 32). Adjusting these values will more the text, in Figure 32 the name of the "nad3" feature has been rotated -4 degrees so it no longer clashes with the trnA text (see blue arrow in Figure 36).
+
+![Figure 36](images/figure36.jpg)
+
+Figure 36
 <hr />
 
 ## Adding a feature
 
-During the annotation process, some sequences will be missed, if you have a strong reason to believe a feature should be added, you can do this by pressing the ```Add``` button to the right of the ```Add a feature``` label (see blue box in Figure 30 a). This will open the ```Add a feature``` form: select the feature (in this case ***Features*** is the only option and then enter the relevant information: name - rrnl,  start point - 1 bp, Length - 1144 bp and strand - Outer circle (figure 30 b).
+During the annotation process, some sequences will be missed, if you have a strong reason to believe a feature should be added, you can do this by pressing the ```Add``` button to the right of the ```Add a feature``` label (see blue box in Figure 37 a). This will open the ```Add a feature``` form: select the feature (in this case ***Features*** is the only option and then enter the relevant information: name - rrnl,  start point - 1 bp, Length - 1144 bp and strand - Outer circle (figure 37 b).
 
 #### Note:
  The figures in this section were made using the a different file to that used in the majority of this guide. The  ***rrnl*** feature has been removed from this file.
 
-![Figure 30](images/figure30.jpg)
+![Figure 37](images/figure37.jpg)
 
-Figure 30
+Figure 37
 <hr />
 
-Pressing the ```Add``` button in the lower right of the form will add the feature to the image (Figure 31). The feature can now be edited like any other feature.
+Pressing the ```Add``` button in the lower right of the form will add the feature to the image (Figure 38). The feature can now be edited like any other feature.
 
-![Figure 31](images/figure31.jpg)
+![Figure 38](images/figure38.jpg)
 
-Figure 31
+Figure 38
 <hr />
 
 ## Removing a feature

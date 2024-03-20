@@ -980,8 +980,8 @@ namespace circularMT
             
             Point[] answer = { new Point(0, 0), new Point(0, 0) };
             string name = f.Name;
-            if (name.StartsWith("cyto")==true)
-            { }
+            
+
             float startPoint = f.arcStartAngle(sequencelength);
             float endPoint = f.arcEndAngle(sequencelength);
 
@@ -1025,7 +1025,7 @@ namespace circularMT
                         float y = (int)(Math.Sin(radion) * (radius - (fontRadiusOffset *scaling.scale) - scaling.thirteen)) + center.Y;
                         g.TranslateTransform(x, y);
                         g.RotateTransform((float)angle + 90.0f);
-                        g.DrawString(new string(name[index], 1), font, Brushes.Black, 0, 0);
+                        g.DrawString(new string(name[index], 1), font, f.FontColour, 0, 0);
                         g.ResetTransform();
                         angle += (float)(s.Width * 270 / circumference);
                     }
@@ -1046,7 +1046,7 @@ namespace circularMT
                         float y = (int)(Math.Sin(radion) * (radius + (fontRadiusOffset * scaling.scale) - scaling.eight)) + center.Y;
                         g.TranslateTransform(x, y);
                         g.RotateTransform((float)angle + 270.0f);
-                        g.DrawString(letter, font, Brushes.Black, 0, 0);
+                        g.DrawString(letter, font, f.FontColour, 0, 0);
 
                         g.ResetTransform();
                         int place = name.Length - (1 + index);
