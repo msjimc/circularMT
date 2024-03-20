@@ -30,6 +30,12 @@
         {
             this.btnClose = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.nupRotate = new System.Windows.Forms.NumericUpDown();
+            this.label6 = new System.Windows.Forms.Label();
+            this.nupUpDown = new System.Windows.Forms.NumericUpDown();
+            this.label4 = new System.Windows.Forms.Label();
+            this.nupbackAndForth = new System.Windows.Forms.NumericUpDown();
+            this.label3 = new System.Windows.Forms.Label();
             this.btnNumber = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.txtListOfNames = new System.Windows.Forms.TextBox();
@@ -37,16 +43,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cboTerms = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.nupbackAndForth = new System.Windows.Forms.NumericUpDown();
-            this.nupUpDown = new System.Windows.Forms.NumericUpDown();
-            this.label4 = new System.Windows.Forms.Label();
-            this.nupRotate = new System.Windows.Forms.NumericUpDown();
-            this.label6 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nupbackAndForth)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nupUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupRotate)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nupUpDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nupbackAndForth)).BeginInit();
             this.SuspendLayout();
             // 
             // btnClose
@@ -84,6 +84,87 @@
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Adjust text location";
+            // 
+            // nupRotate
+            // 
+            this.nupRotate.Location = new System.Drawing.Point(431, 184);
+            this.nupRotate.Maximum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.nupRotate.Minimum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            -2147483648});
+            this.nupRotate.Name = "nupRotate";
+            this.nupRotate.Size = new System.Drawing.Size(75, 20);
+            this.nupRotate.TabIndex = 16;
+            this.nupRotate.ValueChanged += new System.EventHandler(this.nupRotate_ValueChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(6, 186);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(59, 13);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "Rotate text";
+            // 
+            // nupUpDown
+            // 
+            this.nupUpDown.Location = new System.Drawing.Point(431, 153);
+            this.nupUpDown.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nupUpDown.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            -2147483648});
+            this.nupUpDown.Name = "nupUpDown";
+            this.nupUpDown.Size = new System.Drawing.Size(75, 20);
+            this.nupUpDown.TabIndex = 14;
+            this.nupUpDown.ValueChanged += new System.EventHandler(this.nupUpDown_ValueChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 155);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(119, 13);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Move text up and down";
+            // 
+            // nupbackAndForth
+            // 
+            this.nupbackAndForth.Location = new System.Drawing.Point(431, 123);
+            this.nupbackAndForth.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nupbackAndForth.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            -2147483648});
+            this.nupbackAndForth.Name = "nupbackAndForth";
+            this.nupbackAndForth.Size = new System.Drawing.Size(75, 20);
+            this.nupbackAndForth.TabIndex = 12;
+            this.nupbackAndForth.ValueChanged += new System.EventHandler(this.nupbackAndForth_ValueChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 125);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(145, 13);
+            this.label3.TabIndex = 11;
+            this.label3.Text = "Move text back and forwards";
             // 
             // btnNumber
             // 
@@ -155,87 +236,6 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Select the type of feature you want to edit ";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 125);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(145, 13);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "Move text back and forwards";
-            // 
-            // nupbackAndForth
-            // 
-            this.nupbackAndForth.Location = new System.Drawing.Point(431, 123);
-            this.nupbackAndForth.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.nupbackAndForth.Minimum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            -2147483648});
-            this.nupbackAndForth.Name = "nupbackAndForth";
-            this.nupbackAndForth.Size = new System.Drawing.Size(75, 20);
-            this.nupbackAndForth.TabIndex = 12;
-            this.nupbackAndForth.ValueChanged += new System.EventHandler(this.nupbackAndForth_ValueChanged);
-            // 
-            // nupUpDown
-            // 
-            this.nupUpDown.Location = new System.Drawing.Point(431, 153);
-            this.nupUpDown.Maximum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.nupUpDown.Minimum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            -2147483648});
-            this.nupUpDown.Name = "nupUpDown";
-            this.nupUpDown.Size = new System.Drawing.Size(75, 20);
-            this.nupUpDown.TabIndex = 14;
-            this.nupUpDown.ValueChanged += new System.EventHandler(this.nupUpDown_ValueChanged);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 155);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(119, 13);
-            this.label4.TabIndex = 13;
-            this.label4.Text = "Move text up and down";
-            // 
-            // nupRotate
-            // 
-            this.nupRotate.Location = new System.Drawing.Point(431, 184);
-            this.nupRotate.Maximum = new decimal(new int[] {
-            20,
-            0,
-            0,
-            0});
-            this.nupRotate.Minimum = new decimal(new int[] {
-            20,
-            0,
-            0,
-            -2147483648});
-            this.nupRotate.Name = "nupRotate";
-            this.nupRotate.Size = new System.Drawing.Size(75, 20);
-            this.nupRotate.TabIndex = 16;
-            this.nupRotate.ValueChanged += new System.EventHandler(this.nupRotate_ValueChanged);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 186);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(59, 13);
-            this.label6.TabIndex = 15;
-            this.label6.Text = "Rotate text";
-            // 
             // AdjustTextLocation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -245,12 +245,12 @@
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Name = "AdjustTextLocation";
-            this.Text = "AdjustTextLocation";
+            this.Text = "Adjust text location";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.nupbackAndForth)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nupUpDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupRotate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nupUpDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nupbackAndForth)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -44,7 +44,7 @@ To import a file, press the ```Select``` button at the top of the ```Options``` 
 Figure 2
 <hr />
 
- In Figure 3 the human mitochondrial genome Genbank file was selected [(download)](../Example%20data/sequence.gb) resulting in the image shown in figure 3.
+ In Figure 3 the human mitochondrial genome Genbank file was selected [(download)](../Example%20data/sequence.gb) resulting in the image shown in figure 3 and the file's name is written on the top left of the form. 
 
 
 ![Figure 3](images/figure3.jpg)
@@ -190,25 +190,26 @@ Figure 20: Resetting the genome's name with the ```Genome name``` dialog box.
 
 <hr />
 
-## Changing a feature's colour
+## Drawing smaller features last
 
-Initially, the colours of each type of feature is based on the order in which the feature types first occur in the file, to make a nicer display, it is possible to change the colour of a feature type or specific subset of features by pressing the ```Adjust``` button to the right of the ```Adjust colour scheme``` label (see blue box in Figure 21). This will display the ```Adjust feature colours``` dialog form that allows the selection of the features to change and their new colour (Figure 21).
+The genes on the mitochondrial genome are very tightly packed with some sequences over lapping. This may result in smaller features such as tRNAs being obscured by larger gene sequences. To reduce the affect of this, by default, features longer than 150 bp are drawn first and then any smaller features are draw over them. Unchecking the ```Draw smaller features last``` option will cause the features to be drawn in the order the feature types are listed in the check box list in the top right of the interface, with each feature in the set drawn in their positional order. Figure 21 shows the affect on trnl2(taa) sequence (this was not drawn using the human mitochondrial used in the rest of the images in this guide) when the option is turned off (A) and turned on (B).
 
 ![Figure 21](images/figure21.jpg)
 
-Figure 21: The ```Adjust feature colours``` dialog box allows the colour of the features to be changed. 
-
+Figure 21
 <hr />
 
-The ```Adjust feature colours``` dialog box consists of a drop down list of the different types of features and a text box that is disabled when the dialog box appears. To select a feature, first select the type of feature from the drop down list (see blue box in Figure 22).
+## Changing a feature's colour
+
+Initially, the colours of each type of feature is based on the order in which the feature types first occur in the file, to make a nicer display, it is possible to change the colour of a feature type or specific subset of features by pressing the ```Adjust``` button to the right of the ```Adjust colour scheme``` label (see blue box in Figure 22). This will display the ```Adjust feature colours``` dialog form that allows the selection of the features to change and their new colour (Figure 22).
 
 ![Figure 22](images/figure22.jpg)
 
-Figure 22
+Figure 22: The ```Adjust feature colours``` dialog box allows the colour of the features to be changed. 
 
 <hr />
 
-Once a feature type has been selected the text box will be active, initially all the features of the chosen type will be selected and their names will appear in a list below the text box (see blue box in Figure 23). Typing the name of the feature in the now active text box, will reduce the list of selected items to those whose name starts with the entered text (not case sensitive). For instance in Figure 23, the CDS feature type was selected and 'ND' has been entered and so only the CDS features ***ND1***, ***ND2***, ***ND3***, ***ND4***, ***ND4L***, ***ND5*** and ***ND6*** are selected.
+The ```Adjust feature colours``` dialog box consists of a drop down list of the different types of features and a text box that is disabled when the dialog box appears. To select a feature, first select the type of feature from the drop down list (see blue box in Figure 23).
 
 ![Figure 23](images/figure23.jpg)
 
@@ -216,7 +217,7 @@ Figure 23
 
 <hr />
 
-Once the features have been selected, press the ```Select``` button in the lower right corner of the form to display the ```Colour``` dialog form and pick the desired colour (Figure 24) and then press the ```OK``` button. This will close the colour selection dialog form and re-colour the image, in this case all of the CDS features whose names start with 'ND' are pale blue (Figure 25).
+Once a feature type has been selected the text box will be active, initially all the features of the chosen type will be selected and their names will appear in a list below the text box (see blue box in Figure 24). Typing the name of the feature in the now active text box, will reduce the list of selected items to those whose name starts with the entered text (not case sensitive). For instance in Figure 24, the CDS feature type was selected and 'ND' has been entered and so only the CDS features ***ND1***, ***ND2***, ***ND3***, ***ND4***, ***ND4L***, ***ND5*** and ***ND6*** are selected.
 
 ![Figure 24](images/figure24.jpg)
 
@@ -224,20 +225,21 @@ Figure 24
 
 <hr />
 
+Once the features have been selected, press the ```Select``` button in the lower right corner of the form to display the ```Colour``` dialog form and pick the desired colour (Figure 25) and then press the ```OK``` button. This will close the colour selection dialog form and re-colour the image, in this case all of the CDS features whose names start with 'ND' are pale blue (Figure 26).
+
 ![Figure 25](images/figure25.jpg)
 
 Figure 25
 
 <hr />
 
-## Drawing smaller features last
-
-The genes on the mitochondrial genome are very tightly packed with some sequences over lapping. This may result in smaller features such as tRNAs being obscured by larger gene sequences. To reduce the affect of this, by default, features longer than 150 bp are drawn first and then any smaller features are draw over them. Unchecking the ```Draw smaller features last``` option will cause the features to be drawn in the order the feature types are listed in the check box list in the top right of the interface, with each feature in the set drawn in their positional order. Figure 26 shows the affect on trnl2(taa) sequence (this was not drawn using the human mitochondrial used in the rest of the images in this guide) when the option is turned off (A) and turned on (B).
-
 ![Figure 26](images/figure26.jpg)
 
 Figure 26
+
 <hr />
+
+The colour selection dialog box allows you to select a colour from a preset collection of colours or to create a custom colour. WHile custom colours may create a better image, it can be difficult to create the same colour for features that can't be selected as a subset. Consequently, its possible to select a donor feature that you have previously coloured using the drop down list above the ```Select``` button. Once select, select other features as described above and then press the ```Copy``` button to the right of the drop down list. 
 
 ## Manually editing a feature's name
 
@@ -253,16 +255,48 @@ Figure 27
 Figure 28
 <hr />
 
-Pressing the ```Change``` button in the lower right of the form will rename the feature in the display (Figure 29). The ```Edit feature names``` form will remain open, allowing you to edit multiple features.
+Pressing the ```Change``` button in the lower right of the form will rename the feature in the display (see text underlined by the black line in Figure 29). The ```Edit feature names``` form will remain open, allowing you to edit multiple features.
 
 ![Figure 29](images/figure29.jpg)
 
-Figure 29: The "ND5" feature is now labeled "NAD 5"
+Figure 29: The "ND5" feature is now labeled "NAD 5" (text underlined by the black line)
 <hr />
 
 
 #### Note: 
 The name changes are not permanent; changing the selected value in the ```Select name tag``` drop down list will reset the values to these from the file.
+
+## Manually moving text written next to a feature
+
+If the arrow is small its name is written perpendicular to the arrow. If a series of tRNAs create a tandem array ```circularMT``` will fan out the names so they do not clash. However, this does not always work, consequently there are two ways to manually correct the positioning of the text. Figure 30 shows the map of the Example.mitos file (download [here](../Example%20data/Example.bed)) in which the nad3 and the TRNA names clash (The erroneous origins of replication have been removed as described [here](#removing-a-feature)). 
+
+#### Note
+This section only refers to text written next to a feature, text in an arrow can not be modified.
+
+### Changing the ```Cluster size``` value
+
+A simple way to resolve this issue is to change the ```Cluster size``` value (see blue boxes in Figure 30 a and b). This cut off is used to determine if two features clash, the smaller the value the closer two pieces of text most be before they are fanned out. In Figure 30 a the vakue is set at the default value of 20, while in Figure 30 b it has been increased to 38 which causes the "nad3" text to fan out (blue arrow in Figures 30 a and b). 
+
+![Figure 30](images/figure30.jpg)
+
+Figure 30
+<hr />
+
+### Rotating and change the X and Y coordinates of a features name 
+
+To move the location of a feature's name press the ```Adjust``` button above the ```Cluster size``` control (see blue box in Figure 31). This open the ```Adjust text location``` dialog box (Figure 31). 
+
+![Figure 31](images/figure31.jpg)
+
+Figure 31
+<hr />
+
+To adjust a features's text, first select the features type from the upper drop down list (in this file of features are of type feature) and then enter its name in the text box below the drop down list (see blue box in figure 32). Once a single feature has been selected, the number controls will be come active (see red box in Figure 32). Adjusting these values will more the text, in Figure 32 the name of the "nad3" feature has been rotated -4 degrees so it no longer clashes with the trnA text.
+
+![Figure 32](images/figure32.jpg)
+
+Figure 32
+<hr />
 
 ## Adding a feature
 

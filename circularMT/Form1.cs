@@ -38,6 +38,8 @@ namespace circularMT
 
             string extension = filename.Substring(filename.LastIndexOf('.')).ToLower();
 
+            bool done = true;
+
             switch (extension)
             {
                 case ".gb":
@@ -64,8 +66,14 @@ namespace circularMT
                 case ".bed":
                 case ".txt":
                     openBedFile(filename);
-                    break;                                  
+                    break;
+                default:
+                    done = false;
+                    break;
             }
+            if (done == true)
+            { Text = "circularMT: " + filename.Substring(filename.LastIndexOf("\\") + 1); }
+            else { Text = "circularMT"; }
 
         }
 
@@ -1197,6 +1205,11 @@ namespace circularMT
 
         private void chlTerms_MouseUp(object sender, MouseEventArgs e)
         {
+            populate_cboStart();
+        }
+
+            private void populate_cboStart()
+        { 
             cboStart.Items.Clear();
             cboStart.Items.Add("select");
             if (chlTerms.CheckedItems.Count != 0)
@@ -1318,6 +1331,7 @@ namespace circularMT
                 }
             }
             drawFeatures("", scaling);
+            populate_cboStart();
         }
 
         private void timer1_Tick(object sender, EventArgs e)

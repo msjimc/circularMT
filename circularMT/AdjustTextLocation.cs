@@ -72,9 +72,9 @@ namespace circularMT
             if (counter == 1)
             { 
                 oneSelected = true;
-                nupRotate.Value = 0;
-                nupUpDown.Value = 0;
-                nupbackAndForth.Value = 0;
+                nupRotate.Value = selectedFeature.Rotate;
+                nupUpDown.Value = selectedFeature.VerticalOffset;
+                nupbackAndForth.Value = selectedFeature.HorizontalOffset;
             }
             else
             {
@@ -131,7 +131,7 @@ namespace circularMT
         {
             if (selectedFeature != null)
             {
-                selectedFeature.Rotate = (int)nupRotate.Value;
+                selectedFeature.Rotate = -(int)nupRotate.Value;
                 parent.ReDrawFromOutSide();
             }
         }
