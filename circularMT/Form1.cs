@@ -673,10 +673,186 @@ namespace circularMT
 
         public void ReDrawFromOutSide()
         { drawFeatures("", scaling); }
-            
+
         private void drawFeatures(string fileName, ImageScaling scaling)
         {
+            if (chkLine.Checked == false)
+            { drawCircle(fileName, scaling); }
+            else
+            { drawLine(fileName, scaling); }
+        }
 
+        private void drawLine(string fileName, ImageScaling scaling)
+        {
+            Bitmap bmp = new Bitmap(p1.Width * scaling.one, p1.Height * scaling.one, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
+            bmp.SetResolution(scaling.hundred, scaling.hundred);
+            Graphics g = Graphics.FromImage(bmp);
+            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            g.TextContrast = 0;
+
+            Point center = new Point(bmp.Width / 2, bmp.Height / 2);
+            center.Y += (int)nupUPDown.Value;
+
+
+            g.Clear(Color.White);
+            Point title = center;
+            title.Y = scaling.thirty;
+            writeDefinition(g, title, (p1.Width/2) - 40, scaling);
+            g.DrawLine(new Pen(Color.Black, scaling.three), scaling.twenty, center.Y *scaling.scale, (p1.Width - 20) * scaling.scale, center.Y * scaling.scale);
+            drawLineTicks(g, center, scaling.twenty, scaling);
+
+            int largerThan = 0;
+            int smallerThan = sequencelength / 3;
+            if (chkDrawOrder.Checked == false)
+            {
+                if (chlTerms.CheckedItems.Count != 0)
+                {
+                    for (int index = 0; index < chlTerms.CheckedItems.Count; index++)
+                    {
+                        string key = chlTerms.CheckedItems[index].ToString();
+                        drawLineFeatures(g, key, center, scaling.twenty, largerThan, smallerThan, scaling);
+                    }
+                }
+            }
+            else
+            {
+                largerThan = 150;
+                for (int loop = 0; loop < 2; loop++)
+                {
+                    if (chlTerms.CheckedItems.Count != 0)
+                    {
+                        for (int index = 0; index < chlTerms.CheckedItems.Count; index++)
+                        {
+                            string key = chlTerms.CheckedItems[index].ToString();
+                            drawLineFeatures(g, key, center, scaling.twenty, largerThan, smallerThan, scaling);
+                        }
+                    }
+                    smallerThan = 151;
+                    largerThan = 0;
+                }
+            }
+
+            if (string.IsNullOrWhiteSpace(fileName) == true)
+            { p1.Image = bmp; }
+            else
+            { bmp.Save(fileName); }
+        }
+
+        private void drawLineFeatures(Graphics g, string featureSet, Point center, int edge, int largerThan, int smallerThan, ImageScaling scaling)
+        {
+            int y = (int)(center.Y * scaling.scale);
+
+            foreach (feature f in features[featureSet])
+            {
+                if (f.EndPoint - f.StartPoint > largerThan && f.EndPoint - f.StartPoint < smallerThan && f.EndPoint - f.StartPoint < sequencelength / 3)
+                {
+                    if (f.Forward == true)
+                    {
+                        f.Arrows = getLineArrow(f, center, true, scaling.twenty, scaling);
+                        g.FillPolygon(f.FeatureColour, f.Arrows);
+                        g.DrawPolygon(Pens.Black, f.Arrows);
+                        writeLineText(g, f, scaling);
+                    }
+                    else
+                    {
+                        f.Arrows = getLineArrow(f, center, false, scaling.twenty, scaling);
+                        g.FillPolygon(f.FeatureColour, f.Arrows);
+                        g.DrawPolygon(Pens.Black, f.Arrows);
+                        writeLineText(g, f, scaling);
+                    }
+                }
+            }           
+        }
+
+        private void writeLineText(Graphics g, feature f, ImageScaling scaling)
+        {
+
+
+            float fontsize = 20.0f;
+            Font font = new Font(FontFamily.GenericSansSerif, fontsize, FontStyle.Bold);
+            SizeF length = g.MeasureString(f.Name, font);
+
+            float scale = (float)((p1.Width * scaling.one) - scaling.fourty) / sequencelength;
+            Point[] points = f.Arrows;
+            int featurelength = points[1].X - points[0].X;
+
+            while (length.Width > featurelength && fontsize > 9.0f)
+            {
+                fontsize -= 0.5f;
+                font = new Font(FontFamily.GenericSansSerif, fontsize, FontStyle.Bold);
+                length = g.MeasureString(f.Name, font);
+            }
+
+            if (fontsize > 9.5f)
+            {
+                if (f.Forward == true)
+                {
+                    float y = points[0].Y + (scaling.scale * 25) - (length.Height / 2);
+                    float x = points[0].X + ((featurelength - length.Width) / 2);
+                    g.DrawString(f.Name, font, f.FontColour, x, y);
+                }
+                else
+                {
+                    float y = points[0].Y - (scaling.scale * 25) - (length.Height / 2);
+                    float x = points[0].X + ((featurelength - length.Width) / 2);
+                    g.DrawString(f.Name, font, f.FontColour, x, y);
+                }
+
+            }
+
+        }
+
+        private Point[] getLineArrow(feature f, Point center, bool strand, int edge, ImageScaling scaling )
+        {
+            float scale = (float)((p1.Width * scaling.one) - scaling.fourty) / sequencelength;
+
+            Point[] points = new Point[5];
+            if (strand == true)
+            {
+                int top = (int)((center.Y - 60) * scaling.scale);
+                int bottum = (int)((center.Y - 10) * scaling.scale);
+                int middle = (int)((center.Y - 35) * scaling.scale);
+                int startPoint = (int)(f.StartPoint * scale) + edge;
+                int OffsetPoint = (int)(((f.EndPoint * scale) - 4) * scaling.scale) + edge;
+                int EndPoint = (int)((f.EndPoint * scale) * scaling.scale) + edge;
+                points[0] = new Point(startPoint, top);
+                points[1] = new Point(OffsetPoint, top);
+                points[2] = new Point(EndPoint, middle);
+                points[3] = new Point(OffsetPoint, bottum);
+                points[4] = new Point(startPoint, bottum);
+            }
+            else
+            {
+                int top = (int)((center.Y + 60) * scaling.scale);
+                int bottum = (int)((center.Y + 10) * scaling.scale);
+                int middle = (int)((center.Y + 35) * scaling.scale);
+                int startPoint = (int)(f.StartPoint * scale) + edge;
+                int OffsetPoint = (int)(((f.StartPoint * scale) + 4) * scaling.scale) + edge;
+                int EndPoint = (int)((f.EndPoint * scale) * scaling.scale) + edge;
+                points[0] = new Point(OffsetPoint, top);
+                points[1] = new Point(EndPoint, top);
+                points[2] = new Point(EndPoint, bottum);
+                points[3] = new Point(OffsetPoint, bottum);
+                points[4] = new Point(startPoint, middle);
+            }
+            return points;
+        }
+
+        private void drawLineTicks(Graphics g, Point center, int edge, ImageScaling scaling)
+        {
+            float linelenght = ((p1.Width * scaling.one) - scaling.fourty);
+            float interval = linelenght * 1000 / sequencelength;
+            float point = 0;
+            Pen p = new Pen(Brushes.Black, scaling.three);
+            while (point < linelenght)
+            {
+                g.DrawLine(p, scaling.twenty + point, (center.Y - 6) * scaling.scale, scaling.twenty + point, (center.Y + 6) * scaling.scale);
+                point += interval;
+            }
+        }
+
+        private void drawCircle(string fileName, ImageScaling scaling)
+        { 
             if (WindowState == FormWindowState.Minimized) { return; }
 
             
@@ -748,7 +924,6 @@ namespace circularMT
             else
             { bmp.Save(fileName); }
         }
-
 
         private void ResetClash()
         {
@@ -866,10 +1041,10 @@ namespace circularMT
             {
                 float angle = (float)index * 360.0f / sequencelength;
                 double radion = ((angle - 90) * 2 * Math.PI) / 360;
-                float x1 = (int)(Math.Cos(radion) * (radius + 6)) + center.X;
-                float y1 = (int)(Math.Sin(radion) * (radius + 6)) + center.Y;
-                float x2 = (int)(Math.Cos(radion) * (radius - 5)) + center.X;
-                float y2 = (int)(Math.Sin(radion) * (radius - 5)) + center.Y;
+                float x1 = (int)(Math.Cos(radion) * (radius + scaling.six)) + center.X;
+                float y1 = (int)(Math.Sin(radion) * (radius + scaling.six)) + center.Y;
+                float x2 = (int)(Math.Cos(radion) * (radius - scaling.five)) + center.X;
+                float y2 = (int)(Math.Sin(radion) * (radius - scaling.five)) + center.Y;
                 g.DrawLine(black, x1, y1, x2, y2);
             }
         }
@@ -1501,6 +1676,11 @@ namespace circularMT
 
             AdjustTextLocation atl = new AdjustTextLocation(features, this, terms);
             atl.ShowDialog();
+        }
+
+        private void chkLine_CheckedChanged(object sender, EventArgs e)
+        {
+            drawFeatures("", scaling);
         }
     }
 }

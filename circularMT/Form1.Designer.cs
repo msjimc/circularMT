@@ -32,6 +32,11 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.p1 = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.btnAdjustTextLocation = new System.Windows.Forms.Button();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.nupCluster = new System.Windows.Forms.NumericUpDown();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.nupLeftRight = new System.Windows.Forms.NumericUpDown();
@@ -63,17 +68,13 @@
             this.btnGenBank = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.label14 = new System.Windows.Forms.Label();
-            this.nupCluster = new System.Windows.Forms.NumericUpDown();
-            this.btnAdjustTextLocation = new System.Windows.Forms.Button();
-            this.label15 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
+            this.chkLine = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.p1)).BeginInit();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nupCluster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupLeftRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupUPDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nupCluster)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -103,6 +104,7 @@
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.chkLine);
             this.groupBox2.Controls.Add(this.label16);
             this.groupBox2.Controls.Add(this.btnAdjustTextLocation);
             this.groupBox2.Controls.Add(this.label15);
@@ -144,6 +146,61 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Options";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(7, 547);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(120, 13);
+            this.label16.TabIndex = 32;
+            this.label16.Text = "Move centre of the map";
+            // 
+            // btnAdjustTextLocation
+            // 
+            this.btnAdjustTextLocation.Location = new System.Drawing.Point(135, 430);
+            this.btnAdjustTextLocation.Name = "btnAdjustTextLocation";
+            this.btnAdjustTextLocation.Size = new System.Drawing.Size(75, 23);
+            this.btnAdjustTextLocation.TabIndex = 12;
+            this.btnAdjustTextLocation.Text = "Adjust";
+            this.btnAdjustTextLocation.UseVisualStyleBackColor = true;
+            this.btnAdjustTextLocation.Click += new System.EventHandler(this.btnAdjustTextLocation_Click);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(7, 435);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(96, 13);
+            this.label15.TabIndex = 30;
+            this.label15.Text = "Adjust text location";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(7, 461);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(60, 13);
+            this.label14.TabIndex = 29;
+            this.label14.Text = "Cluster size";
+            // 
+            // nupCluster
+            // 
+            this.nupCluster.Location = new System.Drawing.Point(136, 459);
+            this.nupCluster.Minimum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.nupCluster.Name = "nupCluster";
+            this.nupCluster.Size = new System.Drawing.Size(75, 20);
+            this.nupCluster.TabIndex = 13;
+            this.nupCluster.Value = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.nupCluster.ValueChanged += new System.EventHandler(this.nupCluster_ValueChanged);
             // 
             // label13
             // 
@@ -253,7 +310,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chkSwitchStrands.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chkSwitchStrands.Location = new System.Drawing.Point(9, 172);
-            this.chkSwitchStrands.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chkSwitchStrands.Margin = new System.Windows.Forms.Padding(2);
             this.chkSwitchStrands.Name = "chkSwitchStrands";
             this.chkSwitchStrands.Size = new System.Drawing.Size(201, 17);
             this.chkSwitchStrands.TabIndex = 4;
@@ -423,7 +480,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.chcReverseSequence.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.chcReverseSequence.Location = new System.Drawing.Point(9, 151);
-            this.chcReverseSequence.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chcReverseSequence.Margin = new System.Windows.Forms.Padding(2);
             this.chcReverseSequence.Name = "chcReverseSequence";
             this.chcReverseSequence.Size = new System.Drawing.Size(201, 17);
             this.chcReverseSequence.TabIndex = 3;
@@ -475,60 +532,17 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // label14
+            // chkLine
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(7, 461);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(60, 13);
-            this.label14.TabIndex = 29;
-            this.label14.Text = "Cluster size";
-            // 
-            // nupCluster
-            // 
-            this.nupCluster.Location = new System.Drawing.Point(136, 459);
-            this.nupCluster.Minimum = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
-            this.nupCluster.Name = "nupCluster";
-            this.nupCluster.Size = new System.Drawing.Size(75, 20);
-            this.nupCluster.TabIndex = 13;
-            this.nupCluster.Value = new decimal(new int[] {
-            20,
-            0,
-            0,
-            0});
-            this.nupCluster.ValueChanged += new System.EventHandler(this.nupCluster_ValueChanged);
-            // 
-            // btnAdjustTextLocation
-            // 
-            this.btnAdjustTextLocation.Location = new System.Drawing.Point(135, 430);
-            this.btnAdjustTextLocation.Name = "btnAdjustTextLocation";
-            this.btnAdjustTextLocation.Size = new System.Drawing.Size(75, 23);
-            this.btnAdjustTextLocation.TabIndex = 12;
-            this.btnAdjustTextLocation.Text = "Adjust";
-            this.btnAdjustTextLocation.UseVisualStyleBackColor = true;
-            this.btnAdjustTextLocation.Click += new System.EventHandler(this.btnAdjustTextLocation_Click);
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(7, 435);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(96, 13);
-            this.label15.TabIndex = 30;
-            this.label15.Text = "Adjust text location";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(7, 547);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(120, 13);
-            this.label16.TabIndex = 32;
-            this.label16.Text = "Move centre of the map";
+            this.chkLine.AutoSize = true;
+            this.chkLine.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkLine.Location = new System.Drawing.Point(94, 685);
+            this.chkLine.Name = "chkLine";
+            this.chkLine.Size = new System.Drawing.Size(116, 17);
+            this.chkLine.TabIndex = 33;
+            this.chkLine.Text = "Draw as linear map";
+            this.chkLine.UseVisualStyleBackColor = true;
+            this.chkLine.CheckedChanged += new System.EventHandler(this.chkLine_CheckedChanged);
             // 
             // Form1
             // 
@@ -546,9 +560,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.p1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nupCluster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupLeftRight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupUPDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nupCluster)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -594,6 +608,7 @@
         private System.Windows.Forms.Button btnAdjustTextLocation;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.CheckBox chkLine;
     }
 }
 
