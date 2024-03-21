@@ -16,13 +16,20 @@ namespace circularMT
         public Form1 parent = null;
         private bool oneSelected = false;
         private feature selectedFeature = null;
+        bool isLinear;
 
-        public AdjustTextLocation(Dictionary<string, List<feature>> features, Form1 parent, List<string> terms)
+        public AdjustTextLocation(Dictionary<string, List<feature>> features, Form1 parent, List<string> terms, bool IsLinear)
         {
             InitializeComponent();
 
             this.parent = parent;
             this.features = features;
+
+            isLinear = IsLinear;
+
+            nupRotate.Enabled = false;
+            nupbackAndForth.Enabled =  false;
+            nupUpDown.Enabled = false;
 
             cboTerms.Items.Add("Select");
             foreach (string term in terms)
@@ -86,9 +93,14 @@ namespace circularMT
             { btnNumber.Enabled = true; }
             else { btnNumber.Enabled = false; }
 
-            nupbackAndForth.Enabled = oneSelected;
-            nupUpDown.Enabled = oneSelected;
-            nupRotate.Enabled = oneSelected;
+            if (isLinear == false)
+            {
+                nupbackAndForth.Enabled = oneSelected;
+                nupUpDown.Enabled = oneSelected;
+                nupRotate.Enabled = oneSelected;
+            }
+            else
+            { nupUpDown.Enabled = oneSelected; }
         }
 
         private void btnNumber_Click(object sender, EventArgs e)

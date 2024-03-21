@@ -738,6 +738,10 @@ namespace circularMT
                 }
             }
 
+            g.FillRectangle(Brushes.White, -1, 0, scaling.twenty, bmp.Height);
+            g.FillRectangle(Brushes.White, bmp.Width - scaling.twenty,0, scaling.twenty, bmp.Height);
+
+
             if (string.IsNullOrWhiteSpace(fileName) == true)
             { p1.Image = bmp; }
             else
@@ -747,6 +751,9 @@ namespace circularMT
         private void drawLineFeatures(Graphics g, string featureSet, Point center, int edge, int largerThan, int smallerThan, ImageScaling scaling)
         {
             int y = (int)(center.Y );
+            List<feature> endSet = new List<feature>();
+            List<feature> startSet = new List<feature>();
+
 
             foreach (feature f in features[featureSet])
             {
@@ -756,7 +763,7 @@ namespace circularMT
                     {
                         g.FillPolygon(f.FeatureColour, f.Arrows);
                         g.DrawPolygon(Pens.Black, f.Arrows);
-                        writeLineText(g, f, center, edge, scaling);
+                        writeLineText(g, f, center, edge, scaling);                        
                     }
                     else
                     {
@@ -764,6 +771,11 @@ namespace circularMT
                         g.DrawPolygon(Pens.Black, f.Arrows);
                         writeLineText(g, f, center, edge, scaling);
                     }
+
+                    if (f.Arrows[0].X < scaling.twenty)
+                    { startSet.Add(f); }
+                    else if (f.Arrows[3].X > p1.Width * scaling.scale - scaling.twenty)
+                    { endSet.Add(f); }
                 }
             }           
         }
@@ -1739,13 +1751,14 @@ namespace circularMT
                 terms.Add(chlTerms.CheckedItems[index].ToString());
             }
 
-            AdjustTextLocation atl = new AdjustTextLocation(features, this, terms);
+            AdjustTextLocation atl = new AdjustTextLocation(features, this, terms, chkLine.Checked);
             atl.ShowDialog();
         }
 
         private void chkLine_CheckedChanged(object sender, EventArgs e)
         {
             drawFeatures("", scaling);
+            nupLeftRight.Enabled = !chkLine.Checked;
         }
     }
 }
