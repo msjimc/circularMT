@@ -24,6 +24,7 @@ namespace circularMT
         bool resising = false;
         ImageScaling scaling = null;
 
+        int newStartOffset = 0;
         public Form1()
         {
             InitializeComponent();
@@ -72,7 +73,10 @@ namespace circularMT
                     break;
             }
             if (done == true)
-            { Text = "circularMT: " + filename.Substring(filename.LastIndexOf("\\") + 1); }
+            { 
+                Text = "circularMT: " + filename.Substring(filename.LastIndexOf("\\") + 1);
+                newStartOffset = 0;
+            }
             else { Text = "circularMT"; }
 
         }
@@ -1300,6 +1304,7 @@ namespace circularMT
                     if (f.Name == featureName)
                     {
                         start = f.StartPoint;
+                        newStartOffset += start;
                         break;
                     }
                 }
@@ -1452,7 +1457,7 @@ namespace circularMT
                 terms.Add(chlTerms.CheckedItems[index].ToString());
             }
 
-            AddFeature af = new AddFeature(features, this, terms, sequencelength);
+            AddFeature af = new AddFeature(features, this, terms, sequencelength, newStartOffset);
             af.ShowDialog();
         }
         private void btnRemove_Click(object sender, EventArgs e)

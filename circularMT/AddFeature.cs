@@ -23,14 +23,15 @@ namespace circularMT
         private int length = -1;
         private bool strandSet = false;
         private bool strand = false;
-        
-        public AddFeature(Dictionary<string, List<feature>> features, Form1 parent, List<string> terms, int Length)
+        private int newSTartOffSet = 0;
+        public AddFeature(Dictionary<string, List<feature>> features, Form1 parent, List<string> terms, int Length, int NewSTartOffSet)
         {
             InitializeComponent();
 
             this.parent = parent;
             this.features = features;
             this.sequenceLength = Length;
+            this.newSTartOffSet = NewSTartOffSet;
 
             cboTerms.Items.Add("Select");
             foreach (string term in terms)
@@ -46,10 +47,14 @@ namespace circularMT
 
         private void cboTerms_SelectedIndexChanged(object sender, EventArgs e)
         {
+            bool isEnabled = true;
             if (cboTerms.SelectedIndex > 0)
-            { txtName.Enabled = true; }
+            { isEnabled = true; }
             else
-            { txtName.Enabled = false; }
+            { isEnabled = false; }
+            txtName.Enabled = isEnabled;
+            txtLength.Enabled = isEnabled;
+            txtStart.Enabled = isEnabled;
             txtName.Clear();            
         }
 
@@ -137,7 +142,12 @@ namespace circularMT
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            feature f = new feature(name, startPoint, length, strand);
+            int newStart = startPoint - newSTartOffSet;
+          
+            while (newStart < 0)
+            { newStart += sequenceLength; }
+
+            feature f = new feature(name, newStart, length, strand);
             features[cboTerms.Text].Add(f);
             features[cboTerms.Text].Sort(new featureSorter());
             parent.ReDrawFromOutSide();

@@ -51,7 +51,7 @@
             this.btnClose.Location = new System.Drawing.Point(25, 153);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
-            this.btnClose.TabIndex = 9;
+            this.btnClose.TabIndex = 7;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -91,7 +91,7 @@
             this.cboStrand.Location = new System.Drawing.Point(429, 68);
             this.cboStrand.Name = "cboStrand";
             this.cboStrand.Size = new System.Drawing.Size(75, 21);
-            this.cboStrand.TabIndex = 15;
+            this.cboStrand.TabIndex = 5;
             this.cboStrand.SelectedIndexChanged += new System.EventHandler(this.cboStrand_SelectedIndexChanged);
             // 
             // label4
@@ -105,19 +105,21 @@
             // 
             // txtLength
             // 
+            this.txtLength.Enabled = false;
             this.txtLength.Location = new System.Drawing.Point(275, 68);
             this.txtLength.Name = "txtLength";
             this.txtLength.Size = new System.Drawing.Size(104, 20);
-            this.txtLength.TabIndex = 13;
+            this.txtLength.TabIndex = 4;
             this.txtLength.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtLength.TextChanged += new System.EventHandler(this.txtLength_TextChanged);
             // 
             // txtStart
             // 
+            this.txtStart.Enabled = false;
             this.txtStart.Location = new System.Drawing.Point(88, 68);
             this.txtStart.Name = "txtStart";
             this.txtStart.Size = new System.Drawing.Size(106, 20);
-            this.txtStart.TabIndex = 12;
+            this.txtStart.TabIndex = 3;
             this.txtStart.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.txtStart.TextChanged += new System.EventHandler(this.txtStart_TextChanged);
             // 
