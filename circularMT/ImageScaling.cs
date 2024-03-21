@@ -29,6 +29,7 @@ namespace circularMT
         public readonly int twentyEight = 28;
         public readonly int thirty = 30;
         public readonly int thirtyTwo = 32;
+        public readonly int thirtyFive = 35;
         public readonly int thirtyEight = 38;
         public readonly int fourty = 40;
         public readonly int sixty = 60;
@@ -57,8 +58,9 @@ namespace circularMT
             twentyTwo = (int)((22 * scale) + 0.5f); 
             twentyFive = (int)((25 * scale) + 0.5f); 
             twentyEight = (int)((28 * scale) + 0.5f); 
-            thirtyTwo = (int)((32 * scale) + 0.5f); 
-            thirtyEight = (int)((38 * scale) + 0.5f); 
+            thirtyTwo = (int)((32 * scale) + 0.5f);
+            thirtyFive = (int)((35 * scale) + 0.5f);
+            thirtyEight = (int)((38 * scale) + 0.5f);
             thirty = (int)((30 * scale) + 0.5f); 
             fourty = (int)((40 * scale) + 0.5f); 
             sixty = (int)((60 * scale) + 0.5f); 

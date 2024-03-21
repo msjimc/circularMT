@@ -9,8 +9,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using System.Xml.Linq;
 using Microsoft.VisualBasic;
+using static System.Windows.Forms.AxHost;
 
 
 namespace circularMT
@@ -693,13 +695,17 @@ namespace circularMT
             Point center = new Point(bmp.Width / 2, bmp.Height / 2);
             center.Y += (int)nupUPDown.Value;
 
-
+            ResetClash();
+            ClashLineDectection(g, center, scaling.twenty, scaling);
+            
             g.Clear(Color.White);
             Point title = center;
             title.Y = scaling.thirty;
-            writeDefinition(g, title, (p1.Width/2) - 40, scaling);
-            g.DrawLine(new Pen(Color.Black, scaling.three), scaling.twenty, center.Y *scaling.scale, (p1.Width - 20) * scaling.scale, center.Y * scaling.scale);
+            writeDefinition(g, title,(int)(((p1.Width/2) - 40) * scaling.scale), scaling);
+                       
+            g.DrawLine(new Pen(Color.Black, scaling.three), scaling.twenty, center.Y, (bmp.Width - scaling.twenty), center.Y);
             drawLineTicks(g, center, scaling.twenty, scaling);
+                       
 
             int largerThan = 0;
             int smallerThan = sequencelength / 3;
@@ -740,7 +746,7 @@ namespace circularMT
 
         private void drawLineFeatures(Graphics g, string featureSet, Point center, int edge, int largerThan, int smallerThan, ImageScaling scaling)
         {
-            int y = (int)(center.Y * scaling.scale);
+            int y = (int)(center.Y );
 
             foreach (feature f in features[featureSet])
             {
@@ -748,32 +754,30 @@ namespace circularMT
                 {
                     if (f.Forward == true)
                     {
-                        f.Arrows = getLineArrow(f, center, true, scaling.twenty, scaling);
                         g.FillPolygon(f.FeatureColour, f.Arrows);
                         g.DrawPolygon(Pens.Black, f.Arrows);
-                        writeLineText(g, f, scaling);
+                        writeLineText(g, f, center, edge, scaling);
                     }
                     else
                     {
-                        f.Arrows = getLineArrow(f, center, false, scaling.twenty, scaling);
                         g.FillPolygon(f.FeatureColour, f.Arrows);
                         g.DrawPolygon(Pens.Black, f.Arrows);
-                        writeLineText(g, f, scaling);
+                        writeLineText(g, f, center, edge, scaling);
                     }
                 }
             }           
         }
 
-        private void writeLineText(Graphics g, feature f, ImageScaling scaling)
+        private void writeLineText(Graphics g, feature f, Point center, int edge, ImageScaling scaling)
         {
-
-
             float fontsize = 20.0f;
             Font font = new Font(FontFamily.GenericSansSerif, fontsize, FontStyle.Bold);
             SizeF length = g.MeasureString(f.Name, font);
 
             float scale = (float)((p1.Width * scaling.one) - scaling.fourty) / sequencelength;
-            Point[] points = f.Arrows;
+            
+            f.Arrows = getLineArrow(f, center, f.Forward, edge, scaling);
+            Point[] points = f.Arrows;           
             int featurelength = points[1].X - points[0].X;
 
             while (length.Width > featurelength && fontsize > 9.0f)
@@ -797,9 +801,48 @@ namespace circularMT
                     float x = points[0].X + ((featurelength - length.Width) / 2);
                     g.DrawString(f.Name, font, f.FontColour, x, y);
                 }
+            }
+            else
+            { writePerpendicularText(g, f, scaling); }
+        }
 
+        private void writePerpendicularText(Graphics g, feature f, ImageScaling scaling)
+        {
+            float scale = (float)((p1.Width * scaling.one) - scaling.fourty) / sequencelength;
+            Font font = new Font(FontFamily.GenericSansSerif, 10, FontStyle.Bold);
+            SizeF length = g.MeasureString(f.Name, font);
+                        
+            float dx = 0;
+
+            if (f.Clash == true)
+            {
+                float middle = (float)f.ClashData.Y / 2;
+                dx = scaling.five * ((float)f.ClashData.X - middle);
             }
 
+            float upDown = (float)f.VerticalOffset * scaling.scale;
+            float backForward = (float)f.HorizontalOffset * scaling.scale;
+
+            if (f.Forward == true)
+            {
+                float x = ((f.Arrows[0].X + f.Arrows[1].X)/2) + (length.Height / 2) + dx + f.VerticalOffset;
+                float y = f.Arrows[0].Y - scaling.ten - length.Width;
+                g.TranslateTransform(x, y);
+                g.RotateTransform(90.0f);
+                g.DrawString(f.Name, font, Brushes.Black, 0,0);
+                g.ResetTransform();
+                f.TextPoint = new Point((int)x, (int)y);
+            }
+            else
+            {
+                float x = ((f.Arrows[0].X + f.Arrows[1].X) / 2) - (length.Height / 2) + dx + f.VerticalOffset;
+                float y = f.Arrows[1].Y + scaling.ten + length.Width;
+                g.TranslateTransform(x, y);
+                g.RotateTransform(-90.0f);
+                g.DrawString(f.Name, font, Brushes.Black, 0, 0);
+                g.ResetTransform();
+                f.TextPoint = new Point((int)x, (int)y);
+            }
         }
 
         private Point[] getLineArrow(feature f, Point center, bool strand, int edge, ImageScaling scaling )
@@ -809,12 +852,12 @@ namespace circularMT
             Point[] points = new Point[5];
             if (strand == true)
             {
-                int top = (int)((center.Y - 60) * scaling.scale);
-                int bottum = (int)((center.Y - 10) * scaling.scale);
-                int middle = (int)((center.Y - 35) * scaling.scale);
+                int top =(center.Y - scaling.sixty);
+                int bottum =(center.Y - scaling.ten);
+                int middle =(center.Y - scaling.thirtyFive);
                 int startPoint = (int)(f.StartPoint * scale) + edge;
-                int OffsetPoint = (int)(((f.EndPoint * scale) - 4) * scaling.scale) + edge;
-                int EndPoint = (int)((f.EndPoint * scale) * scaling.scale) + edge;
+                int OffsetPoint = (int)(f.EndPoint * scale) - scaling.four  + edge;
+                int EndPoint = (int)(f.EndPoint * scale)  + edge;
                 points[0] = new Point(startPoint, top);
                 points[1] = new Point(OffsetPoint, top);
                 points[2] = new Point(EndPoint, middle);
@@ -823,12 +866,12 @@ namespace circularMT
             }
             else
             {
-                int top = (int)((center.Y + 60) * scaling.scale);
-                int bottum = (int)((center.Y + 10) * scaling.scale);
-                int middle = (int)((center.Y + 35) * scaling.scale);
+                int top = (center.Y + scaling.sixty);
+                int bottum = (center.Y + scaling.ten);
+                int middle = (center.Y + scaling.thirtyFive); ;
                 int startPoint = (int)(f.StartPoint * scale) + edge;
-                int OffsetPoint = (int)(((f.StartPoint * scale) + 4) * scaling.scale) + edge;
-                int EndPoint = (int)((f.EndPoint * scale) * scaling.scale) + edge;
+                int OffsetPoint = (int)(f.StartPoint * scale) + scaling.four + edge;
+                int EndPoint = (int)(f.EndPoint * scale)  + edge;
                 points[0] = new Point(OffsetPoint, top);
                 points[1] = new Point(EndPoint, top);
                 points[2] = new Point(EndPoint, bottum);
@@ -836,6 +879,30 @@ namespace circularMT
                 points[4] = new Point(startPoint, middle);
             }
             return points;
+        }
+
+        private void ClashLineDectection(Graphics g, Point center, int edge, ImageScaling scaling)
+        {
+            setTextPoints(g, center, edge, scaling);
+            ClashDetection(scaling);
+        }
+
+        private void setTextPoints(Graphics g, Point center, int edge, ImageScaling scaling)
+        {
+            if (chlTerms.CheckedItems.Count != 0)
+            {
+                for (int index = 0; index < chlTerms.CheckedItems.Count; index++)
+                {
+                    string key = chlTerms.CheckedItems[index].ToString();
+                    foreach (feature f in features[key])
+                    {
+                        string name = f.Name;
+                        
+                        writeLineText(g, f, center, edge, scaling);
+                        Point answerP = f.TextPoint;
+                    }
+                }
+            }            
         }
 
         private void drawLineTicks(Graphics g, Point center, int edge, ImageScaling scaling)
@@ -846,7 +913,7 @@ namespace circularMT
             Pen p = new Pen(Brushes.Black, scaling.three);
             while (point < linelenght)
             {
-                g.DrawLine(p, scaling.twenty + point, (center.Y - 6) * scaling.scale, scaling.twenty + point, (center.Y + 6) * scaling.scale);
+                g.DrawLine(p, scaling.twenty + point, (center.Y - scaling.six), scaling.twenty + point, (center.Y + scaling.six));
                 point += interval;
             }
         }
@@ -1356,8 +1423,6 @@ namespace circularMT
                     f.TextPoint = new Point((int)(x + dX), (int)(y + dY));
                 }
             }
-
-
             return answer;
         }
 
