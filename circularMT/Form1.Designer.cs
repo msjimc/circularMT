@@ -30,9 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkLine = new System.Windows.Forms.CheckBox();
             this.p1 = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.chkLine = new System.Windows.Forms.CheckBox();
             this.label16 = new System.Windows.Forms.Label();
             this.btnAdjustTextLocation = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
@@ -91,6 +91,19 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Genome";
             // 
+            // chkLine
+            // 
+            this.chkLine.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkLine.AutoSize = true;
+            this.chkLine.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkLine.Location = new System.Drawing.Point(623, 0);
+            this.chkLine.Name = "chkLine";
+            this.chkLine.Size = new System.Drawing.Size(116, 17);
+            this.chkLine.TabIndex = 33;
+            this.chkLine.Text = "Draw as linear map";
+            this.chkLine.UseVisualStyleBackColor = true;
+            this.chkLine.CheckedChanged += new System.EventHandler(this.chkLine_CheckedChanged);
+            // 
             // p1
             // 
             this.p1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -146,18 +159,6 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Options";
-            // 
-            // chkLine
-            // 
-            this.chkLine.AutoSize = true;
-            this.chkLine.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.chkLine.Location = new System.Drawing.Point(623, 0);
-            this.chkLine.Name = "chkLine";
-            this.chkLine.Size = new System.Drawing.Size(116, 17);
-            this.chkLine.TabIndex = 33;
-            this.chkLine.Text = "Draw as linear map";
-            this.chkLine.UseVisualStyleBackColor = true;
-            this.chkLine.CheckedChanged += new System.EventHandler(this.chkLine_CheckedChanged);
             // 
             // label16
             // 
@@ -482,9 +483,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(6, 195);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(204, 13);
+            this.label3.Size = new System.Drawing.Size(198, 13);
             this.label3.TabIndex = 5;
-            this.label3.Text = "Step this feature as the start of sequence.";
+            this.label3.Text = "Set this feature as the start of sequence.";
             // 
             // chcReverseSequence
             // 
