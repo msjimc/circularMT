@@ -23,6 +23,7 @@ namespace circularMT
         Point clashData = new Point(0, 0);
         private Brush color = Brushes.Gray;
         private Brush colorFont = Brushes.Black;
+        private Pen boxColour = Pens.Black;
         private Point[] arrows = null;
 
         private int verticalOffset = 0;
@@ -470,7 +471,12 @@ namespace circularMT
         {
             get { return colorFont; }
             set { colorFont = value; }
+        }
 
+        public Pen BoxColour
+        {
+            get { return boxColour; }
+            set { boxColour = value; }
         }
 
         public Point[] Arrows

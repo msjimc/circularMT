@@ -14,14 +14,16 @@ namespace circularMT
     {
         private Dictionary<string, List<feature>> features = new Dictionary<string, List<feature>>();
         public Form1 parent = null;
+        private List<string> terms = new List<string>();
         private bool oneSelected = false;
         
-        public EditNames(Dictionary<string, List<feature>> features, Form1 parent, List<string> terms)
+        public EditNames(Dictionary<string, List<feature>> features, Form1 parent, List<string> Terms)
         {
             InitializeComponent();
 
             this.parent = parent;
             this.features = features;
+            this.terms = Terms;
 
             cboTerms.Items.Add("Select");
             foreach (string term in terms)
@@ -38,12 +40,14 @@ namespace circularMT
             { txtNames.Enabled = false; }
             txtNames.Clear();
             txtListOfNames.Clear();
+            parent.ResetBoxColour(terms);
         }
 
         private void txtNames_TextChanged(object sender, EventArgs e)
         {
             if (features == null || cboTerms.Text == "Select") { return; }
-                        
+
+            Pen selected = new Pen(Color.Red, 2);
             string namePart = txtNames.Text.Trim();
             if (string.IsNullOrEmpty(namePart)) 
             {
@@ -61,7 +65,10 @@ namespace circularMT
                 {
                     txtListOfNames.Text += f.Name + " ";
                     counter += 1;
+                    f.BoxColour = selected;
                 }
+                else
+                { f.BoxColour = Pens.Black; }
             }
 
             if (counter == 1)
@@ -73,6 +80,9 @@ namespace circularMT
             else { btnNumber.Enabled = false; }
 
             txtNew.Enabled = oneSelected;
+
+            parent.ReDrawFromOutSide();
+
         }
 
         private void btnNumber_Click(object sender, EventArgs e)

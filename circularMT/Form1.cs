@@ -700,10 +700,15 @@ namespace circularMT
             
             g.Clear(Color.White);
             Point title = center;
-            title.Y = scaling.thirty;
+            title.Y = scaling.thirty; 
             writeDefinition(g, title,(int)(((p1.Width/2) - 40) * scaling.scale), scaling);
                        
             g.DrawLine(new Pen(Color.Black, scaling.three), scaling.twenty, center.Y, (bmp.Width - scaling.twenty), center.Y);
+            if (features.Count == 0 || sequencelength < 1) 
+            {
+                p1.Image = bmp;
+                return;
+            }
             drawLineTicks(g, center, scaling.twenty, scaling);
                        
 
@@ -762,13 +767,13 @@ namespace circularMT
                     if (f.Forward == true)
                     {
                         g.FillPolygon(f.FeatureColour, f.Arrows);
-                        g.DrawPolygon(Pens.Black, f.Arrows);
+                        g.DrawPolygon(f.BoxColour, f.Arrows);
                         writeLineText(g, f, center, edge, scaling);                        
                     }
                     else
                     {
                         g.FillPolygon(f.FeatureColour, f.Arrows);
-                        g.DrawPolygon(Pens.Black, f.Arrows);
+                        g.DrawPolygon(f.BoxColour, f.Arrows);
                         writeLineText(g, f, center, edge, scaling);
                     }
 
@@ -777,9 +782,50 @@ namespace circularMT
                     else if (f.Arrows[3].X > p1.Width * scaling.scale - scaling.twenty)
                     { endSet.Add(f); }
                 }
-            }           
+            } 
+            
+            if (startSet.Count > 0 || endSet.Count > 0)
+            {
+                DrawEnds(g, startSet, endSet, featureSet, center, edge, largerThan, smallerThan, scaling);
+            }
         }
 
+        private void DrawEnds(Graphics g, List<feature> startSet, List<feature> endSet, string featureSet, Point center, int edge, int largerThan, int smallerThan, ImageScaling scaling)
+        {
+
+            if (startSet.Count > 0)
+            {
+                foreach (feature f in startSet)
+                {
+                    feature fClone = new feature(f.Name, f.StartPoint + sequencelength, f.EndPoint - f.StartPoint, f.Forward);
+                    fClone.FontColour = f.FontColour;
+                    fClone.FeatureColour = f.FeatureColour;
+                    fClone.Arrows = getLineArrow(fClone, center, fClone.Forward, edge, scaling);
+                    fClone.clash = f.clash;
+                    fClone.ClashData = f.ClashData;
+                    fClone.VerticalOffset = f.VerticalOffset;
+                    g.FillPolygon(fClone.FeatureColour, fClone.Arrows);
+                    g.DrawPolygon(f.BoxColour, fClone.Arrows);
+                    writeLineText(g, fClone, center, edge, scaling);
+                }
+            }
+            if (endSet.Count > 0)
+            {
+                foreach (feature f in endSet)
+                {
+                    feature fClone = new feature(f.Name, f.StartPoint - sequencelength, f.EndPoint - f.StartPoint, f.Forward);
+                    fClone.FontColour = f.FontColour;
+                    fClone.FeatureColour = f.FeatureColour;
+                    fClone.Arrows = getLineArrow(fClone, center, fClone.Forward, edge, scaling);
+                    fClone.clash = f.clash;
+                    fClone.ClashData = f.ClashData; g.FillPolygon(fClone.FeatureColour, fClone.Arrows);
+                    g.FillPolygon(fClone.FeatureColour, fClone.Arrows);
+                    g.DrawPolygon(f.BoxColour, fClone.Arrows);
+                    writeLineText(g, fClone, center, edge, scaling);
+                }
+            }
+
+        }
         private void writeLineText(Graphics g, feature f, Point center, int edge, ImageScaling scaling)
         {
             float fontsize = 20.0f;
@@ -864,12 +910,13 @@ namespace circularMT
             Point[] points = new Point[5];
             if (strand == true)
             {
-                int top =(center.Y - scaling.sixty);
-                int bottum =(center.Y - scaling.ten);
-                int middle =(center.Y - scaling.thirtyFive);
+                int top = (center.Y - scaling.sixty);
+                int bottum = (center.Y - scaling.ten);
+                int middle = (center.Y - scaling.thirtyFive);
                 int startPoint = (int)(f.StartPoint * scale) + edge;
-                int OffsetPoint = (int)(f.EndPoint * scale) - scaling.four  + edge;
-                int EndPoint = (int)(f.EndPoint * scale)  + edge;
+                int OffsetPoint = (int)(f.EndPoint * scale) - scaling.four + edge;
+                if (OffsetPoint < startPoint) { OffsetPoint = startPoint; }
+                int EndPoint = (int)(f.EndPoint * scale) + edge;
                 points[0] = new Point(startPoint, top);
                 points[1] = new Point(OffsetPoint, top);
                 points[2] = new Point(EndPoint, middle);
@@ -883,7 +930,8 @@ namespace circularMT
                 int middle = (center.Y + scaling.thirtyFive); ;
                 int startPoint = (int)(f.StartPoint * scale) + edge;
                 int OffsetPoint = (int)(f.StartPoint * scale) + scaling.four + edge;
-                int EndPoint = (int)(f.EndPoint * scale)  + edge;
+                int EndPoint = (int)(f.EndPoint * scale) + edge;
+                if (OffsetPoint > EndPoint) {OffsetPoint = EndPoint; }
                 points[0] = new Point(OffsetPoint, top);
                 points[1] = new Point(EndPoint, top);
                 points[2] = new Point(EndPoint, bottum);
@@ -918,7 +966,7 @@ namespace circularMT
         }
 
         private void drawLineTicks(Graphics g, Point center, int edge, ImageScaling scaling)
-        {
+        {           
             float linelenght = ((p1.Width * scaling.one) - scaling.fourty);
             float interval = linelenght * 1000 / sequencelength;
             float point = 0;
@@ -1138,13 +1186,13 @@ namespace circularMT
                     {
                         f.Arrows = getArrow(f.arcStartAngle(sequencelength), f.arcEndAngle(sequencelength), radius, center, true, scaling);
                         g.FillPolygon(f.FeatureColour, f.Arrows);
-                        g.DrawPolygon(Pens.Black, f.Arrows);
+                        g.DrawPolygon(f.BoxColour, f.Arrows);
                     }
                     else
                     {
                         f.Arrows = getArrow(f.arcStartAngle(sequencelength), f.arcEndAngle(sequencelength), radius - scaling.sixty, center, false, scaling);
                         g.FillPolygon(f.FeatureColour, f.Arrows);
-                        g.DrawPolygon(Pens.Black, f.Arrows);
+                        g.DrawPolygon(f.BoxColour, f.Arrows);
                     }
                 }
             }
@@ -1669,6 +1717,8 @@ namespace circularMT
 
             AdjustColours ac = new AdjustColours(colours, features, this, terms);
             ac.ShowDialog();
+
+            ResetBoxColour(terms);
         }
 
         private void chkDrawOrder_CheckedChanged(object sender, EventArgs e)
@@ -1697,6 +1747,8 @@ namespace circularMT
 
             EditNames en = new EditNames(features, this, terms);
             en.ShowDialog();
+
+            ResetBoxColour(terms);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -1711,6 +1763,7 @@ namespace circularMT
 
             AddFeature af = new AddFeature(features, this, terms, sequencelength, newStartOffset);
             af.ShowDialog();
+
         }
         private void btnRemove_Click(object sender, EventArgs e)
         {
@@ -1724,6 +1777,8 @@ namespace circularMT
 
             Deletefeature df = new Deletefeature(features, this, terms);
             df.ShowDialog();
+
+            ResetBoxColour(terms);
         }
 
         private void nupLeftRight_ValueChanged(object sender, EventArgs e)
@@ -1753,6 +1808,8 @@ namespace circularMT
 
             AdjustTextLocation atl = new AdjustTextLocation(features, this, terms, chkLine.Checked);
             atl.ShowDialog();
+
+            ResetBoxColour(terms);
         }
 
         private void chkLine_CheckedChanged(object sender, EventArgs e)
@@ -1760,5 +1817,18 @@ namespace circularMT
             drawFeatures("", scaling);
             nupLeftRight.Enabled = !chkLine.Checked;
         }
+
+        public void ResetBoxColour(List<string> keys)
+        {
+            foreach (string key in keys)
+            {
+                List<feature> list = features[key];
+                foreach(feature f in list)
+                { f.BoxColour = Pens.Black; }
+            }
+            drawFeatures("", scaling);
+        }
+
+
     }
 }

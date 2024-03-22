@@ -32,6 +32,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.p1 = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.chkLine = new System.Windows.Forms.CheckBox();
             this.label16 = new System.Windows.Forms.Label();
             this.btnAdjustTextLocation = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
@@ -68,7 +69,6 @@
             this.btnGenBank = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.chkLine = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.p1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -82,6 +82,7 @@
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.Controls.Add(this.chkLine);
             this.groupBox1.Controls.Add(this.p1);
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
@@ -104,7 +105,6 @@
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.Controls.Add(this.chkLine);
             this.groupBox2.Controls.Add(this.label16);
             this.groupBox2.Controls.Add(this.btnAdjustTextLocation);
             this.groupBox2.Controls.Add(this.label15);
@@ -146,6 +146,18 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Options";
+            // 
+            // chkLine
+            // 
+            this.chkLine.AutoSize = true;
+            this.chkLine.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.chkLine.Location = new System.Drawing.Point(623, 0);
+            this.chkLine.Name = "chkLine";
+            this.chkLine.Size = new System.Drawing.Size(116, 17);
+            this.chkLine.TabIndex = 33;
+            this.chkLine.Text = "Draw as linear map";
+            this.chkLine.UseVisualStyleBackColor = true;
+            this.chkLine.CheckedChanged += new System.EventHandler(this.chkLine_CheckedChanged);
             // 
             // label16
             // 
@@ -532,18 +544,6 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // chkLine
-            // 
-            this.chkLine.AutoSize = true;
-            this.chkLine.CheckAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.chkLine.Location = new System.Drawing.Point(94, 685);
-            this.chkLine.Name = "chkLine";
-            this.chkLine.Size = new System.Drawing.Size(116, 17);
-            this.chkLine.TabIndex = 33;
-            this.chkLine.Text = "Draw as linear map";
-            this.chkLine.UseVisualStyleBackColor = true;
-            this.chkLine.CheckedChanged += new System.EventHandler(this.chkLine_CheckedChanged);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -557,6 +557,7 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Resize += new System.EventHandler(this.Form1_Resize);
             this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.p1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

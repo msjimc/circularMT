@@ -15,12 +15,15 @@ namespace circularMT
         private Dictionary<string, Brush> colourscheme = null;
         private Dictionary<string, List<feature>> features = new Dictionary<string, List<feature>>();
         public Form1 parent = null;
-        public AdjustColours(Dictionary<string, Brush> colourscheme, Dictionary<string, List<feature>> features, Form1 parent, List<string> terms)
+        private List<string> terms = new List<string>();
+
+        public AdjustColours(Dictionary<string, Brush> colourscheme, Dictionary<string, List<feature>> features, Form1 parent, List<string> Terms)
         {
             InitializeComponent();
             this.colourscheme = colourscheme;
             this.features = features;
             this.parent = parent;
+            this.terms = Terms;
 
             cboTerms.Items.Add("Select");
             foreach (string term in terms)
@@ -37,30 +40,33 @@ namespace circularMT
         private void cboTerms_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtNames.Clear();
-            if (cboTerms.SelectedIndex>0)
-            {  
-                txtNames.Enabled= true; 
+            if (cboTerms.SelectedIndex > 0)
+            {
+                txtNames.Enabled = true;
                 cboCopy.Items.Clear();
                 cboCopy.Items.Add("Select");
-                foreach(feature f in features[cboTerms.Text])
+                foreach (feature f in features[cboTerms.Text])
                 { cboCopy.Items.Add(f.Name); }
                 cboCopy.SelectedIndex = 0;
                 cboCopy.Enabled = true;
             }
             else
-            { 
-                txtNames.Enabled= false;
+            {
+                txtNames.Enabled = false;
                 cboCopy.Enabled = false;
                 if (cboCopy.Items.Count > 0)
-                { cboCopy.SelectedIndex = 0; }          
+                { cboCopy.SelectedIndex = 0; }
             }
+            parent.ResetBoxColour(terms);
             txtNames_TextChanged(txtNames, new EventArgs());
+            
         }
 
         private void txtNames_TextChanged(object sender, EventArgs e)
         {
             if (features == null || cboTerms.Text == "Select") { return; }
 
+            Pen selected = new Pen(Color.Red, 2);
             string namePart = txtNames.Text.Trim().ToLower();            
             txtListOfNames.Clear();
             btnSelect.Enabled = false;
@@ -70,9 +76,11 @@ namespace circularMT
                 {
                     txtListOfNames.Text += f.Name + " ";
                     btnSelect.Enabled = true;
+                    f.BoxColour = selected;
                 }
+                else { f.BoxColour = Pens.Black; }
             }
-            
+            parent.ReDrawFromOutSide();
         }
 
         private void btnSelect_Click(object sender, EventArgs e)

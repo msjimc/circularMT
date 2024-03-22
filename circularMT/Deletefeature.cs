@@ -14,12 +14,15 @@ namespace circularMT
     {
         private Dictionary<string, List<feature>> features = new Dictionary<string, List<feature>>();
         public Form1 parent = null;
-        public Deletefeature(Dictionary<string, List<feature>> features, Form1 parent, List<string> terms)
+        private List<string> terms = new List<string>();
+        public Deletefeature(Dictionary<string, List<feature>> features, Form1 parent, List<string> Terms)
         {
             InitializeComponent();
 
             this.parent = parent;
             this.features = features;
+            this.terms = Terms;
+
 
             cboTerms.Items.Add("Select");
             foreach (string term in terms)
@@ -40,11 +43,14 @@ namespace circularMT
             { txtNames.Enabled = false; }
             txtNames.Clear();
             txtListOfNames.Clear();
+            parent.ResetBoxColour(terms);
         }
 
         private void txtNames_TextChanged(object sender, EventArgs e)
         {
             if (features == null || cboTerms.Text == "Select") { return; }
+
+            Pen selected = new Pen(Color.Red, 2);
 
             string namePart = txtNames.Text.Trim();
             if (string.IsNullOrEmpty(namePart))
@@ -63,11 +69,14 @@ namespace circularMT
                 {
                     txtListOfNames.Text += f.Name + " ";
                     counter += 1;
+                    f.BoxColour = selected;
                 }
+                else
+                { f.BoxColour = Pens.Black; }
             }
             if (counter > 0) 
             { btnDelete.Enabled = true; }
-            
+            parent.ReDrawFromOutSide();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)

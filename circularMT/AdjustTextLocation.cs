@@ -14,16 +14,18 @@ namespace circularMT
     {
         private Dictionary<string, List<feature>> features = new Dictionary<string, List<feature>>();
         public Form1 parent = null;
+        private List<string> terms = new List<string>();
         private bool oneSelected = false;
         private feature selectedFeature = null;
         bool isLinear;
 
-        public AdjustTextLocation(Dictionary<string, List<feature>> features, Form1 parent, List<string> terms, bool IsLinear)
+        public AdjustTextLocation(Dictionary<string, List<feature>> features, Form1 parent, List<string> Terms, bool IsLinear)
         {
             InitializeComponent();
 
             this.parent = parent;
             this.features = features;
+            this.terms = Terms;
 
             isLinear = IsLinear;
 
@@ -50,11 +52,14 @@ namespace circularMT
             { txtNames.Enabled = false; }
             txtNames.Clear();
             txtListOfNames.Clear();
+            parent.ResetBoxColour(terms);
         }
 
         private void txtNames_TextChanged(object sender, EventArgs e)
         {
             if (features == null || cboTerms.Text == "Select") { return; }
+
+            Pen selected = new Pen(Color.Red, 2);
 
             string namePart = txtNames.Text.Trim();
             if (string.IsNullOrEmpty(namePart))
@@ -73,8 +78,13 @@ namespace circularMT
                     txtListOfNames.Text += f.Name + " ";
                     counter += 1;
                     selectedFeature = f;
+                    f.BoxColour = selected;
                 }
+                else
+                    { f.BoxColour = Pens.Black; }
             }
+
+            parent.ReDrawFromOutSide();
 
             if (counter == 1)
             { 
