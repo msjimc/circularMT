@@ -35,14 +35,14 @@
 
 ## Circular or linear maps
 
-```circularMT``` was created to display the organisation of circular mitochondrial genomes, principally from metazoan eukaryotes. WHile these genomes are circular it is possible to display them as either circular or linear maps by checking or unchecking the ```Draw as linear map``` option at the top right corner of the user interface (see blue box in Figure 1). Irrespective of whether the map is circular or linear, all the options have the same basic effect, consequently this guide will describe the production of a circular map and note any difference between a controls behaviour with linear or circular maps were appropriate. 
+```circularMT``` was created to display the organisation of circular mitochondrial genomes, principally from metazoan eukaryotes. While these genomes are circular it is possible to display them as either circular or linear maps by checking or unchecking the ```Draw as linear map``` option at the top right corner of the user interface (see blue box in Figure 1). Irrespective of whether the map is circular or linear, all the options have the same basic effect, consequently this guide will describe the production of a circular map and note any difference between a controls behaviour with linear or circular maps were appropriate. 
 
 ### File formats 
 ```circularMT``` is able to read a range of file formats such as Genbank, mitos, seq, bed, fasta, gtf and gff files. A description of the required formatting of each of these files can be found [here](FileFormats.md).
 
 ### ```circularMT's``` interface
 
-```circularMT``` consists of a ```Genome``` panel located on the left in which the genome is displayed and an ```Options``` panel to the right that contains all the controls that allow you to modify the display. On start up the drawing area consists of just a black circle (Figure 1).
+```circularMT``` consists of a ```Genome``` panel located on the left in which the genome is displayed and an ```Options``` panel to the right that contains all the controls that allow you to modify the display. On start up the drawing area consists of just a black circle (Figure 1). The only control in the ```Genome``` panel is the ```Draw as linear map``` (blue box in Figure 1) check box which toggles the map between a circular diagram or a linear map.
 
 ![Figure 1](images/figure1.jpg)
 
@@ -51,14 +51,14 @@ Figure 1: Checking the ```Draw as linear map``` option (blue box) changes the di
 
 ## Entering data
 
-To import a file, press the ```Select``` button at the top of the ```Options``` panel and select a file (red box in Figure 1). Since a large number of file formats do not explicitly contain the length of the genome, before processing the file ```circularMT``` may prompt you for length of the sequence (Figure 2). If prompted, enter the genome's length and press ```OK```. If you had previously worked on a file in the same session, it's length may be displayed in the ```Genome length``` form.
+To import a file, press the ```Select``` button at the top of the ```Options``` panel and select a file (red box in Figure 1). Since a large number of file formats do not explicitly contain the length of the genome, before processing the file ```circularMT``` may prompt you for the length of the sequence (Figure 2). If prompted, enter the genome's length and press ```OK```. If you had previously worked on a file in the same session, it's length may be displayed in the ```Genome length``` form.
 
 ![Figure 2](images/figure2.jpg)
 
 Figure 2
 <hr />
 
- In Figure 3 the human mitochondrial genome Genbank file was selected [(download)](../Example%20data/sequence.gb) resulting in its name appearing in the programs title bar. If the ```Draw as linear map``` is not checked the genome will be drawn as a circle (Figure 3 a) , if it is cheached the display will be linear (Figure 3 b). 
+ In Figure 3 the human mitochondrial genome Genbank file was selected [(download)](../Example%20data/sequence.gb) resulting in its name appearing in the program's title bar. If the ```Draw as linear map``` is not checked the genome will be drawn as a circle (Figure 3 a) , if it is checked the display will be linear (Figure 3 b). 
 
 
 ![Figure 3](images/figure3.jpg)
@@ -83,11 +83,11 @@ The linear map displays all the features found in the file as a series of arrows
 If there is room, the name of the feature is displayed in the arrow, otherwise it is written at 90 degrees to the feature. 
 
 ### Both displays
-Features are draw even if one feature obscures another, this is especially obvious for the tRNAs genes. Since there is not enough room to write the tRNA's name in the arrow, it's draw next to it. If a number of tRNAs occur in tandem, the location of their names are adjusted to prevent them over-writing each other. However, the clusters of tRNA at about 6.7 Kb and 13.2 Kb contain multiple tRNAs, each duplicated in the tRNA and gene feature set, and due to the number of features ```circularMT``` as issues writing the names. This can be resolved by selecting which features to draw as described below.
+Features are draw even if one feature obscures another, this is especially obvious for the tRNAs genes. Since there is not enough room to write the tRNA's name in the arrow, it's draw next to it. If a number of tRNAs occur in tandem, the location of their names are adjusted to prevent them over-writing each other. However, the clusters of tRNA at about 6.7 Kb and 13.2 Kb contain multiple tRNAs, each duplicated in the ___tRNA___ and ___gene___ feature set, and due to the number of features ```circularMT``` as issues writing the names. This can be resolved by selecting which features to draw as described below.
 
 ## Selecting which features to display
 
-Just below the ```Select``` button, used to pick the data file, is a check box list control that lists all the different types of features found in the file (see blue box in Figure 4). In this case they are ***source***, ***D-loop***, ***gene***, ***tRNA***, ***rRNA***, ***misc-feature*** and ***CDS***. The names of the features and what they contain depends on the data file: another file may have completely difference list of features. If all the features are unchecked, no features will be shown in the display area (Figure 4). Figures 4 to 11 shows the effect of unchecking all the options and then checking each one in turn.
+Just below the ```Select``` button used to pick the data file, is a check box list control that lists all the different types of features found in the file (see blue box in Figure 4). In this case they are ***source***, ***D-loop***, ***gene***, ***tRNA***, ***rRNA***, ***misc-feature*** and ***CDS***. The names of the features and what they contain depends on the data file: another file may have a completely difference list of features. If all the features are unchecked, no features will be shown in the display area (Figure 4). Figures 4 to 11 shows the effect of unchecking all the options and then checking each one in turn.
 
 ![Figure 4](images/figure4.jpg)
 
@@ -101,7 +101,7 @@ Figure 5: The ***source*** feature is selected; in this case this feature repres
 
 ![Figure 6](images/figure6.jpg)
 
-Figure 6: The ***D-loop*** feature(s) are selected. This feature set only contains one D-loops.
+Figure 6: The ***D-loop*** feature(s) are selected. In this file, this feature set contains only one D-loops.
 <hr />
 
 ![Figure 7](images/figure7.jpg)
@@ -161,7 +161,7 @@ Figure 15: Checking the ```Reverse complement sequence``` and ```Switch strand``
 
 ## Adjusting the start point of the genome's annotation
 
-When working with range of genomes the starting positions may vary, resulting in displays that easily comparable to each or the start point dissect a feature, for instance the ***D-loop*** (see Figure 3 b), Consequently it is possible to change the start point of the annotation using the ```Set the feature as the start of sequence``` dropdown list (blue box in Figure 16).  Typically, mitochondrial genomes are draw with the start of tRNA encoding methionine at position 1. To set the ***TRNM*** feature as the start point select it's name from the ```Set the feature as the start of sequence``` dropdown list (blue box in Figure 16). This list contains all the currently drawn features, to aid selection, the name of the feature type is given followed by the feature's name. Once selected the genome will be redrawn such that the start of the selected feature is at 1 bp.
+When working with a range of genomes the starting positions may vary, resulting in displays that are not easily comparable to each or the start point dissects a feature, for instance the ***D-loop*** (see Figure 3 b), consequently it is possible to change the starting point of the annotation using the ```Set the feature as the start of sequence``` dropdown list (blue box in Figure 16).  Typically, mitochondrial genomes are draw with the start of tRNA encoding methionine at position 1. To set the ***TRNM*** feature as the start point select it's name from the ```Set the feature as the start of sequence``` dropdown list (blue box in Figure 16). This list contains all the currently drawn features, to aid selection, the name of the feature type is given followed by the feature's name. Once selected the genome will be redrawn such that the start of the selected feature is at 1 bp.
 
 #### Note:
 
@@ -175,9 +175,7 @@ Figure 16: Selecting the tRNA: TRNM from the drop down list will set the start o
 
 ## Changing the feature's name to an alternative name in the data file
 
-This option allows you to select different names for a feature based on data in the imported file.
-
-Some files may have a number of different names for a feature. Not all features will have a different name, but if they do they can be selected using the second drop down list that contains the ***Gene***, ***Product*** and  ***Gene_synoym*** (see blue box in Figure 17). Figure 17 shows the results of selecting the ***product*** while viewing the genome as a circular map. This displays the protein/tRNA names. However, some names are too long and cross over in the middle of the image, while others go beyond the edge of the image. To try to limit this ```circularMT``` reduces the size of the circle that represents the genome, making the image smaller (Figure 17).
+This option allows you to select different names for a feature based on data in the imported file. Some files may have a number of different names for a feature. Not all features will have a different name, but if they do they can be selected using the second drop down list that contains the ***Gene***, ***Product*** and  ***Gene_synoym*** options (see blue box in Figure 17). Figure 17 shows the results of selecting the ***product*** while viewing the genome as a circular map. This displays the protein/tRNA names. However, some names are too long and cross over in the middle of the image, while others go beyond the edge of the image. To try to limit this ```circularMT``` reduces the size of the circle that represents the genome, making the image smaller (Figure 17).
 
 ![Figure 17](images/figure17.jpg)
 
@@ -185,7 +183,7 @@ Figure 17: Selecting the ***Product*** option in the second drop down list resul
 
 <hr />
 
-Especially when drawing circular genomes, if the 'new' names are too long they may run off the edge of the image, this can be resolved by making ```circularMT's``` interface bigger (see below) or moving the center of the genome (see [Moving the genome's center point](#moving-the-genomes-center-point)).
+Especially when drawing circular genomes, if the selected names are too long they may run off the edge of the image, this can be resolved by making ```circularMT's``` interface bigger (Figure 18) or possibly moving the center of the genome (see [Moving the genome's center point](#moving-the-genomes-center-point)).
 
 ![Figure 18](images/figure18.jpg)
 
@@ -199,7 +197,7 @@ Changing this option may give confusing results, for instance, if you select ***
 
 ## Changing the displayed length of the genome
 
-When importing data from a file such as a GTF file, you have to manually enter the size of the genome, as the file doesn't necessarily contain this information. If this was incorrectly entered it is possible to change it by pressing the ```Reset``` button to the right of the ```Reset genome length``` label (See blue box in Figure 19 a). This will display the ```Genome length``` form (Figure 19 b), changing the value in this dialog form and pressing ```OK``` will reset the length.  
+When importing data from a file such as a GTF file, you have to manually enter the size of the genome, as the file doesn't necessarily contain this information. This value is used to scale the features and so it's important to input the correct value. If this was incorrectly entered it is possible to change it by pressing the ```Reset``` button to the right of the ```Reset genome length``` label (blue box in Figure 19 a). This will display the ```Genome length``` form (Figure 19 b), changing the value in this dialog form and pressing ```OK``` will reset the length.  
 
 ![Figure 19](images/figure19.jpg)
 
@@ -421,6 +419,9 @@ The two number selection controls to the right of the ```Move left-right``` amd 
 Figure 43: Moving the image's center down by '80' using the ```Move up-down``` control creates a better image.
 <hr />
 
+#### Note
+Since linear maps do not write text that projects to the sides of the genome map, its only possible to move the image up or down.
+
 ## Saving the image to a 300 dpi image
 
 Once you are happy with the display image , it can be saved as a 300 (are just over) dpi TIFF, bitmap, PNG or JPEG image by pressing the ```Save``` button to the right of the ```Save image``` label (see blue box in Figure 44 a). This will prompt you to enter a location and file name before saving the image. 
@@ -434,5 +435,5 @@ Saving the image to a greater resolution will also sharpen up the text written a
 
 ![Figure 45](images/figure45.jpg)
 
-Figure 45: While the text can appear scrappy in the user interface (Figure 45 a), saving the image to a 300 dpi image creates  smoother, clearer text when shown at the same size (Figure 45 b). 
+Figure 45: While the text can appear scrappy in the user interface (Figure 45 a), saving the genome map to a 300 dpi image creates  smoother, clearer text when shown at the same size (Figure 45 b). 
 <hr />
