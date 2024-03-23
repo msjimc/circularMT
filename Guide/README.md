@@ -3,34 +3,44 @@
 ### Contents
 - ```circularMT``` user guide  
   - [Introduction](#introduction)  
-    - [File formats](#file-formats) 
-    -  [```circularMT's``` interface](#circularmts-interface)
+    - [Circular or linear maps](#circular-or-linear-maps)
+      - [File formats](#file-formats) 
+      -  [```circularMT's``` interface](#circularmts-interface)
   - [Entering data](#entering-data)
+  - [Circular display](#circular-display)  
+  - [Linear display](#linear-display)  
+  - [Both displays](#both-displays)  
   - [Selecting which features to display](#selecting-which-features-to-display)  
-  - [Changing the order and/or the strands of the sequences](#changing-the-order-andor-the-strands-of-the-sequences)  
-  - [Rotating the genome's annotation](#rotating-the-genomes-annotation)  
+  - [Changing the order and/or the strands of the sequences](#changing-the-order-andor-the-strands-of-the-sequences)    
+  - [Adjusting the start point of the genome's annotation](#adjusting-the-start-point-of-the-genomes-annotation)   
   - [Changing the feature's name to an alternative name in the data file](#changing-the-features-name-to-an-alternative-name-in-the-data-file)  
   - [Changing the displayed length of the genome](#changing-the-displayed-length-of-the-genome)  
   - [Changing the genome's name](#changing-the-genomes-name)
-  - [Changing a feature's colour](#changing-a-features-colour)  
   - [Drawing smaller features last](#drawing-smaller-features-last)  
+  - [Changing the colour of one or more features](#changing-the-colour-of-one-or-more-features)  
+  - [Changing the font colour of one or more features](#changing-the-font-colour-of-one-or-more-features)   
+  - [Copying the colour scheme from one feature to another](#copying-the-colour-scheme-from-one-feature-to-another)
   - [Manually editing a feature's name](#manually-editing-a-features-name)  
+  - [Manually moving text written next to a feature](#manually-moving-text-written-next-to-a-feature)   
+    - [Resizing the image](#resizing-the-image)  
+    - [Changing the ```Cluster size``` value](#changing-the-cluster-size-value)   
+    - [Rotating and changing the X and Y coordinates of a features name](#rotating-and-changing-the-x-and-y-coordinates-of-a-features-name)
   - [Adding a feature](#adding-a-feature)  
-  - [Removing a feature](#removing-a-feature)
-  - [Moving the genome's center point](#moving-the-genomes-center-point)
-  - [Saving the image to a 300 dpi image](#saving-the-image-to-a-300-dpi-image)  
+  - [Removing a feature](#removing-a-feature)  
+  - [Moving the genome's center point](#moving-the-genomes-center-point)  
+  - [Saving the image to a 300 dpi image](#saving-the-image-to-a-300-dpi-image)    
 
 
-## Introduction
+# Introduction
 
 ## Circular or linear maps
 
 ```circularMT``` was created to display the organisation of circular mitochondrial genomes, principally from metazoan eukaryotes. WHile these genomes are circular it is possible to display them as either circular or linear maps by checking or unchecking the ```Draw as linear map``` option at the top right corner of the user interface (see blue box in Figure 1). Irrespective of whether the map is circular or linear, all the options have the same basic effect, consequently this guide will describe the production of a circular map and note any difference between a controls behaviour with linear or circular maps were appropriate. 
 
-#### File formats 
+### File formats 
 ```circularMT``` is able to read a range of file formats such as Genbank, mitos, seq, bed, fasta, gtf and gff files. A description of the required formatting of each of these files can be found [here](FileFormats.md).
 
-#### ```circularMT's``` interface
+### ```circularMT's``` interface
 
 ```circularMT``` consists of a ```Genome``` panel located on the left in which the genome is displayed and an ```Options``` panel to the right that contains all the controls that allow you to modify the display. On start up the drawing area consists of just a black circle (Figure 1).
 
@@ -378,7 +388,7 @@ During the annotation process extra features may be erroneously added, for insta
 Figure 39
 <hr />
 
-To remove unwanted features, click the ```Remove``` button next to the ```Remove a feature``` label (see blue box next in Figure 39) to open the ```Delete feature(s)``` form. Once opened, select the feature type from the drop down list at the top right of the form (see blue box in Figure 40) and enter the name of feature in the activated text box (this is case sensitive) (see red box in Figure 40). If the text matches one or more features, the lower right ```Delete``` button will be enabled.
+To remove unwanted features, click the ```Remove``` button next to the ```Remove a feature``` label (see blue box next in Figure 39) to open the ```Delete feature(s)``` form. Once opened, select the feature type from the drop down list at the top right of the form (see blue box in Figure 40) and enter the name of the feature in the text box (this is case sensitive) (red box in Figure 40). If the text matches one or more features, the lower right ```Delete``` button will be enabled.
 
 ![Figure 40](images/figure40.jpg)
 
@@ -397,25 +407,25 @@ If a number of features have the same name, but you only want to delete some of 
 
 ## Moving the genome's center point
 
-By default, the center of the circle representing the genome is placed in the middle of the image area and the circle is rescaled to stop text overrunning the edge of the image. However, for images with long feature names the scaling process may be stopped to make sure the image doesn't become too small and the text over runs the edge of the image or the image is smaller than you'd like (Figure 35). This can be resolved by moving the center of the image so the the text doesn't over run. 
+By default, the center of the circle representing the genome is placed in the middle of the image area and the circle is rescaled to stop text overrunning the edge of the image. However, for images with long feature names the scaling process may be stopped to make sure the image doesn't become too small and the text over runs the edge of the image or the image is smaller than you'd like (Figure 42). This can be resolved by moving the center of the image so the the text doesn't over run. 
 
-![Figure 35](images/figure35.jpg)
+![Figure 42](images/figure42.jpg)
 
-Figure 35: The renamed TRNF sequence causes the image to be too small.
+Figure 42: The renamed TRNF sequence causes the image to be too small.
 <hr />
 
-The two number selection controls to the right of the ```Move left-right``` amd ```Move up-down``` labels (see blue box in Figure 35) allow the position of the center of the genome to be moved. As the center moves the image will rescale itself to try to stop text over running the image area. Setting the value in the control to the right of the ```Move up-down``` label to ***60***, will shift the image down allowing it to increase in size while still displaying the edited text for the TRNF tRNA feature (Figure 36). If you type or copy and paste a new value in to the control, you have click on another control (i.e. the other ```Move``` control or the check box list) to redraw the image.
+The two number selection controls to the right of the ```Move left-right``` amd ```Move up-down``` labels (see blue box in Figure 42) allow the position of the center of the genome to be moved. As the center moves the image will resize itself to try to stop text over running the image area. Setting the value in the control to the right of the ```Move up-down``` label to ***80***, will shift the image down allowing it to increase in size while still displaying the edited text for the TRNF tRNA feature (Figure 43).
 
-![Figure 36](images/figure36.jpg)
+![Figure 43](images/figure43.jpg)
 
-Figure 36: Moving the image's center down by '60' using the ```Move up-down``` control creates a better image.
+Figure 43: Moving the image's center down by '80' using the ```Move up-down``` control creates a better image.
 <hr />
 
 ## Saving the image to a 300 dpi image
 
-Once you are happy with the display image , it can be saved as a 300 (are just over) dpi TIFF, bitmap, PNG or JPEG image by pressing the ```Save``` button to the right of the ```Save image``` label (see blue box in Figure 37 a). This will prompt you to enter a location and file name before saving the image (Figure 37). Saving the image to a greater resolution will also sharpen up the text written at near vertical angles which may appear scrappy in the user interface where it is drawn at ~96 dpi (Figure 37 b).
+Once you are happy with the display image , it can be saved as a 300 (are just over) dpi TIFF, bitmap, PNG or JPEG image by pressing the ```Save``` button to the right of the ```Save image``` label (see blue box in Figure 44 a). This will prompt you to enter a location and file name before saving the image (Figure 44). Saving the image to a greater resolution will also sharpen up the text written at near vertical angles which may appear scrappy in the user interface where it is drawn at ~96 dpi (Figure 44 b).
 
-![Figure 37](images/figure37.jpg)
+![Figure 44](images/figure44.jpg)
 
-Figure 37: Pressing the ```Save``` button will save the current display image to a 300 dpi TIFF, PNG, Bitmap or JPEG image file. 
+Figure 44: Pressing the ```Save``` button will save the current display image to a 300 dpi TIFF, PNG, Bitmap or JPEG image file. 
 <hr />
