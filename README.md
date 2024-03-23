@@ -14,7 +14,7 @@
 
 The data can be imported from a wide range of file formats such as *.fasta, *.mitos, *.gb, *.bed, *.seq, *.gtf and *.gff files. While ```circularMT``` can process these files, *.fasta and *.bed files in particular most conform to a set format not present in all files.
 
-Onces imported the resultant image can be rotated, the strands switched around and the features renamed, deleted and colour scheme changed to obtain the desired map.
+Once imported the resultant image can be rotated, the strands switched around and the features renamed, deleted and colour scheme changed to obtain the desired map.
 
 <center><img src="Guide/images/introLineear.jpg"></center>
 

@@ -339,7 +339,7 @@ Figure 33
 
 ### Rotating and changing the X and Y coordinates of a features name 
 
-When writing text in the circular map, the reference point (x = 0, y =0) is moved and ultimately ends up at the position of the blue circle in Figure 34 c. The image is rotated so the text is written from left to right as normal, so when the image is rotated back to its starting the point the text is at an angle. Consequently for circular maps, moving the text backwards and forwards moves it along the blue line in Figure 34 a, moving the text up and down moves it along the line in Figure 34 b, while rotating it, rotates it around the blue circle in Figure 34 c. While not as extreme the same situation occurs with the vertical text in the linear maps. Due to the simpler nature of the linear maps, vertical text can only be moved in one axis: the other options are disabled.  
+When writing text in the circular map, the reference point (x = 0, y = 0) is moved and ultimately ends up at the position of the blue circle in Figure 34 c. The image is rotated so the text is written from left to right as normal, so when the image is rotated back to its starting the point the text is at an angle. Consequently for circular maps, moving the text backwards and forwards moves it along the blue line in Figure 34 a, moving the text up and down moves it along the line in Figure 34 b, while rotating it, rotates it around the blue circle in Figure 34 c. While not as extreme, the same situation occurs with the vertical text in the linear maps. Due to the simpler nature of the linear maps, vertical text can only be moved in one axis: the other options are disabled.  
 
 ![Figure 34](images/figure34.jpg)
 
@@ -414,7 +414,7 @@ By default, the center of the circle representing the genome is placed in the mi
 Figure 42: The renamed TRNF sequence causes the image to be too small.
 <hr />
 
-The two number selection controls to the right of the ```Move left-right``` amd ```Move up-down``` labels (see blue box in Figure 42) allow the position of the center of the genome to be moved. As the center moves the image will resize itself to try to stop text over running the image area. Setting the value in the control to the right of the ```Move up-down``` label to ***80***, will shift the image down allowing it to increase in size while still displaying the edited text for the TRNF tRNA feature (Figure 43).
+The two number selection controls to the right of the ```Move left-right``` amd ```Move up-down``` labels (see blue box in Figure 42) allow the position of the center of the genome to be moved. As the center moves the image will resize itself to try to stop text over running the image area. Setting the value in the control to the right of the ```Move left-right``` label to ***80***, will shift the image to the right allowing it to increase in size while still displaying the edited text for the TRNF tRNA feature (Figure 43).
 
 ![Figure 43](images/figure43.jpg)
 
@@ -423,9 +423,16 @@ Figure 43: Moving the image's center down by '80' using the ```Move up-down``` c
 
 ## Saving the image to a 300 dpi image
 
-Once you are happy with the display image , it can be saved as a 300 (are just over) dpi TIFF, bitmap, PNG or JPEG image by pressing the ```Save``` button to the right of the ```Save image``` label (see blue box in Figure 44 a). This will prompt you to enter a location and file name before saving the image (Figure 44). Saving the image to a greater resolution will also sharpen up the text written at near vertical angles which may appear scrappy in the user interface where it is drawn at ~96 dpi (Figure 44 b).
+Once you are happy with the display image , it can be saved as a 300 (are just over) dpi TIFF, bitmap, PNG or JPEG image by pressing the ```Save``` button to the right of the ```Save image``` label (see blue box in Figure 44 a). This will prompt you to enter a location and file name before saving the image. 
 
 ![Figure 44](images/figure44.jpg)
 
 Figure 44: Pressing the ```Save``` button will save the current display image to a 300 dpi TIFF, PNG, Bitmap or JPEG image file. 
+<hr />
+
+Saving the image to a greater resolution will also sharpen up the text written at near vertical angles which may appear scrappy in the user interface where it is drawn at ~96 dpi (Figure 45 a and b).
+
+![Figure 45](images/figure45.jpg)
+
+Figure 45: While the text can appear scrappy in the user interface (Figure 45 a), saving the image to a 300 dpi image creates  smoother, clearer text when shown at the same size (Figure 45 b). 
 <hr />
