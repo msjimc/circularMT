@@ -26,9 +26,17 @@ namespace circularMT
             this.terms = Terms;
 
             cboTerms.Items.Add("Select");
+            cboCopy.Items.Add("Select");
             foreach (string term in terms)
-            { cboTerms.Items.Add(term); }
+            { 
+                cboTerms.Items.Add(term); 
+                foreach (feature f in features[term])
+                { cboCopy.Items.Add(term + ": " + f.Name); }
+            }
             cboTerms.SelectedIndex = 0;
+            cboCopy.SelectedIndex = 0;
+
+
 
         }
 
@@ -43,19 +51,19 @@ namespace circularMT
             if (cboTerms.SelectedIndex > 0)
             {
                 txtNames.Enabled = true;
-                cboCopy.Items.Clear();
-                cboCopy.Items.Add("Select");
-                foreach (feature f in features[cboTerms.Text])
-                { cboCopy.Items.Add(f.Name); }
-                cboCopy.SelectedIndex = 0;
+                //cboCopy.Items.Clear();
+                //cboCopy.Items.Add("Select");
+                //foreach (feature f in features[cboTerms.Text])
+                //{ cboCopy.Items.Add(f.Name); }
+                //cboCopy.SelectedIndex = 0;
                 cboCopy.Enabled = true;
             }
             else
             {
                 txtNames.Enabled = false;
                 cboCopy.Enabled = false;
-                if (cboCopy.Items.Count > 0)
-                { cboCopy.SelectedIndex = 0; }
+                //if (cboCopy.Items.Count > 0)
+                //{ cboCopy.SelectedIndex = 0; }
             }
             parent.ResetBoxColour(terms);
             txtNames_TextChanged(txtNames, new EventArgs());
@@ -131,11 +139,30 @@ namespace circularMT
         {
             try
             {
-                feature fFrom = features[cboTerms.Text][cboCopy.SelectedIndex - 1];
+                string item = cboCopy.Text;
+                string typeName = item.Substring(0, item.IndexOf(":"));
+                string featureName = item.Replace(typeName + ": ", "");
+
+                feature fFrom = null;
+
+                int counter = 0;
+                for (int index = 1; index< cboCopy.Items.Count; index++)
+                {
+                    if (cboCopy.Items[index].ToString().StartsWith(typeName) == true)
+                    {
+                        if (index == cboCopy.SelectedIndex)
+                        {
+                            fFrom = features[typeName][counter];
+                            break;
+                        }
+                        counter++;
+                    }
+                }
+
                 string namePart = txtNames.Text.Trim().ToLower();
 
                 bool changed = false;
-                foreach (feature f in features[cboTerms.Text])
+                foreach (feature f in features[typeName])
                 {
                     if (f.Name.ToLower().StartsWith(namePart) == true)
                     {

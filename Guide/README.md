@@ -177,23 +177,22 @@ Figure 16: Selecting the tRNA: TRNM from the drop down list will set the start o
 
 This option allows you to select different names for a feature based on data in the imported file. Some files may have a number of different names for a feature. Not all features will have a different name, but if they do they can be selected using the second drop down list that contains the ***Gene***, ***Product*** and  ***Gene_synoym*** options (see blue box in Figure 17). Figure 17 shows the results of selecting the ***product*** while viewing the genome as a circular map. This displays the protein/tRNA names. However, some names are too long and cross over in the middle of the image, while others go beyond the edge of the image. To try to limit this ```circularMT``` reduces the size of the circle that represents the genome, making the image smaller (Figure 17).
 
+A name will only change if there is an alternate name to change too, so the order they new names are selected will affect the displayed names: selecting ***Gene*** then ***Product*** then ***Gene_synoym*** may show different names than selecting ***Gene*** then ***Gene_synoym***.
+
 ![Figure 17](images/figure17.jpg)
 
 Figure 17: Selecting the ***Product*** option in the second drop down list results in the protein names been displayed, however, they are too long for the display. 
 
 <hr />
 
-Especially when drawing circular genomes, if the selected names are too long they may run off the edge of the image, this can be resolved by making ```circularMT's``` interface bigger (Figure 18) or possibly moving the center of the genome (see [Moving the genome's center point](#moving-the-genomes-center-point)).
+If the selected names are too long they may run off the edge of the image, this can be resolved by either making ```circularMT's``` interface bigger (Figure 18) or possibly by moving the center of the genome (see [Moving the genome's center point](#moving-the-genomes-center-point)).
 
 ![Figure 18](images/figure18.jpg)
 
-Figure 18: Making the program's interface bigger helps resolve the issue. (Due to auto-scaling this image may not appear larger).
+Figure 18: Making the program's interface bigger helps resolve the issue. (Due to auto-scaling by your web-browser this image may not appear larger).
 
 <hr />
 
-#### Note:
-
-Changing this option may give confusing results, for instance, if you select ***Product***, a feature will be given its ***Product*** name if it has one, while retaining the ***Gene*** name if it doesn't. If you then select ***Gene_synoym***, a feature will display their ***Gene_synoym*** if they have one, but either their ***Product*** name or ***Gene*** name if they don't, depending on the outcome of previously selecting ***Product***. If you select ***Gene*** all the features will probably display their ***Gene*** name as the majority of features have a ***Gene*** name
 
 ## Changing the displayed length of the genome
 
@@ -207,7 +206,7 @@ Figure 19: Resetting the genome length with the ```Genome length``` dialog box.
 
 ## Changing the genome's name
 
-The sequence's name and the genome's length is displayed in the center of the image. If the name is long, the font size is reduced to make it fit, however, for very long names it may become hard to read. This can be resolved by shortening or changing the name. This is done by pressing the ```Edit``` button next to the ```Edit genome name``` label (see blue box in Figure 20 a). This will display the ```Genome name``` dialog box, changing the value in the dialog box and pressing ```OK``` will change the displayed name (Figure 20 a and b).  
+The sequence's name and the genome's length are displayed in the center of the image. If the name is long, the font size is reduced to make it fit, however, for very long names it may become hard to read. This can be resolved by changing the name to a short one by pressing the ```Edit``` button next to the ```Edit genome name``` label (see blue box in Figure 20 a). This will display the ```Genome name``` dialog box, changing the value in the dialog box and pressing ```OK``` will change the displayed name (Figure 20 a and b).  
 
 ![Figure 20](images/figure20.jpg)
 
@@ -217,7 +216,7 @@ Figure 20: Resetting the genome's name with the ```Genome name``` dialog box.
 
 ## Drawing smaller features last
 
-The genes on the mitochondrial genome are very tightly packed with some sequences over lapping. This may result in smaller features such as tRNAs being obscured by larger gene sequences. To reduce the affect of this, by default, features longer than 150 bp are drawn first and then any smaller features are draw over them. Unchecking the ```Draw smaller features last``` option will cause the features to be drawn in the order the feature types are listed in the check box list in the top right of the interface, with each feature in the set drawn in their positional order. Figure 21 shows the affect on trnl2(taa) sequence (this was not drawn using the human mitochondrial used in the rest of the images in this guide) when the option is turned off (A) and turned on (B).
+The genes on the mitochondrial genome are very tightly packed with some sequences over lapping. This may result in smaller features such as tRNAs being obscured by larger gene sequences. To reduce this, by default, features longer than 150 bp are drawn first and then any smaller features are draw over them. Unchecking the ```Draw smaller features last``` option will cause the features to be drawn in the order the feature types are listed in the check box list in the top right of the interface, with each feature in the came set drawn in their positional order. Figure 21 shows the trnl2(taa) sequence partially obscured (this was not drawn using the human mitochondrial used in the rest of the images in this guide) when the option is turned off (Figure 21 a), but fully visible when it is turned on (Figure 21 b).
 
 ![Figure 21](images/figure21.jpg)
 
@@ -226,7 +225,7 @@ Figure 21
 
 ## Changing the colour of one or more features
 
-Initially, the colours of each type of feature is based on the order in which the feature types first occur in the file, to make a nicer display, it is possible to change the colour of a feature type or specific subset of features by pressing the ```Adjust``` button to the right of the ```Adjust colour scheme``` label (see blue box in Figure 22). This will display the ```Adjust feature colours``` dialog form that allows the selection of the features to change and their new colour (Figure 22).
+Initially, the colours of each type of feature are based on the order in which the feature types first occur in the file, to make a nicer display, it is possible to change the colour of a feature or a specific subset of features by pressing the ```Adjust``` button to the right of the ```Adjust colour scheme``` label (see blue box in Figure 22). This will display the ```Adjust feature colours``` dialog form that allows the selection of the features to change and their new colour (Figure 22).
 
 ![Figure 22](images/figure22.jpg)
 
@@ -242,7 +241,7 @@ Figure 23
 
 <hr />
 
-Once a feature type has been selected the text box will be active, initially all the features of the chosen type will be selected and their names will appear in a list below the text box (see blue box in Figure 24). The selected features will also be drawn with a red perimeter in the display to verify their selection. Typing the name of the feature in the now active text box, will reduce the list of selected items to those whose name starts with the entered text (not case sensitive). For instance in Figure 24, the ***CDS*** feature type was selected and 'ND' has been entered and so only the ***CDS*** features ***ND1***, ***ND2***, ***ND3***, ***ND4***, ***ND4L***, ***ND5*** and ***ND6*** are selected.
+Once a feature type has been selected the text box below the drop down list will become active, initially all the features of the chosen type will be selected and their names will appear in a list below the text box (see blue box in Figure 24). The selected features will also be drawn with a red perimeter in the display to visualise their selection. Typing the name of the feature in the now active text box, will reduce the list of selected items to those whose name starts with the entered text (not case sensitive). For instance in Figure 24, the ***CDS*** feature type was selected and 'ND' has been entered resulting in only the ***CDS*** features ***ND1***, ***ND2***, ***ND3***, ***ND4***, ***ND4L***, ***ND5*** and ***ND6*** been selected.
 
 ![Figure 24](images/figure24.jpg)
 
@@ -276,7 +275,7 @@ Figure 27
 
 ## Copying the colour scheme from one feature to another
 
-The colour selection dialog box allows you to select a colour from a preset collection of colours or to create a custom colour. WHile custom colours may create a better image, it can be difficult to create the same colour for features that can't be selected as a subset. Consequently, its possible to select a donor feature that you have previously coloured using the drop down list above the ```Select``` button. Once select, select other features as described above and then press the ```Copy``` button to the right of the drop down list (blue box in Figure 28). 
+The ```colour selection``` dialog box allows you to select a colour from a preset collection of colours or to create a custom colour. While custom colours may create a better image, it can be difficult to create the same colour for features that can't be selected as a subset. Consequently, its possible to select a donor feature that you have previously coloured using the drop down list above the ```Select``` button. Once select, select other features as described above and then press the ```Copy``` button to the right of the drop down list (blue box in Figure 28). 
 
 
 ![Figure 28](images/figure28.jpg)
@@ -284,7 +283,7 @@ The colour selection dialog box allows you to select a colour from a preset coll
 Figure 28
 <hr />
 
-In Figure 28, ND1 was selected as the donor feature, while all CDS features whose name started with "CO" were selected as the recipient features. Pressing the ```Copy``` button transfers the colour scheme from the donor ND1 feature to the all the recipient features (Figure 29).
+In Figure 28, ND1 was selected as the donor feature, while all CDS features whose name started with "CO" were selected as the recipient features. Pressing the ```Copy``` button transfers the colour scheme from the donor ***ND1*** feature to the all the recipient features (Figure 29).
 
 ![Figure 29](images/figure29.jpg)
 
@@ -293,12 +292,14 @@ Figure 29
 
 ## Manually editing a feature's name
 
-The name of each feature is obtained from the data file, if you wish to change their names, press the ```Edit``` button to the right of the ```Edit names``` label (see blue box in Figure 30 a). This will open the ```Edit feature names``` dialog box, which is similar to the ```Adjust feature colours``` dialog box. To edit a feature, first select its type from the drop down list (Figure 30 b) and start to type the name of the feature you wish to change in to the text area below the drop down list: -this is case sensitive (see blue box in Figure 31). When the entered text matches just one feature, the lowest text box area will be come active allowing you to enter the new name (see red box in Figure 31). As with other dialog boxes, the selected feature will be drawn with a red perimeter.
+The name of each feature is obtained from the data file, if you wish to change their names to something else, press the ```Edit``` button to the right of the ```Edit names``` label (see blue box in Figure 30 a). This will open the ```Edit feature names``` dialog box, which is similar to the ```Adjust feature colours``` dialog box. 
 
 ![Figure 30](images/figure30.jpg)
 
 Figure 30
 <hr />
+
+To edit a feature's name, first select its type from the drop down list (Figure 30 b) and then start to type the name (___this is case sensitive___) of the feature you wish to change in to the text area below the drop down list (blue box in Figure 31). When the entered text matches just one feature, the lowest text box area will be come active allowing you to enter the new name (red box in Figure 31). As with other dialog boxes, the selected feature will be drawn with a red perimeter.
 
 ![Figure 31](images/figure31.jpg)
 
