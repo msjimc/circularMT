@@ -693,7 +693,7 @@ namespace circularMT
             g.TextContrast = 0;
 
             Point center = new Point(bmp.Width / 2, bmp.Height / 2);
-            center.Y += (int)nupUPDown.Value;
+            center.Y += (int)((float)nupUPDown.Value * scaling.scale);
 
             ResetClash();
             ClashLineDectection(g, center, scaling.twenty, scaling);
@@ -743,8 +743,8 @@ namespace circularMT
                 }
             }
 
-            g.FillRectangle(Brushes.White, -1, 0, scaling.twenty, bmp.Height);
-            g.FillRectangle(Brushes.White, bmp.Width - scaling.twenty,0, scaling.twenty, bmp.Height);
+            g.FillRectangle(Brushes.White, -1, 0, scaling.seventeen, bmp.Height);
+            g.FillRectangle(Brushes.White, bmp.Width - scaling.seventeen, 0, scaling.twenty, bmp.Height);
 
 
             if (string.IsNullOrWhiteSpace(fileName) == true)
@@ -990,8 +990,8 @@ namespace circularMT
             g.TextContrast = 0;
            
             Point center = new Point(bmp.Width / 2, bmp.Height / 2);
-            center.X += (int)nupLeftRight.Value;
-            center.Y += (int)nupUPDown.Value;
+            center.X += (int)((float)nupLeftRight.Value * scaling.scale);
+            center.Y += (int)((float)nupUPDown.Value * scaling.scale);
 
             int radius = -1;
             if (bmp.Width > bmp.Height)
@@ -1067,7 +1067,7 @@ namespace circularMT
 
         private void ClashDetection(ImageScaling scaling)
         {
-            int clashDistance = (int)nupCluster.Value;
+            int clashDistance = (int)((float)nupCluster.Value * scaling.scale);
 
             List<feature> all = new List<feature>();
             if (chlTerms.CheckedItems.Count > 0)
