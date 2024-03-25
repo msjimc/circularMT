@@ -241,8 +241,13 @@
             0,
             0});
             this.nupLeftRight.Location = new System.Drawing.Point(136, 572);
+            this.nupLeftRight.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
             this.nupLeftRight.Minimum = new decimal(new int[] {
-            100,
+            200,
             0,
             0,
             -2147483648});
@@ -259,8 +264,13 @@
             0,
             0});
             this.nupUPDown.Location = new System.Drawing.Point(136, 598);
+            this.nupUPDown.Maximum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
             this.nupUPDown.Minimum = new decimal(new int[] {
-            100,
+            200,
             0,
             0,
             -2147483648});

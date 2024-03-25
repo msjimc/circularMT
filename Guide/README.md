@@ -24,7 +24,7 @@
   - [Manually moving text written next to a feature](#manually-moving-text-written-next-to-a-feature)   
     - [Resizing the image](#resizing-the-image)  
     - [Changing the ```Cluster size``` value](#changing-the-cluster-size-value)   
-    - [Rotating and changing the X and Y coordinates of a features name](#rotating-and-changing-the-x-and-y-coordinates-of-a-features-name)
+    - [Moving and rotating a features name](#moving-and-rotating-a-features-name)
   - [Adding a feature](#adding-a-feature)  
   - [Removing a feature](#removing-a-feature)  
   - [Moving the genome's center point](#moving-the-genomes-center-point)  
@@ -134,7 +134,6 @@ As can be seen from the preceding figures there may be a number of ways to displ
 ![Figure 12](images/figure12.jpg)
 
 Figure 12: The ***D-loop***, ***tRNA***, ***rRNA*** and ***CDS*** were selected such that each feature was drawn once.
-
 <hr />
 
 ## Changing the order and/or the strands of the sequences
@@ -144,33 +143,27 @@ When working with a de novo assembled genome the contig may not be in the prefer
 ![Figure 13](images/figure13.jpg)
 
 Figure 13: Checking the ```Reverse complement sequence``` option switches the feature's strand and draws the sequences in the reverse order.
-
 <hr />
 
 ![Figure 14](images/figure14.jpg)
 
 Figure 14: Checking the ```Switch strand``` option switches the feature's strand, but keeps the ordering of the genes
-
 <hr />
 
 ![Figure 15](images/figure15.jpg)
 
 Figure 15: Checking the ```Reverse complement sequence``` and ```Switch strand``` option draws the sequences in the reverse order.
-
 <hr />
 
 ## Adjusting the start point of the genome's annotation
 
 When working with a range of genomes the starting positions may vary, resulting in displays that are not easily comparable to each or the start point dissects a feature, for instance the ***D-loop*** (see Figure 3 b), consequently it is possible to change the starting point of the annotation using the ```Set the feature as the start of sequence``` dropdown list (blue box in Figure 16).  Typically, mitochondrial genomes are draw with the start of tRNA encoding methionine at position 1. To set the ***TRNM*** feature as the start point select it's name from the ```Set the feature as the start of sequence``` dropdown list (blue box in Figure 16). This list contains all the currently drawn features, to aid selection, the name of the feature type is given followed by the feature's name. Once selected the genome will be redrawn such that the start of the selected feature is at 1 bp.
 
-#### Note:
-
-If you change one of the ```Reverse complement sequence``` or ```Switch strand``` options, you may have to reselect the feature as the genome may be drawn genome from the end of the feature and not the start.
+***Note:*** If you change one of the ```Reverse complement sequence``` or ```Switch strand``` options, you may have to reselect the feature as the genome may be drawn genome from the end of the feature and not the start.
 
 ![Figure 16](images/figure16.jpg)
 
 Figure 16: Selecting the tRNA: TRNM from the drop down list will set the start of the tRNA sequence as position 1 in the genome, rotating the image so TRNM is at 12 o' clock. 
-
 <hr />
 
 ## Changing the feature's name to an alternative name in the data file
@@ -182,7 +175,6 @@ A name will only change if there is an alternate name to change too, so the orde
 ![Figure 17](images/figure17.jpg)
 
 Figure 17: Selecting the ***Product*** option in the second drop down list results in the protein names been displayed, however, they are too long for the display. 
-
 <hr />
 
 If the selected names are too long they may run off the edge of the image, this can be resolved by either making ```circularMT's``` interface bigger (Figure 18) or possibly by moving the center of the genome (see [Moving the genome's center point](#moving-the-genomes-center-point)).
@@ -190,9 +182,7 @@ If the selected names are too long they may run off the edge of the image, this 
 ![Figure 18](images/figure18.jpg)
 
 Figure 18: Making the program's interface bigger helps resolve the issue. (Due to auto-scaling by your web-browser this image may not appear larger).
-
 <hr />
-
 
 ## Changing the displayed length of the genome
 
@@ -200,8 +190,7 @@ When importing data from a file such as a GTF file, you have to manually enter t
 
 ![Figure 19](images/figure19.jpg)
 
-Figure 19: Resetting the genome length with the ```Genome length``` dialog box. 
-
+Figure 19: Resetting the genome length with the ```Genome length``` dialog box.  
 <hr />
 
 ## Changing the genome's name
@@ -210,8 +199,7 @@ The sequence's name and the genome's length are displayed in the center of the i
 
 ![Figure 20](images/figure20.jpg)
 
-Figure 20: Resetting the genome's name with the ```Genome name``` dialog box. 
-
+Figure 20: Resetting the genome's name with the ```Genome name``` dialog box.  
 <hr />
 
 ## Drawing smaller features last
@@ -230,7 +218,6 @@ Initially, the colours of each type of feature are based on the order in which t
 ![Figure 22](images/figure22.jpg)
 
 Figure 22: The ```Adjust feature colours``` dialog box allows the colour of the features to be changed. 
-
 <hr />
 
 The ```Adjust feature colours``` dialog box consists of a drop down list of the different types of features and a text box that is disabled when the dialog box appears. To select a feature, first select the type of feature from the drop down list (see blue box in Figure 23).
@@ -238,7 +225,6 @@ The ```Adjust feature colours``` dialog box consists of a drop down list of the 
 ![Figure 23](images/figure23.jpg)
 
 Figure 23
-
 <hr />
 
 Once a feature type has been selected the text box below the drop down list will become active, initially all the features of the chosen type will be selected and their names will appear in a list below the text box (see blue box in Figure 24). The selected features will also be drawn with a red perimeter in the display to visualise their selection. Typing the name of the feature in the now active text box, will reduce the list of selected items to those whose name starts with the entered text (not case sensitive). For instance in Figure 24, the ***CDS*** feature type was selected and 'ND' has been entered resulting in only the ***CDS*** features ***ND1***, ***ND2***, ***ND3***, ***ND4***, ***ND4L***, ***ND5*** and ***ND6*** been selected.
@@ -246,7 +232,6 @@ Once a feature type has been selected the text box below the drop down list will
 ![Figure 24](images/figure24.jpg)
 
 Figure 24: All terms in the ***CDS*** class beginning with "ND" are select as shown by the name in the text area below the text bow and their red perimeter in the display.
-
 <hr />
 
 Once the features have been selected, press the ```Select``` button in the lower right corner of the form to display the ```Colour``` dialog form and pick the desired colour (Figure 25) and then press the ```OK``` button. This will close the colour selection dialog form and re-colour the image, in this case all of the CDS features whose names start with 'ND' are pale blue (Figure 26).
@@ -254,13 +239,11 @@ Once the features have been selected, press the ```Select``` button in the lower
 ![Figure 25](images/figure25.jpg)
 
 Figure 25
-
 <hr />
 
 ![Figure 26](images/figure26.jpg)
 
 Figure 26; Pressing the ```OK``` button changes the selected features colours.
-
 <hr />
 
 ## Changing the font colour of one or more features
@@ -270,7 +253,6 @@ Once you have selected one or more features as described above, you can switch t
 ![Figure 27](images/figure27.jpg)
 
 Figure 27
-
 <hr />
 
 ## Copying the colour scheme from one feature to another
@@ -313,46 +295,46 @@ Pressing the ```Change``` button in the lower right of the form will rename the 
 Figure 32: The "ND5" feature is now labeled "NAD 5" (text underlined by the black line)
 <hr />
 
-#### Note: 
-The name changes are not permanent; changing the selected value in the ```Select name tag``` drop down list will reset the values to these from the file.
+***Note:*** The name changes are not permanent; changing the selected value in the ```Select name tag``` drop down list will reset the values to those in the file.
 
 ## Manually moving text written next to a feature
 
-If the arrow is small its name is written perpendicular to the arrow. If a series of tRNAs create a tandem array ```circularMT``` will spread out the names so they do not clash. However, this does not always work, consequently there are three ways to manually correct the positioning of the text. Figure 33 a shows the map of the Example-14789_bp.bed file (download [here](../Example%20data/Eaxmple-14780_bp.bed)) in which the nad3 and the TRNA names clash (The erroneous origins of replication have been removed as described [here](#removing-a-feature)). 
+If the arrow is small its name is written perpendicular to the arrow. If a series of tRNAs create a tandem array ```circularMT``` will spread out the names so they do not clash. However, this does not always work, consequently there are three ways to manually correct the positioning of the text. Figure 33 a shows the map created from the Example-14789_bp.bed file (download [here](../Example%20data/Eaxmple-14780_bp.bed)) in which the nad3 and the TRNA names clash (The erroneous origins of replication have been removed as described [here](#removing-a-feature)). 
 
-#### Note
-This section only refers to text written next to a feature, text in an arrow can not be modified.
+***Note:*** This section only refers to text written next to a feature, text in an arrow can not be modified.
 
 ### Resizing the image
 
-While it may seem to be cheating, perhaps the easiest thing to do is make the image large by maximising ```circularMT's``` interface and then reducing the exported image size when inserting it in to a document. This is especially true for linear maps.
+While it may seem to be cheating, perhaps the easiest thing to do is make the image larger by maximising ```circularMT's``` interface and then reducing the exported image size when inserting it in to a document. This is especially true for linear maps.
 
 ### Changing the ```Cluster size``` value
 
 A simple way to resolve this issue is to change the ```Cluster size``` value (see blue boxes in Figure 33 a and b). This cut off is used to determine if two features clash, the smaller the value the closer two pieces of text most be before they are rearranged. In Figure 33 a the value is set at the default value of 20, while in Figure 33 b it has been increased to 38 which causes the ***nad3*** text to move away from the ***trnA(tgc)*** text (blue arrow in Figures 33 a and b). 
+
+***Note:*** This affects the entire image so you must check that changing the value doesn't cause and issue elsewhere.
 
 ![Figure 33](images/figure33.jpg)
 
 Figure 33
 <hr />
 
-### Rotating and changing the X and Y coordinates of a features name 
+### Moving and rotating a features name 
 
-When writing text in the circular map, the reference point (x = 0, y = 0) is moved and ultimately ends up at the position of the blue circle in Figure 34 c. The image is rotated so the text is written from left to right as normal, so when the image is rotated back to its starting the point the text is at an angle. Consequently for circular maps, moving the text backwards and forwards moves it along the blue line in Figure 34 a, moving the text up and down moves it along the line in Figure 34 b, while rotating it, rotates it around the blue circle in Figure 34 c. While not as extreme, the same situation occurs with the vertical text in the linear maps. Due to the simpler nature of the linear maps, vertical text can only be moved in one axis: the other options are disabled.  
+When writing text in the circular map, the reference point (x = 0, y = 0) is moved and ultimately ends up at the position of the blue circle in Figure 34 c. The image is then rotated so the text is written from left to right as normal, but when the image is rotated back to its starting the point the text is at an angle. Consequently for circular maps, moving the text backwards and forwards moves it along the blue line in Figure 34 a, moving the text up and down moves it along the line in Figure 34 b, while rotating it, rotates it around the blue circle in Figure 34 c. While not as extreme, the same situation occurs with the vertical text in the linear maps. Due to the simpler nature of the linear maps, vertical text can only be moved backwards and forwards: the other options are disabled.  
 
 ![Figure 34](images/figure34.jpg)
 
 Figure 34
 <hr />
 
-To move the location of a feature's name press the ```Adjust``` button  (see blue box in Figure 35). This opens the ```Adjust text location``` dialog box (Figure 35). 
+To move the location of a feature's name press the ```Adjust``` button  (blue box in Figure 35). This opens the ```Adjust text location``` dialog box (Figure 35). 
 
 ![Figure 35](images/figure35.jpg)
 
 Figure 35
 <hr />
 
-First, select the features type from the upper drop down list (in this file all the features are of type feature) and then enter its name in the text box (see blue box in figure 36). Once a single feature has been selected, the number controls will be come active (see red box in Figure 36). Adjusting these values will more the text, in Figure 36 the name of the "nad3" feature has been rotated -4 degrees so it no longer clashes with the trnA text (see blue arrow in Figure 36).
+First, select the features type from the upper drop down list (in this file all the features are of type feature) and then enter its name in the text box (blue box in figure 36). Once a single feature has been selected, the 'number' controls will become active (red box in Figure 36). Adjusting these values will more the text, in Figure 36 the name of the "nad3" feature has been moved up 4 points so it no longer clashes with the trnA text (blue arrow in Figure 35 and 36).
 
 ![Figure 36](images/figure36.jpg)
 
@@ -361,10 +343,9 @@ Figure 36
 
 ## Adding a feature
 
-During the annotation process, some sequences will be missed, if you have a strong reason to believe a feature should be added, you can do this by pressing the ```Add``` button to the right of the ```Add a feature``` label (see blue box in Figure 37). This will open the ```Add a feature``` form: select the feature (in this case ***Features*** is the only option and then enter the relevant information: name - rrnl,  start point - 6,849 bp, Length - 1200 bp and strand - Inner circle (figure 37).
+During the annotation process, some sequences will be missed, if you have a strong reason to believe a feature should be added, you can do this by pressing the ```Add``` button to the right of the ```Add a feature``` label (blue box in Figure 37). This will open the ```Add a feature``` form: select the feature (in this case ***Features*** is the only option) and then enter the relevant information: name - rrnl,  start point - 6,849 bp, Length - 1200 bp and strand - Inner circle (figure 37).
 
-#### Note:
- The figures in this section were made using the [Example-14789_bp.bed](../Example%20data/Eaxmple-14780_bp.bed) file and then the rrnL feature was deleted as described in the [Removing a feature](#removing-a-feature) section. 
+***Note:*** The figures in this section were made using the [Example-14789_bp.bed](../Example%20data/Eaxmple-14780_bp.bed) file and then the rrnL feature was deleted as described in the [Removing a feature](#removing-a-feature) section. 
 
 ![Figure 37](images/figure37.jpg)
 
@@ -380,20 +361,21 @@ Figure 38
 
 ## Removing a feature
 
-During the annotation process extra features may be erroneously added, for instance in Figure 32, extra replication origins have been added: ***OH_3a***, ***OH_3b***, ***OH_2a*** and ***OH_2b*** (Figure 39). 
+During the annotation process extra features may be erroneously added, for instance in Figure 39, extra replication origins have been added: ***OH_3a***, ***OH_3b***, ***OH_2a*** and ***OH_2b***. 
 
 ![Figure 39](images/figure39.jpg)
 
 Figure 39
 <hr />
 
-To remove unwanted features, click the ```Remove``` button next to the ```Remove a feature``` label (see blue box next in Figure 39) to open the ```Delete feature(s)``` form. Once opened, select the feature type from the drop down list at the top right of the form (see blue box in Figure 40) and enter the name of the feature in the text box (this is case sensitive) (red box in Figure 40). If the text matches one or more features, the lower right ```Delete``` button will be enabled.
+To remove unwanted features, click the ```Remove``` button next to the ```Remove a feature``` label (blue box next in Figure 39) to open the ```Delete feature(s)``` form. Once opened, select the feature type from the drop down list at the top right of the form (blue box in Figure 40) and enter the name of the feature in the text box (this is case sensitive) (red box in Figure 40). If the text matches one or more features, the lower right ```Delete``` button will be enabled.
 
 ![Figure 40](images/figure40.jpg)
 
-Figure 40: The text "OH_2" matches the ***OH_2a*** and ***OH_2b*** features. Pressing the ```Delete``` button will delete them from ```circularMT's``` data set. 
+Figure 40: The text "OH_2" matches the ***OH_2a*** and ***OH_2b*** features (highlighted with red boundary in display). Pressing the ```Delete``` button will delete them from ```circularMT's``` data set. 
+<hr />  
 
- Pressing the ```Delete``` button will delete any feature of the selected feature type, whose name starts with the entered text (this is case sensitive) (Figure 41). Once deleted, they can not be retrieved, you'll have to either re-enter the file or use the ```Add feature``` function described above. 
+ Pressing the ```Delete``` button will delete any feature of the selected feature type, whose name starts with the entered text (this is case sensitive) (Figure 41). Once deleted, they can not be retrieved, you'll have to either reload the file or use the ```Add feature``` function described above. 
 
  
 ![Figure 41](images/figure41.jpg)
@@ -401,16 +383,15 @@ Figure 40: The text "OH_2" matches the ***OH_2a*** and ***OH_2b*** features. Pre
 Figure 41: Using the ```Delete feature(s)``` form, the unwanted ***OH_3a***, ***OH_3b***, ***OH_2a*** and ***OH_2b*** features have been removed.
 <hr />
 
-#### Note:
-If a number of features have the same name, but you only want to delete some of them, open the ```Edit feature names``` dialog box ([see here](#manually-editing-a-features-name)) and select the feature type and enter the feature's name and then press the Number button below the  text area you entered the feature's name in. This will number the feature's names allowing you to select specific features. Once, you have done, reselect ***Gene*** option from the ```Select name tag``` drop down list ([see here](#changing-the-features-name-to-an-alternative-name-in-the-data-file)).
+***Note:*** If a number of features have the same name, but you only want to delete some of them, open the ```Edit feature names``` dialog box ([see here](#manually-editing-a-features-name)) and select the feature type, enter the feature's name and then press the ```Number``` button. This will number the feature's names allowing you to select specific features. Once, you have done this, open the ```Delete feature(s)``` dialog box and delete the desired feature and then select ***Gene*** option from the ```Select name tag``` drop down list ([see here](#changing-the-features-name-to-an-alternative-name-in-the-data-file)) to remove the numbering from the remaining features.
 
 ## Moving the genome's center point
-
-By default, the center of the circle representing the genome is placed in the middle of the image area and the circle is rescaled to stop text overrunning the edge of the image. However, for images with long feature names the scaling process may be stopped to make sure the image doesn't become too small and the text over runs the edge of the image or the image is smaller than you'd like (Figure 42). This can be resolved by moving the center of the image so the the text doesn't over run. 
+### Circular maps
+By default, the center of the circle representing the genome is placed in the middle of the image area and the circle is rescaled to stop text overrunning the edge of the image. However, for images with long feature names the image may be smaller than you'd like or the scaling process halted to make sure the image doesn't become too small leaving the text to over run the edge of the image (Figure 42). This issue may be resolved by moving the center of the image giving the name more space to be written in. 
 
 ![Figure 42](images/figure42.jpg)
 
-Figure 42: The renamed TRNF sequence causes the image to be too small.
+Figure 42: The renamed TRNF feature's name is truncated and the image is too small.
 <hr />
 
 The two number selection controls to the right of the ```Move left-right``` amd ```Move up-down``` labels (see blue box in Figure 42) allow the position of the center of the genome to be moved. As the center moves the image will resize itself to try to stop text over running the image area. Setting the value in the control to the right of the ```Move left-right``` label to ***80***, will shift the image to the right allowing it to increase in size while still displaying the edited text for the TRNF tRNA feature (Figure 43).
@@ -420,21 +401,31 @@ The two number selection controls to the right of the ```Move left-right``` amd 
 Figure 43: Moving the image's center down by '80' using the ```Move up-down``` control creates a better image.
 <hr />
 
-#### Note
-Since linear maps do not write text that projects to the sides of the genome map, its only possible to move the image up or down.
+### Linear maps
 
-## Saving the image to a 300 dpi image
-
-Once you are happy with the display image , it can be saved as a 300 (are just over) dpi TIFF, bitmap, PNG or JPEG image by pressing the ```Save``` button to the right of the ```Save image``` label (see blue box in Figure 44 a). This will prompt you to enter a location and file name before saving the image. 
+Since linear maps do not write text that projects to the sides of the genome map, its only possible to move the image up or down (Figure 44 and 45).
 
 ![Figure 44](images/figure44.jpg)
 
-Figure 44: Pressing the ```Save``` button will save the current display image to a 300 dpi TIFF, PNG, Bitmap or JPEG image file. 
+Figure 44: The longer label runs of the top of the image.
 <hr />
 
-Saving the image to a greater resolution will also sharpen up the text written at near vertical angles which may appear scrappy in the user interface where it is drawn at ~96 dpi (Figure 45 a and b).
-
 ![Figure 45](images/figure45.jpg)
+Figure 45: Setting the  ```Move up-down``` value to 185 gives the TRNF label enough pace to be written.
+<hr />
 
-Figure 45: While the text can appear scrappy in the user interface (Figure 45 a), saving the genome map to a 300 dpi image creates  smoother, clearer text when shown at the same size (Figure 45 b). 
+## Saving the image to a 300 dpi image
+
+Once you are happy with the display image, it can be saved as a 300 (are just over) dpi TIFF, bitmap, PNG or JPEG image by pressing the ```Save``` button to the right of the ```Save image``` label (blue box in Figure 44 a). This will prompt you to select a location and enter a file name before saving the image as a ~300 dpi image. 
+
+![Figure 46](images/figure46.jpg)
+
+Figure 46: Pressing the ```Save``` button will save the current display image to a ~300 dpi TIFF, PNG, Bitmap or JPEG image file. 
+<hr />
+
+Saving the image to a greater resolution will also sharpen up the text written at near vertical angles which may appear scrappy in the user interface where it is typically drawn at ~96 dpi on a standard resolution monitor (Figure 45 a and b).
+
+![Figure 47](images/figure47.jpg)
+
+Figure 47: While the text can appear scrappy in the user interface (Figure 47 a), saving the genome map to a 300 dpi image creates smoother, clearer text and less jagged lines when shown at the same size (Figure 47 b). 
 <hr />

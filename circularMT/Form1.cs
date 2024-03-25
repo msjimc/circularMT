@@ -1718,7 +1718,7 @@ namespace circularMT
             AdjustColours ac = new AdjustColours(colours, features, this, terms);
             ac.ShowDialog();
 
-            ResetBoxColour(terms);
+            ResetBoxColour(terms, scaling.scale);
         }
 
         private void chkDrawOrder_CheckedChanged(object sender, EventArgs e)
@@ -1731,8 +1731,22 @@ namespace circularMT
             string fileName = FileAccessClass.FileString(FileAccessClass.FileJob.SaveAs, "Save image as", "TIFF Image file (*.tif)|*.tif|Bitmap image file (*.bmp)|*.bmp|JPEG image file (*.jpg)|*.jpg|PNG image file (*.png)|*.png");
             if (fileName == "Cancel") { return; }
 
-            ImageScaling saveAs = new ImageScaling(300.0f);
-            drawFeatures(fileName, saveAs);
+            List<string> terms = new List<string>();
+
+            try
+            {
+                ImageScaling saveAs = new ImageScaling(300.0f);
+                if (chlTerms.CheckedItems.Count == 0) { return; }                
+
+                for (int index = 0; index < chlTerms.CheckedItems.Count; index++)
+                { terms.Add(chlTerms.CheckedItems[index].ToString()); }
+                ResetBoxColour(terms, saveAs.scale);
+
+                drawFeatures(fileName, saveAs);
+            }
+            finally
+            { ResetBoxColour(terms, scaling.scale); }
+
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -1748,7 +1762,7 @@ namespace circularMT
             EditNames en = new EditNames(features, this, terms);
             en.ShowDialog();
 
-            ResetBoxColour(terms);
+            ResetBoxColour(terms, scaling.scale);
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -1778,7 +1792,7 @@ namespace circularMT
             Deletefeature df = new Deletefeature(features, this, terms);
             df.ShowDialog();
 
-            ResetBoxColour(terms);
+            ResetBoxColour(terms, scaling.scale);
         }
 
         private void nupLeftRight_ValueChanged(object sender, EventArgs e)
@@ -1809,7 +1823,7 @@ namespace circularMT
             AdjustTextLocation atl = new AdjustTextLocation(features, this, terms, chkLine.Checked);
             atl.ShowDialog();
 
-            ResetBoxColour(terms);
+            ResetBoxColour(terms, scaling.scale);
         }
 
         private void chkLine_CheckedChanged(object sender, EventArgs e)
@@ -1818,13 +1832,14 @@ namespace circularMT
             nupLeftRight.Enabled = !chkLine.Checked;
         }
 
-        public void ResetBoxColour(List<string> keys)
+        public void ResetBoxColour(List<string> keys, float scale)
         {
+            Pen black = new Pen(Color.Black, scale);
             foreach (string key in keys)
             {
                 List<feature> list = features[key];
                 foreach(feature f in list)
-                { f.BoxColour = Pens.Black; }
+                { f.BoxColour = black; }
             }
             drawFeatures("", scaling);
         }

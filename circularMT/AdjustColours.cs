@@ -65,7 +65,7 @@ namespace circularMT
                 //if (cboCopy.Items.Count > 0)
                 //{ cboCopy.SelectedIndex = 0; }
             }
-            parent.ResetBoxColour(terms);
+            parent.ResetBoxColour(terms, 1);
             txtNames_TextChanged(txtNames, new EventArgs());
             
         }

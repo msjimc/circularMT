@@ -43,7 +43,7 @@ namespace circularMT
             { txtNames.Enabled = false; }
             txtNames.Clear();
             txtListOfNames.Clear();
-            parent.ResetBoxColour(terms);
+            parent.ResetBoxColour(terms, 1);
         }
 
         private void txtNames_TextChanged(object sender, EventArgs e)
