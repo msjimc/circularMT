@@ -678,6 +678,9 @@ namespace circularMT
 
         private void drawFeatures(string fileName, ImageScaling scaling)
         {
+            if (this.WindowState == FormWindowState.Minimized)
+            { return; }
+
             if (chkLine.Checked == false)
             { drawCircle(fileName, scaling); }
             else
@@ -883,7 +886,7 @@ namespace circularMT
 
             if (f.Forward == true)
             {
-                float x = ((f.Arrows[0].X + f.Arrows[1].X)/2) + (length.Height / 2) + dx + f.VerticalOffset;
+                float x = ((f.Arrows[0].X + f.Arrows[1].X)/2) + (length.Height / 2) + dx - upDown;
                 float y = f.Arrows[0].Y - scaling.ten - length.Width;
                 g.TranslateTransform(x, y);
                 g.RotateTransform(90.0f);
@@ -893,7 +896,7 @@ namespace circularMT
             }
             else
             {
-                float x = ((f.Arrows[0].X + f.Arrows[1].X) / 2) - (length.Height / 2) + dx + f.VerticalOffset;
+                float x = ((f.Arrows[0].X + f.Arrows[1].X) / 2) - (length.Height / 2) + dx - upDown;
                 float y = f.Arrows[1].Y + scaling.ten + length.Width;
                 g.TranslateTransform(x, y);
                 g.RotateTransform(-90.0f);
