@@ -26,3 +26,9 @@ The user guide is [here](Guide/README.md).
 
 The prebuilt program can be downloaded [here](Program/README.md).
 
+
+## Zenodo archive
+
+An archived version of the first release is available  from here:   
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10912319.svg)](https://doi.org/10.5281/zenodo.10912319)
+
