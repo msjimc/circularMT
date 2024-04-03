@@ -188,6 +188,7 @@ From the file fragment above ```circularMT``` will retain 4 features:
 
 As with Bed files, fasta files are widely used and there is a very good chance a fasta file will not work, but if its source suggest it contains the relevant data it may work. Fasta files may contain one or more sequences and have a simple structure. The name of the sequence (and any attributes) is in a single line starting with a "\>" characters, followed by the sequence on the following line(s). Depending on the file, the sequence may be on one line or across a series of fixed length lines. A fragment of a fasta file is shown below containing 4 sequences. The sequence name line contains the sequence's name, location, strand and the feature's name separated by a ';' character. 
 
+***Note***: Only fatsta files containing the coordinates of the DNA sequences can be used. 
 ### Structure 
 
 &#62;MT-1; 1944-2186; +; OH_1   
