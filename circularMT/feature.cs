@@ -325,7 +325,7 @@ namespace circularMT
                 data = data.Substring(0, data.IndexOf(")"));
             }
 
-            if (line.Contains("(join(") == false)
+            if (line.Contains("join(") == false)
             {
                 try
                 {
@@ -351,9 +351,14 @@ namespace circularMT
                     from = -(t2 - t1);
                     too = t4;
                 }
+                else if (t1 ==1)
+                {
+                    from = t1 - (t4 - t3);
+                    too = t2;
+                }
                 else 
                 {
-                    MessageBox.Show("File has a 'join' associated with " + name + " that doesn't span the end of the sequence:\nExpected join(16024..16569,1..576), but got:\n" + data, "error");
+                    MessageBox.Show("File has a 'join' associated with " + name + " that doesn't span the end of the sequence:\nExpected something like join(16024..16569,1..576), but got:\n" + data, "error");
                 }
 
             }
