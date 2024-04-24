@@ -299,7 +299,7 @@ Figure 32: The "ND5" feature is now labeled "NAD 5" (text underlined by the blac
 
 ## Manually moving text written next to a feature
 
-If the arrow is small its name is written perpendicular to the arrow. If a series of tRNAs create a tandem array ```circularMT``` will spread out the names so they do not clash. However, this does not always work, consequently there are three ways to manually correct the positioning of the text. Figure 33 a shows the map created from the Example-14789_bp.bed file (download [here](../Example%20data/example-14780_bp.bed)) in which the nad3 and the TRNA names clash (The erroneous origins of replication have been removed as described [here](#removing-a-feature)). 
+If the arrow is small its name is written perpendicular to the arrow. If a series of tRNAs create a tandem array ```circularMT``` will spread out the names so they do not clash. However, this does not always work, consequently there are three ways to manually correct the positioning of the text. Figure 33 a shows the map created from the Example-14780_bp.bed file (download [here](../Example%20data/Example-14780_bp.bed)) in which the nad3 and the TRNA names clash (The erroneous origins of replication have been removed as described [here](#removing-a-feature)). 
 
 ***Note:*** This section only refers to text written next to a feature, text in an arrow can not be modified.
 
@@ -345,7 +345,7 @@ Figure 36
 
 During the annotation process, some sequences will be missed, if you have a strong reason to believe a feature should be added, you can do this by pressing the ```Add``` button to the right of the ```Add a feature``` label (blue box in Figure 37). This will open the ```Add a feature``` form: select the feature (in this case ***Features*** is the only option) and then enter the relevant information: name - rrnl,  start point - 6,849 bp, Length - 1200 bp and strand - Inner circle (figure 37).
 
-***Note:*** The figures in this section were made using the [Example-14789_bp.bed](../Example%20data/example-14780_bp.bed) file and then the rrnL feature was deleted as described in the [Removing a feature](#removing-a-feature) section. 
+***Note:*** The figures in this section were made using the [Example-14780_bp.bed](../Example%20data/Example-14780_bp.bed) file and then the rrnL feature was deleted as described in the [Removing a feature](#removing-a-feature) section. 
 
 ![Figure 37](images/figure37.jpg)
 
