@@ -1049,7 +1049,7 @@ namespace circularMT
                 }
             }
 
-            if (string.IsNullOrWhiteSpace(fileName) == true)
+           if (string.IsNullOrWhiteSpace(fileName) == true)
             { p1.Image = bmp; }
             else
             { bmp.Save(fileName); }
