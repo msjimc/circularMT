@@ -168,14 +168,22 @@ Figure 16: Selecting the tRNA: TRNM from the drop down list will set the start o
 
 ## Changing the feature's name to an alternative name in the data file
 
-This option allows you to select different names for a feature based on data in the imported file. Some files may have a number of different names for a feature. Not all features will have a different name, but if they do they can be selected using the second drop down list that contains the ***Gene***, ***Product*** and  ***Gene_synoym*** options (see blue box in Figure 17). Figure 17 shows the results of selecting the ***product*** while viewing the genome as a circular map. This displays the protein/tRNA names. However, some names are too long and cross over in the middle of the image, while others go beyond the edge of the image. To try to limit this ```circularMT``` reduces the size of the circle that represents the genome, making the image smaller (Figure 17).
+This option allows you to select different names for a feature based on data in the imported file. Some files may have a number of different names for a feature. Not all features will have a different name, but if they do they can be selected by pressing the ```Select``` button (see blue box in Figure 17 a). This will open the ```Advanced Name Selection``` window that allows you to select the feature type and then the required name attribute: ***Gene*** then ***Product*** then ***Gene_synoym***.   
+For example in the [Example data](../Example%20data/Amb_mt.gb) file, the tRNAs are all named ***tRNA*** by default rather than the more meaningful name linked to the ___Product___ attribute in the file. To switch the names of the ***tRNA***, first press the ```Select``` button (see blue box in Figure 17 a) to open the ```Advanced Name Selection``` window. Then select the required feature type (***tRNA***) in the upper drop down list (see drop down list above red line in Figure 17 a) and then the name type from the lower down list (see drop down list above black line in Figure 17 a). This should active the ```Change``` button in the bottom right of the window (see yellow box in Figure 17 a), which when pressed should redraw the image with the new name selection (Figure  17 b).
+
+
+![Figure 17b](images/figure17.jpg)
+
+Figure 17 a: 
+
+![Figure 17 b](images/figure17b.jpg)
+
+Figure 17 b
+
+The default names of tRNAs in the [Example data](../Example%20data/Amb_mt.gb) file are not as informative as these linked to the ___Product___ attribute (Figure 17 a versus Figure b). 
+<hr />
 
 A name will only change if there is an alternate name to change too, so the order they new names are selected will affect the displayed names: selecting ***Gene*** then ***Product*** then ***Gene_synoym*** may show different names than selecting ***Gene*** then ***Gene_synoym***.
-
-![Figure 17](images/figure17.jpg)
-
-Figure 17: Selecting the ***Product*** option in the second drop down list results in the protein names been displayed, however, they are too long for the display. 
-<hr />
 
 If the selected names are too long they may run off the edge of the image, this can be resolved by either making ```circularMT's``` interface bigger (Figure 18) or possibly by moving the center of the genome (see [Moving the genome's center point](#moving-the-genomes-center-point)).
 

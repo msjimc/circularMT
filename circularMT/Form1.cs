@@ -1599,17 +1599,28 @@ namespace circularMT
             else
             {
                 string keys = cboStart.Text;
+                int number = 0;
+                for (int count = 1; count < cboStart.SelectedIndex; count++ )
+                {
+                    string te = cboStart.Items[count].ToString();
+                    if (cboStart.Items[count].ToString() == keys)
+                    { number++; }
+                }
+
+                
                 string featureType = keys.Substring(0, keys.IndexOf(": "));
                 string featureName = keys.Substring(keys.IndexOf(": ") + 2);
                 List<feature> list = features[featureType];
                 foreach (feature f in list)
                 {
-                    if (f.Name == featureName)
+                    if (f.Name == featureName && number ==0)
                     {
                         start = f.StartPoint;
                         newStartOffset += start;
                         break;
                     }
+                    else if (f.Name == featureName)
+                    { number--; }
                 }
 
                 foreach (List<feature> listF in features.Values)
@@ -1625,21 +1636,7 @@ namespace circularMT
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            cboNameOptions.SelectedIndex = 0;
-        }
-
-        private void cboNameOptions_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (features == null) { return; }
-            foreach (List<feature> list in features.Values)
-            {
-                foreach (feature f in list)
-                {
-                    f.SetDisplayName(cboNameOptions.Text);
-                }
-            }
-            drawFeatures("", scaling);
-            populate_cboStart();
+           
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -1766,6 +1763,22 @@ namespace circularMT
             en.ShowDialog();
 
             ResetBoxColour(terms, scaling.scale);
+            ResetcboStart();
+
+        }
+
+        private void ResetcboStart()
+        {
+            cboStart.Items.Clear();
+            cboStart.Items.Add("select");
+            foreach (string key in features.Keys)
+            {
+                List<feature> lists = features[key];
+                lists.Sort(new featureSorter());
+                foreach (feature f in lists)
+                { cboStart.Items.Add(key + ": " + f.Name); }
+            }
+            cboStart.SelectedIndex = 0;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -1780,7 +1793,7 @@ namespace circularMT
 
             AddFeature af = new AddFeature(features, this, terms, sequencelength, newStartOffset);
             af.ShowDialog();
-
+            ResetcboStart();
         }
         private void btnRemove_Click(object sender, EventArgs e)
         {
@@ -1796,6 +1809,7 @@ namespace circularMT
             df.ShowDialog();
 
             ResetBoxColour(terms, scaling.scale);
+            ResetcboStart();
         }
 
         private void nupLeftRight_ValueChanged(object sender, EventArgs e)
@@ -1847,6 +1861,19 @@ namespace circularMT
             drawFeatures("", scaling);
         }
 
+        private void btnSelect_Click(object sender, EventArgs e)
+        {
+            if (chlTerms.CheckedItems.Count == 0) { return; }
+            List<string> terms = new List<string>();
 
+            for (int index = 0; index < chlTerms.CheckedItems.Count; index++)
+            {
+                terms.Add(chlTerms.CheckedItems[index].ToString());
+            }
+
+            AdvancedNameSelection ads = new AdvancedNameSelection(features, this, terms);
+            ads.ShowDialog();
+            populate_cboStart();
+        }
     }
 }
