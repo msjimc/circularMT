@@ -235,7 +235,11 @@ The ```Adjust feature colours``` dialog box consists of a drop down list of the 
 Figure 23
 <hr />
 
-Once a feature type has been selected the text box below the drop down list will become active, initially all the features of the chosen type will be selected and their names will appear in a list below the text box (see blue box in Figure 24). The selected features will also be drawn with a red perimeter in the display to visualise their selection. Typing the name of the feature in the now active text box, will reduce the list of selected items to those whose name starts with the entered text (not case sensitive). For instance in Figure 24, the ***CDS*** feature type was selected and 'ND' has been entered resulting in only the ***CDS*** features ***ND1***, ***ND2***, ***ND3***, ***ND4***, ***ND4L***, ***ND5*** and ***ND6*** been selected.
+Once a feature type has been selected the text box below the drop down list will become active, initially all the features of the chosen type will be selected and their names will appear in a list below the text box (see blue box in Figure 24) (see note below regarding _"Persist changes to colour scheme"_). The selected features will also be drawn with a red perimeter in the display to visualise their selection. Typing the name of the feature in the now active text box, will reduce the list of selected items to those whose name starts with the entered text (not case sensitive). For instance in Figure 24, the ***CDS*** feature type was selected and 'ND' has been entered resulting in only the ***CDS*** features ***ND1***, ***ND2***, ***ND3***, ***ND4***, ***ND4L***, ***ND5*** and ***ND6*** been selected.
+
+* ***Persist changes to colour scheme:*** 
+Initially, when drawing the features the colour is selected from a short list of colours based on the order in which each feature type appears in the data file. However, if a feature type is selected, but not filtered by name (i.e. the ```Adjust feature colours``` appears as in Figure 23) and a background colour is selected, that colour will be remembered and used to colour the selected feature type all future sessions. This feature will only work with the ***CDS***, ***exon***, ***tRNA***, ***rRNA***, ***mRNA***, ***D-loop***, ***repeat_region***, ***misc_feature***, ***gene*** and ***rep_origin*** feature types and is primarily aimed at GenBank files and is of little use to file formats that do not contain a feature type data.
+
 
 ![Figure 24](images/figure24.jpg)
 

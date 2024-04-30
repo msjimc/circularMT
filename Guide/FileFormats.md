@@ -91,6 +91,9 @@ From the fragment above ```circularMT``` will retain 4 features:
 
 It can be seen that the ND2 sequence occurs as both a ***Gene*** feature and a ***CDS*** feature.
 
+#### Official GenBank format description
+A description of the GenBank can be found [here](https://www.insdc.org/submitting-standards/feature-table/) with a text version of the page (30th April 2024) in this folder ([text version](GenBank_format.txt)). 
+
 ## Mitos files
 
 The mitos file format is a basic tab-delimited text format and created by the MITOS application currently hosted on Galaxy. Each line for contains a number of data fields for each feature, of which the second is used to determine the class of feature, the name comes from the third column, while the start and end of the feature are in fields 5 and 6. Finally, the strand is obtained from the seventh field: 1 = forward and -1 = reverse. All the other fields are ignored (and not necessarily shown below). 
@@ -183,6 +186,7 @@ From the file fragment above ```circularMT``` will retain 4 features:
 |feature|1125 to 1187|trnV(tac)|Reverse|
 |feature|1178 to 1891|rrnS|Reverse|
 |feature|1943 to 2186|OH_1|Forward|
+
 
 ## Fasta files 
 

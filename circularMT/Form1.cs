@@ -23,6 +23,7 @@ namespace circularMT
         Dictionary<string, List<feature>> features = new Dictionary<string, List<feature>>();
         int sequencelength = -1;
         Dictionary<string, Brush> colours;
+        Dictionary<string, Brush> coloursFont;
         bool resising = false;
         ImageScaling scaling = null;
 
@@ -220,14 +221,33 @@ namespace circularMT
             chlTerms.Items.Clear();
             Brush[] colourSet = { Brushes.PaleGreen, Brushes.Pink, Brushes.LightBlue, Brushes.LightGray, Brushes.Orange, Brushes.GreenYellow, Brushes.Orchid };
             colours = new Dictionary<string, Brush>();
+            coloursFont = new Dictionary<string, Brush>();
 
             int index = 0;
             foreach (string term in features.Keys)
             {
                 foreach (feature f in features[term])
-                { f.FeatureColour = colourSet[index]; }
-
-                colours.Add(term, colourSet[index]);
+                {
+                    Color[] colourPair = getFeatureColour(term);
+                    if (colourPair[0] == Color.DarkGoldenrod && colourPair[1] == Color.DarkGoldenrod)
+                    { 
+                        f.FeatureColour = colourSet[index];
+                        if (colours.ContainsKey(term) == false)
+                        { colours.Add(term, colourSet[index]); }
+                        if (coloursFont.ContainsKey(term) == false)
+                        { coloursFont.Add(term, Brushes.Black); }
+                    }
+                    else
+                    {
+                        f.FeatureColour = new SolidBrush(colourPair[0]);
+                        f.FontColour = new SolidBrush(colourPair[1]);
+                        if (colours.ContainsKey(term) == false)
+                        { colours.Add(term, f.FeatureColour); }
+                        if (coloursFont.ContainsKey(term) == false)
+                        { coloursFont.Add(term, f.FontColour); }
+                    }
+                }
+               
                 chlTerms.Items.Add(term);
                 index++;
                 if (index >= colourSet.Length)
@@ -239,6 +259,59 @@ namespace circularMT
             {
                 chlTerms.SetItemChecked(count, true);
             }
+        }
+
+        private Color[] getFeatureColour(string featureName)
+        {
+            Color[] colourPair = { Color.DarkGoldenrod, Color.DarkGoldenrod };
+            featureName = featureName.ToLower();
+
+            switch (featureName)
+            {
+                case "cds":
+                    colourPair[0] = Properties.Settings.Default.CDS;
+                    colourPair[1] = Properties.Settings.Default.CDS_font;
+                    break;
+                case "exon":
+                    colourPair[0] = Properties.Settings.Default.exon;
+                    colourPair[1] = Properties.Settings.Default.exon_font;
+                    break;
+                case "trna":
+                    colourPair[0] = Properties.Settings.Default.tRNA;
+                    colourPair[1] = Properties.Settings.Default.tRNA_font;
+                    break;
+                case "rrna":
+                    colourPair[0] = Properties.Settings.Default.rRNA;
+                    colourPair[1] = Properties.Settings.Default.rRNA_font;
+                    break;
+                case "mrna":
+                    colourPair[0] = Properties.Settings.Default.mRNA;
+                    colourPair[1] = Properties.Settings.Default.mRNA_font;
+                    break;
+                case "d-loop":
+                    colourPair[0] = Properties.Settings.Default.D_loop;
+                    colourPair[1] = Properties.Settings.Default.D_loop_font;
+                    break;
+                case "repeat_region":
+                    colourPair[0] = Properties.Settings.Default.repeat_region;
+                    colourPair[1] = Properties.Settings.Default.repeat_region_font;
+                    break;
+                case "misc_feature":
+                    colourPair[0] = Properties.Settings.Default.misc_feature;
+                    colourPair[1] = Properties.Settings.Default.misc_feature_font;
+                    break;
+                case "gene":
+                    colourPair[0] = Properties.Settings.Default.gene;
+                    colourPair[1] = Properties.Settings.Default.gene_font;
+                    break;
+                case "rep_origin":
+                    colourPair[0] = Properties.Settings.Default.CDS;
+                    colourPair[1] = Properties.Settings.Default.CDS_font;
+                    break;
+            }
+
+            return colourPair;
+
         }
 
         private void openGTFFile(string filename)
@@ -394,6 +467,7 @@ namespace circularMT
                     {
                         if (defination == "") { defination = items[0].Trim(); }
                         term = items[1].Trim();
+                        
                         feature f = new feature(items, 0, 0, term, "mitos");
 
                         if (features.ContainsKey(f.FeatureType.Trim()) == false)
@@ -632,6 +706,9 @@ namespace circularMT
 
         private void addListsToFeatureDictionary(string[] lines)
         {
+            if (coloursFont == null)
+            { coloursFont = new Dictionary<string, Brush>(); }
+
             chlTerms.Items.Clear();
             features = new Dictionary<string, List<feature>>();
             Brush[] colourSet = { Brushes.PaleGreen, Brushes.Pink, Brushes.LightBlue, Brushes.LightGray, Brushes.Orange, Brushes.GreenYellow, Brushes.Orchid };
@@ -646,7 +723,18 @@ namespace circularMT
                     if (features.ContainsKey(term) == false)
                     {
                         features.Add(term, new List<feature>());
-                        colours.Add(term, colourSet[index]);
+                        Color[] colourPair = getFeatureColour(term);
+                        if (colourPair[0] == Color.DarkGoldenrod && colourPair[1] == Color.DarkGoldenrod)
+                        { colours.Add(term, colourSet[index]); }
+                        else 
+                        {
+                            if (colours.ContainsKey(term) == false)
+                            { colours.Add(term, new SolidBrush(colourPair[0])); }
+                            if (coloursFont.ContainsKey(term) == false)
+                            { coloursFont.Add(term, new SolidBrush(colourPair[1])); }
+                        }
+
+                       
                         chlTerms.Items.Add(term);
                         index++;
                         if (index >= colourSet.Length)
@@ -666,9 +754,14 @@ namespace circularMT
             foreach (string key in features.Keys)
             {
                 Brush b = colours[key];
+                Brush fontb = Brushes.Black;
+                if (coloursFont != null && coloursFont.ContainsKey(key) == true)
+                { fontb = coloursFont[key]; }
+
                 foreach (feature f in features[key])
                 {
                     f.FeatureColour = b;
+                    f.FontColour = fontb;
                 }
             }
         }
@@ -1180,7 +1273,7 @@ namespace circularMT
         }
 
         private void drawFeatures(Graphics g, string featureSet, Point center, int radius, int largerThan, int smallerThan, ImageScaling scaling)
-        { 
+        {           
             foreach (feature f in features[featureSet])
             {
                 if (f.EndPoint - f.StartPoint > largerThan && f.EndPoint - f.StartPoint < smallerThan && f.EndPoint - f.StartPoint < sequencelength / 3 )

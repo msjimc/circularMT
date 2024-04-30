@@ -1,7 +1,66 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="circularMT.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="CDS" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">PaleGreen</Value>
+    </Setting>
+    <Setting Name="exon" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Pink</Value>
+    </Setting>
+    <Setting Name="tRNA" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">LightBlue</Value>
+    </Setting>
+    <Setting Name="rRNA" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">LightGray</Value>
+    </Setting>
+    <Setting Name="D_loop" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Orange</Value>
+    </Setting>
+    <Setting Name="repeat_region" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">GreenYellow</Value>
+    </Setting>
+    <Setting Name="misc_feature" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Orchid</Value>
+    </Setting>
+    <Setting Name="mRNA" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">PaleGreen</Value>
+    </Setting>
+    <Setting Name="gene" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Pink</Value>
+    </Setting>
+    <Setting Name="rep_origin" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">LightBlue</Value>
+    </Setting>
+    <Setting Name="CDS_font" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Black</Value>
+    </Setting>
+    <Setting Name="exon_font" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Black</Value>
+    </Setting>
+    <Setting Name="tRNA_font" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Black</Value>
+    </Setting>
+    <Setting Name="rRNA_font" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Black</Value>
+    </Setting>
+    <Setting Name="D_loop_font" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Black</Value>
+    </Setting>
+    <Setting Name="repeat_region_font" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Black</Value>
+    </Setting>
+    <Setting Name="misc_feature_font" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Black</Value>
+    </Setting>
+    <Setting Name="mRNA_font" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Black</Value>
+    </Setting>
+    <Setting Name="gene_font" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Black</Value>
+    </Setting>
+    <Setting Name="Setting" Type="System.Drawing.Color" Scope="User">
+      <Value Profile="(Default)">Black</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

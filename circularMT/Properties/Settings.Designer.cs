@@ -8,22 +8,258 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace circularMT.Properties
-{
-
-
+namespace circularMT.Properties {
+    
+    
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "11.0.0.0")]
-    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase
-    {
-
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.9.0.0")]
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
-
-        public static Settings Default
-        {
-            get
-            {
+        
+        public static Settings Default {
+            get {
                 return defaultInstance;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("PaleGreen")]
+        public global::System.Drawing.Color CDS {
+            get {
+                return ((global::System.Drawing.Color)(this["CDS"]));
+            }
+            set {
+                this["CDS"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Pink")]
+        public global::System.Drawing.Color exon {
+            get {
+                return ((global::System.Drawing.Color)(this["exon"]));
+            }
+            set {
+                this["exon"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("LightBlue")]
+        public global::System.Drawing.Color tRNA {
+            get {
+                return ((global::System.Drawing.Color)(this["tRNA"]));
+            }
+            set {
+                this["tRNA"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("LightGray")]
+        public global::System.Drawing.Color rRNA {
+            get {
+                return ((global::System.Drawing.Color)(this["rRNA"]));
+            }
+            set {
+                this["rRNA"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Orange")]
+        public global::System.Drawing.Color D_loop {
+            get {
+                return ((global::System.Drawing.Color)(this["D_loop"]));
+            }
+            set {
+                this["D_loop"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("GreenYellow")]
+        public global::System.Drawing.Color repeat_region {
+            get {
+                return ((global::System.Drawing.Color)(this["repeat_region"]));
+            }
+            set {
+                this["repeat_region"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Orchid")]
+        public global::System.Drawing.Color misc_feature {
+            get {
+                return ((global::System.Drawing.Color)(this["misc_feature"]));
+            }
+            set {
+                this["misc_feature"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("PaleGreen")]
+        public global::System.Drawing.Color mRNA {
+            get {
+                return ((global::System.Drawing.Color)(this["mRNA"]));
+            }
+            set {
+                this["mRNA"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Pink")]
+        public global::System.Drawing.Color gene {
+            get {
+                return ((global::System.Drawing.Color)(this["gene"]));
+            }
+            set {
+                this["gene"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("LightBlue")]
+        public global::System.Drawing.Color rep_origin {
+            get {
+                return ((global::System.Drawing.Color)(this["rep_origin"]));
+            }
+            set {
+                this["rep_origin"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color CDS_font {
+            get {
+                return ((global::System.Drawing.Color)(this["CDS_font"]));
+            }
+            set {
+                this["CDS_font"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color exon_font {
+            get {
+                return ((global::System.Drawing.Color)(this["exon_font"]));
+            }
+            set {
+                this["exon_font"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color tRNA_font {
+            get {
+                return ((global::System.Drawing.Color)(this["tRNA_font"]));
+            }
+            set {
+                this["tRNA_font"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color rRNA_font {
+            get {
+                return ((global::System.Drawing.Color)(this["rRNA_font"]));
+            }
+            set {
+                this["rRNA_font"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color D_loop_font {
+            get {
+                return ((global::System.Drawing.Color)(this["D_loop_font"]));
+            }
+            set {
+                this["D_loop_font"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color repeat_region_font {
+            get {
+                return ((global::System.Drawing.Color)(this["repeat_region_font"]));
+            }
+            set {
+                this["repeat_region_font"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color misc_feature_font {
+            get {
+                return ((global::System.Drawing.Color)(this["misc_feature_font"]));
+            }
+            set {
+                this["misc_feature_font"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color mRNA_font {
+            get {
+                return ((global::System.Drawing.Color)(this["mRNA_font"]));
+            }
+            set {
+                this["mRNA_font"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color gene_font {
+            get {
+                return ((global::System.Drawing.Color)(this["gene_font"]));
+            }
+            set {
+                this["gene_font"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Black")]
+        public global::System.Drawing.Color Setting {
+            get {
+                return ((global::System.Drawing.Color)(this["Setting"]));
+            }
+            set {
+                this["Setting"] = value;
             }
         }
     }

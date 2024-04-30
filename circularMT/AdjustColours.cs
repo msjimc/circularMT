@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -50,20 +51,13 @@ namespace circularMT
             txtNames.Clear();
             if (cboTerms.SelectedIndex > 0)
             {
-                txtNames.Enabled = true;
-                //cboCopy.Items.Clear();
-                //cboCopy.Items.Add("Select");
-                //foreach (feature f in features[cboTerms.Text])
-                //{ cboCopy.Items.Add(f.Name); }
-                //cboCopy.SelectedIndex = 0;
+                txtNames.Enabled = true;                
                 cboCopy.Enabled = true;
             }
             else
             {
                 txtNames.Enabled = false;
                 cboCopy.Enabled = false;
-                //if (cboCopy.Items.Count > 0)
-                //{ cboCopy.SelectedIndex = 0; }
             }
             parent.ResetBoxColour(terms, 1);
             txtNames_TextChanged(txtNames, new EventArgs());
@@ -93,10 +87,14 @@ namespace circularMT
 
         private void btnSelect_Click(object sender, EventArgs e)
         {
-            string namePart = txtNames.Text.Trim().ToLower();            
+            string namePart = txtNames.Text.Trim().ToLower();
             Brush fontBrush = null;
+            Color fontColour = Color.White;
             if (rboBlack.Checked == true)
-            { fontBrush = Brushes.Black; }
+            { 
+                fontBrush = Brushes.Black;
+                fontColour = Color.Black;
+            }
             else
             { fontBrush = Brushes.White; }
 
@@ -116,9 +114,14 @@ namespace circularMT
                         changed = true;
                     }
                 }
-                if (changed==true)
+                if (changed == true)
                 { parent.ReDrawFromOutSide(); }
+
+                if (string.IsNullOrEmpty(txtNames.Text.Trim()) == true)
+                { setColours(cboTerms.Text, scheme.Color, fontColour); }
             }
+
+            
         } 
         
         private void btnClose_Click(object sender, EventArgs e)
@@ -214,6 +217,63 @@ namespace circularMT
 
             }
             catch { }
+        }
+      
+        private void setColours(string featureName, Color background, Color foreground)
+        {
+            switch (featureName)
+            {
+                case "CDS":
+                     Properties.Settings.Default.CDS = background;
+                     Properties.Settings.Default.CDS_font = foreground;
+                    Properties.Settings.Default.Save();
+                    break;
+                case "exon":
+                    Properties.Settings.Default.exon = background;
+                    Properties.Settings.Default.exon_font = foreground;
+                    Properties.Settings.Default.Save();
+                    break;
+                case "tRNA":
+                    Properties.Settings.Default.tRNA = background; ;
+                    Properties.Settings.Default.tRNA_font = foreground;
+                    Properties.Settings.Default.Save();
+                    break;
+                case "rRNA":
+                    Properties.Settings.Default.rRNA = background; ;
+                    Properties.Settings.Default.rRNA_font = foreground;
+                    Properties.Settings.Default.Save();
+                    break;
+                case "mRNA":
+                    Properties.Settings.Default.mRNA = background; ;
+                    Properties.Settings.Default.mRNA_font = foreground;
+                    Properties.Settings.Default.Save();
+                    break;
+                case "D-loop":
+                    Properties.Settings.Default.D_loop = background; ;
+                    Properties.Settings.Default.D_loop_font = foreground;
+                    Properties.Settings.Default.Save();
+                    break;
+                case "repeat_region":
+                    Properties.Settings.Default.repeat_region = background; ;
+                    Properties.Settings.Default.repeat_region_font = foreground;
+                    Properties.Settings.Default.Save();
+                    break;
+                case "misc_feature":
+                    Properties.Settings.Default.misc_feature = background; ;
+                    Properties.Settings.Default.misc_feature_font = foreground;
+                    Properties.Settings.Default.Save();
+                    break;
+                case "gene":
+                    Properties.Settings.Default.gene = background; ;
+                    Properties.Settings.Default.gene_font = foreground;
+                    Properties.Settings.Default.Save();
+                    break;
+                case "rep_origin":
+                    Properties.Settings.Default.CDS = background; ;
+                    Properties.Settings.Default.CDS_font = foreground;
+                    Properties.Settings.Default.Save();
+                    break;
+            }
         }
 
     }
