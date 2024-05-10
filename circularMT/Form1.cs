@@ -1629,7 +1629,7 @@ namespace circularMT
 
         private void p1_MouseClick(object sender, MouseEventArgs e)
         {
-            drawFeatures("", scaling);
+           // drawFeatures("", scaling);// this is just for debuging
         }
 
         private int GetOverhang(Graphics g, Point center, int radius, ImageScaling scaling)
@@ -1968,5 +1968,6 @@ namespace circularMT
             ads.ShowDialog();
             populate_cboStart();
         }
+         
     }
 }
