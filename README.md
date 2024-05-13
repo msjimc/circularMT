@@ -5,6 +5,7 @@
 - [Introduction](#Introduction)
 - [Guide](#guide)
 - [Download](#download)
+- [Running on Linux systems](#running-on-linux-systems)
 
 ## Introduction
 
@@ -25,6 +26,10 @@ The user guide is [here](Guide/README.md).
 ## Download
 
 The prebuilt program can be downloaded [here](Program/README.md).
+
+## Running on Linux systems
+
+The prebuilt programs can be run on Linux (and macOS) using the Wine package as described [here](Program/wine.md).
 
 
 ## Zenodo archive
