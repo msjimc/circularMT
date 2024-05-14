@@ -1234,10 +1234,34 @@ namespace circularMT
         private void writeDefinition(Graphics g, Point center, int radius, ImageScaling scaling)
         {
             if (string.IsNullOrEmpty(defination) == true) { return; }
-            radius -= scaling.sixty ;
+            radius -= scaling.sixty;
             float fontSize = 20;
             Font f = new Font(FontFamily.GenericSansSerif, fontSize, FontStyle.Bold);
-            SizeF s = g.MeasureString(defination, f);
+
+            string[] lines = null;
+
+            if (defination.Contains(";") == true)
+            {
+                lines = (defination + ";" + sequencelength.ToString("N0") + " bp").Split(';');
+            }
+            else
+            {
+                string[] one = { defination, sequencelength.ToString("N0") + " bp" };
+                lines = one;
+            }
+
+            SizeF s = new SizeF(0, 0);
+            string longestLine = "";
+
+            foreach (string l in lines)
+            {
+                SizeF sL = g.MeasureString(l.Trim(), f);
+                if (sL.Width > s.Width)
+                {
+                    s = sL;
+                    longestLine = l.Trim();
+                }
+            }
 
             int gap = (radius * 2) - (int)(140 * scaling.scale);
 
@@ -1245,16 +1269,20 @@ namespace circularMT
             {
                 if (fontSize < 2) { return; }
                 f = new Font(FontFamily.GenericSansSerif, fontSize, FontStyle.Bold);
-                s = g.MeasureString(defination, f);
+                s = g.MeasureString(longestLine, f);
                 fontSize -= 0.5f;
             }
 
-            int x = (int)s.Width / 2;
-            g.DrawString(defination, f, Brushes.Black, center.X - x, center.Y - (scaling.scale * fontSize));
-            s = g.MeasureString(sequencelength.ToString("N0") + " bp", f);
-            x = (int)s.Width / 2;
-            g.DrawString(sequencelength.ToString("N0") + " bp", f, Brushes.Black, center.X - x, center.Y + (scaling.scale * fontSize * 0.5f));
+            float middle = (float)lines.Length / 2;
+            float startH = center.Y - ((scaling.scale * fontSize) * middle);
 
+            foreach (string l in lines)
+            {
+                s = g.MeasureString(l, f);
+                int x = (int)s.Width / 2;
+                g.DrawString(l.Trim(), f, Brushes.Black, center.X - x, startH);
+                startH += s.Height;
+            }
         }
 
         private void drawTicks(Graphics g, Point center, int radius, ImageScaling scaling)
@@ -1497,7 +1525,6 @@ namespace circularMT
             float x = (int)(Math.Cos(radion) * (radius + extra - scaling.ten)) + center.X;
             float y = (int)(Math.Sin(radion) * (radius + extra - scaling.ten)) + center.Y;
 
-
             g.TranslateTransform(x, y);
 
             if (f.Clash == true)
@@ -1522,17 +1549,25 @@ namespace circularMT
 
             float upDown = (float)f.VerticalOffset * scaling.scale;
             float backForward = (float)f.HorizontalOffset * scaling.scale;
-            if (upDown != 0)
-            { }
+ 
             SizeF s = g.MeasureString(name, font);
+            int fHiegth = (int)s.Height / 2;
+
             if (spin == 180)
             {
                 float t1 = -scaling.six - backForward;
                 float t2 = -scaling.ten - backForward;
                 if (f.Forward == true || name.Length > 15)
-                { g.DrawString(name, font, Brushes.Black, -scaling.thirtyEight - s.Width - backForward, -scaling.six - upDown); }
+                { 
+                    g.DrawString(name, font, Brushes.Black, -scaling.thirtyEight - s.Width - backForward, -scaling.six - upDown);
+                    //g.DrawLine(Pens.Black, -scaling.thirtyEight - s.Width - backForward, -scaling.six - upDown, 0, 0);
+                    g.DrawLine(Pens.Black, -scaling.thirtyEight - backForward, -scaling.six - upDown + fHiegth, 0, 0);
+                }
                 else
-                { g.DrawString(name, font, Brushes.Black, scaling.twenty - backForward, -scaling.ten - upDown); }
+                { 
+                    g.DrawString(name, font, Brushes.Black, scaling.twenty - backForward, -scaling.ten - upDown);
+                    //g.DrawLine(Pens.Black, scaling.twenty - backForward, -scaling.ten - upDown, 0, 0);
+                }               
             }
             else
             {
@@ -1540,9 +1575,16 @@ namespace circularMT
                 float t2 = -scaling.ten - backForward;
 
                 if (f.Forward == true || name.Length > 15)
-                { g.DrawString(name, font, Brushes.Black, scaling.thirtyEight - backForward, -scaling.ten - upDown); }
+                { 
+                    g.DrawString(name, font, Brushes.Black, scaling.thirtyEight - backForward, -scaling.ten - upDown);
+                    //g.DrawLine(Pens.Black, scaling.thirtyEight - backForward, -scaling.ten - upDown, 0, 0);
+                }
                 else
-                { g.DrawString(name, font, Brushes.Black, -scaling.sixteen - s.Width - backForward, -scaling.six - upDown); }
+                { 
+                    g.DrawString(name, font, Brushes.Black, -scaling.sixteen - s.Width - backForward, -scaling.six - upDown);
+                    //g.DrawLine(Pens.Black, -scaling.sixteen - s.Width - backForward, -scaling.six - upDown, 0, 0);
+                }
+                
             }
 
             g.ResetTransform();
@@ -1608,8 +1650,8 @@ namespace circularMT
             populate_cboStart();
         }
 
-            private void populate_cboStart()
-        { 
+        private void populate_cboStart()
+        {
             cboStart.Items.Clear();
             cboStart.Items.Add("select");
             if (chlTerms.CheckedItems.Count != 0)
@@ -1624,8 +1666,7 @@ namespace circularMT
                 }
             }
             cboStart.SelectedIndex = 0;
-            drawFeatures("", scaling);
-        }
+         }
 
         private void p1_MouseClick(object sender, MouseEventArgs e)
         {

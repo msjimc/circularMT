@@ -89,19 +89,38 @@ Finally ```Wine``` was installed using:
 
 > sudo apt install --install-recommends wine-stable
 
+### Issues
+
 ***Note***: the documentation currently (May 2024) suggests using the winehq-stable package, but this seems to be a typing error and wine-stable should be used.
+
+#### "wine32" is missing
+
+If you get the message below:
+
+> it looks like wine32 is missing, you should install it.  
+as root, please execute "apt-get install wine32"
+
+open the Software & Updates form and select the Security and recommended updates option (Figure 5a), enter your admin password (multiple times), close the form, update/reload if requested and then run the command:
+
+> sudo apt-get install wine32
+
+#### "wine-mono" is missing
 
 If not prompted to do so during the set up you may have to add a wine-mono package to the installation. This can be downloaded from the wine-mono [web page](https://dl.winehq.org/wine/wine-mono/) (https://dl.winehq.org/wine/wine-mono/), for this installation the [wine-mono-9.1.0-x86.msi](https://dl.winehq.org/wine/wine-mono/9.1.0/wine-mono-9.1.0-x86.msi) file was used. To link this file to the ```wine``` installation use the ```wine``` uninstaller by entering:
 
 > wine uninstaller   
 
-in a terminal, pressing the ```Install``` button and selecting the file (Figure 5).
+in a terminal, pressing the ```Install``` button and selecting the file (Figure 5b).
 
 <hr />
 
-![Figure 5](images/ubuntu_figure1.jpg)
+![Figure 5a](images/ubuntu_figure1b.jpg)
 
-Figure 5
+Figure 5a
+
+![Figure 5b](images/ubuntu_figure1.jpg)
+
+Figure 5b
 
 <hr />
 
