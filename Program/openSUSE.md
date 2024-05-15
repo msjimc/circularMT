@@ -6,7 +6,9 @@ OpenSUSE - 'Leap' 15.5 was installed on a 64 bit virtual machine with 4,096 MB o
 
 The circularMT.exe file and the sequence.gb files were downloaded from the GitHub (https://github.com/msjimc/circularMT) 'Program' and 'Example data' folders to openSUSEthe user's Download folder (~/Downloads) using FireFox.
 
-## Preparation
+## Preparation and installation
+
+* **The account performing the installation must have admin rights.**
 
 YaST was started from the application launcher and the Software Management option selected. From there ***Wine***, ***wine-32bit***, ***wine-gecko***, ***wine-mono*** and ***winetricks*** were selected and installed (Figure 1). 
 

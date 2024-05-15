@@ -32,7 +32,7 @@ The installation is then performed in the /tmp/ temporary folder with:
 wget https://dl.winehq.org/wine/source/9.0/wine-9.0.tar.xz 
 tar -xvf wine-9.0.tar.xz -C /tmp/  
 cd wine-9.0/  
-./configure --without-freetype
+sudo you install freetype-devel   
 ./configure --enable-win64  
 make  
 sudo make install  
