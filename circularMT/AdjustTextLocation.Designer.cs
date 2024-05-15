@@ -143,12 +143,12 @@
             // 
             this.nupbackAndForth.Location = new System.Drawing.Point(431, 123);
             this.nupbackAndForth.Maximum = new decimal(new int[] {
-            10,
+            15,
             0,
             0,
             0});
             this.nupbackAndForth.Minimum = new decimal(new int[] {
-            10,
+            15,
             0,
             0,
             -2147483648});

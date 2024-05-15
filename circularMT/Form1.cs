@@ -1239,7 +1239,7 @@ namespace circularMT
             Font f = new Font(FontFamily.GenericSansSerif, fontSize, FontStyle.Bold);
 
             string[] lines = null;
-
+            
             if (defination.Contains(";") == true)
             {
                 lines = (defination + ";" + sequencelength.ToString("N0") + " bp").Split(';');
@@ -1273,7 +1273,7 @@ namespace circularMT
                 fontSize -= 0.5f;
             }
 
-            float middle = (float)lines.Length / 2;
+            float middle = 1.5f + ((float)lines.Length / 2);
             float startH = center.Y - ((scaling.scale * fontSize) * middle);
 
             foreach (string l in lines)
@@ -1524,7 +1524,7 @@ namespace circularMT
             { extra = scaling.sixty; }
             float x = (int)(Math.Cos(radion) * (radius + extra - scaling.ten)) + center.X;
             float y = (int)(Math.Sin(radion) * (radius + extra - scaling.ten)) + center.Y;
-
+                        
             g.TranslateTransform(x, y);
 
             if (f.Clash == true)
@@ -1551,58 +1551,61 @@ namespace circularMT
             float backForward = (float)f.HorizontalOffset * scaling.scale;
  
             SizeF s = g.MeasureString(name, font);
-            int fHiegth = (int)s.Height / 2;
-
+            int fHeigth = (int)s.Height / 2;
+            Pen blackLinePen  = new Pen(Color.Black, scaling.two);
+            
             if (spin == 180)
             {
-                float t1 = -scaling.six - backForward;
-                float t2 = -scaling.ten - backForward;
                 if (f.Forward == true || name.Length > 15)
-                { 
+                {                    
                     g.DrawString(name, font, Brushes.Black, -scaling.thirtyEight - s.Width - backForward, -scaling.six - upDown);
-                    //g.DrawLine(Pens.Black, -scaling.thirtyEight - s.Width - backForward, -scaling.six - upDown, 0, 0);
-                    g.DrawLine(Pens.Black, -scaling.thirtyEight - backForward, -scaling.six - upDown + fHiegth, 0, 0);
+                    if (backForward > (font.Size / 2))
+                    { g.DrawLine(blackLinePen, -scaling.thirtyEight - backForward, -scaling.six - upDown + fHeigth, -scaling.thirtyEight, -scaling.six  + fHeigth); }
                 }
                 else
-                { 
-                    g.DrawString(name, font, Brushes.Black, scaling.twenty - backForward, -scaling.ten - upDown);
-                    //g.DrawLine(Pens.Black, scaling.twenty - backForward, -scaling.ten - upDown, 0, 0);
+                {                    
+                    g.DrawString(name, font, Brushes.Black, scaling.twenty + backForward, -scaling.ten - upDown);
+                    if (backForward  > (font.Size / 2))
+                    { g.DrawLine(blackLinePen, scaling.twenty + backForward, -scaling.ten - upDown + fHeigth, scaling.twenty, -scaling.ten  + fHeigth); }
                 }               
             }
             else
-            {
-                float t1 = -scaling.six - backForward;
-                float t2 = -scaling.ten - backForward;
-
+            {                
                 if (f.Forward == true || name.Length > 15)
-                { 
-                    g.DrawString(name, font, Brushes.Black, scaling.thirtyEight - backForward, -scaling.ten - upDown);
-                    //g.DrawLine(Pens.Black, scaling.thirtyEight - backForward, -scaling.ten - upDown, 0, 0);
+                {
+                    g.DrawString(name, font, Brushes.Black, scaling.thirtyEight + backForward, -scaling.ten - upDown);
+                    if (backForward > (font.Size / 2))
+                    { g.DrawLine(blackLinePen, scaling.thirtyEight + backForward, -scaling.ten - upDown + fHeigth, scaling.thirtyEight, -scaling.ten  + fHeigth); }
                 }
                 else
-                { 
+                {
                     g.DrawString(name, font, Brushes.Black, -scaling.sixteen - s.Width - backForward, -scaling.six - upDown);
-                    //g.DrawLine(Pens.Black, -scaling.sixteen - s.Width - backForward, -scaling.six - upDown, 0, 0);
+                    if (backForward > (font.Size / 2))
+                    {  g.DrawLine(blackLinePen, -scaling.sixteen - backForward, -scaling.six - upDown + fHeigth, -scaling.sixteen, -scaling.six  + fHeigth); }
                 }
                 
             }
 
             g.ResetTransform();
-
+            
             if (f.Forward == true || name.Length > 15)
             {
                 if (spin == 180)
-                {
-                    float dX = (int)(Math.Cos(-radion) * -(scaling.thirtyEight + s.Width));
-                    float dY = (int)(Math.Sin(-radion) * +(scaling.thirtyEight + s.Width));
+                {                    
+                    float dX = (int)(Math.Cos(-radion) * -(scaling.thirtyEight + s.Width + backForward));
+                    float dY = (int)(Math.Sin(-radion) * +(scaling.thirtyEight + s.Width + backForward));
                     answer = new Point((int)(x - dX), (int)(y - dY));
-                    f.TextPoint = new Point((int)(x - dX), (int)(y - dY));
+                    dX = (int)(Math.Cos(-radion) * -(scaling.thirtyEight ));
+                    dY = (int)(Math.Sin(-radion) * +(scaling.thirtyEight ));
+                    f.TextPoint = new Point((int)(x - dX), (int)(y - dY));                    
                 }
                 else
                 {
-                    float dX = (int)(Math.Cos(-radion) * -(scaling.thirtyEight + s.Width));
-                    float dY = (int)(Math.Sin(-radion) * +(scaling.thirtyEight + s.Width));
+                    float dX = (int)(Math.Cos(-radion) * -(scaling.thirtyEight + s.Width - backForward));
+                    float dY = (int)(Math.Sin(-radion) * +(scaling.thirtyEight + s.Width - backForward));
                     answer = new Point((int)(x - dX), (int)(y - dY));
+                    dX = (int)(Math.Cos(-radion) * -(scaling.thirtyEight));
+                    dY = (int)(Math.Sin(-radion) * +(scaling.thirtyEight));
                     f.TextPoint = new Point((int)(x - dX), (int)(y - dY));
                 }
             }
@@ -1610,9 +1613,9 @@ namespace circularMT
             {
                 if (spin == 180)
                 {
-                    float dX = (int)(Math.Cos(-radion) * scaling.twenty);
-                    float dY = (int)(Math.Sin(-radion) * -scaling.twenty);
-                    f.TextPoint = new Point((int)(x - dX), (int)(y - dY));
+                    float dX = (int)(Math.Cos(-radion) * (scaling.twenty));
+                    float dY = (int)(Math.Sin(-radion) * -(scaling.twenty));
+                    f.TextPoint = new Point((int)(x - dX), (int)(y - dY));                    
                 }
                 else
                 {
@@ -1621,6 +1624,7 @@ namespace circularMT
                     f.TextPoint = new Point((int)(x + dX), (int)(y + dY));
                 }
             }
+            
             return answer;
         }
 
@@ -1670,7 +1674,7 @@ namespace circularMT
 
         private void p1_MouseClick(object sender, MouseEventArgs e)
         {
-           // drawFeatures("", scaling);// this is just for debuging
+           drawFeatures("", scaling);// this is just for debuging
         }
 
         private int GetOverhang(Graphics g, Point center, int radius, ImageScaling scaling)

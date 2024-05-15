@@ -135,7 +135,7 @@ namespace circularMT
         {
             if (selectedFeature != null)
             {
-                selectedFeature.HorizontalOffset = -(int)nupbackAndForth.Value;
+                selectedFeature.HorizontalOffset = (int)nupbackAndForth.Value;
                 parent.ReDrawFromOutSide();
             }
         }
