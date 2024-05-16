@@ -21,6 +21,8 @@ Since ```Wine``` can work on a range of operating systems, how it is installed d
 
 * [Debian trixie](debian.md)
 
+## Common issues
+
 #### "wine32" is missing
 
 If you get the message below:
