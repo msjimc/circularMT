@@ -23,7 +23,10 @@ Since ```Wine``` can work on a range of operating systems, how it is installed d
 
 ## Common issues
 
-#### "wine32" is missing
+* [wine32 is missing](#wine32-is-missing)
+* [wine-mono is missing](#wine-mono-is-missing)
+
+### "wine32" is missing
 
 If you get the message below:
 
@@ -42,7 +45,7 @@ Figure 1
 
 <hr />
 
-#### "wine-mono" is missing
+### "wine-mono" is missing
 
 If not prompted to do so during the set up you may have to add a wine-mono package to the installation. This can be downloaded from the wine-mono [web page](https://dl.winehq.org/wine/wine-mono/) (https://dl.winehq.org/wine/wine-mono/), for this installation the [wine-mono-9.1.0-x86.msi](https://dl.winehq.org/wine/wine-mono/9.1.0/wine-mono-9.1.0-x86.msi) file was used. To link this file to the ```wine``` installation use the ```wine``` uninstaller by entering:
 
