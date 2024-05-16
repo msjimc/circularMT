@@ -1,0 +1,50 @@
+#/bin/bash
+
+echo Removing old versions of Wine
+# Make sure we don't have Wine already installed from repo
+sudo dnf remove wine
+
+echo Adding epel-release repository
+# Needed by winetricks
+sudo dnf install epel-release
+sudo dnf install p7zip p7zip-plugins cabextract
+
+echo Setting up Powertools repository and importing packages
+# Needed for compiling
+sudo dnf group install "Development Tools"
+sudo dnf config-manager --set-enabled powertools
+sudo dnf install ocl-icd-devel libXcomposite-devel libXinerama-devel libv4l-devel krb5-devel libudev-devel libXi-devel mingw32-gcc mingw64-gcc libusbx-devel glibc-devel vulkan-devel pulseaudio-libs-devel libXrender-devel  mesa-libGL-devel gcc libX11-devel freetype-devel zlib-devel libxcb-devel libxslt-devel libgcrypt-devel libxml2-devel gnutls-devel libpng-devel libjpeg-turbo-devel libtiff-devel dbus-devel fontconfig-devel libXcursor-devel libXxf86vm-devel libXrandr-devel SDL2-devel gstreamer1-devel gstreamer1-plugins-base-devel mesa-libOSMesa-devel ocl-icd-devel.i686 libXcomposite-devel.i686 libXinerama-devel.i686 libv4l-devel.i686 krb5-devel.i686 libXi-devel.i686 mingw32-gcc mingw64-gcc libusbx-devel.i686 glibc-devel.i686 pulseaudio-libs-devel.i686 libXrender-devel.i686  mesa-libGL-devel.i686 gcc libX11-devel.i686 freetype-devel.i686 zlib-devel.i686 libxcb-devel.i686 libxslt-devel.i686 libgcrypt-devel.i686 libxml2-devel.i686 gnutls-devel.i686 libpng-devel.i686 libjpeg-turbo-devel.i686 libtiff-devel.i686 dbus-devel.i686 fontconfig-devel.i686 libXcursor-devel.i686 libXxf86vm-devel.i686 libXrandr-devel.i686 SDL2-devel.i686 gstreamer1-devel.i686 gstreamer1-plugins-base-devel.i686 mesa-libOSMesa-devel.i686 libXext-devel.i686 libXfixes-devel.i686 gstreamer1-devel.i686 gstreamer1-plugins-base-devel.i686 wayland-devel.i686 vulkan-loader-devel vulkan-loader-devel.i686 systemd-devel systemd-devel.i686 libcom_err-devel.i686 libpcap-devel.i686 mesa-dri-drivers.i686
+
+echo Moving to home folder and downloading and extracting Wine 9
+cd ~
+wget https://dl.winehq.org/wine/source/9.0/wine-9.0.tar.xz
+tar xvf wine-9.0.tar.xz
+cd wine-9.0
+mkdir build
+mkdir build/wine32
+mkdir build/wine64
+
+echo Building win64 in homw/wine9.0/build/wine64
+# Build 64 bit version
+cd build/wine64
+../../configure CFLAGS="-march=native -O3 -pipe -fstack-protector-strong" --enable-win64
+make -j16
+
+echo Building win32 in homw/wine9.0/build/wine32
+# Build 32 bit version
+cd ../wine32
+PKG_CONFIG_PATH=/usr/lib/pkgconfig ../../configure CFLAGS="-march=native -O3 -pipe -fstack-protector-strong -I/usr/include/freetype2 -I/usr/lib/glib-2.0/include -I/usr/include/glib-2.0 -I/usr/include/gstreamer-1.0" --with-wine64=../wine64
+make -j16
+
+echo Installing both versions
+# Install Both
+sudo make -j16 install
+cd ../wine64
+sudo make -j16 install
+
+echo setting Wine up.
+# Set 32 bit Wine prefix in current shell and boot it up
+WINEPREFIX="$HOME/.wine32" WINEARCH=win32 wine wineboot
+# Save 32 bit prefix for future shells
+echo 'export WINEPREFIX="$HOME/.wine32"' >> ~/.bashrc 
+echo "Finished Setting up Wine!"
