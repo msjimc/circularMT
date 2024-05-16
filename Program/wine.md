@@ -1,97 +1,25 @@
 # Running circularMT on a Linux desktop
 
-While circularMT is written in  c#.net and so geared to running on a Windows PC, it is possible to run any Windows application on Linux or macOS using [```Wine```](https://www.winehq.org/). According to their website: 
+While circularMT is written in  c#.net and so geared to running on a Windows PC, it is possible to run any Windows application on Linux or macOS using [```Wine```](https://www.winehq.org/). According to Wine's [website](https://www.winehq.org): 
 > Wine (originally an acronym for "Wine Is Not an Emulator") is a compatibility layer capable of running Windows applications on several POSIX-compliant operating systems, such as Linux, macOS, & BSD. Instead of simulating internal Windows logic like a virtual machine or emulator, Wine translates Windows API calls into POSIX calls on-the-fly, eliminating the performance and memory penalties of other methods and allowing you to cleanly integrate Windows applications into your desktop.
 
 Basically, ```Wine``` sits in between a Windows application and the operating system and catches any messages they send each other and converts them from what they don't understand to something they do understand, a bit like how an translator allows a German speaker to have a conversation with a Spanish speaker. 
 
-Since ```Wine``` can work on a range of operating systems how it is installed depends on which flavour of Linux (or macOS) you are using. The ```Wine``` website as instructions for installing ```Wine``` on Ubuntu, Debian, Fedora, macOS, SUSE, Slackware and FreeBSD on their [downloads page](https://wiki.winehq.org/Download). However, unlike installing applications on Windows, the process can be a little demanding for some OS'es. Consequently, below are three short guides that allowed me to install ```Wine``` on openSUSE, Ubuntu and Centos via different routes. These guides expect you to have a more than passing understanding of how to install applications on Linux.
+Since ```Wine``` can work on a range of operating systems, how it is installed depends on which flavour of Linux (or macOS) you are using. The ```Wine``` website as instructions for installing ```Wine``` on Ubuntu, Debian, Fedora, macOS, SUSE, Slackware and FreeBSD on their [downloads page](https://wiki.winehq.org/Download). However, unlike installing applications on Windows, the process can be a little demanding for some OS'es. Consequently, below are links to four short guides that show how I installed ```Wine``` on openSUSE, Ubuntu, Debian and Centos via different routes. These guides expect you to have a reasonable understanding of how to install applications on Linux or the whillingness to search online for the solution to any issues.
 
-***Note***: The operating systems used in this guide were installed via Oracle's VirtualBox as virtual machines, however, this should not affect how they functioned.
+***Note***: The operating systems used in this guide were installed two different types of virtual machines hosted by by Oracle's VirtualBox on a Windows 10 computer and on Microsoft's Hyper-V on a Windows 11 computer, however, this should not affect how they functioned. The installation was performed on a freshly installed OS.
 
 ***Note***: The commands described to install ```Wine``` require admin/superuser rights which may mean that the installation needs to be done by the IT department on a works computer ot that you may be expected to install them in a conda environment. 
 
-## openSUSE:
-OpenSUSE - 'Leap' 15.5 was installed on a 64 bit virtual machine with 4,096 MB of RAM, 4 processors, 20 GB hard disk and was configured with default setting with the using the KDE desktop.
+# Install guides 
 
-The circularMT.exe file and the sequence.gb files were downloaded from the GitHub (https://github.com/msjimc/circularMT) 'Program' and 'Example data' folders to openSUSE using FireFox (~/Downloads).
+* [openSUSE - 'Leap' 15.5:](openSUSE.md)
 
-YaST was started from the application launcher and the Software Management option selected. From there ***Wine***, ***wine-32bit***, ***wine-gecko***, ***wine-mono*** and ***winetricks*** were selected and installed (Figure 1). 
+* [Ubuntu - 'Noble Numbat' 24.04:](ubuntu.md)
 
-<hr />
+* [Centos - Stream 8](centos_8.md)
 
-![Figure 1](images/openSUSE_figure1.jpg)
-
-Figure 1
-
-<hr />
-
-A terminal (```Konsole```) was opened and the installation checked by entering 
-
->$  wine --version  
-wine-8.0
-
-```Wine``` was then used to run circularMT with the following command:
-
-> wine ~/Downloads/circularMT.exe
-
-When first run, ```Wine``` may undergo a configuration step before displaying the circularMT interface (Figure 2).
-
-<hr />
-
-![Figure 2](images/openSUSE_figure2.jpg)
-
-Figure 2
-
-<hr />
-
-Once running, data can be imported as described in the [Guide](../Guide/README.md). While circularMT is running on openSUSE, the file system will appear like a Windows based system rather than a Linux file system (Figure 3). While the user's Download folder is in /home/username/Downloads on openSUSE it appears to be in c:/users/<username>/Downloads/ to circularMT.
-
-<hr />
-
-![Figure 3](images/openSUSE_figure3.jpg)
-
-Figure 3
-
-<hr />
-
-Once imported, the mitochondrial genome can be modified as described in the [Guide](../Guide/README.md) Figure 4.
-
-<hr />
-
-![Figure 4](images/openSUSE_15.5_Leap-KDE.jpg)
-
-Figure 4
-
-<hr />
-
-
-## Ubuntu:
-
-Ubuntu 'Noble Numbat' 24.04 was installed on a 64 bit virtual machine with 4,096 MB of RAM, 4 processors and 25 GB hard disk and was configured with default setting. It uses the gnome desktop.
-
-The circularMT.exe file and the sequence.gb files were downloaded from the GitHub (https://github.com/msjimc/circularMT) 'Program' and 'Example data' folders to Ubuntu using FireFox (~/Downloads). 
-
-Unlike OpenSUSE, ```Wine``` was installed on Ubuntu as directed by the Wine [installation guide](https://wiki.winehq.org/Ubuntu).  Initially, the system was prepared for 32 bit applications by entering the following command in a terminal (```Konsole```):
-
-> sudo dpkg --add-architecture i386 
-
-Next the required repositories were added:
-
-> sudo mkdir -pm755 /etc/apt/keyrings  
-> sudo wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-builds/winehq.key
-
-followed by the required source locations. For Ubuntu Noble Numbat 24.04 the command is (See the ```Wine``` web site for other options):
-
-> sudo wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/noble/winehq-noble.sources
-
-Finally ```Wine``` was installed using:
-
-> sudo apt install --install-recommends wine-stable
-
-### Issues
-
-***Note***: the documentation currently (May 2024) suggests using the winehq-stable package, but this seems to be a typing error and wine-stable should be used.
+* [Debian trixie](debian.md)
 
 #### "wine32" is missing
 

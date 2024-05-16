@@ -15,66 +15,45 @@ It ius suggested that the computer is updated and rebooted before starting the i
 
 * **The account performing the installation must have admin rights.**
 
-Unlike the installations on openSUSE and Ubuntu, ```Wine``` was installed on Centos by compiling the source code for ```Wine``` as described by [Sumit Dhattarwal](https://medium.com/@sumitdhattarwal4444/running-windows-applications-and-games-on-centos-rhel-with-wine-9784a53cd8f7) on the web site Medium. An almost identical version was published as few days later [here](https://medium.com/@pateriyadeepali1008/running-windows-apps-and-games-on-centos-rhel-with-wine-c82e9d383603). 
+Unlike the installations on openSUSE, Debian and Ubuntu, ```Wine``` was installed on Centos by compiling the source code for ```Wine``` as described by __onlycliches__ on the AlmaLinux forum: [[Script] Compile WINE with 32-Bit App Support](https://forums.almalinux.org/t/script-compile-wine-with-32-bit-app-support/2556). This page contains a script that compiles both the 32 and 64 - bit versions of ```wine```. It appears that things have changed a little since it was written and so needed an extra line adding. I also added a few echo commands that wrote the current status of the script to a file called status.txt so its possible to tell where it is. The script can be viewed as containing 3 stages the first downloads the require files and packages and requires user interaction to authorise the downloads, this may take ~5 mins. The next part compiles wine and may take serval hours, but doesn't require user interaction. The final part installs and configure wine and requires you to OK a few steps via dialogue box(es).  
 
+To run the installation script download the install.txt files from [here[(https://github.com/msjimc/circularMT/Program) and then run it from a terminal with bash:
 
-First you need to ensure the dependencies are in place with:
+> bash install.txt
 
-> sudo yum -y groupinstall 'Development Tools'
- 
- and then the ```Wine``` source code and additional libraries are downloaded with: 
+## Running circularMT
 
- > sudo yum install gcc libX11-devel freetype-devel zlib-devel libxcb-devel libxslt-devel libgcrypt-devel libxml2-devel gnutls-devel libpng-devel libjpeg-turbo-devel libtiff-devel dbus-devel fontconfig-devel
+Once installed, download circularMT.exe and the sequence.gb file were downloaded from the GitHub (https://github.com/msjimc/circularMT) 'Program' and 'Example data' folders to our Download folder (~/Downloads) using FireFox and the issue the one of the following commands for 32 - bit or 64 bit programs:
 
-The installation is then performed in the /tmp/ temporary folder with:
+> wine ~/Downloads/circularMT.exe  
+or   
 
-> cd /tmp  
-wget https://dl.winehq.org/wine/source/9.0/wine-9.0.tar.xz 
-tar -xvf wine-9.0.tar.xz -C /tmp/  
-cd wine-9.0/  
-sudo you install freetype-devel   
-./configure --enable-win64  
-make  
-sudo make install  
-
-***Note:*** This will install wine 7.0, but you can try and use a newer version if you like.
-
-***Note***: The './configure --enable-win64' step is very slow and maybe best to run overnight. 
-
-Finally, the installation is configured with:
-
-> winecfg
-
-This installation is a 64 bit implementation and so the 64 bit version of circularMT (circularMT_64.exe) should be used using the wine64 command (Figure 9a). If the 32 bit circularMT.exe application is used you will get an error as shown in Figure 9b.
+> wine64 ~/Downloads/circularMT_64.exe  
 
 <hr />
 
-![Figure 9a](images/centos_figure1.jpg)
+![Figure 1](images/centos_figure1.jpg)
 
-Figure 9a
-
-![Figure 9b](images/centos_figure2.jpg)
-
-Figure 9b
+Figure 1
 
 <hr />
 
-As with the other installations on openSUSE and Ubuntu, circularMT displays the file system in the style of a Windows OS rather than a Linux system (Figure 10).
+As with the other installations on openSUSE, Debian and Ubuntu, circularMT displays the file system in the style of a Windows OS rather than a Linux system (Figure 2).
 
 <hr /> 
 
-![Figure 10](images/centos_figure3.jpg)
+![Figure 2](images/centos_figure3.jpg)
 
-Figure 10
-
-<hr />
-
-Once, a genome has been installed, it's map can be modified as shown in the [Guide](../Guide/README.md) (Figure 11).
+Figure 2
 
 <hr />
 
-![Figure 11](images/centos_figure4.jpg)
+Once, a mitochondrial genome has been imported, it's map can be modified as shown in the [Guide](../Guide/README.md) (Figure 3).
 
-Figure 11
+<hr />
+
+![Figure 3](images/centos_figure4.jpg)
+
+Figure 3
 
 <hr />
