@@ -39,6 +39,8 @@ mkdir build/wine64
 echo "Building win64 in homw/wine9.0/build/wine64"
 echo "Building win64 in homw/wine9.0/build/wine64" >> status.txt
 echo $(date) >> status.txt
+#Let echo write to file before doing alignment which can stall it
+sleep 1
 
 # Build 64 bit version
 cd build/wine64
@@ -48,6 +50,7 @@ make -j16
 echo "Building win32 in homw/wine9.0/build/wine32"
 echo "Building win32 in homw/wine9.0/build/wine32" >> status.txt
 echo $(date) >> status.txt
+#Let echo write to file before doing alignment which can stall it
 
 # Build 32 bit version
 cd ../wine32

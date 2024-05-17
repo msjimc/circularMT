@@ -428,7 +428,7 @@ Figure 45: Setting the  ```Move up-down``` value to 185 gives the TRNF label eno
 
 ## Saving the image as a high DPI image
 
-Once you are happy with the display image, it can be saved as a high dpi TIFF, bitmap, PNG or JPEG image by first setting the required DPI value in the DPI of save image control and then pressing the ```Save``` button to the right of the ```Save image``` label (blue box in Figure 44 a). This will prompt you to select a location and enter a file name before saving the image as a high dpi image (100 to 1,000 dpi). 
+Once you are happy with the display image, it can be saved as a high dpi TIFF, bitmap, PNG or JPEG image by first setting the required DPI value in the ```DPI of save image``` control and then pressing the ```Save``` button to the right of the ```Save image``` label (blue box in Figure 44 a). This will prompt you to select a location and enter a file name before saving the image as a high dpi image (100 to 1,000 dpi). 
 
 ![Figure 46](images/figure46.jpg)
 

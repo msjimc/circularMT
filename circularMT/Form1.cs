@@ -963,7 +963,7 @@ namespace circularMT
         private void writePerpendicularText(Graphics g, feature f, ImageScaling scaling)
         {
             float scale = (float)((p1.Width * scaling.one) - scaling.fourty) / sequencelength;
-            Font font = new Font(FontFamily.GenericSansSerif, 10, FontStyle.Bold);
+            Font font = new Font(FontFamily.GenericSansSerif, 11, FontStyle.Bold);
             SizeF length = g.MeasureString(f.Name, font);
                         
             float dx = 0;
@@ -975,28 +975,33 @@ namespace circularMT
             }
 
             float upDown = (float)f.VerticalOffset * scaling.scale;
-            float backForward = (float)f.HorizontalOffset * scaling.scale;
-
+            float halfHieght = length.Height /2;
             if (f.Forward == true)
             {
                 float x = ((f.Arrows[0].X + f.Arrows[1].X)/2) + (length.Height / 2) + dx - upDown;
-                float y = f.Arrows[0].Y - scaling.ten - length.Width;
+                float y = f.Arrows[0].Y - scaling.twenty - length.Width;
                 g.TranslateTransform(x, y);
                 g.RotateTransform(90.0f);
-                g.DrawString(f.Name, font, Brushes.Black, 0,0);
+                g.DrawString(f.Name, font, Brushes.Black, 0, 0);
+                if (Math.Abs(upDown) + Math.Abs(dx) > scaling.five || true)
+                { g.DrawLine(new Pen(Color.Black, 2), length.Width, halfHieght, length.Width + scaling.thirteen, halfHieght - ((upDown  - dx) /2)); }                
                 g.ResetTransform();
                 f.TextPoint = new Point((int)x, (int)y);
             }
             else
             {
                 float x = ((f.Arrows[0].X + f.Arrows[1].X) / 2) - (length.Height / 2) + dx - upDown;
-                float y = f.Arrows[1].Y + scaling.ten + length.Width;
+                float y = f.Arrows[1].Y + scaling.twenty + length.Width;
                 g.TranslateTransform(x, y);
                 g.RotateTransform(-90.0f);
                 g.DrawString(f.Name, font, Brushes.Black, 0, 0);
+                if (Math.Abs(upDown) + Math.Abs(dx) > scaling.five || true)
+                { g.DrawLine(new Pen(Color.Black, 2), length.Width + scaling.two, halfHieght,length.Width + scaling.thirteen, halfHieght + ((upDown - dx) / 2) ); }
                 g.ResetTransform();
                 f.TextPoint = new Point((int)x, (int)y);
             }
+
+            
         }
 
         private Point[] getLineArrow(feature f, Point center, bool strand, int edge, ImageScaling scaling )
@@ -1549,7 +1554,7 @@ namespace circularMT
 
             float upDown = (float)f.VerticalOffset * scaling.scale;
             float backForward = (float)f.HorizontalOffset * scaling.scale;
- 
+            float distance = (float)Math.Sqrt((upDown * upDown) + (backForward * backForward));
             SizeF s = g.MeasureString(name, font);
             int fHeigth = (int)s.Height / 2;
             Pen blackLinePen  = new Pen(Color.Black, scaling.two);
@@ -1559,13 +1564,13 @@ namespace circularMT
                 if (f.Forward == true || name.Length > 15)
                 {                    
                     g.DrawString(name, font, Brushes.Black, -scaling.thirtyEight - s.Width - backForward, -scaling.six - upDown);
-                    if (backForward > (font.Size / 2))
+                    if (distance > ((font.Size * scaling.scale) / 2))
                     { g.DrawLine(blackLinePen, -scaling.thirtyEight - backForward, -scaling.six - upDown + fHeigth, -scaling.thirtyEight, -scaling.six  + fHeigth); }
                 }
                 else
                 {                    
                     g.DrawString(name, font, Brushes.Black, scaling.twenty + backForward, -scaling.ten - upDown);
-                    if (backForward  > (font.Size / 2))
+                    if (distance > ((font.Size * scaling.scale) / 2))
                     { g.DrawLine(blackLinePen, scaling.twenty + backForward, -scaling.ten - upDown + fHeigth, scaling.twenty, -scaling.ten  + fHeigth); }
                 }               
             }
@@ -1574,13 +1579,13 @@ namespace circularMT
                 if (f.Forward == true || name.Length > 15)
                 {
                     g.DrawString(name, font, Brushes.Black, scaling.thirtyEight + backForward, -scaling.ten - upDown);
-                    if (backForward > (font.Size / 2))
+                    if (distance > ((font.Size * scaling.scale) / 2))
                     { g.DrawLine(blackLinePen, scaling.thirtyEight + backForward, -scaling.ten - upDown + fHeigth, scaling.thirtyEight, -scaling.ten  + fHeigth); }
                 }
                 else
                 {
                     g.DrawString(name, font, Brushes.Black, -scaling.sixteen - s.Width - backForward, -scaling.six - upDown);
-                    if (backForward > (font.Size / 2))
+                    if (distance > ((font.Size * scaling.scale) / 2))
                     {  g.DrawLine(blackLinePen, -scaling.sixteen - backForward, -scaling.six - upDown + fHeigth, -scaling.sixteen, -scaling.six  + fHeigth); }
                 }
                 
