@@ -28,7 +28,7 @@
   - [Adding a feature](#adding-a-feature)  
   - [Removing a feature](#removing-a-feature)  
   - [Moving the genome's center point](#moving-the-genomes-center-point)  
-  - [Saving the image to a 300 dpi image](#saving-the-image-to-a-300-dpi-image)    
+  - [Saving the image as a high DPI image](#saving-the-image-as-a-high-dpi-image)    
 
 
 # Introduction
@@ -426,9 +426,9 @@ Figure 44: The longer label runs of the top of the image.
 Figure 45: Setting the  ```Move up-down``` value to 185 gives the TRNF label enough pace to be written.
 <hr />
 
-## Saving the image to a 300 dpi image
+## Saving the image as a high DPI image
 
-Once you are happy with the display image, it can be saved as a 300 (are just over) dpi TIFF, bitmap, PNG or JPEG image by pressing the ```Save``` button to the right of the ```Save image``` label (blue box in Figure 44 a). This will prompt you to select a location and enter a file name before saving the image as a ~300 dpi image. 
+Once you are happy with the display image, it can be saved as a high dpi TIFF, bitmap, PNG or JPEG image by first setting the required DPI value in the DPI of save image control and then pressing the ```Save``` button to the right of the ```Save image``` label (blue box in Figure 44 a). This will prompt you to select a location and enter a file name before saving the image as a high dpi image (100 to 1,000 dpi). 
 
 ![Figure 46](images/figure46.jpg)
 
