@@ -32,7 +32,7 @@ namespace circularMT
         {
             InitializeComponent();
 
-            scaling = new ImageScaling(96);
+            scaling = new ImageScaling(100);
         }
 
         private void btnGenBank_Click(object sender, EventArgs e)
@@ -1873,7 +1873,9 @@ namespace circularMT
 
             try
             {
-                ImageScaling saveAs = new ImageScaling(300.0f);
+                float dpi = (float)nudDPI.Value;
+
+                ImageScaling saveAs = new ImageScaling(dpi);
                 if (chlTerms.CheckedItems.Count == 0) { return; }                
 
                 for (int index = 0; index < chlTerms.CheckedItems.Count; index++)

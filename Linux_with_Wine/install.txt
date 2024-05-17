@@ -2,14 +2,14 @@
 
 echo "Removing old versions of Wine"
 echo "Removing old versions of Wine" > status.txt
-echo $(date) > >> status.txt
+echo $(date) >> status.txt
 
 # Make sure we don't have Wine already installed from repo
 sudo dnf remove wine
 
 echo "Adding epel-release repository"
 echo "Adding epel-release repository" >> status.txt
-echo $(date) > >> status.txt
+echo $(date) >> status.txt
 
 # Needed by winetricks
 sudo dnf install epel-release
@@ -17,7 +17,7 @@ sudo dnf install p7zip p7zip-plugins cabextract
 
 echo "Setting up Powertools repository and importing packages"
 echo "Setting up Powertools repository and importing packages" >> status.txt
-echo $(date) > >> status.txt
+echo $(date) >> status.txt
 
 # Needed for compiling
 sudo dnf group install "Development Tools"
@@ -26,7 +26,7 @@ sudo dnf install ocl-icd-devel libXcomposite-devel libXinerama-devel libv4l-deve
 
 echo "Moving to home folder and downloading and extracting Wine 9"
 echo "Moving to home folder and downloading and extracting Wine 9" >> status.txt
-echo $(date) > >> status.txt
+echo $(date) >> status.txt
 
 cd ~
 wget https://dl.winehq.org/wine/source/9.0/wine-9.0.tar.xz
@@ -38,7 +38,7 @@ mkdir build/wine64
 
 echo "Building win64 in homw/wine9.0/build/wine64"
 echo "Building win64 in homw/wine9.0/build/wine64" >> status.txt
-echo $(date) > >> status.txt
+echo $(date) >> status.txt
 
 # Build 64 bit version
 cd build/wine64
@@ -47,7 +47,7 @@ make -j16
 
 echo "Building win32 in homw/wine9.0/build/wine32"
 echo "Building win32 in homw/wine9.0/build/wine32" >> status.txt
-echo $(date) > >> status.txt
+echo $(date) >> status.txt
 
 # Build 32 bit version
 cd ../wine32
@@ -56,7 +56,7 @@ make -j16
 
 echo "Installing both versions"
 echo "Installing both versions" >> status.txt
-echo $(date) > >> status.txt
+echo $(date) >> status.txt
 
 # Install Both
 sudo make -j16 install
@@ -65,7 +65,7 @@ sudo make -j16 install
 
 echo "setting Wine up"
 echo "setting Wine up" >> status.txt
-echo $(date) > >> status.txt
+echo $(date) >> status.txt
 
 # Set 32 bit Wine prefix in current shell and boot it up
 WINEPREFIX="$HOME/.wine32" WINEARCH=win32 wine wineboot
@@ -73,4 +73,4 @@ WINEPREFIX="$HOME/.wine32" WINEARCH=win32 wine wineboot
 echo 'export WINEPREFIX="$HOME/.wine32"' >> ~/.bashrc 
 echo "Finished Setting up Wine!"
 echo "Finished Setting up Wine!"  >> status.txt
-echo $(date) > >> status.txt
+echo $(date) >> status.txt

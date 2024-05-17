@@ -89,7 +89,7 @@ namespace circularMT
             if (counter == 1)
             { 
                 oneSelected = true;
-                nupRotate.Value = selectedFeature.Rotate;
+                nupRotate.Value = -selectedFeature.Rotate;
                 nupUpDown.Value = selectedFeature.VerticalOffset;
                 nupbackAndForth.Value = selectedFeature.HorizontalOffset;
             }

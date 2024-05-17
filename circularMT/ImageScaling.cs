@@ -38,7 +38,7 @@ namespace circularMT
 
         public ImageScaling(float resolution)
         {
-            scale = resolution / 96;
+            scale = resolution / 100;
             one = (int)((1 * scale) + 0.5f);
             two = (int)((2 * scale) + 0.5f); 
             three = (int)((3 * scale) + 0.5f);

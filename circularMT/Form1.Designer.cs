@@ -69,12 +69,15 @@
             this.btnGenBank = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.nudDPI = new System.Windows.Forms.NumericUpDown();
+            this.label17 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.p1)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nupCluster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupLeftRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupUPDown)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDPI)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -118,6 +121,8 @@
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.label17);
+            this.groupBox2.Controls.Add(this.nudDPI);
             this.groupBox2.Controls.Add(this.btnSelect);
             this.groupBox2.Controls.Add(this.label16);
             this.groupBox2.Controls.Add(this.btnAdjustTextLocation);
@@ -372,7 +377,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(135, 601);
+            this.btnSave.Location = new System.Drawing.Point(135, 659);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 18;
@@ -383,7 +388,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(6, 606);
+            this.label8.Location = new System.Drawing.Point(7, 612);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(63, 13);
             this.label8.TabIndex = 16;
@@ -549,6 +554,37 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // nudDPI
+            // 
+            this.nudDPI.Location = new System.Drawing.Point(135, 633);
+            this.nudDPI.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.nudDPI.Minimum = new decimal(new int[] {
+            200,
+            0,
+            0,
+            0});
+            this.nudDPI.Name = "nudDPI";
+            this.nudDPI.Size = new System.Drawing.Size(75, 20);
+            this.nudDPI.TabIndex = 35;
+            this.nudDPI.Value = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(7, 635);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(100, 13);
+            this.label17.TabIndex = 36;
+            this.label17.Text = "DPI of saved image";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -569,6 +605,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.nupCluster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupLeftRight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupUPDown)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDPI)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -615,6 +652,8 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.CheckBox chkLine;
         private System.Windows.Forms.Button btnSelect;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.NumericUpDown nudDPI;
     }
 }
 
