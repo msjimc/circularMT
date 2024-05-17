@@ -28,6 +28,7 @@ namespace circularMT
 
         private int verticalOffset = 0;
         private int horizontalOffset = 0;
+        private int swopVerticalOffset = 0;
         private int rotate = 0;
         public feature(string Name, int startPoint, int length, bool strand)
         {
@@ -500,6 +501,13 @@ namespace circularMT
         {
             get { return horizontalOffset; } 
             set { horizontalOffset = value; }
+        }
+
+        public void SwopVerticalOffset()
+        {
+            int t = verticalOffset;
+            verticalOffset = swopVerticalOffset;
+            swopVerticalOffset = t;
         }
 
         public int Rotate

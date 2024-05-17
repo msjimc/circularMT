@@ -797,7 +797,7 @@ namespace circularMT
             g.Clear(Color.White);
             Point title = center;
             title.Y = scaling.thirty; 
-            writeDefinition(g, title,(int)(((p1.Width/2) - 40) * scaling.scale), scaling);
+            writeDefinition(g, title,(int)(((p1.Width/2) - 40) * scaling.scale), scaling, chkLine.Checked);
                        
             g.DrawLine(new Pen(Color.Black, scaling.three), scaling.twenty, center.Y, (bmp.Width - scaling.twenty), center.Y);
             if (features.Count == 0 || sequencelength < 1) 
@@ -1109,7 +1109,7 @@ namespace circularMT
             ClashDetection(scaling);
 
             g.Clear(Color.White);
-            writeDefinition(g, center, radius, scaling);
+            writeDefinition(g, center, radius, scaling, chkLine.Checked);
 
             Rectangle area = new Rectangle(center.X - radius + scaling.thirty, center.Y - radius + scaling.thirty, (radius - scaling.thirty) * 2, (radius - scaling.thirty) * 2);
             g.DrawEllipse(new Pen(Color.Black, scaling.three), area);
@@ -1236,7 +1236,7 @@ namespace circularMT
             }
         }
 
-        private void writeDefinition(Graphics g, Point center, int radius, ImageScaling scaling)
+        private void writeDefinition(Graphics g, Point center, int radius, ImageScaling scaling, bool linear)
         {
             if (string.IsNullOrEmpty(defination) == true) { return; }
             radius -= scaling.sixty;
@@ -1244,14 +1244,18 @@ namespace circularMT
             Font f = new Font(FontFamily.GenericSansSerif, fontSize, FontStyle.Bold);
 
             string[] lines = null;
-            
-            if (defination.Contains(";") == true)
+
+            string process = defination;
+            if (linear == true)
+            { process = ";" + process.Replace(";", " ").Replace("  ", " "); }
+
+            if (process.Contains(";") == true)
             {
-                lines = (defination + ";" + sequencelength.ToString("N0") + " bp").Split(';');
+                lines = (process + ";" + sequencelength.ToString("N0") + " bp").Split(';');
             }
             else
             {
-                string[] one = { defination, sequencelength.ToString("N0") + " bp" };
+                string[] one = { process, sequencelength.ToString("N0") + " bp" };
                 lines = one;
             }
 
@@ -1280,6 +1284,7 @@ namespace circularMT
 
             float middle = 1.5f + ((float)lines.Length / 2);
             float startH = center.Y - ((scaling.scale * fontSize) * middle);
+            if (linear==true && startH < scaling.five) { startH = scaling.ten; }
 
             foreach (string l in lines)
             {
@@ -1990,6 +1995,12 @@ namespace circularMT
 
         private void chkLine_CheckedChanged(object sender, EventArgs e)
         {
+            foreach (List<feature> lists in features.Values)
+            {
+                foreach (feature f in lists)
+                { f.SwopVerticalOffset(); }
+            }
+
             drawFeatures("", scaling);
             nupLeftRight.Enabled = !chkLine.Checked;
         }
