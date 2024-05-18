@@ -52,10 +52,10 @@
             // btnClose
             // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnClose.Location = new System.Drawing.Point(25, 231);
+            this.btnClose.Location = new System.Drawing.Point(25, 227);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(75, 23);
-            this.btnClose.TabIndex = 9;
+            this.btnClose.TabIndex = 10;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -80,14 +80,14 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(16, 15);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(512, 210);
+            this.groupBox1.Size = new System.Drawing.Size(512, 206);
             this.groupBox1.TabIndex = 8;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Adjust text location";
             // 
             // nupRotate
             // 
-            this.nupRotate.Location = new System.Drawing.Point(431, 184);
+            this.nupRotate.Location = new System.Drawing.Point(431, 175);
             this.nupRotate.Maximum = new decimal(new int[] {
             20,
             0,
@@ -100,13 +100,13 @@
             -2147483648});
             this.nupRotate.Name = "nupRotate";
             this.nupRotate.Size = new System.Drawing.Size(75, 20);
-            this.nupRotate.TabIndex = 16;
+            this.nupRotate.TabIndex = 7;
             this.nupRotate.ValueChanged += new System.EventHandler(this.nupRotate_ValueChanged);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(6, 186);
+            this.label6.Location = new System.Drawing.Point(6, 177);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(59, 13);
             this.label6.TabIndex = 15;
@@ -114,7 +114,7 @@
             // 
             // nupUpDown
             // 
-            this.nupUpDown.Location = new System.Drawing.Point(431, 153);
+            this.nupUpDown.Location = new System.Drawing.Point(431, 149);
             this.nupUpDown.Maximum = new decimal(new int[] {
             10,
             0,
@@ -127,13 +127,13 @@
             -2147483648});
             this.nupUpDown.Name = "nupUpDown";
             this.nupUpDown.Size = new System.Drawing.Size(75, 20);
-            this.nupUpDown.TabIndex = 14;
+            this.nupUpDown.TabIndex = 6;
             this.nupUpDown.ValueChanged += new System.EventHandler(this.nupUpDown_ValueChanged);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 155);
+            this.label4.Location = new System.Drawing.Point(6, 151);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(119, 13);
             this.label4.TabIndex = 13;
@@ -154,7 +154,7 @@
             -2147483648});
             this.nupbackAndForth.Name = "nupbackAndForth";
             this.nupbackAndForth.Size = new System.Drawing.Size(75, 20);
-            this.nupbackAndForth.TabIndex = 12;
+            this.nupbackAndForth.TabIndex = 5;
             this.nupbackAndForth.ValueChanged += new System.EventHandler(this.nupbackAndForth_ValueChanged);
             // 
             // label3
@@ -240,7 +240,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(544, 270);
+            this.ClientSize = new System.Drawing.Size(544, 266);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;

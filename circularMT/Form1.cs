@@ -965,13 +965,13 @@ namespace circularMT
             float scale = (float)((p1.Width * scaling.one) - scaling.fourty) / sequencelength;
             Font font = new Font(FontFamily.GenericSansSerif, 11, FontStyle.Bold);
             SizeF length = g.MeasureString(f.Name, font);
-                        
+                       
             float dx = 0;
 
             if (f.Clash == true)
             {
-                float middle = (float)f.ClashData.Y / 2;
-                dx = scaling.five * ((float)f.ClashData.X - middle);
+                float middle = (float)(f.ClashData.Y + 1) / 2;
+                dx = 8.0f * scaling.scale * ((float)f.ClashData.X - middle);
             }
 
             float upDown = (float)f.VerticalOffset * scaling.scale;
@@ -1515,7 +1515,7 @@ namespace circularMT
             Point answer = new Point(0, 0);
 
             string name = f.Name;
-
+            
             float startPoint = f.arcStartAngle(sequencelength);
             float endPoint = f.arcEndAngle(sequencelength);
 
@@ -1540,17 +1540,17 @@ namespace circularMT
             if (f.Clash == true)
             {
                 Point cd = f.ClashData;
-                int half = (cd.Y / 2);
+                float half = ((float)(cd.Y + 1) / 2);
                 int cX = cd.X;
 
                 if (f.Forward != false)
                 {
-                    int wiggle = (5 * (half + 1 - cX));
+                    float wiggle = (8 * (half + 0 - cX));
                     middle -= wiggle;
                 }
                 else
                 {
-                    int wiggle = (8 * (half + 1 - cX));
+                    float wiggle = (11 * (half + 0 - cX));
                     middle += wiggle;
                 }
             }
@@ -1558,7 +1558,7 @@ namespace circularMT
             g.RotateTransform(middle - spin - f.Rotate);
 
             float upDown = (float)f.VerticalOffset * scaling.scale;
-            float backForward = (float)f.HorizontalOffset * scaling.scale;
+            float backForward = (float)(f.HorizontalOffset + 6) * scaling.scale;
             float distance = (float)Math.Sqrt((upDown * upDown) + (backForward * backForward));
             SizeF s = g.MeasureString(name, font);
             int fHeigth = (int)s.Height / 2;
@@ -1987,8 +1987,8 @@ namespace circularMT
                 terms.Add(chlTerms.CheckedItems[index].ToString());
             }
 
-            AdjustTextLocation atl = new AdjustTextLocation(features, this, terms, chkLine.Checked);
-            atl.ShowDialog();
+           AdjustTextLocation atl = new AdjustTextLocation(features, this, terms,chkLine.Checked);
+            atl.ShowDialog();            
 
             ResetBoxColour(terms, scaling.scale);
         }

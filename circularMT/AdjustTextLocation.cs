@@ -18,7 +18,7 @@ namespace circularMT
         private bool oneSelected = false;
         private feature selectedFeature = null;
         bool isLinear;
-
+        
         public AdjustTextLocation(Dictionary<string, List<feature>> features, Form1 parent, List<string> Terms, bool IsLinear)
         {
             InitializeComponent();
@@ -30,13 +30,14 @@ namespace circularMT
             isLinear = IsLinear;
 
             nupRotate.Enabled = false;
-            nupbackAndForth.Enabled =  false;
+            nupbackAndForth.Enabled = false;
             nupUpDown.Enabled = false;
 
             cboTerms.Items.Add("Select");
             foreach (string term in terms)
             { cboTerms.Items.Add(term); }
             cboTerms.SelectedIndex = 0;
+            
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -156,6 +157,7 @@ namespace circularMT
                 selectedFeature.Rotate = -(int)nupRotate.Value;
                 parent.ReDrawFromOutSide();
             }
-        }
+        }         
+
     }
 }
