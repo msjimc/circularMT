@@ -3,12 +3,11 @@
 # Make sure we don't have Wine already installed from repo
 sudo dnf remove wine
 
-yum -y groupinstall 'Development Tools'
-yum install gcc libX11-devel freetype-devel zlib-devel libxcb-devel libxslt-devel
-
 #Powertools
 sudo yum install dnf-plugins-core
-sudo yum config-manager --set-enabled powertools
+sudo yum config-manager --set-enabled crb
+#For Centos 8 comment out line above and uncomment line below
+#sudo yum config-manager --set-enabled powertools
 
 # Needed by winetricks
 sudo dnf install epel-release

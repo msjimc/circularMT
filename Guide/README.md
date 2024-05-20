@@ -332,7 +332,14 @@ Figure 33
 
 ### Moving and rotating a features name 
 
-When writing text in the circular map, the reference point (x = 0, y = 0) is moved and ultimately ends up at the position of the blue circle in Figure 34 c. The image is then rotated so the text is written from left to right as normal, but when the image is rotated back to its starting the point the text is at an angle. Consequently for circular maps, moving the text backwards and forwards moves it along the blue line in Figure 34 a, moving the text up and down moves it along the line in Figure 34 b, while rotating it, rotates it around the blue circle in Figure 34 c. While not as extreme, the same situation occurs with the vertical text in the linear maps. Due to the simpler nature of the linear maps, vertical text can only be moved backwards and forwards: the other options are disabled.  
+When writing text in the circular map, the reference point (x = 0, y = 0) is moved and ultimately ends up at the position of the blue circle in Figure 34 c. The image is then rotated so the text is written from left to right as normal, but when the image is rotated back to its starting the point the text is at an angle. Consequently for circular maps:   
+- Moving the text backwards and forwards moves it along the blue line in Figure 34 a, 
+- Moving the text up and down moves it along the line in Figure 34 b, 
+- While rotating it, rotates it around the blue circle in Figure 34 c.   
+
+While not as extreme, the same situation occurs with the vertical text in the linear maps. Due to the simpler nature of the linear maps, vertical text can only be moved backwards and forwards: the other options are disabled. 
+
+If the character nearest the feature is moved more than 5 point from its original location, a line is draw to better indicate where the feature the text refers too (Figure 34 d and 34 e).
 
 ![Figure 34](images/figure34.jpg)
 
