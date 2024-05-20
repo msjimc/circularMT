@@ -1575,20 +1575,17 @@ namespace circularMT
                     if (distance > ((font.Size * scaling.scale) / 2))
                     {
                         double yPlus = Math.Tan((wiggle + f.Rotate) * 2 * Math.PI / 360.0f) * -scaling.thirtyEight;
-                        //g.DrawEllipse(Pens.Green, -scaling.thirtyEight + backForward - 2, -scaling.ten - upDown + fHeigth - 2, 4, 4);
-                        //g.DrawEllipse(Pens.Black, -1, -1, 2, 2);
-                        //g.DrawEllipse(Pens.Red, -scaling.thirtyEight - 2, -2, 4, 4);
-                        //g.DrawEllipse(Pens.Blue, -30 * scaling.scale - 2, (float)yPlus - 2, 4, 4);
-
                         g.DrawLine(blackLinePen, -scaling.thirtyEight - backForward, -scaling.six - upDown + fHeigth, -(34 * scaling.scale), -scaling.six + fHeigth + (float)(yPlus / 2));
-                        //g.DrawLine(blackLinePen, -scaling.thirtyEight - backForward, -scaling.six - upDown + fHeigth, -scaling.thirtyEight, -scaling.six + fHeigth);
                     }
                 }
                 else
                 {                    
                     g.DrawString(name, font, Brushes.Black, scaling.twenty + backForward, -scaling.ten - upDown);
                     if (distance > ((font.Size * scaling.scale) / 2))
-                    { g.DrawLine(blackLinePen, scaling.twenty + backForward, -scaling.ten - upDown + fHeigth, scaling.twenty, -scaling.ten  + fHeigth); }
+                    {
+                        double yPlus = Math.Tan((wiggle - f.Rotate) * 2 * Math.PI / 360.0f) * scaling.scale * 10;                       
+                        g.DrawLine(blackLinePen, scaling.twenty + backForward, -scaling.ten - upDown + fHeigth, scaling.sixteen, -scaling.ten + fHeigth - (float)(yPlus/2));
+                   }
                 }               
             }
             else
@@ -1598,24 +1595,18 @@ namespace circularMT
                     g.DrawString(name, font, Brushes.Black, scaling.thirtyEight + backForward, -scaling.ten - upDown);
                     if (distance > ((font.Size * scaling.scale) / 2))
                     {
-                        //g.DrawEllipse(Pens.Green, scaling.thirtyEight + backForward - 2, -scaling.ten - upDown + fHeigth - 2, 4, 4);
-                        //g.DrawEllipse(Pens.Black, - 1,  - 1, 2, 2);
-                        //g.DrawEllipse(Pens.Red, scaling.thirtyEight -2, -2, 4, 4);
-                        if (name=="TRNA")
-                        { }
-                        double yPlus = Math.Tan((wiggle + f.Rotate) * 2 * Math.PI / 360.0f) * scaling.thirtyEight;
-                        //g.DrawEllipse(Pens.Blue, 30 * scaling.scale - 2,(float)yPlus-2, 4, 4);
-
-
+                        double yPlus = Math.Tan((wiggle + f.Rotate) * 2 * Math.PI / 360.0f) * scaling.thirtyEight;                        
                         g.DrawLine(blackLinePen, scaling.thirtyEight + backForward, -scaling.ten - upDown + fHeigth, 34 * scaling.scale, -scaling.ten + fHeigth + (float)(yPlus/2));
-                        //g.DrawLine(blackLinePen, scaling.thirtyEight + backForward, -scaling.ten - upDown + fHeigth, scaling.thirtyEight, -scaling.ten + fHeigth);
                     }
                 }
                 else
                 {
                     g.DrawString(name, font, Brushes.Black, -scaling.sixteen - s.Width - backForward, -scaling.six - upDown);
                     if (distance > ((font.Size * scaling.scale) / 2))
-                    {  g.DrawLine(blackLinePen, -scaling.sixteen - backForward, -scaling.six - upDown + fHeigth, -scaling.sixteen, -scaling.six  + fHeigth); }
+                    {
+                        double yPlus = Math.Tan((wiggle - f.Rotate) * 2 * Math.PI / 360.0f) * -scaling.scale * 10;
+                        g.DrawLine(blackLinePen, -scaling.sixteen - backForward, -scaling.six - upDown + fHeigth, -scaling.sixteen, -scaling.six + fHeigth - (float)(yPlus/2));
+                     }
                 }
                 
             }
