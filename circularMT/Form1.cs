@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -1537,6 +1538,8 @@ namespace circularMT
                         
             g.TranslateTransform(x, y);
 
+            float wiggle =0.0f;
+
             if (f.Clash == true)
             {
                 Point cd = f.ClashData;
@@ -1545,16 +1548,16 @@ namespace circularMT
 
                 if (f.Forward != false)
                 {
-                    float wiggle = (8 * (half + 0 - cX));
+                    wiggle = (8 * (half + 0 - cX));
                     middle -= wiggle;
                 }
                 else
                 {
-                    float wiggle = (11 * (half + 0 - cX));
+                    wiggle = (11 * (half + 0 - cX));
                     middle += wiggle;
                 }
             }
-
+            
             g.RotateTransform(middle - spin - f.Rotate);
 
             float upDown = (float)f.VerticalOffset * scaling.scale;
@@ -1585,7 +1588,10 @@ namespace circularMT
                 {
                     g.DrawString(name, font, Brushes.Black, scaling.thirtyEight + backForward, -scaling.ten - upDown);
                     if (distance > ((font.Size * scaling.scale) / 2))
-                    { g.DrawLine(blackLinePen, scaling.thirtyEight + backForward, -scaling.ten - upDown + fHeigth, scaling.thirtyEight, -scaling.ten  + fHeigth); }
+                    {
+                        
+                        g.DrawLine(blackLinePen, scaling.thirtyEight + backForward, -scaling.ten - upDown + fHeigth, scaling.thirtyEight, -scaling.ten + fHeigth);
+                    }
                 }
                 else
                 {

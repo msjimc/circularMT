@@ -203,8 +203,15 @@ Figure 19: Resetting the genome length with the ```Genome length``` dialog box.
 
 ## Changing the genome's name
 
-The sequence's name and the genome's length are displayed in the center of the image. If the name is long, the font size is reduced to make it fit, however, for very long names it may become hard to read. This can be resolved by changing the name to a short one by pressing the ```Edit``` button next to the ```Edit genome name``` label (see blue box in Figure 20 a). This will display the ```Genome name``` dialog box, changing the value in the dialog box and pressing ```OK``` will change the displayed name (Figure 20 a and b).  
+The sequence's name and the genome's length are displayed in the center of the image. If the name is long, the font size is reduced to make it fit, however, for very long names it may become hard to read. This can be resolved by either changing the name to a shorter one or writing the name across a number of lines. 
 
+To edit the the name press the ```Edit``` button next to the ```Edit genome name``` label (see blue box in Figure 20 a). This will display the ```Genome name``` dialog box, changing the value in the dialog box and pressing ```OK``` will change the displayed name (Figure 20). To write the name across a number of lines, insert a ';' character in the name where you want to start a new line. For example, "Homo sapiens; Mitochondrion,; complete genome." will be displayed as: 
+
+<p align="center">Homo sapiens<br />    
+Mitochondrion,<br />   
+complete genome.<br />   
+16,569 bp</p>   
+ 
 ![Figure 20](images/figure20.jpg)
 
 Figure 20: Resetting the genome's name with the ```Genome name``` dialog box.  

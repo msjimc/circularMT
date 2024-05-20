@@ -43,6 +43,9 @@ or
 
 > wine64 ~/Downloads/circularMT_64.exe  
 
+If using wine fails with a message regarding loading kernel32.dll, try using wine64 with circularMT_64.exe.
+
+
 <hr />
 
 ![Figure 1](images/centos_figure1.jpg)
