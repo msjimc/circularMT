@@ -1572,7 +1572,7 @@ namespace circularMT
             if (spin == 180)
             {
                 if (f.Forward == true || name.Length > 15)
-                {                    
+                {
                     g.DrawString(name, font, Brushes.Black, -scaling.thirtyEight - s.Width - backForward, -scaling.six - upDown);
                     if (distance > ((font.Size * scaling.scale) / 2))
                     {
@@ -1581,13 +1581,13 @@ namespace circularMT
                     }
                 }
                 else
-                {                    
+                {
                     g.DrawString(name, font, Brushes.Black, scaling.twenty + backForward, -scaling.ten - upDown);
                     if (distance > ((font.Size * scaling.scale) / 2))
                     {
-                        double yPlus = Math.Tan((wiggle - f.Rotate) * 2 * Math.PI / 360.0f) * scaling.scale * 10;                       
-                        g.DrawLine(blackLinePen, scaling.twenty + backForward, -scaling.ten - upDown + fHeigth, scaling.sixteen, -scaling.ten + fHeigth - (float)(yPlus/2));
-                   }
+                        double yPlus = Math.Tan((wiggle - f.Rotate) * 2 * Math.PI / 360.0f) * scaling.scale * 10;
+                        g.DrawLine(blackLinePen, scaling.twenty + backForward, -scaling.ten - upDown + fHeigth, scaling.sixteen, -scaling.ten + fHeigth - (float)(yPlus / 2));
+                    }
                 }               
             }
             else
@@ -1609,8 +1609,7 @@ namespace circularMT
                         double yPlus = Math.Tan((wiggle - f.Rotate) * 2 * Math.PI / 360.0f) * -scaling.scale * 10;
                         g.DrawLine(blackLinePen, -scaling.sixteen - backForward, -scaling.six - upDown + fHeigth, -scaling.sixteen, -scaling.six + fHeigth - (float)(yPlus/2));
                      }
-                }
-                
+                }                
             }
 
             g.ResetTransform();

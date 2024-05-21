@@ -61,7 +61,7 @@ Figure 2
  In Figure 3 the human mitochondrial genome Genbank file was selected [(download)](../Example%20data/sequence.gb) resulting in its name appearing in the program's title bar. If the ```Draw as linear map``` is not checked the genome will be drawn as a circle (Figure 3 a) , if it is checked the display will be linear (Figure 3 b). 
 
 
-![Figure 3](images/figure3.jpg)
+![Figure 3](images/figure3a.jpg)
 
 Figure 3 a: If the ```Draw as linear map``` is not checked (blue box) the genome is drawn as a circle
 
@@ -172,7 +172,7 @@ This option allows you to select different names for a feature based on data in 
 For example in the [Example data](../Example%20data/Amb_mt.gb) file, the tRNAs are all named ***tRNA*** by default rather than the more meaningful name linked to the ___Product___ attribute in the file. To switch the names of the ***tRNA***, first press the ```Select``` button (see blue box in Figure 17 a) to open the ```Advanced Name Selection``` window. Then select the required feature type (***tRNA***) in the upper drop down list (see drop down list above red line in Figure 17 a) and then the name type from the lower down list (see drop down list above black line in Figure 17 a). This should active the ```Change``` button in the bottom right of the window (see yellow box in Figure 17 a), which when pressed should redraw the image with the new name selection (Figure  17 b).
 
 
-![Figure 17b](images/figure17.jpg)
+![Figure 17b](images/figure17a.jpg)
 
 Figure 17 a: 
 
@@ -332,9 +332,13 @@ A simple way to resolve this issue is to change the ```Cluster size``` value (se
 
 ***Note:*** This affects the entire image so you must check that changing the value doesn't cause and issue elsewhere.
 
-![Figure 33](images/figure33.jpg)
+![Figure 33 a](images/figure33a.jpg)
 
-Figure 33
+Figure 33 a
+
+![Figure 33](images/figure33b.jpg)
+
+Figure 33 b
 <hr />
 
 ### Moving and rotating a features name 

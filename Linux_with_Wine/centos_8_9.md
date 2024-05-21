@@ -1,6 +1,6 @@
-# Centos stream 9:
+# Centos stream 8 and 9:
 
-Centos Stream 9 was installed on a 64 bit virtual machine with 4,096 MB of RAM, 4 processors and 20 GB hard disk and was configured with default settings for a workstation with gnome as the desktop.
+Centos Stream  8 and 9 were installed on a 64 bit virtual machine with 4,096 MB of RAM, 4 processors and 20 GB hard disk and was configured with default settings for a workstation with gnome as the desktop.
 
 The circularMT.exe file and the sequence.gb files were downloaded from the GitHub (https://github.com/msjimc/circularMT) 'Program' and 'Example data' folders to the user's Download folder (~/Downloads) using FireFox. 
 
@@ -14,6 +14,16 @@ It ius suggested that the computer is updated and rebooted before starting the i
 ## Installation
 
 * **The account performing the installation must have admin rights.**
+
+### Using the yum package manager
+
+Wine can be installed on Centos Stream 8 and 9 using the yum package manager (with admin rights). Issuing the following command:
+
+> sudo yom install wine 
+
+ in a terminal window will start the process by downloading and then installing a number of packages after asking for permission to install them. Once completed, when first using wine, it will perform and auto-configuring step and may request you allow the downloading of several files. Once completed, the auto-configuration will not run again.
+
+### From source code
 
 Unlike the installations on openSUSE, Debian and Ubuntu, ```Wine``` was installed on Centos by compiling the source code for ```Wine``` as described by __onlycliches__ on the AlmaLinux forum: [[Script] Compile WINE with 32-Bit App Support](https://forums.almalinux.org/t/script-compile-wine-with-32-bit-app-support/2556). This page contains a script that compiles both the 32 and 64 - bit versions of ```wine```. It appears that things have changed a little since it was written and so needed two extra lines adding.    
 
@@ -48,9 +58,15 @@ If using wine fails with a message regarding loading kernel32.dll, try using win
 
 <hr />
 
-![Figure 1](images/centos_figure1.jpg)
+![Figure 1a](images/centos_figure1.jpg)
 
-Figure 1
+Figure 1a  Centos Stream 8
+
+<hr />
+
+![Figure 1a](images/centos9_figure1.jpg)
+
+Figure 1a  Centos Stream 9
 
 <hr />
 
@@ -58,9 +74,15 @@ As with the other installations on openSUSE, Debian and Ubuntu, circularMT displ
 
 <hr /> 
 
-![Figure 2](images/centos_figure3.jpg)
+![Figure 2a](images/centos_figure3.jpg)
 
-Figure 2
+Figure 2a Centos Stream 8
+
+<hr />
+
+![Figure 2a](images/centos9_figure3.jpg)
+
+Figure 2a Centos Stream 9
 
 <hr />
 
@@ -68,8 +90,14 @@ Once, a mitochondrial genome has been imported, it's map can be modified as show
 
 <hr />
 
-![Figure 3](images/centos_figure4.jpg)
+![Figure 3a](images/centos_figure4.jpg)
 
-Figure 3
+Figure 3a Centos 8
+
+<hr />
+
+![Figure 3a](images/centos9_figure3.jpg)
+
+Figure 3a Centos 8
 
 <hr />
