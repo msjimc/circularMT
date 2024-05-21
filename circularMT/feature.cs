@@ -20,7 +20,8 @@ namespace circularMT
         private int too = -1;
         private bool forward = true;
         private Point textPoint = new Point(-1, -1);
-        Point clashData = new Point(0, 0);
+        private Point textStartPoint = new Point(-1, -1);
+        private Point clashData = new Point(0, 0);
         private Brush color = Brushes.Gray;
         private Brush colorFont = Brushes.Black;
         private Pen boxColour = Pens.Black;
@@ -447,6 +448,12 @@ namespace circularMT
             set { textPoint = value; }
         }
 
+        public Point TextStartPoint
+        {
+            get { return textStartPoint; }
+            set { textStartPoint = value; }
+        }
+        
         public void ResetClash()
         {
             clash = false;

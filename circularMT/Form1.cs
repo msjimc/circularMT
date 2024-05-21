@@ -923,6 +923,7 @@ namespace circularMT
             }
 
         }
+        
         private void writeLineText(Graphics g, feature f, Point center, int edge, ImageScaling scaling)
         {
             float fontsize = 20.0f;
@@ -988,6 +989,7 @@ namespace circularMT
                 { g.DrawLine(new Pen(Color.Black, 2), length.Width, halfHieght, length.Width + scaling.thirteen, halfHieght - ((upDown  - dx) /2)); }                
                 g.ResetTransform();
                 f.TextPoint = new Point((int)x, (int)y);
+                f.TextStartPoint = new Point((int)x, (int)(y+length.Width));
             }
             else
             {
@@ -1000,6 +1002,7 @@ namespace circularMT
                 { g.DrawLine(new Pen(Color.Black, 2), length.Width + scaling.two, halfHieght,length.Width + scaling.thirteen, halfHieght + ((upDown - dx) / 2) ); }
                 g.ResetTransform();
                 f.TextPoint = new Point((int)x, (int)y);
+                f.TextStartPoint = new Point((int)x, (int)(y - length.Width));
             }
 
             
@@ -1060,8 +1063,7 @@ namespace circularMT
                     {
                         string name = f.Name;
                         
-                        writeLineText(g, f, center, edge, scaling);
-                        Point answerP = f.TextPoint;
+                        writeLineText(g, f, center, edge, scaling);                        
                     }
                 }
             }            
@@ -1194,7 +1196,7 @@ namespace circularMT
                     {
                         if (index + 1 < all.Count)
                         {
-                            int diff = Distance(all[index].TextPoint, all[index + 1].TextPoint);
+                            int diff = Distance(all[index].TextStartPoint, all[index + 1].TextStartPoint);
                             if (Math.Abs(diff) <= (clashDistance * scaling.scale) && diff > 0)
                             {
                                 all[index].Clash = true;
@@ -1622,7 +1624,8 @@ namespace circularMT
                     answer = new Point((int)(x - dX), (int)(y - dY));
                     dX = (int)(Math.Cos(-radion) * -(scaling.thirtyEight ));
                     dY = (int)(Math.Sin(-radion) * +(scaling.thirtyEight ));
-                    f.TextPoint = new Point((int)(x - dX), (int)(y - dY));                    
+                    f.TextPoint = new Point((int)(x - dX), (int)(y - dY));
+                    f.TextStartPoint = f.TextPoint;
                 }
                 else
                 {
@@ -1632,6 +1635,7 @@ namespace circularMT
                     dX = (int)(Math.Cos(-radion) * -(scaling.thirtyEight));
                     dY = (int)(Math.Sin(-radion) * +(scaling.thirtyEight));
                     f.TextPoint = new Point((int)(x - dX), (int)(y - dY));
+                    f.TextStartPoint = f.TextPoint;
                 }
             }
             else
@@ -1640,13 +1644,15 @@ namespace circularMT
                 {
                     float dX = (int)(Math.Cos(-radion) * (scaling.twenty));
                     float dY = (int)(Math.Sin(-radion) * -(scaling.twenty));
-                    f.TextPoint = new Point((int)(x - dX), (int)(y - dY));                    
+                    f.TextPoint = new Point((int)(x - dX), (int)(y - dY));
+                    f.TextStartPoint = f.TextPoint;
                 }
                 else
                 {
                     float dX = (int)(Math.Cos(-radion) * -(scaling.sixteen));
                     float dY = (int)(Math.Sin(-radion) * (scaling.sixteen));
                     f.TextPoint = new Point((int)(x + dX), (int)(y + dY));
+                    f.TextStartPoint = f.TextPoint;
                 }
             }
             
