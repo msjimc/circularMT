@@ -1,5 +1,11 @@
 # Centos stream 8 and 9:
 
+## Important
+
+While the two methods below show how to install wine and wine64 on to Centos Stream 8 and 9, it seems that only wine64 can be installed on Centos at the moment. Consequently, download the circularMT_64.exe application and run with wine64.
+
+## Centos machines
+
 Centos Stream  8 and 9 were installed on a 64 bit virtual machine with 4,096 MB of RAM, 4 processors and 20 GB hard disk and was configured with default settings for a workstation with gnome as the desktop.
 
 The circularMT.exe file and the sequence.gb files were downloaded from the GitHub (https://github.com/msjimc/circularMT) 'Program' and 'Example data' folders to the user's Download folder (~/Downloads) using FireFox. 
@@ -17,11 +23,21 @@ It ius suggested that the computer is updated and rebooted before starting the i
 
 ### Using the yum package manager
 
-Wine can be installed on Centos Stream 8 and 9 using the yum package manager (with admin rights). Issuing the following command:
+Wine can be installed on Centos Stream 8 and 9 using the yum package manager (with admin rights). Wine is not in the standard repositories and so you need to link to the Extra Packages for Enterprise Linux (EPEL) repository with the following command:
+
+> sudo dnf install epel-release 
+
+and then install the wine package with: 
 
 > sudo yom install wine 
 
- in a terminal window will start the process by downloading and then installing a number of packages after asking for permission to install them. Once completed, when first using wine, it will perform and auto-configuring step and may request you allow the downloading of several files. Once completed, the auto-configuration will not run again.
+ This will start the installation process by downloading and then installing a number of packages after asking for permission to install them. Once completed, when first using wine, it will perform and auto-configuring step and may request you allow the downloading of several files. Once completed, the auto-configuration will not run again.
+
+![Figure 1](images/centos9_config.jpg)
+
+Figure 1  Centos Stream 9
+
+<hr />
 
 ### From source code
 
@@ -64,9 +80,9 @@ Figure 1a  Centos Stream 8
 
 <hr />
 
-![Figure 1a](images/centos9_figure1.jpg)
+![Figure 1b](images/centos9_figure1.jpg)
 
-Figure 1a  Centos Stream 9
+Figure 1b  Centos Stream 9
 
 <hr />
 
