@@ -33,6 +33,8 @@
             this.chkLine = new System.Windows.Forms.CheckBox();
             this.p1 = new System.Windows.Forms.PictureBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.nudDPI = new System.Windows.Forms.NumericUpDown();
             this.btnSelect = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.btnAdjustTextLocation = new System.Windows.Forms.Button();
@@ -69,15 +71,13 @@
             this.btnGenBank = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.nudDPI = new System.Windows.Forms.NumericUpDown();
-            this.label17 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.p1)).BeginInit();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDPI)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupCluster)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupLeftRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupUPDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudDPI)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -164,6 +164,37 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Options";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(7, 635);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(100, 13);
+            this.label17.TabIndex = 36;
+            this.label17.Text = "DPI of saved image";
+            // 
+            // nudDPI
+            // 
+            this.nudDPI.Location = new System.Drawing.Point(135, 633);
+            this.nudDPI.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.nudDPI.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.nudDPI.Name = "nudDPI";
+            this.nudDPI.Size = new System.Drawing.Size(75, 20);
+            this.nudDPI.TabIndex = 35;
+            this.nudDPI.Value = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
             // 
             // btnSelect
             // 
@@ -554,37 +585,6 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // nudDPI
-            // 
-            this.nudDPI.Location = new System.Drawing.Point(135, 633);
-            this.nudDPI.Maximum = new decimal(new int[] {
-            1000,
-            0,
-            0,
-            0});
-            this.nudDPI.Minimum = new decimal(new int[] {
-            200,
-            0,
-            0,
-            0});
-            this.nudDPI.Name = "nudDPI";
-            this.nudDPI.Size = new System.Drawing.Size(75, 20);
-            this.nudDPI.TabIndex = 35;
-            this.nudDPI.Value = new decimal(new int[] {
-            300,
-            0,
-            0,
-            0});
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(7, 635);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(100, 13);
-            this.label17.TabIndex = 36;
-            this.label17.Text = "DPI of saved image";
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -602,10 +602,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.p1)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudDPI)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupCluster)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupLeftRight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nupUPDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudDPI)).EndInit();
             this.ResumeLayout(false);
 
         }
