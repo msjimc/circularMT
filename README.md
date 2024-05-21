@@ -1,5 +1,6 @@
 # circularMT
 
+### Command line version 
 This application is designed as a desktop application, however, a command line console version is available [here](https://github.com/msjimc/circularMT-console). The command line version as the same basic operation as circularMT, but is less flexible as with all command line application user interaction is limited.
 
 ## Contents
