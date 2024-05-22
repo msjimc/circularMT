@@ -1,6 +1,6 @@
 # circularMT-console
 
-This program is based on the desktop application [cicularMT](https://github.com/msjimc/circularMT). Since circularMT has a interactive graphical user interface it is more flexible than circularMT. 
+This program is based on the desktop application [circularMT](https://github.com/msjimc/circularMT). Since circularMT has a interactive graphical user interface it is more flexible than circularMT-console. 
 
 ## Contents
 
