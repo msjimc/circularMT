@@ -1,6 +1,6 @@
 # circularMT-console
 
-This program is based on the desktop application [circularMT](https://github.com/msjimc/circularMT). Since circularMT has a interactive graphical user interface it is more flexible than circularMT-console. 
+This program is based on the desktop application [```circularMT```](https://github.com/msjimc/circularMT). Since ```circularMT``` has a interactive graphical user interface it is more flexible than circularMT-console. 
 
 ## Contents
 
@@ -28,6 +28,8 @@ The user guide is [here](Guide/README.md).
 Example data files are in the circularMT > [Example data](../Example%20data/) folder.
 
 ## Download
+
+To download the source code etc, clone the whole circularMT repo and then open the circularMT-console project in Visual STudio by clicking on the circularMT-console.sln file in the the circularMT > circularMT-console folder.
 
 The prebuilt program can be downloaded [here](Program/README.md).
 

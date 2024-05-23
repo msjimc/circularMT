@@ -13,12 +13,12 @@ namespace circularMT_console
         {
             if (args.Length != 5)
             {
-                Console.WriteLine("Usage: File to process <space> Name to save image too <space> -l(inear) or -c(ircular) <space> list of feature typess to ignore seperated by a ',' character <space> sequence length");
+                Console.WriteLine("Usage: circularMT-console.exe <space> File to process <space> Name to save image too <space> -l(inear) or -c(ircular) <space> list of feature types to ignore seperated by a ',' character <space> sequence length");
                 Console.WriteLine("For example:");
-                Console.WriteLine("sequence.gb sequence.png -c gene,source 16789");
+                Console.WriteLine("circularMT-console.exe sequence.gb sequence.png -c gene,source 16789");
                 Console.WriteLine("Will create a circular image saved as sequence.png using data in the sequence.gb file of a genome 16,789 bp long, ignoring any features of type 'gene' and/or 'source'");
 
-                Console.WriteLine("Arguments list:");
+                Console.WriteLine("\nReceived arguments list:");
                 foreach (string line in args)
                 { Console.WriteLine(line); }
                 return;
