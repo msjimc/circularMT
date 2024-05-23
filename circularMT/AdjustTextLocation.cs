@@ -98,7 +98,6 @@ namespace circularMT
             {
                 oneSelected = false;
                 selectedFeature = null;
-                chkboxFlip.Enabled = false;
             }
 
             if (counter > 1)
@@ -110,7 +109,6 @@ namespace circularMT
                 nupbackAndForth.Enabled = oneSelected;
                 nupUpDown.Enabled = oneSelected;
                 nupRotate.Enabled = oneSelected;
-                chkboxFlip.Enabled = oneSelected;
             }
             else
             { nupUpDown.Enabled = oneSelected; }
