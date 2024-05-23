@@ -1521,6 +1521,7 @@ namespace circularMT
             
             float startPoint = f.arcStartAngle(sequencelength);
             float endPoint = f.arcEndAngle(sequencelength);
+             
 
             Font font;
             if (f.Forward == true)
@@ -1533,14 +1534,16 @@ namespace circularMT
 
             double radion = (middle * 2 * Math.PI) / 360;
             int extra = 0;
+
             if (f.Forward == false && name.Length > 15) 
-            { extra = scaling.sixty; }
+            { extra = scaling.sixty; }          
+
             float x = (int)(Math.Cos(radion) * (radius + extra - scaling.ten)) + center.X;
             float y = (int)(Math.Sin(radion) * (radius + extra - scaling.ten)) + center.Y;
                         
             g.TranslateTransform(x, y);
 
-            float wiggle =0.0f;
+            float wiggle = 0.0f;
 
             if (f.Clash == true)
             {
@@ -1568,7 +1571,7 @@ namespace circularMT
             SizeF s = g.MeasureString(name, font);
             int fHeigth = (int)s.Height / 2;
             Pen blackLinePen  = new Pen(Color.Black, scaling.two);
-            
+             
             if (spin == 180)
             {
                 if (f.Forward == true || name.Length > 15)

@@ -32,12 +32,12 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.nupRotate = new System.Windows.Forms.NumericUpDown();
             this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.nupUpDown = new System.Windows.Forms.NumericUpDown();
+            this.btnNumber = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.nupbackAndForth = new System.Windows.Forms.NumericUpDown();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnNumber = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
             this.txtListOfNames = new System.Windows.Forms.TextBox();
             this.txtNames = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -67,12 +67,12 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.nupRotate);
             this.groupBox1.Controls.Add(this.label6);
+            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.nupUpDown);
+            this.groupBox1.Controls.Add(this.btnNumber);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.nupbackAndForth);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.btnNumber);
-            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.txtListOfNames);
             this.groupBox1.Controls.Add(this.txtNames);
             this.groupBox1.Controls.Add(this.label2);
@@ -112,6 +112,15 @@
             this.label6.TabIndex = 15;
             this.label6.Text = "Rotate text";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(6, 97);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(179, 13);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Number features with selected name";
+            // 
             // nupUpDown
             // 
             this.nupUpDown.Location = new System.Drawing.Point(431, 149);
@@ -129,6 +138,16 @@
             this.nupUpDown.Size = new System.Drawing.Size(75, 20);
             this.nupUpDown.TabIndex = 6;
             this.nupUpDown.ValueChanged += new System.EventHandler(this.nupUpDown_ValueChanged);
+            // 
+            // btnNumber
+            // 
+            this.btnNumber.Location = new System.Drawing.Point(431, 92);
+            this.btnNumber.Name = "btnNumber";
+            this.btnNumber.Size = new System.Drawing.Size(75, 23);
+            this.btnNumber.TabIndex = 3;
+            this.btnNumber.Text = "Number";
+            this.btnNumber.UseVisualStyleBackColor = true;
+            this.btnNumber.Click += new System.EventHandler(this.btnNumber_Click);
             // 
             // label4
             // 
@@ -166,31 +185,12 @@
             this.label3.TabIndex = 11;
             this.label3.Text = "Move text back and forwards";
             // 
-            // btnNumber
-            // 
-            this.btnNumber.Location = new System.Drawing.Point(431, 66);
-            this.btnNumber.Name = "btnNumber";
-            this.btnNumber.Size = new System.Drawing.Size(75, 23);
-            this.btnNumber.TabIndex = 3;
-            this.btnNumber.Text = "Number";
-            this.btnNumber.UseVisualStyleBackColor = true;
-            this.btnNumber.Click += new System.EventHandler(this.btnNumber_Click);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(6, 71);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(179, 13);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Number features with selected name";
-            // 
             // txtListOfNames
             // 
             this.txtListOfNames.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtListOfNames.Enabled = false;
-            this.txtListOfNames.Location = new System.Drawing.Point(9, 95);
+            this.txtListOfNames.Location = new System.Drawing.Point(9, 66);
             this.txtListOfNames.Name = "txtListOfNames";
             this.txtListOfNames.Size = new System.Drawing.Size(497, 20);
             this.txtListOfNames.TabIndex = 4;
