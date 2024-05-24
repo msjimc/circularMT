@@ -458,6 +458,7 @@ namespace circularMT
         {
             clash = false;
             textPoint = new Point(-1, -1);
+            TextStartPoint = new Point(-1, -1);
             clashData = new Point(0, 0);
         }
 

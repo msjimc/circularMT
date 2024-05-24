@@ -986,7 +986,7 @@ namespace circularMT
                 g.RotateTransform(90.0f);
                 g.DrawString(f.Name, font, Brushes.Black, 0, 0);
                 if (Math.Abs(upDown) + Math.Abs(dx) > scaling.five || true)
-                { g.DrawLine(new Pen(Color.Black, 2), length.Width, halfHieght, length.Width + scaling.thirteen, halfHieght - ((upDown  - dx) /2)); }                
+                { g.DrawLine(new Pen(Color.Black, 2), length.Width + scaling.two, halfHieght, length.Width + scaling.thirteen, halfHieght - ((upDown  - dx) /2)); }                
                 g.ResetTransform();
                 f.TextPoint = new Point((int)x, (int)y);
                 f.TextStartPoint = new Point((int)x, (int)(y+length.Width));
@@ -1003,9 +1003,7 @@ namespace circularMT
                 g.ResetTransform();
                 f.TextPoint = new Point((int)x, (int)y);
                 f.TextStartPoint = new Point((int)x, (int)(y - length.Width));
-            }
-
-            
+            }            
         }
 
         private Point[] getLineArrow(feature f, Point center, bool strand, int edge, ImageScaling scaling )
@@ -1195,13 +1193,14 @@ namespace circularMT
                     for (int index = 0; index < all.Count - 1; index++)
                     {
                         if (index + 1 < all.Count)
-                        {
-                            int diff = Distance(all[index].TextStartPoint, all[index + 1].TextStartPoint);
+                        {                            
+                            int diff = Distance(all[index].TextStartPoint, all[index + 1].TextStartPoint);                            
                             if (Math.Abs(diff) <= (clashDistance * scaling.scale) && diff > 0)
                             {
                                 all[index].Clash = true;
                                 all[index + 1].Clash = true;
                             }
+
                         }                        
                     }
 
@@ -1663,6 +1662,9 @@ namespace circularMT
 
         public int Distance(Point one, Point two)
         {
+            if (one.X==-1  && one.Y == -1) { return int.MaxValue; }
+            else if (two.X==-1 && two.Y == -1) { return int.MaxValue; }
+
             double square = Math.Pow((one.X - two.X), 2) + Math.Pow((one.Y - two.Y), 2);
             int answer = (int)Math.Sqrt(square);
             return answer;
