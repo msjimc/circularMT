@@ -34,6 +34,7 @@ namespace circularMT
             InitializeComponent();
 
             scaling = new ImageScaling(100);
+            drawCircle("", scaling);
         }
 
         private void btnGenBank_Click(object sender, EventArgs e)
@@ -810,7 +811,7 @@ namespace circularMT
                        
 
             int largerThan = 0;
-            int smallerThan = sequencelength / 3;
+            int smallerThan = sequencelength / 2;
             if (chkDrawOrder.Checked == false)
             {
                 if (chlTerms.CheckedItems.Count != 0)
@@ -859,7 +860,7 @@ namespace circularMT
 
             foreach (feature f in features[featureSet])
             {
-                if (f.EndPoint - f.StartPoint > largerThan && f.EndPoint - f.StartPoint < smallerThan && f.EndPoint - f.StartPoint < sequencelength / 3)
+                if (f.EndPoint - f.StartPoint > largerThan && f.EndPoint - f.StartPoint < smallerThan && f.EndPoint - f.StartPoint < sequencelength / 2)
                 {
                     if (f.Forward == true)
                     {
@@ -1083,8 +1084,7 @@ namespace circularMT
         private void drawCircle(string fileName, ImageScaling scaling)
         { 
             if (WindowState == FormWindowState.Minimized) { return; }
-
-            
+                        
             Bitmap bmp = new Bitmap(p1.Width * scaling.one, p1.Height * scaling.one, System.Drawing.Imaging.PixelFormat.Format32bppArgb);
             bmp.SetResolution(scaling.hundred, scaling.hundred);
             Graphics g = Graphics.FromImage(bmp);
@@ -1118,7 +1118,7 @@ namespace circularMT
             drawTicks(g, center, radius - scaling.thirty, scaling);
 
             int largerThan = 0;
-            int smallerThan = sequencelength / 3;
+            int smallerThan = sequencelength / 2;
             if (chkDrawOrder.Checked == false)
             {
                 if (chlTerms.CheckedItems.Count != 0)
@@ -1315,8 +1315,8 @@ namespace circularMT
         private void drawFeatures(Graphics g, string featureSet, Point center, int radius, int largerThan, int smallerThan, ImageScaling scaling)
         {           
             foreach (feature f in features[featureSet])
-            {
-                if (f.EndPoint - f.StartPoint > largerThan && f.EndPoint - f.StartPoint < smallerThan && f.EndPoint - f.StartPoint < sequencelength / 3 )
+            {                
+                if (f.EndPoint - f.StartPoint > largerThan && f.EndPoint - f.StartPoint < smallerThan && f.EndPoint - f.StartPoint < sequencelength / 2 )
                 {
                     if (f.Forward == true)
                     {
@@ -1335,7 +1335,7 @@ namespace circularMT
 
             foreach (feature f in features[featureSet])
             {
-                if (f.EndPoint - f.StartPoint > largerThan && f.EndPoint - f.StartPoint < smallerThan && f.EndPoint - f.StartPoint < sequencelength / 3)
+                if (f.EndPoint - f.StartPoint > largerThan && f.EndPoint - f.StartPoint < smallerThan && f.EndPoint - f.StartPoint < sequencelength / 2)
                 {
                     if (f.Forward == true)
                     { writeName(g, f, center, radius, scaling); }
@@ -1441,7 +1441,7 @@ namespace circularMT
                 lenght = g.MeasureString(name, font);
                 circumference = (float)(2 * radius * Math.PI);
 
-                arcLength = circumference * (endPoint- startPoint) / 360;
+                arcLength = circumference * (endPoint - startPoint) / 360;
                 fontSize--;
             }
 
@@ -1469,7 +1469,7 @@ namespace circularMT
                         g.RotateTransform((float)angle + 90.0f);
                         g.DrawString(new string(name[index], 1), font, f.FontColour, 0, 0);
                         g.ResetTransform();
-                        angle += (float)(s.Width * 270 / circumference);
+                        angle += (float)((s.Width - scaling.three) * 270 / circumference);
                     }
                 }
                 else
@@ -1496,7 +1496,7 @@ namespace circularMT
                         {
                             letter = name[place - 1].ToString();
                             SizeF s = g.MeasureString(letter, font);
-                            angle += (float)(s.Width * 270 / circumference);
+                            angle += (float)((s.Width - scaling.three) * 270 / circumference);
                         }
                     }
                 }
