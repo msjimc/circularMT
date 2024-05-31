@@ -21,6 +21,8 @@ Since ```Wine``` can work on a range of operating systems, how it is installed d
 
 * [Debian trixie](debian.md)
 
+* [FreeBSD 14.0_RELEASE](FreeBSD.md)
+
 * [macOS](macOS.md)
 
 ## Common issues
