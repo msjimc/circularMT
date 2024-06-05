@@ -1445,6 +1445,17 @@ namespace circularMT
                 fontSize--;
             }
 
+            float individualCharacterLength = 0;
+
+            for (int index =0; index < name.Length;index++)
+            {
+                SizeF cLength = g.MeasureString(name[index].ToString(), font);
+                individualCharacterLength += cLength.Width;
+            }
+
+            float space = (individualCharacterLength - lenght.Width) ;
+             space = (individualCharacterLength - lenght.Width) / (name.Length * 3);
+            
             if (lenght.Width < arcLength - scaling.ten)
             {
                 float diff = (arcLength - lenght.Width) / 2.0f;
@@ -1469,7 +1480,7 @@ namespace circularMT
                         g.RotateTransform((float)angle + 90.0f);
                         g.DrawString(new string(name[index], 1), font, f.FontColour, 0, 0);
                         g.ResetTransform();
-                        angle += (float)((s.Width - scaling.three) * 270 / circumference);
+                        angle += (float)((s.Width - space) * 270 / circumference);
                     }
                 }
                 else
@@ -1496,7 +1507,7 @@ namespace circularMT
                         {
                             letter = name[place - 1].ToString();
                             SizeF s = g.MeasureString(letter, font);
-                            angle += (float)((s.Width - scaling.three) * 270 / circumference);
+                            angle += (float)((s.Width - space) * 270 / circumference);
                         }
                     }
                 }
