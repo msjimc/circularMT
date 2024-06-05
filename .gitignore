@@ -368,3 +368,5 @@ FodyWeavers.xsd
 # Github file setting
 /.gitignore
 /.gitattributes
+/Linux_with_Mono/README.md
+/Linux_with_Mono
