@@ -592,6 +592,7 @@
             this.ClientSize = new System.Drawing.Size(942, 692);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
+            this.MinimumSize = new System.Drawing.Size(958, 731);
             this.Name = "Form1";
             this.Text = "circularMT";
             this.Load += new System.EventHandler(this.Form1_Load);
