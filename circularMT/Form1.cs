@@ -2067,6 +2067,10 @@ namespace circularMT
             ads.ShowDialog();
             populate_cboStart();
         }
-         
+
+        private void Quit_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

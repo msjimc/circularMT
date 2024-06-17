@@ -353,6 +353,7 @@
             this.Quit.TabIndex = 19;
             this.Quit.Text = "Quit";
             this.Quit.UseVisualStyleBackColor = true;
+            this.Quit.Click += new System.EventHandler(this.Quit_Click);
             // 
             // btnRemove
             // 
