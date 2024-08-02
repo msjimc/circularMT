@@ -9,7 +9,8 @@ This application is designed as a desktop application, however, a command line c
 - [Guide](#guide)
 - [Download](#download)
 - [Running on Linux systems](#running-on-linux-systems)
-
+- [Citation](#citation)
+- 
 ## Introduction
 
 <img align="right" src="Guide/images/introCircular.jpg">
@@ -34,6 +35,12 @@ The prebuilt program can be downloaded [here](Program/README.md).
 
 The prebuilt programs can be run on Linux (and macOS) using the Wine package as described [here](Linux_with_Wine/README.md).
 
+## Citation
+
+Goodman SJ, Carr IM.   
+Drawing mitochondrial genomes with circularMT.  
+Bioinformatics. 2024 Jul 13;40(7):btae450.   
+doi: 10.1093/bioinformatics/btae450. 
 
 ## Zenodo archive
 
