@@ -10,7 +10,7 @@ This application is designed as a desktop application, however, a command line c
 - [Download](#download)
 - [Running on Linux systems](#running-on-linux-systems)
 - [Citation](#citation)
-- 
+ 
 ## Introduction
 
 <img align="right" src="Guide/images/introCircular.jpg">
