@@ -83,7 +83,7 @@ Repeat the process for the circularMT.dll and circularMT.runtimeconfig.json file
 
 # Running circularMT
 
-To run circularMT double click on the file in File Explorer and it should start. If it doesn't, first make sure that all three files are in the same folder (circularMT.exe, circularMT.dll and circularMT.runtimeconfig.json). If you get an error message such as the one in Figure 6, go to the [.Net download page](https://dotnet.microsoft.com/en-us/download/dotnet/7.0) and select the appropriate ".NET Desktop Runtime". There are a number of options make sure you chose the Desktop version.
+To run circularMT double click on the file in File Explorer and it should start. If you get an error message such as the one in Figure 6, go to the [.Net download page](https://dotnet.microsoft.com/en-us/download/dotnet/7.0) and select the appropriate ".NET Desktop Runtime". There are a number of options make sure you chose the Desktop version.
 
 
 ![figure 6](images/figure11.jpg)
