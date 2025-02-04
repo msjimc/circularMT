@@ -29,6 +29,7 @@ namespace circularMT
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdvancedNameSelection));
             this.btnClose = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cboNameOptions = new System.Windows.Forms.ComboBox();
@@ -146,6 +147,7 @@ namespace circularMT
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "AdvancedNameSelection";
             this.Text = "Advanced Name Selection";

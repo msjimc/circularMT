@@ -28,13 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdjustColours));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.rboBlack = new System.Windows.Forms.RadioButton();
+            this.cboCopy = new System.Windows.Forms.ComboBox();
             this.rboWhite = new System.Windows.Forms.RadioButton();
             this.btnCopy = new System.Windows.Forms.Button();
             this.btnSelect = new System.Windows.Forms.Button();
-            this.cboCopy = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtListOfNames = new System.Windows.Forms.TextBox();
@@ -93,6 +94,17 @@
             this.rboBlack.UseVisualStyleBackColor = true;
             this.rboBlack.CheckedChanged += new System.EventHandler(this.rboBlack_CheckedChanged);
             // 
+            // cboCopy
+            // 
+            this.cboCopy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboCopy.Enabled = false;
+            this.cboCopy.FormattingEnabled = true;
+            this.cboCopy.Location = new System.Drawing.Point(229, 196);
+            this.cboCopy.Name = "cboCopy";
+            this.cboCopy.Size = new System.Drawing.Size(196, 21);
+            this.cboCopy.TabIndex = 4;
+            this.cboCopy.SelectedIndexChanged += new System.EventHandler(this.cboCopy_SelectedIndexChanged);
+            // 
             // rboWhite
             // 
             this.rboWhite.AutoSize = true;
@@ -126,17 +138,6 @@
             this.btnSelect.Text = "Select";
             this.btnSelect.UseVisualStyleBackColor = true;
             this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
-            // 
-            // cboCopy
-            // 
-            this.cboCopy.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboCopy.Enabled = false;
-            this.cboCopy.FormattingEnabled = true;
-            this.cboCopy.Location = new System.Drawing.Point(229, 196);
-            this.cboCopy.Name = "cboCopy";
-            this.cboCopy.Size = new System.Drawing.Size(196, 21);
-            this.cboCopy.TabIndex = 4;
-            this.cboCopy.SelectedIndexChanged += new System.EventHandler(this.cboCopy_SelectedIndexChanged);
             // 
             // label3
             // 
@@ -227,6 +228,7 @@
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimizeBox = false;
             this.Name = "AdjustColours";
             this.Text = "Adjust feature colours";
