@@ -38,7 +38,7 @@ The prebuilt programs can be run on Linux (and macOS) using the Wine package as 
 ## Citation
 
 Goodman SJ, Carr IM.   
-Drawing mitochondrial genomes with circularMT.  
+[Drawing mitochondrial genomes with circularMT.](https://academic.oup.com/bioinformatics/article/40/7/btae450/7713370)  
 Bioinformatics. 2024 Jul 13;40(7):btae450.   
 doi: 10.1093/bioinformatics/btae450. 
 
