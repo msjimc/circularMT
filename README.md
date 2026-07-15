@@ -45,5 +45,5 @@ doi: 10.1093/bioinformatics/btae450.
 ## Zenodo archive
 
 An archived version of the first release is available  from here:   
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10912319.svg)](https://doi.org/10.5281/zenodo.10912319)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10912319.png)](https://doi.org/10.5281/zenodo.10912319)
 
